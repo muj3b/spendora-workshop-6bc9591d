@@ -74,7 +74,7 @@ const LiveEventTimer = ({
       if (currentEventDay) {
         setEventStatus({
           type: 'happening-now',
-          message: `Happening Now! Day ${currentEventDay.day}`,
+          message: `Session is currently happening - Day ${currentEventDay.day}`,
           currentDay: currentEventDay.day,
         });
         setTimeLeft('');
@@ -83,18 +83,34 @@ const LiveEventTimer = ({
 
       // Check if between event days (day ended, next day coming)
       const completedDay = eventDays.find(day => {
-        const nextDayStart = new Date(day.start);
-        nextDayStart.setDate(nextDayStart.getDate() + 1);
-        return now > day.end && now < nextDayStart;
+        const nextDay = eventDays.find(nextDay => nextDay.day === day.day + 1);
+        return now > day.end && nextDay && now < nextDay.start;
       });
+      
       if (completedDay && completedDay.day < totalEventDays) {
-        setEventStatus({
-          type: 'day-ended',
-          message: `Day ${completedDay.day} is over! Come back tomorrow for Day ${completedDay.day + 1}`,
-          currentDay: completedDay.day,
-        });
-        setTimeLeft('');
-        return;
+        const nextDay = eventDays.find(day => day.day === completedDay.day + 1);
+        if (nextDay) {
+          const timeDiff = nextDay.start.getTime() - now.getTime();
+          
+          const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+          let timeString = '';
+          if (days > 0) timeString += `${days}d `;
+          if (hours > 0) timeString += `${hours}h `;
+          if (minutes > 0) timeString += `${minutes}m `;
+          timeString += `${seconds}s`;
+
+          setEventStatus({
+            type: 'countdown',
+            message: `${timeString} until Day ${nextDay.day} begins!`,
+            currentDay: completedDay.day,
+          });
+          setTimeLeft(timeString);
+          return;
+        }
       }
 
       // Countdown to first event or next event day
@@ -149,14 +165,14 @@ const LiveEventTimer = ({
   const getStatusColor = () => {
     switch (eventStatus.type) {
       case 'happening-now':
-        return 'text-green-400 animate-pulse';
+        return 'text-red-400 animate-[pulse_2s_ease-in-out_infinite]';
       case 'day-ended':
         return 'text-yellow-400';
       case 'all-ended':
         return 'text-gray-400';
       case 'countdown':
         return eventStatus.isFlashing 
-          ? 'text-white animate-[flash_1s_ease-in-out_infinite_alternate]' 
+          ? 'text-white animate-[pulse_3s_ease-in-out_infinite]' 
           : 'text-white';
       default:
         return 'text-white';

@@ -64,8 +64,8 @@ const Hero = () => {
             <div className="bg-gradient-primary/20 dark:bg-gradient-primary/10 rounded-3xl p-6 sm:p-8 mx-auto max-w-2xl backdrop-blur-sm border-2 border-primary/30 shadow-2xl">
               <LiveEventTimer 
                 isActive={true} 
-                eventStartDateTime="2025-07-10T14:00:00"
-                eventDurationHours={2}
+                eventStartDateTime="2025-07-10T11:00:00"
+                eventDurationHours={1.5}
                 totalEventDays={10}
                 className="mb-6"
               />
