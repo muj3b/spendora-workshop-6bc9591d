@@ -22,9 +22,9 @@ interface EventStatus {
 
 const LiveEventTimer = ({ 
   isActive = false,
-  eventStartDateTime = '2025-07-06T14:00:00', // July 6, 2025 at 2:00 PM
-  eventDurationHours = 2, // 2-4 PM = 2 hours
-  totalEventDays = 5,
+  eventStartDateTime = '2025-07-10T11:00:00', // July 10, 2025 at 11:00 AM CDT
+  eventDurationHours = 1.5, // 11:00 AM - 12:30 PM = 1.5 hours
+  totalEventDays = 5, // July 10-14, 2025
   className 
 }: LiveEventTimerProps) => {
   const [timeLeft, setTimeLeft] = useState<string>('');
@@ -43,6 +43,7 @@ const LiveEventTimer = ({
     }
 
     const updateTimer = () => {
+      // Get current time in CDT (Central Daylight Time)
       const now = new Date();
       const eventStart = new Date(eventStartDateTime);
       
@@ -63,7 +64,7 @@ const LiveEventTimer = ({
       if (now > lastEventEnd) {
         setEventStatus({
           type: 'all-ended',
-          message: "It's over! Check back soon for the next dates.",
+          message: "All sessions complete! Check back soon for more.",
         });
         setTimeLeft('');
         return;
@@ -165,11 +166,11 @@ const LiveEventTimer = ({
   const getStatusColor = () => {
     switch (eventStatus.type) {
       case 'happening-now':
-        return 'text-red-400 animate-[pulse_2s_ease-in-out_infinite]';
+        return 'text-red-400 animate-[pulse_3s_ease-in-out_infinite]';
       case 'day-ended':
         return 'text-yellow-400';
       case 'all-ended':
-        return 'text-gray-400';
+        return 'text-green-400 font-bold';
       case 'countdown':
         return eventStatus.isFlashing 
           ? 'text-white animate-[pulse_3s_ease-in-out_infinite]' 

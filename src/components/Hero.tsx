@@ -66,13 +66,23 @@ const Hero = () => {
                 isActive={true} 
                 eventStartDateTime="2025-07-10T11:00:00"
                 eventDurationHours={1.5}
-                totalEventDays={10}
+                totalEventDays={5}
                 className="mb-6"
               />
               <div className="text-center space-y-4">
-                <p className="text-xl sm:text-2xl font-semibold text-foreground">
-                  <span role="img" aria-label="Location">📍</span> R.H. Stafford Library
-                </p>
+                <div className="space-y-2">
+                  <p className="text-2xl sm:text-3xl font-bold text-foreground">
+                    <span role="img" aria-label="Location">📍</span> R.H. Stafford Library
+                  </p>
+                  <a 
+                    href="https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block text-lg sm:text-xl text-primary hover:text-primary/80 transition-colors underline font-medium"
+                  >
+                    View on Maps →
+                  </a>
+                </div>
                 <p className="text-lg sm:text-xl font-medium text-muted-foreground">
                   <span role="img" aria-label="Money">💰</span> Free • All supplies included
                 </p>
