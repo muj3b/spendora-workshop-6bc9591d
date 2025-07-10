@@ -61,19 +61,19 @@ const Hero = () => {
             </div>
 
             {/* Secondary info card */}
-            <div className="bg-gradient-primary/10 dark:bg-gradient-primary/5 rounded-2xl p-4 sm:p-6 mx-auto max-w-lg backdrop-blur-sm border border-primary/20">
+            <div className="bg-gradient-primary/20 dark:bg-gradient-primary/10 rounded-3xl p-6 sm:p-8 mx-auto max-w-2xl backdrop-blur-sm border-2 border-primary/30 shadow-2xl">
               <LiveEventTimer 
                 isActive={true} 
-                eventStartDateTime="2025-07-09T14:00:00"
+                eventStartDateTime="2025-07-10T14:00:00"
                 eventDurationHours={2}
-                totalEventDays={5}
-                className="mb-3"
+                totalEventDays={10}
+                className="mb-6"
               />
-              <div className="text-center space-y-2">
-                <p className="text-body text-muted-foreground">
+              <div className="text-center space-y-4">
+                <p className="text-xl sm:text-2xl font-semibold text-foreground">
                   <span role="img" aria-label="Location">📍</span> R.H. Stafford Library
                 </p>
-                <p className="text-body text-muted-foreground">
+                <p className="text-lg sm:text-xl font-medium text-muted-foreground">
                   <span role="img" aria-label="Money">💰</span> Free • All supplies included
                 </p>
               </div>

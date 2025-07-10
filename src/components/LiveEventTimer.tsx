@@ -139,7 +139,7 @@ const LiveEventTimer = ({
   if (!isActive) {
     return (
       <div className={cn("text-center", className)}>
-        <h2 className="text-heading text-white mb-3">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3">
           Dates Coming Soon
         </h2>
       </div>
@@ -165,11 +165,11 @@ const LiveEventTimer = ({
 
   return (
     <div className={cn("text-center", className)}>
-      <h2 className={cn("text-heading mb-3 transition-colors duration-300", getStatusColor())}>
+      <h2 className={cn("text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 transition-colors duration-300", getStatusColor())}>
         {eventStatus.message}
       </h2>
       {eventStatus.type === 'happening-now' && (
-        <p className="text-body-large text-green-300 animate-bounce">
+        <p className="text-xl sm:text-2xl text-green-300 animate-bounce font-semibold">
           <span role="img" aria-label="Live">🔴</span> LIVE NOW!
         </p>
       )}
