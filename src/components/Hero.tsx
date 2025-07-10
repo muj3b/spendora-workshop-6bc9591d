@@ -63,8 +63,8 @@ const Hero = () => {
             {/* Secondary info card */}
             <div className="bg-gradient-primary/10 dark:bg-gradient-primary/5 rounded-2xl p-4 sm:p-6 mx-auto max-w-lg backdrop-blur-sm border border-primary/20">
               <LiveEventTimer 
-                isActive={false} 
-                eventStartDateTime="2025-07-06T14:00:00"
+                isActive={true} 
+                eventStartDateTime="2025-07-09T14:00:00"
                 eventDurationHours={2}
                 totalEventDays={5}
                 className="mb-3"
