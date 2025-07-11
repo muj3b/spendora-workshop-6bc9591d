@@ -42,75 +42,93 @@ const Hero = () => {
           </p>
 
           {/* Main Call-to-Action Section */}
-          <div className="space-y-6 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.6s_both]">
-            {/* Hero CTA Button */}
+          <div className="space-y-8 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.6s_both]">
+            {/* Primary signup button */}
             <div className="text-center">
               <GradientButton 
                 size="xl" 
                 variant="secondary" 
                 pulse={true}
                 className="w-full sm:w-auto rounded-full text-xl px-12 py-6 hover:scale-110 transition-all duration-300 shadow-glow"
-                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSc96cCWzGieYsW8-O71obKoyoV3yF8YTE1Msay3ZwoeWgydBg/viewform', '_blank')}
-                aria-label="Tell us what days work for you"
-              >
-                <span className="font-bold">Help Us Pick The Perfect Dates!</span> <span role="img" aria-label="Calendar">📅</span>
-              </GradientButton>
-              <p className="text-muted-foreground mt-3 text-lg">
-                Vote for your preferred workshop dates 👆
-              </p>
-            </div>
-
-            {/* Dynamic Workshop Info Section */}
-            <div className="relative">
-              {/* Main Timer Section */}
-              <div className="bg-gradient-to-br from-blue-600/80 to-purple-600/80 backdrop-blur-lg rounded-3xl p-8 sm:p-10 mx-auto max-w-3xl border border-white/20 shadow-2xl">
-                <LiveEventTimer 
-                  isActive={true} 
-                  eventStartDateTime="2025-07-10T11:00:00"
-                  eventDurationHours={1.5}
-                  totalEventDays={1}
-                  className="mb-8"
-                />
-              </div>
-
-              {/* Floating Location Card */}
-              <div className="mt-6 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-6 mx-auto max-w-lg border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
-                <div className="text-center space-y-3">
-                  <div className="flex items-center justify-center space-x-2">
-                    <span role="img" aria-label="Location" className="text-3xl">📍</span>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-foreground">R.H. Stafford Library</h3>
-                  </div>
-                  <a 
-                    href="https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 text-lg sm:text-xl text-primary hover:text-primary/80 transition-all duration-300 font-medium group"
-                  >
-                    <span>View on Maps</span>
-                    <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Features Banner */}
-              <div className="mt-6 bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm rounded-2xl p-4 mx-auto max-w-lg border border-white/20">
-                <p className="text-center text-lg sm:text-xl font-semibold text-foreground">
-                  <span role="img" aria-label="Money">💰</span> Free • All supplies included • <span role="img" aria-label="Snacks">🍪</span> Snacks provided
-                </p>
-              </div>
-            </div>
-
-            {/* Secondary signup button */}
-            <div className="text-center">
-              <GradientButton 
-                size="lg" 
-                variant="primary"
-                className="w-full sm:w-auto rounded-full"
                 onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
                 aria-label="Sign up for the free Spendora workshop"
               >
-                Reserve Your Spot - It's Free! <span role="img" aria-label="Rocket">🚀</span>
+                <span className="font-bold">Reserve Your Spot - It's Free!</span> <span role="img" aria-label="Rocket">🚀</span>
               </GradientButton>
+              <p className="text-muted-foreground mt-3 text-lg">
+                Limited spots available - Don't miss out! 
+              </p>
+            </div>
+
+            {/* Dynamic Workshop Info Section - Redesigned */}
+            <div className="relative max-w-4xl mx-auto">
+              {/* Main Content Grid */}
+              <div className="grid lg:grid-cols-2 gap-8 items-start">
+                {/* Timer Section */}
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-blue-600/90 to-purple-600/90 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl relative overflow-hidden">
+                    {/* Background pattern */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent_70%)]"></div>
+                    <div className="relative z-10">
+                      <LiveEventTimer 
+                        isActive={true} 
+                        eventStartDateTime="2025-07-10T11:00:00"
+                        eventDurationHours={1.5}
+                        totalEventDays={1}
+                        className=""
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Location & Details Section */}
+                <div className="space-y-6">
+                  {/* Location Card */}
+                  <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+                    <div className="text-center space-y-4">
+                      <div className="flex items-center justify-center space-x-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
+                          <span role="img" aria-label="Location" className="text-2xl">📍</span>
+                        </div>
+                        <div>
+                          <h3 className="text-2xl font-bold text-foreground">R.H. Stafford Library</h3>
+                          <p className="text-muted-foreground text-sm">Workshop Location</p>
+                        </div>
+                      </div>
+                      <a 
+                        href="https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-2 text-lg text-primary hover:text-primary/80 transition-all duration-300 font-medium group bg-primary/10 px-4 py-2 rounded-full"
+                      >
+                        <span>View on Maps</span>
+                        <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Features Card */}
+                  <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg">
+                    <div className="text-center space-y-3">
+                      <h4 className="text-xl font-bold text-foreground">What's Included</h4>
+                      <div className="grid grid-cols-1 gap-2 text-foreground">
+                        <div className="flex items-center justify-center space-x-2">
+                          <span role="img" aria-label="Money">💰</span>
+                          <span className="font-medium">Completely Free</span>
+                        </div>
+                        <div className="flex items-center justify-center space-x-2">
+                          <span role="img" aria-label="Supplies">📚</span>
+                          <span className="font-medium">All Supplies Included</span>
+                        </div>
+                        <div className="flex items-center justify-center space-x-2">
+                          <span role="img" aria-label="Snacks">🍪</span>
+                          <span className="font-medium">Snacks Provided</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
