@@ -60,31 +60,42 @@ const Hero = () => {
               </p>
             </div>
 
-            {/* Secondary info card */}
-            <div className="bg-gradient-primary/20 dark:bg-gradient-primary/10 rounded-3xl p-6 sm:p-8 mx-auto max-w-2xl backdrop-blur-sm border-2 border-primary/30 shadow-2xl">
-              <LiveEventTimer 
-                isActive={true} 
-                eventStartDateTime="2025-07-10T11:00:00"
-                eventDurationHours={1.5}
-                totalEventDays={5}
-                className="mb-6"
-              />
-              <div className="text-center space-y-4">
-                <div className="space-y-2">
-                  <p className="text-2xl sm:text-3xl font-bold text-foreground">
-                    <span role="img" aria-label="Location">📍</span> R.H. Stafford Library
-                  </p>
+            {/* Dynamic Workshop Info Section */}
+            <div className="relative">
+              {/* Main Timer Section */}
+              <div className="bg-gradient-to-br from-blue-600/80 to-purple-600/80 backdrop-blur-lg rounded-3xl p-8 sm:p-10 mx-auto max-w-3xl border border-white/20 shadow-2xl">
+                <LiveEventTimer 
+                  isActive={true} 
+                  eventStartDateTime="2025-07-10T11:00:00"
+                  eventDurationHours={1.5}
+                  totalEventDays={1}
+                  className="mb-8"
+                />
+              </div>
+
+              {/* Floating Location Card */}
+              <div className="mt-6 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-6 mx-auto max-w-lg border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+                <div className="text-center space-y-3">
+                  <div className="flex items-center justify-center space-x-2">
+                    <span role="img" aria-label="Location" className="text-3xl">📍</span>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-foreground">R.H. Stafford Library</h3>
+                  </div>
                   <a 
                     href="https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block text-lg sm:text-xl text-primary hover:text-primary/80 transition-colors underline font-medium"
+                    className="inline-flex items-center space-x-2 text-lg sm:text-xl text-primary hover:text-primary/80 transition-all duration-300 font-medium group"
                   >
-                    View on Maps →
+                    <span>View on Maps</span>
+                    <span className="transform group-hover:translate-x-1 transition-transform">→</span>
                   </a>
                 </div>
-                <p className="text-lg sm:text-xl font-medium text-muted-foreground">
-                  <span role="img" aria-label="Money">💰</span> Free • All supplies included
+              </div>
+
+              {/* Features Banner */}
+              <div className="mt-6 bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm rounded-2xl p-4 mx-auto max-w-lg border border-white/20">
+                <p className="text-center text-lg sm:text-xl font-semibold text-foreground">
+                  <span role="img" aria-label="Money">💰</span> Free • All supplies included • <span role="img" aria-label="Snacks">🍪</span> Snacks provided
                 </p>
               </div>
             </div>

@@ -24,7 +24,7 @@ const LiveEventTimer = ({
   isActive = false,
   eventStartDateTime = '2025-07-10T11:00:00', // July 10, 2025 at 11:00 AM CDT
   eventDurationHours = 1.5, // 11:00 AM - 12:30 PM = 1.5 hours
-  totalEventDays = 5, // July 10-14, 2025
+  totalEventDays = 1, // Just Day 1 for now, Day 2 date TBD
   className 
 }: LiveEventTimerProps) => {
   const [timeLeft, setTimeLeft] = useState<string>('');
@@ -60,11 +60,11 @@ const LiveEventTimer = ({
 
       const lastEventEnd = eventDays[eventDays.length - 1].end;
 
-      // Check if all events are over
+      // Check if Day 1 is over - show Day 2 coming soon message
       if (now > lastEventEnd) {
         setEventStatus({
           type: 'all-ended',
-          message: "All sessions complete! Check back soon for more.",
+          message: "Day 2 date coming soon! Stay tuned for updates.",
         });
         setTimeLeft('');
         return;
@@ -189,6 +189,15 @@ const LiveEventTimer = ({
         <p className="text-xl sm:text-2xl text-green-300 animate-bounce font-semibold">
           <span role="img" aria-label="Live">🔴</span> LIVE NOW!
         </p>
+      )}
+      
+      {/* Time bubble showing actual session time */}
+      {eventStatus.type !== 'all-ended' && (
+        <div className="mt-4 inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 shadow-lg">
+          <p className="text-lg sm:text-xl font-semibold text-white">
+            <span role="img" aria-label="Clock">⏰</span> 11:00 AM - 12:30 PM CDT
+          </p>
+        </div>
       )}
     </div>
   );
