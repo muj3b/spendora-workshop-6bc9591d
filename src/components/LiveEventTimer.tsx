@@ -241,7 +241,7 @@ const LiveEventTimer = ({
 
   return (
     <div className={cn("text-center", className)}>
-      <h2 className={cn("text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 transition-colors duration-300", getStatusColor())}>
+      <h2 className={cn("text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 transition-colors duration-300 whitespace-nowrap overflow-hidden text-ellipsis max-w-full", getStatusColor())}>
         {eventStatus.message}
       </h2>
       {eventStatus.type === 'happening-now' && (
@@ -254,23 +254,23 @@ const LiveEventTimer = ({
       <div className="mt-4 space-y-3">
         {/* Live counter and session time */}
         {eventStatus.type !== 'all-ended' && (
-          <div className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 shadow-lg">
+          <div className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 shadow-lg shadow-primary/30 glow">
             <p className="text-lg sm:text-xl font-semibold text-white">
               <span role="img" aria-label="Clock">⏰</span> {eventStatus.currentDay === 2 ? '1:00 PM - 2:30 PM CDT' : '11:00 AM - 12:30 PM CDT'}
             </p>
           </div>
         )}
         
-        {/* Actual dates display */}
-        <div className="text-center space-y-2">
-          <div className="inline-block bg-black/20 backdrop-blur-sm border border-white/10 rounded-lg px-4 py-2">
-            <p className="text-white font-medium">
-              <span className="text-green-300">Day 1:</span> Thursday, July 10th • 11:00 AM CDT
+        {/* Actual dates display - Day 2 prioritized */}
+        <div className="text-center space-y-3">
+          <div className="inline-block bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-300/30 rounded-lg px-6 py-3 shadow-lg shadow-blue-400/20 glow">
+            <p className="text-white font-bold text-lg">
+              <span className="text-blue-300">🚀 Day 2:</span> Friday, July 18th • 1:00 PM - 2:30 PM CDT
             </p>
           </div>
-          <div className="inline-block bg-black/20 backdrop-blur-sm border border-white/10 rounded-lg px-4 py-2">
-            <p className="text-white font-medium">
-              <span className="text-blue-300">Day 2:</span> Friday, July 18th • 1:00 PM CDT
+          <div className="inline-block bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-4 py-2 opacity-60">
+            <p className="text-gray-300 font-medium line-through">
+              <span className="text-gray-400">✓ Day 1:</span> Thursday, July 10th • 11:00 AM - 12:30 PM CDT (Completed)
             </p>
           </div>
         </div>
