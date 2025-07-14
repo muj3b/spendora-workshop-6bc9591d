@@ -10,7 +10,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 flex items-center overflow-hidden transition-colors duration-300" role="main" aria-label="Spendora Workshop Hero Section">
+    <main className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 flex items-center overflow-hidden transition-colors duration-300 pt-16" role="main" aria-label="Spendora Workshop Hero Section">
       <HamburgerMenu />
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -132,8 +132,12 @@ const Hero = () => {
             </div>
           </div>
 
-          <section id="features" className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto px-2 animate-[fade-in_1s_ease-out_0.8s_both]" aria-labelledby="workshop-topics">
-            <h2 id="workshop-topics" className="sr-only">Workshop Topics</h2>
+          <div className="mt-8 sm:mt-12 md:mt-16 text-center">
+            <h2 className="text-2xl font-bold text-foreground mb-2">Explore Our Workshop Topics</h2>
+            <p className="text-muted-foreground mb-8">Click on any card to learn more about each topic</p>
+          </div>
+
+          <section id="features" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto px-2 animate-[fade-in_1s_ease-out_0.8s_both]" aria-labelledby="workshop-topics">
             <FeatureCard
               icon={ChartLine}
               title="Stock Markets & Investing"
@@ -144,9 +148,9 @@ const Hero = () => {
               animationDelay="1.3s"
               onCardClick={() => navigate('/stock-markets')}
               badge={
-                <div className="flex items-center space-x-1 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
-                  <span>Click me</span>
-                  <ArrowRight className="w-4 h-4 animate-pulse" />
+                <div className="flex items-center space-x-1 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full">
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4" />
                 </div>
               }
             />
@@ -180,9 +184,9 @@ const Hero = () => {
               animationDelay="1.9s"
               onCardClick={() => navigate('/crypto-nfts')}
               badge={
-                <div className="flex items-center space-x-1 text-sm text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 transition-colors">
-                  <span>Click me</span>
-                  <ArrowRight className="w-4 h-4 animate-pulse" />
+                <div className="flex items-center space-x-1 text-sm font-semibold text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 transition-colors bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full">
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4" />
                 </div>
               }
             />
