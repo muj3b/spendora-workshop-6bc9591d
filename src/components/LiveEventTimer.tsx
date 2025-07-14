@@ -64,7 +64,7 @@ const LiveEventTimer = ({
       if (now > lastEventEnd) {
         setEventStatus({
           type: 'all-ended',
-          message: "Day 2 date coming soon! Stay tuned for updates.",
+          message: "Day 2 WILL BE THIS FRIDAY at 1pm CDT BE THERE",
         });
         setTimeLeft('');
         return;
