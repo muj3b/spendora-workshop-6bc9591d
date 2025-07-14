@@ -27,10 +27,10 @@ const App = () => (
         <div className="fixed top-6 left-6 z-50">
           <ThemeToggle />
         </div>
-        <div className="fixed top-6 right-6 z-50">
-          <AuthButton />
-        </div>
         <BrowserRouter>
+          <div className="fixed top-6 right-6 z-50">
+            <AuthButton />
+          </div>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/stock-markets" element={<StockMarkets />} />
