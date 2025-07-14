@@ -1,13 +1,14 @@
-
 import { GradientButton } from "@/components/ui/gradient-button";
 import { FeatureCard } from "@/components/ui/feature-card";
-import { ChartLine, Store, ArrowRight, Coins, Bitcoin } from "lucide-react";
+import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 import HamburgerMenu from "@/components/HamburgerMenu";
+import { useAuth } from "@/hooks/useAuth";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 flex items-center overflow-hidden transition-colors duration-300 pt-16" role="main" aria-label="Spendora Workshop Hero Section">
@@ -44,7 +45,7 @@ const Hero = () => {
           {/* Main Call-to-Action Section */}
           <div className="space-y-8 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.6s_both]">
             {/* Primary signup button */}
-            <div className="text-center">
+            <div className="text-center space-y-4">
               <GradientButton 
                 size="xl" 
                 variant="secondary" 
@@ -55,6 +56,21 @@ const Hero = () => {
               >
                 <span className="font-bold">Reserve Your Spot - It's Free!</span> <span role="img" aria-label="Rocket">🚀</span>
               </GradientButton>
+              
+              {/* Support button */}
+              <div className="flex justify-center">
+                <GradientButton 
+                  size="lg" 
+                  variant="warm" 
+                  className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300"
+                  onClick={() => navigate('/donate')}
+                  aria-label="Support Spendora with a donation"
+                >
+                  <Heart className="w-5 h-5 mr-2" />
+                  <span className="font-semibold">Support Our Mission</span>
+                </GradientButton>
+              </div>
+              
               <p className="text-muted-foreground mt-3 text-lg">
                 Limited spots available - Don't miss out! 
               </p>
