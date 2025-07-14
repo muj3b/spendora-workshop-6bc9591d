@@ -240,37 +240,39 @@ const LiveEventTimer = ({
   };
 
   return (
-    <div className={cn("text-center", className)}>
-      <h2 className={cn("text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 transition-colors duration-300 whitespace-nowrap overflow-hidden text-ellipsis max-w-full", getStatusColor())}>
+    <div className={cn("text-center px-4", className)}>
+      <h2 className={cn("text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 transition-colors duration-300 break-words", getStatusColor())}>
         {eventStatus.message}
       </h2>
       {eventStatus.type === 'happening-now' && (
-        <p className="text-xl sm:text-2xl text-green-300 animate-bounce font-semibold">
+        <p className="text-lg sm:text-xl text-green-300 animate-bounce font-semibold">
           <span role="img" aria-label="Live">🔴</span> LIVE NOW!
         </p>
       )}
       
       {/* Time and date display */}
-      <div className="mt-4 space-y-3">
+      <div className="mt-4 space-y-3 max-w-full">
         {/* Live counter and session time */}
         {eventStatus.type !== 'all-ended' && (
-          <div className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 shadow-lg shadow-primary/30 glow">
-            <p className="text-lg sm:text-xl font-semibold text-white">
+          <div className="mx-auto max-w-fit bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-lg shadow-primary/30 glow">
+            <p className="text-sm sm:text-lg font-semibold text-white whitespace-nowrap">
               <span role="img" aria-label="Clock">⏰</span> 1:00 PM - 2:30 PM CDT
             </p>
           </div>
         )}
         
         {/* Actual dates display - Day 2 prioritized */}
-        <div className="text-center space-y-3">
-          <div className="inline-block bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-300/30 rounded-lg px-6 py-3 shadow-lg shadow-blue-400/20 glow">
-            <p className="text-white font-bold text-lg">
-              <span className="text-blue-300">🚀 Day 2:</span> Friday, July 18th • 1:00 PM - 2:30 PM CDT
+        <div className="text-center space-y-3 max-w-full">
+          <div className="mx-auto max-w-fit bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-300/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 shadow-lg shadow-blue-400/20 glow">
+            <p className="text-white font-bold text-sm sm:text-lg break-words">
+              <span className="text-blue-300">🚀 Day 2:</span> Friday, July 18th<br className="sm:hidden" />
+              <span className="sm:inline"> • 1:00 PM - 2:30 PM CDT</span>
             </p>
           </div>
-          <div className="inline-block bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-4 py-2 opacity-60">
-            <p className="text-gray-300 font-medium line-through">
-              <span className="text-gray-400">✓ Day 1:</span> Thursday, July 10th • 11:00 AM - 12:30 PM CDT (Completed)
+          <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">
+            <p className="text-gray-300 font-medium line-through text-xs sm:text-sm break-words">
+              <span className="text-gray-400">✓ Day 1:</span> Thursday, July 10th<br className="sm:hidden" />
+              <span className="sm:inline"> • 11:00 AM - 12:30 PM CDT (Completed)</span>
             </p>
           </div>
         </div>
