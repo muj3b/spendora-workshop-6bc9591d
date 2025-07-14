@@ -256,7 +256,7 @@ const LiveEventTimer = ({
         {eventStatus.type !== 'all-ended' && (
           <div className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 shadow-lg shadow-primary/30 glow">
             <p className="text-lg sm:text-xl font-semibold text-white">
-              <span role="img" aria-label="Clock">⏰</span> {eventStatus.currentDay === 2 ? '1:00 PM - 2:30 PM CDT' : '11:00 AM - 12:30 PM CDT'}
+              <span role="img" aria-label="Clock">⏰</span> 1:00 PM - 2:30 PM CDT
             </p>
           </div>
         )}
