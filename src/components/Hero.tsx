@@ -1,33 +1,53 @@
+import { memo, useMemo, useCallback } from 'react';
 import { GradientButton } from "@/components/ui/gradient-button";
 import { FeatureCard } from "@/components/ui/feature-card";
 import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 import HamburgerMenu from "@/components/HamburgerMenu";
-import { useAuth } from "@/hooks/useAuth";
 
-const Hero = () => {
+const Hero = memo(() => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  
+  const handleSignup = useCallback(() => {
+    window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank');
+  }, []);
+  
+  const handleDonate = useCallback(() => {
+    navigate('/donate');
+  }, [navigate]);
+  
+  const navigateToStockMarkets = useCallback(() => {
+    navigate('/stock-markets');
+  }, [navigate]);
+  
+  const navigateToCryptoNFTs = useCallback(() => {
+    navigate('/crypto-nfts');
+  }, [navigate]);
+  
+  // Memoize heavy decorative elements
+  const decorativeElements = useMemo(() => (
+    <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute top-20 left-10 opacity-10 animate-[float_6s_ease-in-out_infinite]">
+        <ChartLine size={120} className="text-blue-600" />
+      </div>
+      <div className="absolute top-40 right-20 opacity-10 animate-[float_8s_ease-in-out_infinite_2s]">
+        <Coins size={100} className="text-green-600" />
+      </div>
+      <div className="absolute bottom-40 left-20 opacity-10 animate-[float_7s_ease-in-out_infinite_1s]">
+        <Store size={110} className="text-purple-600" />
+      </div>
+      <div className="absolute bottom-20 right-10 opacity-10 animate-[float_9s_ease-in-out_infinite_3s]">
+        <ChartLine size={90} className="text-blue-600" />
+      </div>
+    </div>
+  ), []);
 
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 flex items-center overflow-hidden transition-colors duration-300 pt-16" role="main" aria-label="Spendora Workshop Hero Section">
       <HamburgerMenu />
       {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 opacity-10 animate-[float_6s_ease-in-out_infinite]">
-          <ChartLine size={120} className="text-blue-600" />
-        </div>
-        <div className="absolute top-40 right-20 opacity-10 animate-[float_8s_ease-in-out_infinite_2s]">
-          <Coins size={100} className="text-green-600" />
-        </div>
-        <div className="absolute bottom-40 left-20 opacity-10 animate-[float_7s_ease-in-out_infinite_1s]">
-          <Store size={110} className="text-purple-600" />
-        </div>
-        <div className="absolute bottom-20 right-10 opacity-10 animate-[float_9s_ease-in-out_infinite_3s]">
-          <ChartLine size={90} className="text-blue-600" />
-        </div>
-      </div>
+      {decorativeElements}
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -51,7 +71,7 @@ const Hero = () => {
                 variant="secondary" 
                 pulse={true}
                 className="w-full sm:w-auto rounded-full text-xl px-12 py-6 hover:scale-110 transition-all duration-300 shadow-glow"
-                onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
+                onClick={handleSignup}
                 aria-label="Sign up for the free Spendora workshop"
               >
                 <span className="font-bold">Reserve Your Spot - It's Free!</span> <span role="img" aria-label="Rocket">🚀</span>
@@ -63,7 +83,7 @@ const Hero = () => {
                   size="lg" 
                   variant="warm" 
                   className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300"
-                  onClick={() => navigate('/donate')}
+                  onClick={handleDonate}
                   aria-label="Support Spendora with a donation"
                 >
                   <Heart className="w-5 h-5 mr-2" />
@@ -90,7 +110,7 @@ const Hero = () => {
                         isActive={true} 
                         eventStartDateTime="2025-07-10T11:00:00"
                         eventDurationHours={1.5}
-                        totalEventDays={1}
+                        totalEventDays={2}
                         className=""
                       />
                     </div>
@@ -162,7 +182,7 @@ const Hero = () => {
               iconSize="lg"
               variant="glass"
               animationDelay="1.3s"
-              onCardClick={() => navigate('/stock-markets')}
+              onCardClick={navigateToStockMarkets}
               badge={
                 <div className="flex items-center space-x-1 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full">
                   <span>Learn More</span>
@@ -198,7 +218,7 @@ const Hero = () => {
               iconSize="lg"
               variant="glass"
               animationDelay="1.9s"
-              onCardClick={() => navigate('/crypto-nfts')}
+              onCardClick={navigateToCryptoNFTs}
               badge={
                 <div className="flex items-center space-x-1 text-sm font-semibold text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 transition-colors bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full">
                   <span>Learn More</span>
@@ -211,6 +231,8 @@ const Hero = () => {
       </div>
     </main>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

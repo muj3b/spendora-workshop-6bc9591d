@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 interface PageTransitionProps {
   children: React.ReactNode;
@@ -10,39 +10,40 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children, transitionTyp
   const [showWelcome, setShowWelcome] = useState(false);
   const [animationPhase, setAnimationPhase] = useState('start');
 
+  // Memoize the check for whether welcome was already seen
+  const hasSeenWelcome = useMemo(() => sessionStorage.getItem('hasSeenWelcome'), []);
+
+  const skipToLoaded = useCallback(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const markWelcomeSeen = useCallback(() => {
+    sessionStorage.setItem('hasSeenWelcome', 'true');
+  }, []);
+
   useEffect(() => {
     if (transitionType === 'welcome') {
-      // Check if welcome animation has already been shown
-      const hasSeenWelcome = sessionStorage.getItem('hasSeenWelcome');
-      
       if (hasSeenWelcome) {
-        // Skip welcome animation, just fade in
-        setIsLoaded(true);
+        // Skip welcome animation, just fade in immediately
+        skipToLoaded();
         return;
       }
 
       // Mark that we've shown the welcome animation
-      sessionStorage.setItem('hasSeenWelcome', 'true');
+      markWelcomeSeen();
 
-      // Welcome animation (original)
-      const phase1Timer = setTimeout(() => {
-        setAnimationPhase('rise');
-      }, 200);
-
-      const phase2Timer = setTimeout(() => {
-        setAnimationPhase('expand');
-      }, 1000);
-
+      // Optimized welcome animation with fewer phases
+      const phase1Timer = setTimeout(() => setAnimationPhase('rise'), 200);
+      const phase2Timer = setTimeout(() => setAnimationPhase('expand'), 800);
       const phase3Timer = setTimeout(() => {
         setAnimationPhase('welcome');
         setShowWelcome(true);
-      }, 1800);
-
+      }, 1400);
       const phase4Timer = setTimeout(() => {
         setShowWelcome(false);
         setAnimationPhase('done');
         setIsLoaded(true);
-      }, 3200);
+      }, 2600);
 
       return () => {
         clearTimeout(phase1Timer);
@@ -51,16 +52,10 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children, transitionTyp
         clearTimeout(phase4Timer);
       };
     } else {
-      // Simple fade animation
-      const fadeTimer = setTimeout(() => {
-        setIsLoaded(true);
-      }, 100);
-
-      return () => {
-        clearTimeout(fadeTimer);
-      };
+      // Immediate load for non-welcome transitions
+      skipToLoaded();
     }
-  }, [transitionType]);
+  }, [transitionType, hasSeenWelcome, skipToLoaded, markWelcomeSeen]);
 
   const getDropletStyles = () => {
     switch (animationPhase) {

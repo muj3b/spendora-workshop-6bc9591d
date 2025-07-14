@@ -24,7 +24,7 @@ const LiveEventTimer = ({
   isActive = false,
   eventStartDateTime = '2025-07-10T11:00:00', // July 10, 2025 at 11:00 AM CDT
   eventDurationHours = 1.5, // 11:00 AM - 12:30 PM = 1.5 hours
-  totalEventDays = 1, // Just Day 1 for now, Day 2 date TBD
+  totalEventDays = 2, // Day 1 and Day 2
   className 
 }: LiveEventTimerProps) => {
   const [timeLeft, setTimeLeft] = useState<string>('');
@@ -60,11 +60,70 @@ const LiveEventTimer = ({
 
       const lastEventEnd = eventDays[eventDays.length - 1].end;
 
-      // Check if Day 1 is over - show Day 2 coming soon message
+      // Handle Day 2 specific logic
+      const isDay1Complete = now > eventDays[0].end;
+      
+      if (isDay1Complete && eventDays.length === 2) {
+        // Day 2 is this Friday at 1pm CDT - July 18, 2025
+        const day2Start = new Date('2025-07-18T13:00:00'); // 1pm CDT Friday
+        const day2End = new Date(day2Start);
+        day2End.setHours(day2Start.getHours() + eventDurationHours);
+        
+        // Update eventDays with actual Day 2 date
+        eventDays[1] = { start: day2Start, end: day2End, day: 2 };
+        
+        // Check if Day 2 has ended
+        if (now > day2End) {
+          setEventStatus({
+            type: 'all-ended',
+            message: "Both workshop days have ended. Thanks for joining!",
+          });
+          setTimeLeft('');
+          return;
+        }
+        
+        // Check if Day 2 is happening now
+        if (now >= day2Start && now <= day2End) {
+          setEventStatus({
+            type: 'happening-now',
+            message: `Day 2 is happening now!`,
+            currentDay: 2,
+          });
+          setTimeLeft('');
+          return;
+        }
+        
+        // Countdown to Day 2
+        if (now < day2Start) {
+          const timeDiff = day2Start.getTime() - now.getTime();
+          const shouldFlash = timeDiff < 24 * 60 * 60 * 1000;
+          
+          const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+          let timeString = '';
+          if (days > 0) timeString += `${days}d `;
+          if (hours > 0) timeString += `${hours}h `;
+          if (minutes > 0) timeString += `${minutes}m `;
+          timeString += `${seconds}s`;
+
+          setEventStatus({
+            type: 'countdown',
+            message: `${timeString} until Day 2 begins!`,
+            isFlashing: shouldFlash,
+          });
+          setTimeLeft(timeString);
+          return;
+        }
+      }
+      
+      // Check if all events are over (fallback)
       if (now > lastEventEnd) {
         setEventStatus({
           type: 'all-ended',
-          message: "Day 2 WILL BE THIS FRIDAY at 1pm CDT BE THERE",
+          message: "Day 2 is this Friday, July 18th at 1:00 PM CDT",
         });
         setTimeLeft('');
         return;
@@ -191,14 +250,31 @@ const LiveEventTimer = ({
         </p>
       )}
       
-      {/* Time bubble showing actual session time */}
-      {eventStatus.type !== 'all-ended' && (
-        <div className="mt-4 inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 shadow-lg">
-          <p className="text-lg sm:text-xl font-semibold text-white">
-            <span role="img" aria-label="Clock">⏰</span> 11:00 AM - 12:30 PM CDT
-          </p>
+      {/* Time and date display */}
+      <div className="mt-4 space-y-3">
+        {/* Live counter and session time */}
+        {eventStatus.type !== 'all-ended' && (
+          <div className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 shadow-lg">
+            <p className="text-lg sm:text-xl font-semibold text-white">
+              <span role="img" aria-label="Clock">⏰</span> {eventStatus.currentDay === 2 ? '1:00 PM - 2:30 PM CDT' : '11:00 AM - 12:30 PM CDT'}
+            </p>
+          </div>
+        )}
+        
+        {/* Actual dates display */}
+        <div className="text-center space-y-2">
+          <div className="inline-block bg-black/20 backdrop-blur-sm border border-white/10 rounded-lg px-4 py-2">
+            <p className="text-white font-medium">
+              <span className="text-green-300">Day 1:</span> Thursday, July 10th • 11:00 AM CDT
+            </p>
+          </div>
+          <div className="inline-block bg-black/20 backdrop-blur-sm border border-white/10 rounded-lg px-4 py-2">
+            <p className="text-white font-medium">
+              <span className="text-blue-300">Day 2:</span> Friday, July 18th • 1:00 PM CDT
+            </p>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
