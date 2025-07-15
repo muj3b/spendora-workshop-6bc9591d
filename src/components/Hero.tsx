@@ -1,7 +1,7 @@
 import { memo, useMemo, useCallback } from 'react';
 import { GradientButton } from "@/components/ui/gradient-button";
 import { FeatureCard } from "@/components/ui/feature-card";
-import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart } from "lucide-react";
+import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart, Camera } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 import HamburgerMenu from "@/components/HamburgerMenu";
@@ -17,6 +17,10 @@ const Hero = memo(() => {
     navigate('/donate');
   }, [navigate]);
   
+  const handleGallery = useCallback(() => {
+    navigate('/gallery');
+  }, [navigate]);
+  
   const navigateToStockMarkets = useCallback(() => {
     navigate('/stock-markets');
   }, [navigate]);
@@ -24,7 +28,7 @@ const Hero = memo(() => {
   const navigateToCryptoNFTs = useCallback(() => {
     navigate('/crypto-nfts');
   }, [navigate]);
-  
+
   // Memoize heavy decorative elements
   const decorativeElements = useMemo(() => (
     <div className="absolute inset-0 overflow-hidden">
@@ -77,8 +81,8 @@ const Hero = memo(() => {
                 <span className="font-bold">Reserve Your Spot - It's Free!</span> <span role="img" aria-label="Rocket">🚀</span>
               </GradientButton>
               
-              {/* Support button */}
-              <div className="flex justify-center">
+              {/* Support and Gallery buttons */}
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <GradientButton 
                   size="lg" 
                   variant="warm" 
@@ -88,6 +92,17 @@ const Hero = memo(() => {
                 >
                   <Heart className="w-5 h-5 mr-2" />
                   <span className="font-semibold">Support Our Mission</span>
+                </GradientButton>
+                
+                <GradientButton 
+                  size="lg" 
+                  variant="outline" 
+                  className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300"
+                  onClick={handleGallery}
+                  aria-label="View workshop gallery"
+                >
+                  <Camera className="w-5 h-5 mr-2" />
+                  <span className="font-semibold">Workshop Gallery</span>
                 </GradientButton>
               </div>
               
