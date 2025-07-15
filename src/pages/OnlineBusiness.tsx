@@ -1,3 +1,4 @@
+
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -35,12 +36,12 @@ At Spendora, we'll guide you step-by-step through setting up your own online bus
               <span>Back to Home</span>
             </Button>
 
-            <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6 mb-8">
-              <h2 className="text-xl font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
-                📝 Basic Content Version
+            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
+              <h2 className="text-xl font-semibold text-blue-800 dark:text-blue-200 mb-2">
+                📚 Workshop Preview
               </h2>
-              <p className="text-yellow-700 dark:text-yellow-300">
-                This is our foundational content for online business. A more detailed and comprehensive version with interactive examples and case studies will be available soon!
+              <p className="text-blue-700 dark:text-blue-300">
+                This content gives you a taste of what we'll cover in our workshop. Join us to dive deeper with hands-on activities, real examples, and personalized guidance!
               </p>
             </div>
 
