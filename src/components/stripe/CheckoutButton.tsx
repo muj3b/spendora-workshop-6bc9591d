@@ -45,7 +45,18 @@ export const CheckoutButton = ({
         headers['Authorization'] = `Bearer ${authToken}`;
       }
 
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/stripe-checkout-guest`, {
+      // Use the correct Supabase function URL
+      const functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/stripe-checkout`;
+      
+      console.log('Making request to:', functionUrl);
+      console.log('Request payload:', {
+        price_id: priceId,
+        mode,
+        success_url: `${window.location.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: window.location.href,
+      });
+
+      const response = await fetch(functionUrl, {
         method: 'POST',
         headers,
         body: JSON.stringify({
@@ -53,23 +64,40 @@ export const CheckoutButton = ({
           mode,
           success_url: `${window.location.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
           cancel_url: window.location.href,
-          user_email: user?.email || null,
         }),
       });
 
-      const data = await response.json();
-
+      console.log('Response status:', response.status);
+      
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to create checkout session');
+        const errorText = await response.text();
+        console.error('Response error:', errorText);
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      if (data.error) {
+        throw new Error(data.error);
       }
 
       if (data.url) {
         window.location.href = data.url;
       } else {
-        throw new Error('No checkout URL received');
+        throw new Error('No checkout URL received from server');
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unexpected error occurred');
+      console.error('Checkout error:', err);
+      if (err instanceof Error) {
+        if (err.message.includes('Failed to fetch')) {
+          setError('Unable to connect to payment service. Please check your internet connection and try again.');
+        } else {
+          setError(err.message);
+        }
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
