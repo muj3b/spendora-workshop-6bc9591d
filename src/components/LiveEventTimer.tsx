@@ -65,7 +65,7 @@ const LiveEventTimer = ({
       
       if (isDay1Complete && eventDays.length === 2) {
         // Day 2 is this Friday at 1pm CDT - July 18, 2025
-        const day2Start = new Date('2025-07-18T13:00:00'); // 1pm CDT Friday
+        const day2Start = new Date('2025-07-18T14:30:00'); // 2:30pm CDT Friday
         const day2End = new Date(day2Start);
         day2End.setHours(day2Start.getHours() + eventDurationHours);
         
@@ -256,7 +256,7 @@ const LiveEventTimer = ({
         {eventStatus.type !== 'all-ended' && (
           <div className="mx-auto max-w-fit bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-lg shadow-primary/30 glow">
             <p className="text-sm sm:text-lg font-semibold text-white whitespace-nowrap">
-              <span role="img" aria-label="Clock">⏰</span> 1:00 PM - 2:30 PM CDT
+              <span role="img" aria-label="Clock">⏰</span> 2:30 PM - 4:00 PM CDT
             </p>
           </div>
         )}
@@ -266,7 +266,7 @@ const LiveEventTimer = ({
           <div className="mx-auto max-w-fit bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-300/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 shadow-lg shadow-blue-400/20 glow">
             <p className="text-white font-bold text-sm sm:text-lg break-words">
               <span className="text-blue-300">🚀 Day 2:</span> Friday, July 18th<br className="sm:hidden" />
-              <span className="sm:inline"> • 1:00 PM - 2:30 PM CDT</span>
+              <span className="sm:inline"> • 2:30 PM - 4:00 PM CDT</span>
             </p>
           </div>
           <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">

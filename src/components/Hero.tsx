@@ -198,7 +198,12 @@ const Hero = memo(() => {
               iconSize="lg"
               variant="glass"
               animationDelay="1.5s"
-              badge={<span className="text-sm text-muted-foreground">Coming Soon</span>}
+              badge={
+                <div className="flex items-center space-x-1 text-sm font-semibold text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded-full">
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              }
             />
             <FeatureCard
               icon={Store}
@@ -208,7 +213,13 @@ const Hero = memo(() => {
               iconSize="lg"
               variant="glass"
               animationDelay="1.7s"
-              badge={<span className="text-sm text-muted-foreground">Coming Soon</span>}
+              onCardClick={() => navigate('/online-business')}
+              badge={
+                <div className="flex items-center space-x-1 text-sm font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              }
             />
             <FeatureCard
               icon={Bitcoin}

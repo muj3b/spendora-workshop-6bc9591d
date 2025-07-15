@@ -24,33 +24,36 @@ export const CheckoutButton = ({
   const [error, setError] = useState<string | null>(null);
 
   const handleCheckout = async () => {
-    if (!user) {
-      setError('Please sign in to continue');
-      return;
-    }
-
     setLoading(true);
     setError(null);
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
+      let authToken = null;
       
-      if (!session) {
-        setError('Please sign in to continue');
-        return;
+      if (user) {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+          authToken = session.access_token;
+        }
       }
 
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/stripe-checkout`, {
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+      
+      if (authToken) {
+        headers['Authorization'] = `Bearer ${authToken}`;
+      }
+
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/stripe-checkout-guest`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.access_token}`,
-        },
+        headers,
         body: JSON.stringify({
           price_id: priceId,
           mode,
           success_url: `${window.location.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
           cancel_url: window.location.href,
+          user_email: user?.email || null,
         }),
       });
 
@@ -81,7 +84,7 @@ export const CheckoutButton = ({
       )}
       <Button
         onClick={handleCheckout}
-        disabled={loading || disabled || !user}
+        disabled={loading || disabled}
         className={className}
       >
         {loading ? 'Processing...' : children}

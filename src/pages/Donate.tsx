@@ -9,28 +9,6 @@ import { Button } from '@/components/ui/button';
 const Donate = () => {
   const { user } = useAuth();
 
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>Sign In Required</CardTitle>
-            <CardDescription>
-              Please sign in to make a donation
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Button asChild className="w-full">
-              <Link to="/login">Sign In</Link>
-            </Button>
-            <Button asChild variant="outline" className="w-full">
-              <Link to="/signup">Create Account</Link>
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4">
@@ -59,11 +37,15 @@ const Donate = () => {
           </div>
 
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-              Your Account
-            </h2>
-            
-            <SubscriptionStatus />
+            {user && (
+              <>
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+                  Your Account
+                </h2>
+                
+                <SubscriptionStatus />
+              </>
+            )}
             
             <Card>
               <CardHeader>
@@ -90,6 +72,22 @@ const Donate = () => {
             </Card>
           </div>
         </div>
+
+        {!user && (
+          <div className="text-center">
+            <p className="text-muted-foreground mb-4">
+              Want to track your donations? 
+            </p>
+            <div className="flex justify-center space-x-4">
+              <Button asChild variant="outline">
+                <Link to="/login">Sign In</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to="/signup">Create Account</Link>
+              </Button>
+            </div>
+          </div>
+        )}
 
         <div className="text-center">
           <Button asChild variant="outline">
