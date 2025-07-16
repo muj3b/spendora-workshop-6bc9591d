@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 const Donate = () => {
   const { user } = useAuth();
 
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4">
       <div className="max-w-4xl mx-auto space-y-8">
@@ -37,16 +36,6 @@ const Donate = () => {
           </div>
 
           <div className="space-y-6">
-            {user && (
-              <>
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  Your Account
-                </h2>
-                
-                <SubscriptionStatus />
-              </>
-            )}
-            
             <Card>
               <CardHeader>
                 <CardTitle>Impact of Your Support</CardTitle>
@@ -70,6 +59,15 @@ const Donate = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {user && (
+              <div className="space-y-4">
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+                  Your Account
+                </h2>
+                <SubscriptionStatus />
+              </div>
+            )}
           </div>
         </div>
 

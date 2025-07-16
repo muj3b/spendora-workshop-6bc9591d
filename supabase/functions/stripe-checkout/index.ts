@@ -2,8 +2,16 @@ import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
 import Stripe from 'npm:stripe@17.7.0';
 import { createClient } from 'npm:@supabase/supabase-js@2.49.1';
 
-const supabase = createClient(Deno.env.get('SUPABASE_URL') ?? '', Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '');
-const stripeSecret = Deno.env.get('STRIPE_SECRET_KEY')!;
+const supabase = createClient(
+  Deno.env.get('SUPABASE_URL') ?? '', 
+  Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+);
+
+const stripeSecret = Deno.env.get('STRIPE_SECRET_KEY');
+if (!stripeSecret) {
+  throw new Error('STRIPE_SECRET_KEY environment variable is required');
+}
+
 const stripe = new Stripe(stripeSecret, {
   appInfo: {
     name: 'Spendora Integration',
@@ -19,7 +27,6 @@ function corsResponse(body: string | object | null, status = 200) {
     'Access-Control-Allow-Headers': '*',
   };
 
-  // For 204 No Content, don't include Content-Type or body
   if (status === 204) {
     return new Response(null, { status, headers });
   }
@@ -35,8 +42,10 @@ function corsResponse(body: string | object | null, status = 200) {
 
 Deno.serve(async (req) => {
   try {
+    console.log('Stripe checkout function called');
+    
     if (req.method === 'OPTIONS') {
-      return corsResponse({}, 204);
+      return corsResponse(null, 204);
     }
 
     if (req.method !== 'POST') {
@@ -44,19 +53,19 @@ Deno.serve(async (req) => {
     }
 
     const { price_id, success_url, cancel_url, mode } = await req.json();
+    console.log('Request data:', { price_id, success_url, cancel_url, mode });
 
-    const error = validateParameters(
-      { price_id, success_url, cancel_url, mode },
-      {
-        cancel_url: 'string',
-        price_id: 'string',
-        success_url: 'string',
-        mode: { values: ['payment', 'subscription'] },
-      },
-    );
+    // Validate required parameters
+    if (!price_id || !success_url || !cancel_url || !mode) {
+      return corsResponse({ 
+        error: 'Missing required parameters: price_id, success_url, cancel_url, mode' 
+      }, 400);
+    }
 
-    if (error) {
-      return corsResponse({ error }, 400);
+    if (!['payment', 'subscription'].includes(mode)) {
+      return corsResponse({ 
+        error: 'Mode must be either "payment" or "subscription"' 
+      }, 400);
     }
 
     let user = null;
@@ -66,25 +75,31 @@ Deno.serve(async (req) => {
     const authHeader = req.headers.get('Authorization');
     if (authHeader) {
       const token = authHeader.replace('Bearer ', '');
-      const {
-        data: { user: authUser },
-        error: getUserError,
-      } = await supabase.auth.getUser(token);
+      try {
+        const {
+          data: { user: authUser },
+          error: getUserError,
+        } = await supabase.auth.getUser(token);
 
-      if (!getUserError && authUser) {
-        user = authUser;
-        
-        // Check if user has existing customer
-        const { data: customer, error: getCustomerError } = await supabase
-          .from('stripe_customers')
-          .select('customer_id')
-          .eq('user_id', user.id)
-          .is('deleted_at', null)
-          .maybeSingle();
+        if (!getUserError && authUser) {
+          user = authUser;
+          console.log('Authenticated user:', user.id);
+          
+          // Check if user has existing customer
+          const { data: customer, error: getCustomerError } = await supabase
+            .from('stripe_customers')
+            .select('customer_id')
+            .eq('user_id', user.id)
+            .is('deleted_at', null)
+            .maybeSingle();
 
-        if (!getCustomerError && customer) {
-          customerId = customer.customer_id;
+          if (!getCustomerError && customer) {
+            customerId = customer.customer_id;
+            console.log('Found existing customer:', customerId);
+          }
         }
+      } catch (authError) {
+        console.log('Auth error (continuing as guest):', authError);
       }
     }
 
@@ -99,30 +114,31 @@ Deno.serve(async (req) => {
 
       const newCustomer = await stripe.customers.create(customerData);
       customerId = newCustomer.id;
-
-      console.log(`Created new Stripe customer ${newCustomer.id} for user ${user?.id || 'guest'}`);
+      console.log('Created new customer:', customerId);
 
       // If user is authenticated, save the customer mapping
       if (user) {
-        const { error: createCustomerError } = await supabase.from('stripe_customers').insert({
-          user_id: user.id,
-          customer_id: newCustomer.id,
-        });
+        const { error: createCustomerError } = await supabase
+          .from('stripe_customers')
+          .insert({
+            user_id: user.id,
+            customer_id: newCustomer.id,
+          });
 
         if (createCustomerError) {
-          console.error('Failed to save customer information in the database', createCustomerError);
-          // Continue anyway for guest checkout
+          console.error('Failed to save customer in database:', createCustomerError);
         }
 
         if (mode === 'subscription') {
-          const { error: createSubscriptionError } = await supabase.from('stripe_subscriptions').insert({
-            customer_id: newCustomer.id,
-            status: 'not_started',
-          });
+          const { error: createSubscriptionError } = await supabase
+            .from('stripe_subscriptions')
+            .insert({
+              customer_id: newCustomer.id,
+              status: 'not_started',
+            });
 
           if (createSubscriptionError) {
-            console.error('Failed to save subscription in the database', createSubscriptionError);
-            // Continue anyway for guest checkout
+            console.error('Failed to save subscription in database:', createSubscriptionError);
           }
         }
       }
@@ -148,38 +164,20 @@ Deno.serve(async (req) => {
       sessionParams.customer_creation = 'always';
     }
 
+    console.log('Creating checkout session with params:', sessionParams);
     const session = await stripe.checkout.sessions.create(sessionParams);
 
-    console.log(`Created checkout session ${session.id} for customer ${customerId}`);
+    console.log('Created checkout session:', session.id);
 
-    return corsResponse({ sessionId: session.id, url: session.url });
+    return corsResponse({ 
+      sessionId: session.id, 
+      url: session.url 
+    });
+
   } catch (error: any) {
-    console.error(`Checkout error: ${error.message}`);
-    return corsResponse({ error: error.message }, 500);
+    console.error('Checkout error:', error);
+    return corsResponse({ 
+      error: `Checkout failed: ${error.message}` 
+    }, 500);
   }
 });
-
-type ExpectedType = 'string' | { values: string[] };
-type Expectations<T> = { [K in keyof T]: ExpectedType };
-
-function validateParameters<T extends Record<string, any>>(values: T, expected: Expectations<T>): string | undefined {
-  for (const parameter in values) {
-    const expectation = expected[parameter];
-    const value = values[parameter];
-
-    if (expectation === 'string') {
-      if (value == null) {
-        return `Missing required parameter ${parameter}`;
-      }
-      if (typeof value !== 'string') {
-        return `Expected parameter ${parameter} to be a string got ${JSON.stringify(value)}`;
-      }
-    } else {
-      if (!expectation.values.includes(value)) {
-        return `Expected parameter ${parameter} to be one of ${expectation.values.join(', ')}`;
-      }
-    }
-  }
-
-  return undefined;
-}

@@ -45,7 +45,7 @@ export const CheckoutButton = ({
         headers['Authorization'] = `Bearer ${authToken}`;
       }
 
-      // Use the correct Supabase function URL
+      // Use the Supabase function URL
       const functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/stripe-checkout`;
       
       console.log('Making request to:', functionUrl);
@@ -72,7 +72,7 @@ export const CheckoutButton = ({
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Response error:', errorText);
-        throw new Error(`HTTP ${response.status}: ${errorText}`);
+        throw new Error(`Payment service error: ${response.status}`);
       }
 
       const data = await response.json();
