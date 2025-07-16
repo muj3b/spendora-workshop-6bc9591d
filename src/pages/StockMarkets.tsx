@@ -42,14 +42,6 @@ Learning about stocks will help you understand money and how these companies wor
               <span>Back to Home</span>
             </Button>
 
-            <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6 mb-8">
-              <h2 className="text-xl font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
-                🚧 Page Under Construction
-              </h2>
-              <p className="text-yellow-700 dark:text-yellow-300">
-                This page is still being worked on. We're adding more content and features to make your learning experience even better!
-              </p>
-            </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
               Stock Markets & Investing

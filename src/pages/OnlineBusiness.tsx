@@ -36,14 +36,6 @@ At Spendora, we'll guide you step-by-step through setting up your own online bus
               <span>Back to Home</span>
             </Button>
 
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
-              <h2 className="text-xl font-semibold text-blue-800 dark:text-blue-200 mb-2">
-                📚 Workshop Preview
-              </h2>
-              <p className="text-blue-700 dark:text-blue-300">
-                This content gives you a taste of what we'll cover in our workshop. Join us to dive deeper with hands-on activities, real examples, and personalized guidance!
-              </p>
-            </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
               Online Business & Entrepreneurship
