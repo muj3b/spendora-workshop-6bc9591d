@@ -5,9 +5,16 @@ import { useAuth } from '@/hooks/useAuth';
 import { stripeProducts } from '@/stripe-config';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Info } from 'lucide-react';
 
 const Donate = () => {
   const { user } = useAuth();
+
+  // Check if we're in development mode
+  const isDevelopment = window.location.hostname === 'localhost' || 
+                       window.location.hostname.includes('webcontainer') ||
+                       window.location.hostname.includes('local-credentialless');
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4">
@@ -21,6 +28,16 @@ const Donate = () => {
             Your donation makes a real difference in young people's financial education.
           </p>
         </div>
+
+        {isDevelopment && (
+          <Alert>
+            <Info className="h-4 w-4" />
+            <AlertDescription>
+              <strong>Development Mode:</strong> Stripe payments are disabled in development. 
+              The donation functionality will work when the app is deployed to production with proper Supabase and Stripe configuration.
+            </AlertDescription>
+          </Alert>
+        )}
 
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-6">
@@ -68,6 +85,30 @@ const Donate = () => {
                 <SubscriptionStatus />
               </div>
             )}
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Alternative Ways to Support</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+                  <p className="text-sm">Share our workshop with friends and family</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2"></div>
+                  <p className="text-sm">Follow us on social media</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2"></div>
+                  <p className="text-sm">Volunteer at our workshops</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-teal-500 rounded-full mt-2"></div>
+                  <p className="text-sm">Provide feedback to help us improve</p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
 

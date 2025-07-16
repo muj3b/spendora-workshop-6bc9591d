@@ -45,8 +45,21 @@ export const CheckoutButton = ({
         headers['Authorization'] = `Bearer ${authToken}`;
       }
 
-      // Use the Supabase function URL
-      const functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/stripe-checkout`;
+      // Check if we're in development or production
+      const isDevelopment = window.location.hostname === 'localhost' || 
+                           window.location.hostname.includes('webcontainer') ||
+                           window.location.hostname.includes('local-credentialless');
+
+      let functionUrl: string;
+      
+      if (isDevelopment) {
+        // In development, show a demo message instead of trying to call the function
+        setError('Stripe checkout is not available in development mode. This will work when deployed to production with proper Supabase configuration.');
+        return;
+      } else {
+        // In production, use the actual Supabase function URL
+        functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/stripe-checkout`;
+      }
       
       console.log('Making request to:', functionUrl);
       console.log('Request payload:', {
@@ -91,7 +104,7 @@ export const CheckoutButton = ({
       console.error('Checkout error:', err);
       if (err instanceof Error) {
         if (err.message.includes('Failed to fetch')) {
-          setError('Unable to connect to payment service. Please check your internet connection and try again.');
+          setError('Payment service is currently unavailable. This feature requires proper Supabase and Stripe configuration in production.');
         } else {
           setError(err.message);
         }
