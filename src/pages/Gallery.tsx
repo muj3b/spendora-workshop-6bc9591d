@@ -64,9 +64,14 @@ const Gallery = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text-primary">
               Workshop Gallery
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Pictures from Day 1 at R.H. Stafford Library
-            </p>
+            <div className="mb-6">
+              <div className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl shadow-lg mb-4">
+                <span className="text-3xl font-bold">DAY 1</span>
+              </div>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Pictures from our first workshop session at R.H. Stafford Library
+              </p>
+            </div>
             <div className="mt-4 inline-block bg-primary/10 px-4 py-2 rounded-full">
               <span className="text-primary font-semibold">First Workshop Session Highlights</span>
             </div>

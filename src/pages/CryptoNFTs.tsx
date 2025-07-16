@@ -63,20 +63,44 @@ In present day crypto is gaining more credibility with many banks, companies, an
               
               {/* Right Side - NFTs */}
               <ResizablePanel defaultSize={40} minSize={30}>
-                <div className="h-full p-8 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <h2 className="text-3xl font-bold text-purple-800 dark:text-purple-200 mb-6">
-                      NFTs
-                    </h2>
+                <div className="h-full p-8 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
+                  <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 mb-6">
+                    <h3 className="text-lg font-semibold text-orange-800 dark:text-orange-200 mb-2">
+                      🤖 Temporary AI Content
+                    </h3>
+                    <p className="text-sm text-orange-700 dark:text-orange-300">
+                      This NFT content is temporarily AI-generated. A human will review and write better content soon!
+                    </p>
+                  </div>
+                  
+                  <h2 className="text-3xl font-bold text-purple-800 dark:text-purple-200 mb-6">
+                    NFTs (Non-Fungible Tokens)
+                  </h2>
+                  
+                  <div className="text-gray-700 dark:text-gray-300 space-y-4 text-sm leading-relaxed overflow-y-auto max-h-[500px]">
+                    <p>
+                      You've probably seen those expensive digital art pieces that sell for thousands of dollars and wondered "Why would anyone pay real money for a JPEG?" Well, NFTs are way more than just digital pictures—they're like digital certificates of ownership that prove you own something unique on the blockchain.
+                    </p>
                     
-                    <div className="bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-700 rounded-lg p-8">
-                      <h3 className="text-2xl font-semibold text-purple-700 dark:text-purple-300 mb-4">
-                        🎨 Coming Soon
-                      </h3>
-                      <p className="text-purple-600 dark:text-purple-400 text-lg">
-                        We're working on creating comprehensive content about NFTs, digital ownership, and the creative economy in the blockchain space.
-                      </p>
-                    </div>
+                    <p>
+                      Think of NFTs like trading cards, but digital. Just like how a rare Pokemon card has value because it's authentic and limited, NFTs use blockchain technology to prove that your digital item is the "real deal" and not just a copy. When you buy an NFT, you're not just buying the image—you're buying proof that you own the original version.
+                    </p>
+                    
+                    <p>
+                      NFTs exploded in popularity when digital artists started selling their work for crazy amounts. Some collections like Bored Ape Yacht Club or CryptoPunks became status symbols, kind of like owning expensive sneakers or designer clothes, but in the digital world. People would use them as profile pictures to show off their digital wealth.
+                    </p>
+                    
+                    <p>
+                      But NFTs aren't just about art. They can represent ownership of anything digital: music, videos, game items, virtual real estate, or even access passes to exclusive events. Some creators use NFTs to sell concert tickets, grant access to private Discord servers, or give holders special privileges.
+                    </p>
+                    
+                    <p>
+                      The NFT market is extremely volatile and risky. Prices can crash overnight, and many projects end up being worthless. However, understanding NFTs helps you grasp how digital ownership might work in the future, especially as we move toward more virtual and online experiences.
+                    </p>
+                    
+                    <p>
+                      At Spendora, we'll break down how NFTs actually work, what gives them value, and how to spot potential scams in this space. You'll learn to think critically about digital assets and understand this technology without getting caught up in the hype.
+                    </p>
                   </div>
                 </div>
               </ResizablePanel>

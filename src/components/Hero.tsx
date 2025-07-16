@@ -96,7 +96,7 @@ const Hero = memo(() => {
                 
                 <GradientButton 
                   size="lg" 
-                  variant="outline" 
+                  variant="accent" 
                   className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300"
                   onClick={handleGallery}
                   aria-label="View workshop gallery"
@@ -213,9 +213,11 @@ const Hero = memo(() => {
               iconSize="lg"
               variant="glass"
               animationDelay="1.5s"
+              onCardClick={() => navigate('/budgeting')}
               badge={
-                <div className="flex items-center space-x-1 text-sm font-semibold text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-900/30 px-3 py-1 rounded-full">
-                  <span>Coming Soon</span>
+                <div className="flex items-center space-x-1 text-sm font-semibold text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-colors bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded-full">
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4" />
                 </div>
               }
             />
