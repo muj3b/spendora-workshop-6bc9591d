@@ -45,7 +45,30 @@ const AboutSpendora = () => {
           />
         </div>
 
-        <aside className="glass rounded-2xl p-8 md:p-12 animate-fade-in transform transition-all duration-700 hover:scale-105 shadow-medium hover:shadow-large" style={{ animationDelay: '0.4s' }} aria-labelledby="free-attendance">
+        <div className="glass rounded-2xl p-8 md:p-12 animate-fade-in transform transition-all duration-700 hover:scale-105 shadow-medium hover:shadow-large mb-16" style={{ animationDelay: '0.4s' }} aria-labelledby="team-video">
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 id="team-video" className="text-heading text-card-foreground mb-6">
+              Meet the Team Behind Spendora
+            </h3>
+            <p className="text-body-large text-muted-foreground mb-8">
+              Hear directly from our student leaders about what makes Spendora special and why we're passionate about financial literacy.
+            </p>
+            <div className="relative rounded-xl overflow-hidden shadow-large max-w-3xl mx-auto">
+              <video 
+                controls 
+                className="w-full h-auto"
+                poster="/placeholder.svg"
+                preload="metadata"
+              >
+                <source src="https://files.catbox.moe/62riwa.mov" type="video/quicktime" />
+                <source src="https://files.catbox.moe/62riwa.mov" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <aside className="glass rounded-2xl p-8 md:p-12 animate-fade-in transform transition-all duration-700 hover:scale-105 shadow-medium hover:shadow-large" style={{ animationDelay: '0.6s' }} aria-labelledby="free-attendance">
           <div className="max-w-3xl mx-auto text-center">
             <h3 id="free-attendance" className="text-heading text-card-foreground mb-4">
               Completely Free to Attend
