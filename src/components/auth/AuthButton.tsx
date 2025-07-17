@@ -35,10 +35,13 @@ export const AuthButton = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem asChild>
-          <Link to="/donate" className="flex items-center space-x-2">
+          <button 
+            onClick={() => window.open('https://buy.stripe.com/cNicN5gG3f8ocU4cjN0Ba00', '_blank')}
+            className="flex items-center space-x-2 w-full"
+          >
             <Heart className="w-4 h-4" />
             <span>Donate</span>
-          </Link>
+          </button>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={signOut} className="flex items-center space-x-2">
           <LogOut className="w-4 h-4" />

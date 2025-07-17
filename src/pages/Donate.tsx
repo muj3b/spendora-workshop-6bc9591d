@@ -1,20 +1,12 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ProductCard } from '@/components/stripe/ProductCard';
-import { SubscriptionStatus } from '@/components/stripe/SubscriptionStatus';
-import { useAuth } from '@/hooks/useAuth';
-import { stripeProducts } from '@/stripe-config';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Info } from 'lucide-react';
+import { Heart, ArrowRight } from 'lucide-react';
 
 const Donate = () => {
-  const { user } = useAuth();
-
-  // Check if we're in development mode
-  const isDevelopment = window.location.hostname === 'localhost' || 
-                       window.location.hostname.includes('webcontainer') ||
-                       window.location.hostname.includes('local-credentialless');
+  const handleDonate = () => {
+    window.open('https://buy.stripe.com/cNicN5gG3f8ocU4cjN0Ba00', '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4">
@@ -29,27 +21,37 @@ const Donate = () => {
           </p>
         </div>
 
-        {isDevelopment && (
-          <Alert>
-            <Info className="h-4 w-4" />
-            <AlertDescription>
-              <strong>Development Mode:</strong> Stripe payments are disabled in development. 
-              The donation functionality will work when the app is deployed to production with proper Supabase and Stripe configuration.
-            </AlertDescription>
-          </Alert>
-        )}
-
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-6">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
               Make a Donation
             </h2>
             
-            <div className="grid gap-4">
-              {stripeProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            <Card className="border-2 border-blue-200 dark:border-blue-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl text-blue-800 dark:text-blue-200">
+                  Choose Your Amount
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-center space-y-4">
+                <p className="text-gray-700 dark:text-gray-300">
+                  Every donation helps us reach more students with essential financial education.
+                  You can choose any amount that works for you.
+                </p>
+                <Button
+                  onClick={handleDonate}
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                >
+                  <Heart className="w-5 h-5 mr-2" />
+                  Donate Now
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Secure payment powered by Stripe
+                </p>
+              </CardContent>
+            </Card>
           </div>
 
           <div className="space-y-6">
@@ -77,15 +79,6 @@ const Donate = () => {
               </CardContent>
             </Card>
 
-            {user && (
-              <div className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  Your Account
-                </h2>
-                <SubscriptionStatus />
-              </div>
-            )}
-
             <Card>
               <CardHeader>
                 <CardTitle>Alternative Ways to Support</CardTitle>
@@ -109,24 +102,23 @@ const Donate = () => {
                 </div>
               </CardContent>
             </Card>
+
+            <Card className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-700">
+              <CardHeader>
+                <CardTitle className="text-green-800 dark:text-green-200">
+                  Why We Need Your Help
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-green-700 dark:text-green-300">
+                  Spendora is run entirely by high school students who are passionate about 
+                  financial education. Your donations help us keep workshops completely free 
+                  for all participants while covering materials, venue costs, and program development.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
-
-        {!user && (
-          <div className="text-center">
-            <p className="text-muted-foreground mb-4">
-              Want to track your donations? 
-            </p>
-            <div className="flex justify-center space-x-4">
-              <Button asChild variant="outline">
-                <Link to="/login">Sign In</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link to="/signup">Create Account</Link>
-              </Button>
-            </div>
-          </div>
-        )}
 
         <div className="text-center">
           <Button asChild variant="outline">
