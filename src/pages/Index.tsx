@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Hero from "@/components/Hero";
 import AboutSpendora from "@/components/AboutSpendora";
 import WorkshopSchedule from "@/components/WorkshopSchedule";
@@ -5,6 +6,10 @@ import MeetTheTeam from "@/components/MeetTheTeam";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 const Index = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <PageTransition transitionType="welcome">
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">

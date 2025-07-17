@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,10 @@ import WordByWordText from "@/components/WordByWordText";
 
 const StockMarkets = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const articleText = `To begin we need to talk about what a stock is. A stock is a small part of a company that you own. Whenever you buy a stock that means you now own a share of that specific company. For example when you buy a share of apple you now own a small part of apple.
 

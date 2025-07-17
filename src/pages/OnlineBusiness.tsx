@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,10 @@ import WordByWordText from "@/components/WordByWordText";
 
 const OnlineBusiness = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const businessText = `Scrolling through TikTok or Instagram, you've probably seen countless people your age running their own businesses, selling anything from trendy sneakers to custom-made jewelry. You might have wondered, "How exactly do they do that?" Well, welcome to the exciting world of online business, a modern way for anyone, anywhere, to make money from their own ideas—without needing a physical store.
 

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,10 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 
 const CryptoNFTs = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const cryptoText = `There always seems to be another coin out there. From figures like KSI to Logan Paul it really does look like anyone can just make a crypto these days, and somehow people still buy them and get surprised when they lose their entire investment. As a general rule of thumb, if everyone in the world is calling it a meme coin then you can't be too surprised that it isn't a great asset.
 

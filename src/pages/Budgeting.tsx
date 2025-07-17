@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +7,10 @@ import WordByWordText from "@/components/WordByWordText";
 
 const Budgeting = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const budgetingText = `Budgeting is real easy, let us break it down for you. Once you learn how to budget, you realize it's not just about tracking your money. It's about making it work for you.
 

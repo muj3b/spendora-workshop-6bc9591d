@@ -13,9 +13,9 @@ const WorkshopSchedule = () => {
     },
     {
       day: "Day 2", 
-      title: "How Money Works",
-      description: "Interactive demonstrations on taxes, saving vs investing strategies, and economic principles like inflation and interest rates",
-      activities: ["Tax basics demonstration", "Spend vs. Invest case studies", "Economic principles workshop"],
+      title: "Stocks & Investment",
+      description: "Understand what stocks are, practice predicting trends, and learn investment research through interactive games",
+      activities: ["Stock trend prediction game", "Investment strategy workshop", "Research fundamentals"],
       color: "from-green-500 to-green-600"
     },
     {
@@ -27,9 +27,9 @@ const WorkshopSchedule = () => {
     },
     {
       day: "Day 4",
-      title: "Stocks & Investment Strategy",
-      description: "Understand what stocks are, practice predicting trends, and learn investment research through interactive games", 
-      activities: ["Stock trend prediction game", "Investment strategy workshop", "Research fundamentals"],
+      title: "How Money Works & Crypto",
+      description: "Interactive demonstrations on taxes, saving vs investing strategies, crypto basics, and hustling opportunities", 
+      activities: ["Tax basics demonstration", "Spend vs. Invest case studies", "Crypto fundamentals & side hustles"],
       color: "from-orange-500 to-orange-600"
     },
     {
