@@ -87,7 +87,7 @@ const Hero = memo(() => {
                   size="lg" 
                   variant="warm" 
                   className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300"
-                  onClick={() => window.open('https://buy.stripe.com/cNicN5gG3f8ocU4cjN0Ba00', '_blank')}
+                  onClick={handleDonate}
                   aria-label="Support Spendora with a donation"
                 >
                   <Heart className="w-5 h-5 mr-2" />

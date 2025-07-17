@@ -6,14 +6,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import ThemeToggle from "@/components/ThemeToggle";
-import { AuthButton } from "@/components/auth/AuthButton";
 
 import Index from "./pages/Index";
 import StockMarkets from "./pages/StockMarkets";
 import CryptoNFTs from "./pages/CryptoNFTs";
 import OnlineBusiness from "./pages/OnlineBusiness";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import Success from "./pages/Success";
 import Donate from "./pages/Donate";
 import Gallery from "./pages/Gallery";
@@ -32,16 +29,11 @@ const App = () => (
           <ThemeToggle />
         </div>
         <BrowserRouter>
-          <div className="fixed top-6 right-6 z-50">
-            <AuthButton />
-          </div>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/stock-markets" element={<StockMarkets />} />
             <Route path="/crypto-nfts" element={<CryptoNFTs />} />
             <Route path="/online-business" element={<OnlineBusiness />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
             <Route path="/success" element={<Success />} />
             <Route path="/donate" element={<Donate />} />
           <Route path="/gallery" element={<Gallery />} />
