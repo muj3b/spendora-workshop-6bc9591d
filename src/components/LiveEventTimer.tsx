@@ -64,19 +64,19 @@ const LiveEventTimer = ({
       const isDay1Complete = now > eventDays[0].end;
       
       if (isDay1Complete && eventDays.length === 2) {
-        // Day 2 is this Friday at 3:30pm CDT - July 18, 2025
-        const day2Start = new Date('2025-07-18T15:30:00'); // 3:30pm CDT Friday
+        // Day 2 has ended, Day 3 coming soon
+        const day2Start = new Date('2025-07-18T15:30:00'); // Day 2 was 3:30pm CDT Friday
         const day2End = new Date(day2Start);
         day2End.setHours(day2Start.getHours() + 1.5); // 3:30pm - 5:00pm = 1.5 hours
         
         // Update eventDays with actual Day 2 date
         eventDays[1] = { start: day2Start, end: day2End, day: 2 };
         
-        // Check if Day 2 has ended
+        // Day 2 has ended, show Day 3 coming soon
         if (now > day2End) {
           setEventStatus({
-            type: 'all-ended',
-            message: "Both workshop days have ended. Thanks for joining!",
+            type: 'countdown',
+            message: "Day 2 has ended. Day 3 date and time coming soon!",
           });
           setTimeLeft('');
           return;
@@ -122,8 +122,8 @@ const LiveEventTimer = ({
       // Check if all events are over (fallback)
       if (now > lastEventEnd) {
         setEventStatus({
-          type: 'all-ended',
-          message: "Day 2 is this Friday, July 18th at 1:00 PM CDT",
+          type: 'countdown',
+          message: "Day 2 has ended. Day 3 date and time coming soon!",
         });
         setTimeLeft('');
         return;
@@ -264,12 +264,20 @@ const LiveEventTimer = ({
         
         {/* Actual dates display - Day 2 prioritized */}
         <div className="text-center space-y-3 max-w-full">
-          <div className="mx-auto max-w-fit bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-300/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 shadow-lg shadow-blue-400/20 glow">
+          <div className="mx-auto max-w-fit bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm border border-green-300/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 shadow-lg shadow-green-400/20 glow">
             <p className="text-white font-bold text-sm sm:text-lg break-words text-center">
-              <span className="text-blue-300">🚀 Day 2:</span> 
+              <span className="text-green-300">🎯 Day 3:</span> 
+              <span className="block sm:inline animate-pulse"> Date & Time</span>
+              <br className="sm:hidden" />
+              <span className="block sm:inline animate-pulse"> • ??? - ??? ???</span>
+            </p>
+          </div>
+          <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">
+            <p className="text-gray-300 font-medium line-through text-xs sm:text-sm break-words text-center">
+              <span className="text-gray-400">✓ Day 2:</span> 
               <span className="block sm:inline"> Friday, July 18th</span>
               <br className="sm:hidden" />
-              <span className="block sm:inline"> • 3:30 PM - 5:00 PM CDT</span>
+              <span className="block sm:inline"> • 3:30 PM - 5:00 PM CDT (Completed)</span>
             </p>
           </div>
           <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">

@@ -41,7 +41,13 @@ const Footer = () => {
                   Registration Form
                 </button>
                 <div className="flex space-x-3">
-                  <div className="w-6 h-6 bg-gray-700 dark:bg-gray-600 rounded hover:bg-gray-600 dark:hover:bg-gray-500 transition-all duration-300 hover:scale-110"></div>
+                  <button 
+                    onClick={() => window.open('https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', '_blank')}
+                    className="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded hover:from-purple-600 hover:to-pink-600 transition-all duration-300 hover:scale-110 flex items-center justify-center"
+                    aria-label="Follow us on Instagram"
+                  >
+                    <span className="text-white text-xs font-bold">IG</span>
+                  </button>
                   <div className="w-6 h-6 bg-gray-700 dark:bg-gray-600 rounded hover:bg-gray-600 dark:hover:bg-gray-500 transition-all duration-300 hover:scale-110"></div>
                   <div className="w-6 h-6 bg-gray-700 dark:bg-gray-600 rounded hover:bg-gray-600 dark:hover:bg-gray-500 transition-all duration-300 hover:scale-110"></div>
                 </div>

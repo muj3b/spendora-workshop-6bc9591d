@@ -53,12 +53,8 @@ const Donate = () => {
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">
                     Your support helps keep our workshops completely free for all students.
-                    Choose any amount that feels right for you.
+                    Every contribution makes a real difference in a student's financial future.
                   </p>
-                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
-                    <span>💳</span>
-                    <span>Secure payment powered by Stripe</span>
-                  </div>
                 </div>
                 
                 <Button
@@ -72,7 +68,7 @@ const Donate = () => {
                 </Button>
                 
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  You'll be redirected to our secure Stripe payment page
+                  💳 Secure payment processing powered by Stripe
                 </p>
               </CardContent>
             </Card>
@@ -110,36 +106,39 @@ const Donate = () => {
             <Card className="shadow-xl">
               <CardHeader>
                 <CardTitle className="text-2xl text-gray-900 dark:text-white">
-                  Impact of Your Support
+                  Your Impact in Action
                 </CardTitle>
+                <p className="text-gray-600 dark:text-gray-400">
+                  See exactly how your donation helps students succeed
+                </p>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-start space-x-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full mt-1"></div>
+                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">$</div>
                   <div>
-                    <h4 className="font-semibold text-blue-800 dark:text-blue-200">Workshop Materials</h4>
-                    <p className="text-sm text-blue-700 dark:text-blue-300">Provides essential learning materials and supplies for students</p>
+                    <h4 className="font-semibold text-blue-800 dark:text-blue-200">Learning Materials & Supplies</h4>
+                    <p className="text-sm text-blue-700 dark:text-blue-300">Workbooks, calculators, and hands-on materials for every student</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                  <div className="w-3 h-3 bg-green-500 rounded-full mt-1"></div>
+                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">🏢</div>
                   <div>
-                    <h4 className="font-semibold text-green-800 dark:text-green-200">Free Venue Access</h4>
-                    <p className="text-sm text-green-700 dark:text-green-300">Supports venue costs to keep workshops completely free</p>
+                    <h4 className="font-semibold text-green-800 dark:text-green-200">Venue & Facility Costs</h4>
+                    <p className="text-sm text-green-700 dark:text-green-300">Library partnerships and equipment rental to keep workshops accessible</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                  <div className="w-3 h-3 bg-purple-500 rounded-full mt-1"></div>
+                  <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">📚</div>
                   <div>
-                    <h4 className="font-semibold text-purple-800 dark:text-purple-200">Educational Content</h4>
-                    <p className="text-sm text-purple-700 dark:text-purple-300">Helps develop new and improved educational content</p>
+                    <h4 className="font-semibold text-purple-800 dark:text-purple-200">Curriculum Development</h4>
+                    <p className="text-sm text-purple-700 dark:text-purple-300">Creating engaging, age-appropriate financial education content</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4 p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
-                  <div className="w-3 h-3 bg-orange-500 rounded-full mt-1"></div>
+                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm">🎯</div>
                   <div>
-                    <h4 className="font-semibold text-orange-800 dark:text-orange-200">Reach More Students</h4>
-                    <p className="text-sm text-orange-700 dark:text-orange-300">Enables us to expand and reach more students in need</p>
+                    <h4 className="font-semibold text-orange-800 dark:text-orange-200">Program Expansion</h4>
+                    <p className="text-sm text-orange-700 dark:text-orange-300">Reaching more schools and communities with financial literacy</p>
                   </div>
                 </div>
               </CardContent>
@@ -148,29 +147,35 @@ const Donate = () => {
             <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border-indigo-200 dark:border-indigo-700">
               <CardHeader>
                 <CardTitle className="text-indigo-800 dark:text-indigo-200 text-xl">
-                  Why We Need Your Help
+                  Student-Led, Community-Supported
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-indigo-700 dark:text-indigo-300 leading-relaxed">
-                  Spendora is run entirely by high school students who are passionate about 
-                  financial education. Your donations help us keep workshops completely free 
-                  for all participants while covering materials, venue costs, and program development.
-                  Every dollar makes a real difference in a student's financial future.
+                  Spendora is created and run entirely by passionate high school students who believe 
+                  every young person deserves financial literacy skills. Your support ensures we can 
+                  continue offering these life-changing workshops completely free, removing financial 
+                  barriers that might prevent students from accessing this crucial education.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-r from-pink-50 to-red-50 dark:from-pink-900/20 dark:to-red-900/20 border-pink-200 dark:border-pink-700">
+            <Card className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-emerald-200 dark:border-emerald-700">
               <CardHeader>
-                <CardTitle className="text-pink-800 dark:text-pink-200 text-xl">
-                  Student Success Stories
+                <CardTitle className="text-emerald-800 dark:text-emerald-200 text-xl">
+                  Real Student Impact
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-pink-700 dark:text-pink-300 leading-relaxed">
-                  "Thanks to Spendora, I learned how to budget my allowance and even started 
-                  investing! Now I'm helping my friends understand money too." - Workshop Participant
+                <div className="space-y-4">
+                  <blockquote className="text-emerald-700 dark:text-emerald-300 leading-relaxed italic border-l-4 border-emerald-400 pl-4">
+                    "Thanks to Spendora, I learned how to budget my allowance and even started 
+                    investing! Now I'm helping my friends understand money too."
+                  </blockquote>
+                  <p className="text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+                    — Workshop Participant, Age 14
+                  </p>
+                </div>
                 </p>
               </CardContent>
             </Card>
