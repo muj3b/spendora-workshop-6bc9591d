@@ -176,7 +176,6 @@ const Donate = () => {
                     — Workshop Participant, Age 14
                   </p>
                 </div>
-                </p>
               </CardContent>
             </Card>
           </div>
