@@ -205,14 +205,6 @@ export default {
 					'100%': { 
 						backgroundColor: 'hsl(var(--primary))'
 					}
-				},
-				'fade': {
-					'0%, 100%': { 
-						opacity: '1'
-					},
-					'50%': { 
-						opacity: '0.3'
-					}
 				}
 			},
 			animation: {
@@ -226,8 +218,7 @@ export default {
 				'pulse-slow': 'gentle-pulse 4s ease-in-out infinite',
 				'smooth-fade-in': 'smooth-fade-in 0.6s ease-out forwards',
 				'slide-up': 'slide-up 0.6s ease-out forwards',
-				'flash': 'flash 1s ease-in-out infinite alternate',
-				'fade': 'fade 2s ease-in-out infinite'
+				'flash': 'flash 1s ease-in-out infinite alternate'
 			}
 		}
 	},

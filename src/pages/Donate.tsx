@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Heart, ArrowRight, ArrowLeft, Shield, Users, BookOpen, Target, Star, Quote } from 'lucide-react';
+import { Heart, ArrowRight, ArrowLeft } from 'lucide-react';
 
 const Donate = () => {
   const handleDonate = () => {
@@ -9,13 +9,7 @@ const Donate = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-12 px-4 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 border-2 border-blue-500 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 border-2 border-purple-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-      </div>
-      
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -32,19 +26,9 @@ const Donate = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Support <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Spendora</span>
           </h1>
-          <div className="flex justify-center items-center gap-4 mb-6">
-            <div className="flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full">
-              <Award className="w-5 h-5 text-blue-600" />
-              <span className="font-semibold text-blue-800 dark:text-blue-200">Student-Led Initiative</span>
-            </div>
-            <div className="flex items-center gap-2 bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-full">
-              <Target className="w-5 h-5 text-green-600" />
-              <span className="font-semibold text-green-800 dark:text-green-200">100% Goes to Students</span>
-            </div>
-          </div>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Help us continue providing completely free financial literacy workshops to students. 
-            Every dollar directly supports materials, venues, and expanding our reach to more students who need these essential life skills.
+            Help us continue providing free financial literacy workshops to students. 
+            Your donation makes a real difference in young people's financial education.
           </p>
         </div>
 
@@ -52,57 +36,40 @@ const Donate = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Side - Donation Section */}
           <div className="space-y-6">
-            <Card className="border-2 border-blue-200 dark:border-blue-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+            <Card className="border-2 border-blue-200 dark:border-blue-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 shadow-xl">
               <CardHeader className="text-center">
                 <CardTitle className="text-3xl text-blue-800 dark:text-blue-200 mb-2">
-                  💝 Make a Difference Today
+                  Choose Your Amount
                 </CardTitle>
                 <p className="text-gray-700 dark:text-gray-300">
-                  Your support keeps our workshops completely free and accessible to all students.
-                  Choose any amount that feels right for you - every contribution makes a real impact!
+                  Every donation helps us reach more students with essential financial education.
+                  You can choose any amount that works for you.
                 </p>
               </CardHeader>
               <CardContent className="text-center space-y-6">
-                {/* Suggested Amounts */}
-                <div className="grid grid-cols-3 gap-3 mb-6">
-                  <div className="bg-white/70 dark:bg-gray-800/70 rounded-lg p-4 border border-blue-200 dark:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors cursor-pointer">
-                    <div className="text-2xl font-bold text-blue-600">$10</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">Supplies for 1 student</div>
-                  </div>
-                  <div className="bg-white/70 dark:bg-gray-800/70 rounded-lg p-4 border border-purple-200 dark:border-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-colors cursor-pointer">
-                    <div className="text-2xl font-bold text-purple-600">$25</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">Workshop materials</div>
-                  </div>
-                  <div className="bg-white/70 dark:bg-gray-800/70 rounded-lg p-4 border border-green-200 dark:border-green-700 hover:bg-green-50 dark:hover:bg-green-900/30 transition-colors cursor-pointer">
-                    <div className="text-2xl font-bold text-green-600">$50</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">Full student experience</div>
-                  </div>
+                <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                    Make a Difference Today
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                    Your support helps keep our workshops completely free for all students.
+                    Every contribution makes a real difference in a student's financial future.
+                  </p>
                 </div>
                 
                 <Button
                   onClick={handleDonate}
                   size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-xl group"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-xl"
                 >
-                  <Heart className="w-6 h-6 mr-3 group-hover:animate-pulse" />
+                  <Heart className="w-6 h-6 mr-3" />
                   Donate Now
-                  <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-6 h-6 ml-3" />
                 </Button>
                 
-                <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                  <Shield className="w-4 h-4" />
-                  <span>Secure payment processing powered by Stripe</span>
-                </div>
-                
-                <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg p-4 border border-green-200 dark:border-green-700">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <Star className="w-5 h-5 text-yellow-500" />
-                    <span className="font-semibold text-green-800 dark:text-green-200">Tax Deductible</span>
-                  </div>
-                  <p className="text-sm text-green-700 dark:text-green-300">
-                    Your donation may be tax deductible. Consult your tax advisor for details.
-                  </p>
-                </div>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  💳 Secure payment processing powered by Stripe
+                </p>
               </CardContent>
             </Card>
 
@@ -196,27 +163,18 @@ const Donate = () => {
             <Card className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-emerald-200 dark:border-emerald-700">
               <CardHeader>
                 <CardTitle className="text-emerald-800 dark:text-emerald-200 text-xl">
-                  💬 Real Student Impact
+                  Real Student Impact
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="relative">
-                    <Quote className="absolute -top-2 -left-2 w-8 h-8 text-emerald-400 opacity-50" />
-                    <blockquote className="text-emerald-700 dark:text-emerald-300 leading-relaxed italic border-l-4 border-emerald-400 pl-6 ml-4">
+                  <blockquote className="text-emerald-700 dark:text-emerald-300 leading-relaxed italic border-l-4 border-emerald-400 pl-4">
                     "Thanks to Spendora, I learned how to budget my allowance and even started 
                     investing! Now I'm helping my friends understand money too."
-                    </blockquote>
-                  </div>
+                  </blockquote>
                   <p className="text-emerald-600 dark:text-emerald-400 text-sm font-medium">
                     — Workshop Participant, Age 14
                   </p>
-                  <div className="flex items-center gap-1 mt-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                    <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">5/5 Student Rating</span>
-                  </div>
                 </div>
               </CardContent>
             </Card>

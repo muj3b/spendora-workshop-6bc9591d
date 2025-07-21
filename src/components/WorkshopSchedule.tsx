@@ -1,13 +1,11 @@
 
 import { GradientButton } from "@/components/ui/gradient-button";
 import { Card } from "@/components/ui/card";
-import { Clock, Users, Trophy, BookOpen, TrendingUp } from "lucide-react";
 
 const WorkshopSchedule = () => {
   const schedule = [
     {
       day: "Day 1",
-      icon: BookOpen,
       title: "Intro to Markets & Payment Setup",
       description: "Interactive presentation on market basics, icebreakers, and hands-on workshop to set up online payment methods and bank accounts",
       activities: ["Market fundamentals icebreaker", "Payment method setup workshop", "Personal finance basics"],
@@ -15,7 +13,6 @@ const WorkshopSchedule = () => {
     },
     {
       day: "Day 2", 
-      icon: TrendingUp,
       title: "Stocks & Investment",
       description: "Understand what stocks are, practice predicting trends, and learn investment research through interactive games",
       activities: ["Stock trend prediction game", "Investment strategy workshop", "Research fundamentals"],
@@ -23,7 +20,6 @@ const WorkshopSchedule = () => {
     },
     {
       day: "Day 3",
-      icon: Users,
       title: "Online Business & Marketing", 
       description: "Learn online advertising, business setup strategies, and brainstorm your own business ideas in breakout sessions",
       activities: ["Successful business strategy videos", "Dropshipping & TikTok Shop basics", "Business idea brainstorming"],
@@ -31,7 +27,6 @@ const WorkshopSchedule = () => {
     },
     {
       day: "Day 4",
-      icon: Clock,
       title: "How Money Works & Crypto",
       description: "Interactive demonstrations on taxes, saving vs investing strategies, crypto basics, and hustling opportunities", 
       activities: ["Tax basics demonstration", "Spend vs. Invest case studies", "Crypto fundamentals & side hustles"],
@@ -39,7 +34,6 @@ const WorkshopSchedule = () => {
     },
     {
       day: "Day 5",
-      icon: Trophy,
       title: "Final Competition & Celebration",
       description: "Apply everything you've learned in fun competitions, presentations, and celebrate with prizes and refreshments!",
       activities: ["Blooket fishing game competition", "Student presentations", "Prize ceremony & celebration"],
@@ -72,9 +66,6 @@ const WorkshopSchedule = () => {
                 <div className="flex-1 p-6 md:p-8">
                   <div className="flex flex-col">
                     <header className="flex items-center mb-4">
-                      <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${day.color} flex items-center justify-center mr-4`}>
-                        <day.icon className="w-6 h-6 text-white" />
-                      </div>
                       <span className={`inline-block px-3 py-1 rounded-full text-white text-sm font-semibold bg-gradient-to-r ${day.color} mr-4`}>
                         {day.day}
                       </span>
@@ -101,7 +92,7 @@ const WorkshopSchedule = () => {
 
         <footer className="text-center mt-12">
           <p className="text-body-large text-muted-foreground mb-4">
-            Ready to gain the financial skills that will last a lifetime?
+            Ready to transform your relationship with money?
           </p>
           <GradientButton 
             size="lg"
@@ -110,7 +101,7 @@ const WorkshopSchedule = () => {
             aria-label="Reserve your spot in the Spendora workshop"
             className="rounded-full"
           >
-            Join Our Next Workshop - Free!
+            Reserve Your Spot Now
           </GradientButton>
         </footer>
       </div>

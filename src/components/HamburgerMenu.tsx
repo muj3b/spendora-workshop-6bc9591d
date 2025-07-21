@@ -29,8 +29,6 @@ const HamburgerMenu = () => {
 
   const menuItems = [
     { label: 'Home', action: scrollToTop },
-    { label: '🎯 Sign Up Now!', action: () => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank'), highlight: true },
-    { type: 'divider' },
     { label: 'Features', action: () => scrollToSection('features') },
     { label: 'About Spendora', action: () => scrollToSection('about-spendora') },
     { label: 'Workshop Schedule', action: () => scrollToSection('workshop-schedule') },
@@ -100,11 +98,7 @@ const HamburgerMenu = () => {
                 <button
                   key={index}
                   onClick={item.action}
-                  className={`block w-full text-left py-3 px-4 text-lg font-medium rounded-lg transition-colors duration-200 ${
-                    item.highlight 
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 font-bold' 
-                      : 'text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
-                  }`}
+                  className="block w-full text-left py-3 px-4 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
                 >
                   {item.label}
                 </button>

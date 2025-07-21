@@ -1,45 +1,31 @@
 
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Award, TrendingUp, DollarSign } from "lucide-react";
 
 const MeetTheTeam = () => {
   const team = [
     {
       name: "Mujeeb Chaudhry",
-      role: "Co-Founder & E-commerce Expert",
       expertise: "E-commerce & TikTok Shop",
       bio: "Mujeeb specializes in complex online shops and has experience with dropshipping, creating crypto projects, and building profitable apps. He and Neil made thousands of dollars through their ventures and helps students learn advanced e-commerce strategies.",
-      gradient: "from-blue-500 to-cyan-500",
-      achievements: ["$10K+ Revenue", "Multiple Apps Built", "Crypto Projects"],
-      icon: TrendingUp
+      gradient: "from-blue-500 to-cyan-500"
     },
     {
       name: "Harshad Amalan",
-      role: "Reselling Specialist",
       expertise: "Reselling & Product Trends", 
       bio: "Harshad is a successful reseller who's placed at the state level in BPA competitions. He teaches how to spot product trends and flip items for profit.",
-      gradient: "from-green-500 to-emerald-500",
-      achievements: ["State BPA Competitor", "Product Trend Expert", "Profit Flipper"],
-      icon: Award
+      gradient: "from-green-500 to-emerald-500"
     },
     {
       name: "Neil Kaila", 
-      role: "Investment Analyst",
       expertise: "Stock Analysis & Investing",
       bio: "Neil is a student investor who competed in the Wharton Investment Competition and made thousands of dollars through his investments. He's passionate about teaching students how to research, analyze, and confidently invest in stocks.",
-      gradient: "from-purple-500 to-violet-500",
-      achievements: ["Wharton Competition", "$5K+ Investments", "Stock Analysis Pro"],
-      icon: DollarSign
+      gradient: "from-purple-500 to-violet-500"
     },
     {
       name: "Yashas Singh",
-      role: "Economics & Digital Assets",
       expertise: "Economics & Digital Assets",
       bio: "Yashas taught AP Econ to his peers and made over $1,000 trading NFTs. He focuses on helping students understand crypto digital assets, and economic decision-making.", 
-      gradient: "from-orange-500 to-red-500",
-      achievements: ["AP Econ Tutor", "$1K+ NFT Trading", "Crypto Expert"],
-      icon: ExternalLink
+      gradient: "from-orange-500 to-red-500"
     }
   ];
 
@@ -57,17 +43,16 @@ const MeetTheTeam = () => {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {team.map((member, index) => (
-            <Card key={index} className="p-8 hover:shadow-xl dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 transform hover:-translate-y-2 animate-dynamic-island-pop group" style={{ animationDelay: `${index * 0.1}s` }}>
+            <Card key={index} className="p-8 hover:shadow-xl dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 transform hover:-translate-y-2 animate-dynamic-island-pop" style={{ animationDelay: `${index * 0.1}s` }}>
               <div className="text-center mb-6">
-                <div className={`w-24 h-24 rounded-full bg-gradient-to-r ${member.gradient} mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                  <member.icon className="w-10 h-10 text-white" />
+                <div className={`w-20 h-20 rounded-full bg-gradient-to-r ${member.gradient} mx-auto mb-4 flex items-center justify-center`}>
+                  <span className="text-white text-2xl font-bold">
+                    {member.name.charAt(0)}
+                  </span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                   {member.name}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-2 font-medium">
-                  {member.role}
-                </p>
                 <p className={`text-sm font-semibold bg-gradient-to-r ${member.gradient} bg-clip-text text-transparent`}>
                   {member.expertise}
                 </p>
@@ -75,13 +60,6 @@ const MeetTheTeam = () => {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-center">
                 {member.bio}
               </p>
-              <div className="flex flex-wrap justify-center gap-2 mt-4">
-                {member.achievements.map((achievement, i) => (
-                  <Badge key={i} variant="secondary" className="text-xs">
-                    {achievement}
-                  </Badge>
-                ))}
-              </div>
             </Card>
           ))}
         </div>
@@ -89,12 +67,11 @@ const MeetTheTeam = () => {
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              Learn from Proven Success Stories
+              Learn from Real Experience
             </h3>
             <p className="text-lg text-gray-700 dark:text-gray-300">
-              Our team of East Ridge High School students combines real entrepreneurial success, 
-              competition achievements, and investment experience—all dedicated to empowering 
-              the next generation with practical financial knowledge.
+              Our team brings together state-level competition winners, successful entrepreneurs, 
+              and experienced investors—all passionate about sharing what they've learned with the next generation.
             </p>
           </div>
         </div>

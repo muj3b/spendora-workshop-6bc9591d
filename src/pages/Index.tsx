@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import AboutSpendora from "@/components/AboutSpendora";
 import WorkshopSchedule from "@/components/WorkshopSchedule";
 import MeetTheTeam from "@/components/MeetTheTeam";
-import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 const Index = () => {
@@ -23,9 +22,6 @@ const Index = () => {
         </div>
         <div id="meet-the-team">
           <MeetTheTeam />
-        </div>
-        <div id="testimonials">
-          <Testimonials />
         </div>
         <Footer />
       </div>

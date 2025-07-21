@@ -66,17 +66,7 @@ const Gallery = () => {
 
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text-primary">Workshop Gallery</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              📸 Highlights from our financial literacy workshops - See the excitement and learning in action!
-            </p>
-            <div className="flex justify-center items-center gap-4 mt-6">
-              <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full">
-                <span className="font-semibold text-blue-800 dark:text-blue-200">Growing Community</span>
-              </div>
-              <div className="bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-full">
-                <span className="font-semibold text-green-800 dark:text-green-200">2 Days Completed</span>
-              </div>
-            </div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Highlights from our financial literacy workshops</p>
           </div>
 
           <div className="max-w-6xl mx-auto space-y-8">
@@ -113,7 +103,7 @@ const Gallery = () => {
               Join Us for Our Next Workshop!
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Join our passionate community of students learning essential financial skills. 
+              Be part of our growing community of students learning essential financial skills. 
               Sign up now to secure your spot for our upcoming sessions.
             </p>
             <Button
