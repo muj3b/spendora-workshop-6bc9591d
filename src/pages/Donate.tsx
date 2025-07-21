@@ -103,7 +103,6 @@ const Donate = () => {
                     Your donation may be tax deductible. Consult your tax advisor for details.
                   </p>
                 </div>
-                </p>
               </CardContent>
             </Card>
 
