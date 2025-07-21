@@ -58,7 +58,7 @@ const Gallery = () => {
     <PageTransition>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300">
         <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center gap-4 mb-8 ml-32">
             <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="flex items-center gap-2 hover:bg-primary/10">
               <ArrowLeft className="w-4 h-4" />Back to Home
             </Button>
