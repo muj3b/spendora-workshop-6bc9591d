@@ -1,6 +1,6 @@
 
 import { FeatureCard } from "@/components/ui/feature-card";
-import { ChartLine, Coins, Store } from "lucide-react";
+import { ChartLine, Coins, Store, Users, Award, Target } from "lucide-react";
 
 const AboutSpendora = () => {
   return (
@@ -10,6 +10,20 @@ const AboutSpendora = () => {
           <h2 id="about-spendora" className="text-display text-foreground mb-6">
             About <span className="gradient-text-primary">Spendora</span>
           </h2>
+          <div className="flex justify-center items-center gap-6 mb-6 flex-wrap">
+            <div className="flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full">
+              <Users className="w-5 h-5 text-blue-600" />
+              <span className="font-semibold text-blue-800 dark:text-blue-200">200+ Students</span>
+            </div>
+            <div className="flex items-center gap-2 bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-full">
+              <Award className="w-5 h-5 text-green-600" />
+              <span className="font-semibold text-green-800 dark:text-green-200">100% Free</span>
+            </div>
+            <div className="flex items-center gap-2 bg-purple-100 dark:bg-purple-900/30 px-4 py-2 rounded-full">
+              <Target className="w-5 h-5 text-purple-600" />
+              <span className="font-semibold text-purple-800 dark:text-purple-200">Real Results</span>
+            </div>
+          </div>
           <p className="text-body-large text-muted-foreground">
             A student-led financial literacy workshop by <span className="font-semibold text-blue-600 dark:text-blue-400">East Ridge High School</span> students, 
             designed to make financial literacy fun, accessible, and practical for the next generation.
@@ -71,24 +85,24 @@ const AboutSpendora = () => {
         <aside className="glass rounded-2xl p-8 md:p-12 animate-fade-in transform transition-all duration-700 hover:scale-105 shadow-medium hover:shadow-large" style={{ animationDelay: '0.6s' }} aria-labelledby="free-attendance">
           <div className="max-w-3xl mx-auto text-center">
             <h3 id="free-attendance" className="text-heading text-card-foreground mb-4">
-              Completely Free to Attend
+              🎉 Completely Free to Attend
             </h3>
             <p className="text-body-large text-muted-foreground mb-6">
-              All supplies included, hosted in partnership with local libraries and camps. 
-              Plus, you'll build a resume and gain practical experience with money management.
+              All supplies included, hosted in partnership with local libraries. 
+              Plus, you'll build your resume, gain practical experience with money management, and join a community of financially savvy students!
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm font-semibold text-muted-foreground" role="list" aria-label="What's included">
               <div className="transition-all duration-300 hover:scale-110" role="listitem">
-                <span aria-hidden="true">✓</span> All Materials
+                <span aria-hidden="true">📚</span> All Materials
               </div>
               <div className="transition-all duration-300 hover:scale-110" role="listitem">
-                <span aria-hidden="true">✓</span> Expert Instruction
+                <span aria-hidden="true">👨‍🏫</span> Expert Instruction
               </div>
               <div className="transition-all duration-300 hover:scale-110" role="listitem">
-                <span aria-hidden="true">✓</span> Hands-on Practice
+                <span aria-hidden="true">💪</span> Hands-on Practice
               </div>
               <div className="transition-all duration-300 hover:scale-110" role="listitem">
-                <span aria-hidden="true">✓</span> Final Competition
+                <span aria-hidden="true">🏆</span> Final Competition
               </div>
             </div>
           </div>

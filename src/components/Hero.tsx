@@ -5,6 +5,7 @@ import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart, Camera } from "luc
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 import HamburgerMenu from "@/components/HamburgerMenu";
+import { Badge } from "@/components/ui/badge";
 
 const Hero = memo(() => {
   const navigate = useNavigate();
@@ -58,12 +59,18 @@ const Hero = memo(() => {
           <h1 className="relative text-display mb-6 sm:mb-8 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out]" style={{ animationDelay: '0.2s' }}>
             <span className="relative inline-block gradient-text-primary">
               <span className="animate-letter-shine">Level Up Your Money Skills</span>
+              <Badge className="ml-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white animate-bounce">
+                FREE
+              </Badge>
             </span>
           </h1>
           
           <p className="text-body-large text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.4s_both]">
-            A free workshop designed by high school students to teach 
-            real-world financial skills to students.
+            A completely free workshop designed by passionate high school students to teach 
+            real-world financial skills that will change your relationship with money forever.
+            <span className="block mt-2 text-primary font-semibold">
+              🎯 Ages 10-18 • 📍 R.H. Stafford Library • 🍪 Snacks Included
+            </span>
           </p>
 
           {/* Main Call-to-Action Section */}
@@ -107,7 +114,7 @@ const Hero = memo(() => {
               </div>
               
               <p className="text-muted-foreground mt-3 text-lg">
-                Limited spots available - Don't miss out! 
+                ⚡ Limited spots available - Join 200+ students already signed up!
               </p>
             </div>
 
