@@ -257,7 +257,8 @@ const LiveEventTimer = ({
           <div className="mx-auto max-w-fit bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm border border-green-300/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 shadow-lg shadow-green-400/20 glow">
             <p className="text-white font-bold text-sm sm:text-lg break-words text-center">
               <span className="text-green-300">🎯 Day 3:</span> 
-              <span className="block sm:inline animate-pulse"> Date & Time Coming Soon</span>
+              <span className="block sm:inline"> Date & Time </span>
+              <span className="inline-block animate-[fade_2s_ease-in-out_infinite] text-yellow-300">???</span>
             </p>
           </div>
           <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">

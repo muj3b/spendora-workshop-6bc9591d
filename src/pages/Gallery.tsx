@@ -66,7 +66,17 @@ const Gallery = () => {
 
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text-primary">Workshop Gallery</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Highlights from our financial literacy workshops</p>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              📸 Highlights from our financial literacy workshops - See the excitement and learning in action!
+            </p>
+            <div className="flex justify-center items-center gap-4 mt-6">
+              <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full">
+                <span className="font-semibold text-blue-800 dark:text-blue-200">200+ Students</span>
+              </div>
+              <div className="bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-full">
+                <span className="font-semibold text-green-800 dark:text-green-200">2 Days Completed</span>
+              </div>
+            </div>
           </div>
 
           <div className="max-w-6xl mx-auto space-y-8">
