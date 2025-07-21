@@ -89,11 +89,12 @@ const MeetTheTeam = () => {
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              Learn from Real Experience
+              Learn from Proven Success Stories
             </h3>
             <p className="text-lg text-gray-700 dark:text-gray-300">
-              Our team brings together state-level competition winners, successful entrepreneurs, 
-              and experienced investors—all passionate about sharing what they've learned with the next generation.
+              Our team of East Ridge High School students combines real entrepreneurial success, 
+              competition achievements, and investment experience—all dedicated to empowering 
+              the next generation with practical financial knowledge.
             </p>
           </div>
         </div>

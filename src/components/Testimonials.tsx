@@ -6,19 +6,19 @@ const Testimonials = memo(() => {
     {
       name: "Sarah M.",
       role: "Student, Age 16",
-      content: "Spendora taught me how to budget my part-time job money. I've already saved $500 for college!",
+      content: "The workshop taught me practical budgeting skills I actually use. Now I understand how to manage my money better!",
       rating: 5
     },
     {
       name: "Marcus T.",
       role: "Student, Age 15", 
-      content: "I never understood investing before, but now I'm excited to start building my financial future.",
+      content: "I finally understand how investing works! The presenters made complex topics easy to understand.",
       rating: 5
     },
     {
       name: "Emma K.",
       role: "Student, Age 17",
-      content: "The online business workshop inspired me to start my own small business. Amazing program!",
+      content: "Learning about online business opened my eyes to so many opportunities. Great workshop!",
       rating: 5
     }
   ];
@@ -31,7 +31,7 @@ const Testimonials = memo(() => {
             What <span className="gradient-text-primary">Students Say</span>
           </h2>
           <p className="text-body-large text-muted-foreground">
-            Real feedback from students who have transformed their financial knowledge with Spendora
+            Hear from students who've experienced our workshops firsthand
           </p>
         </div>
 

@@ -25,8 +25,9 @@ const AboutSpendora = () => {
             </div>
           </div>
           <p className="text-body-large text-muted-foreground">
-            A student-led financial literacy workshop by <span className="font-semibold text-blue-600 dark:text-blue-400">East Ridge High School</span> students, 
-            designed to make financial literacy fun, accessible, and practical for the next generation.
+            Created and taught by <span className="font-semibold text-blue-600 dark:text-blue-400">East Ridge High School</span> students 
+            who have real experience with investing, entrepreneurship, and financial success. We're passionate about 
+            sharing practical money skills that actually work in today's world.
           </p>
         </header>
 
@@ -88,8 +89,9 @@ const AboutSpendora = () => {
               🎉 Completely Free to Attend
             </h3>
             <p className="text-body-large text-muted-foreground mb-6">
-              All supplies included, hosted in partnership with local libraries. 
-              Plus, you'll build your resume, gain practical experience with money management, and join a community of financially savvy students!
+              Everything is provided at no cost, hosted in partnership with R.H. Stafford Library. 
+              You'll gain hands-on experience with real financial tools, learn from successful student entrepreneurs, 
+              and build skills that will benefit you for life!
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm font-semibold text-muted-foreground" role="list" aria-label="What's included">
               <div className="transition-all duration-300 hover:scale-110" role="listitem">

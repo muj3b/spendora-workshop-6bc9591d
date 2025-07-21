@@ -71,7 +71,7 @@ const Gallery = () => {
             </p>
             <div className="flex justify-center items-center gap-4 mt-6">
               <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full">
-                <span className="font-semibold text-blue-800 dark:text-blue-200">200+ Students</span>
+                <span className="font-semibold text-blue-800 dark:text-blue-200">Growing Community</span>
               </div>
               <div className="bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-full">
                 <span className="font-semibold text-green-800 dark:text-green-200">2 Days Completed</span>
@@ -113,7 +113,7 @@ const Gallery = () => {
               Join Us for Our Next Workshop!
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Be part of our growing community of students learning essential financial skills. 
+              Join our passionate community of students learning essential financial skills. 
               Sign up now to secure your spot for our upcoming sessions.
             </p>
             <Button

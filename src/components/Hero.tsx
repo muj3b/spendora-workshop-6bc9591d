@@ -63,10 +63,10 @@ const Hero = memo(() => {
           </h1>
           
           <p className="text-body-large text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.4s_both]">
-            A completely free workshop designed by passionate high school students to teach 
-            real-world financial skills that will change your relationship with money forever.
+            A completely free workshop designed by passionate East Ridge High School students 
+            to teach real-world financial skills that will transform your relationship with money.
             <span className="block mt-2 text-primary font-semibold">
-              🎯 Ages 10-18 • 📍 R.H. Stafford Library • 🍪 Snacks Included
+              🎯 Ages 10-18 • 📍 R.H. Stafford Library, Woodridge IL • 🍪 Snacks Included
             </span>
           </p>
 
@@ -111,7 +111,7 @@ const Hero = memo(() => {
               </div>
               
               <p className="text-muted-foreground mt-3 text-lg">
-                ⚡ Limited spots available - Don't miss out on this amazing opportunity!
+                ⚡ Secure your spot today - Transform your financial future with us!
               </p>
             </div>
 
@@ -173,16 +173,16 @@ const Hero = memo(() => {
                         </div>
                         <div className="flex items-center justify-center space-x-2">
                           <span role="img" aria-label="Supplies">📚</span>
-                          <span className="font-medium">All Supplies Included</span>
-                        </div>
+                <Award className="w-5 h-5 text-blue-600" />
+                <span className="font-semibold text-blue-800 dark:text-blue-200">Student-Led</span>
                         <div className="flex items-center justify-center space-x-2">
                           <span role="img" aria-label="Snacks">🍪</span>
-                          <span className="font-medium">Snacks Provided</span>
+                <Users className="w-5 h-5 text-green-600" />
                         </div>
                       </div>
-                    </div>
+              <span className="font-semibold text-blue-800 dark:text-blue-200">Growing Community</span>
                   </div>
-                </div>
+                <span className="font-semibold text-purple-800 dark:text-purple-200">Practical Skills</span>
               </div>
             </div>
           </div>

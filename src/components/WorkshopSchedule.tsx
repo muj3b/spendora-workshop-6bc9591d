@@ -101,7 +101,7 @@ const WorkshopSchedule = () => {
 
         <footer className="text-center mt-12">
           <p className="text-body-large text-muted-foreground mb-4">
-            Ready to transform your relationship with money?
+            Ready to gain the financial skills that will last a lifetime?
           </p>
           <GradientButton 
             size="lg"
@@ -110,7 +110,7 @@ const WorkshopSchedule = () => {
             aria-label="Reserve your spot in the Spendora workshop"
             className="rounded-full"
           >
-            Reserve Your Spot Now
+            Join Our Next Workshop - Free!
           </GradientButton>
         </footer>
       </div>

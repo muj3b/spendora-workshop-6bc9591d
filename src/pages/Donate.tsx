@@ -34,8 +34,8 @@ const Donate = () => {
           </h1>
           <div className="flex justify-center items-center gap-4 mb-6">
             <div className="flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full">
-              <Users className="w-5 h-5 text-blue-600" />
-              <span className="font-semibold text-blue-800 dark:text-blue-200">200+ Students Impacted</span>
+              <Award className="w-5 h-5 text-blue-600" />
+              <span className="font-semibold text-blue-800 dark:text-blue-200">Student-Led Initiative</span>
             </div>
             <div className="flex items-center gap-2 bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-full">
               <Target className="w-5 h-5 text-green-600" />

@@ -17,14 +17,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
           <div className="text-center">
             <div className="flex items-center justify-center mb-2">
-              <Users className="w-8 h-8 text-blue-400 mr-2" />
-              <span className="text-3xl font-bold text-blue-400">200+</span>
+              <Award className="w-8 h-8 text-blue-400 mr-2" />
+              <span className="text-3xl font-bold text-blue-400">2</span>
             </div>
-            <p className="text-gray-300">Students Enrolled</p>
+            <p className="text-gray-300">Days Completed</p>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center mb-2">
-              <Award className="w-8 h-8 text-green-400 mr-2" />
+              <Users className="w-8 h-8 text-green-400 mr-2" />
               <span className="text-3xl font-bold text-green-400">100%</span>
             </div>
             <p className="text-gray-300">Free Workshop</p>
@@ -43,7 +43,7 @@ const Footer = () => {
             🚀 Ready to Start Your Financial Journey?
           </h3>
           <p className="text-xl text-gray-300 dark:text-gray-400 mb-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            Join 200+ students already transforming their financial future with Spendora
+            Join our growing community of students learning essential financial skills with Spendora
           </p>
           
           <Button 
