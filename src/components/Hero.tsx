@@ -59,9 +59,6 @@ const Hero = memo(() => {
           <h1 className="relative text-display mb-6 sm:mb-8 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out]" style={{ animationDelay: '0.2s' }}>
             <span className="relative inline-block gradient-text-primary">
               <span className="animate-letter-shine">Level Up Your Money Skills</span>
-              <Badge className="ml-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white animate-bounce">
-                FREE
-              </Badge>
             </span>
           </h1>
           
@@ -114,7 +111,7 @@ const Hero = memo(() => {
               </div>
               
               <p className="text-muted-foreground mt-3 text-lg">
-                ⚡ Limited spots available - Join 200+ students already signed up!
+                ⚡ Limited spots available - Don't miss out on this amazing opportunity!
               </p>
             </div>
 
