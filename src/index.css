@@ -197,3 +197,65 @@
     @apply text-base leading-relaxed;
   }
 }
+
+@layer components {
+  /* Liquid Glass Surfaces */
+  .liquid-glass-surface {
+    background: linear-gradient(180deg, hsl(var(--background) / 0.08), hsl(var(--background) / 0.14));
+    border: 1px solid hsl(var(--border) / 0.4);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* Liquid Glass Button - reacts to pointer and device tilt via CSS vars --gx/--gy */
+  .liquid-glass-btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: inherit;
+    background: linear-gradient(180deg, hsl(var(--background) / 0.08), hsl(var(--background) / 0.16));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border) / 0.45);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, filter;
+    box-shadow: 0 1px 0 hsl(var(--foreground) / 0.05) inset, var(--shadow-soft);
+    touch-action: manipulation;
+  }
+
+  .dark .liquid-glass-btn {
+    background: linear-gradient(180deg, hsl(var(--background) / 0.18), hsl(var(--background) / 0.26));
+    border-color: hsl(var(--border) / 0.5);
+    box-shadow: 0 1px 0 hsl(var(--foreground) / 0.06) inset, var(--shadow-soft);
+  }
+
+  .liquid-glass-btn::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      radial-gradient(160px circle at var(--gx, 50%) var(--gy, 50%), hsl(var(--foreground) / 0.18), transparent 60%),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.08), transparent 40%);
+    opacity: 0.9;
+    transition: opacity 0.25s ease;
+    mix-blend-mode: screen;
+  }
+
+  .liquid-glass-btn:hover::before,
+  .liquid-glass-btn:focus-visible::before,
+  .liquid-glass-btn:active::before { opacity: 1; }
+
+  .liquid-glass-btn:hover {
+    box-shadow: var(--shadow-medium), var(--shadow-glow);
+    transform: translateY(-1px);
+  }
+
+  .liquid-glass-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-soft);
+  }
+}
