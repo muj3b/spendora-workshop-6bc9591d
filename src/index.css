@@ -199,6 +199,30 @@
 }
 
 @layer components {
+  /* Liquid Inputs */
+  .liquid-input {
+    background: linear-gradient(180deg, hsl(var(--background) / 0.7), hsl(var(--background) / 0.85));
+    border-color: hsl(var(--border) / 0.6);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    transition: var(--transition-smooth, all 0.3s ease);
+  }
+  .liquid-input:focus {
+    background: linear-gradient(180deg, hsl(var(--background) / 0.8), hsl(var(--background) / 0.95));
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.2);
+  }
+
+  /* Page background with subtle reactive bloom */
+  .liquid-page {
+    background:
+      radial-gradient(1200px 800px at 10% -10%, hsl(217 91% 60% / 0.08), transparent 60%),
+      radial-gradient(1000px 700px at 100% 10%, hsl(271 91% 65% / 0.08), transparent 60%),
+      linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
+  }
+}
+
+@layer components {
   /* Liquid Glass Surfaces */
   .liquid-glass-surface {
     background: linear-gradient(180deg, hsl(var(--background) / 0.08), hsl(var(--background) / 0.14));

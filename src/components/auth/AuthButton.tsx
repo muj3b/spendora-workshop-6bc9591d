@@ -15,10 +15,10 @@ export const AuthButton = () => {
   if (!user) {
     return (
       <div className="flex items-center space-x-2">
-        <Button asChild variant="ghost" size="sm">
+        <Button asChild variant="liquid" size="sm">
           <Link to="/login">Sign In</Link>
         </Button>
-        <Button asChild size="sm">
+        <Button asChild variant="liquid" size="sm">
           <Link to="/signup">Sign Up</Link>
         </Button>
       </div>
@@ -28,12 +28,12 @@ export const AuthButton = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="flex items-center space-x-2">
+        <Button variant="liquid" size="sm" className="flex items-center space-x-2">
           <User className="w-4 h-4" />
           <span className="hidden sm:inline">{user.email}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="liquid-glass-surface border">
         <DropdownMenuItem asChild>
           <button 
             onClick={() => window.open('https://buy.stripe.com/cNicN5gG3f8ocU4cjN0Ba00', '_blank')}

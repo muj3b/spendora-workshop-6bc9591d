@@ -48,7 +48,7 @@ const Hero = memo(() => {
   ), []);
 
   return (
-    <main className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 flex items-center overflow-hidden transition-colors duration-300 pt-16" role="main" aria-label="Spendora Workshop Hero Section">
+    <main className="relative min-h-screen bg-transparent flex items-center overflow-hidden transition-colors duration-300 pt-16" role="main" aria-label="Spendora Workshop Hero Section">
       <HamburgerMenu />
       {/* Background decorative elements */}
       {decorativeElements}
@@ -117,7 +117,7 @@ const Hero = memo(() => {
               <div className="grid lg:grid-cols-2 gap-8 items-start">
                 {/* Timer Section */}
                 <div className="relative">
-                  <div className="bg-gradient-to-br from-blue-600/90 to-purple-600/90 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl relative overflow-hidden">
+                  <div className="liquid-glass-surface rounded-3xl p-8 shadow-large relative overflow-hidden">
                     {/* Background pattern */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent_70%)]"></div>
                     <div className="relative z-10">
@@ -135,7 +135,7 @@ const Hero = memo(() => {
                 {/* Location & Details Section */}
                 <div className="space-y-6">
                   {/* Location Card */}
-                  <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+                  <div className="liquid-glass-surface rounded-2xl p-6 shadow-medium">
                     <div className="text-center space-y-4">
                       <div className="flex items-center justify-center space-x-3">
                         <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
@@ -159,7 +159,7 @@ const Hero = memo(() => {
                   </div>
 
                   {/* Features Card */}
-                  <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg">
+                  <div className="liquid-glass-surface rounded-2xl p-6 shadow-medium">
                     <div className="text-center space-y-3">
                       <h4 className="text-xl font-bold text-foreground">What's Included</h4>
                       <div className="grid grid-cols-1 gap-2 text-foreground">

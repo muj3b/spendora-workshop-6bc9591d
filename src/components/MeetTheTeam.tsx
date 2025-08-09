@@ -30,7 +30,7 @@ const MeetTheTeam = () => {
   ];
 
   return (
-    <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section className="py-20 bg-background transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
@@ -43,7 +43,7 @@ const MeetTheTeam = () => {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {team.map((member, index) => (
-            <Card key={index} className="p-8 hover:shadow-xl dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 transform hover:-translate-y-2 animate-dynamic-island-pop" style={{ animationDelay: `${index * 0.1}s` }}>
+            <Card key={index} className="liquid-glass-surface p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-dynamic-island-pop" style={{ animationDelay: `${index * 0.1}s` }}>
               <div className="text-center mb-6">
                 <div className={`w-20 h-20 rounded-full bg-gradient-to-r ${member.gradient} mx-auto mb-4 flex items-center justify-center`}>
                   <span className="text-white text-2xl font-bold">
@@ -65,7 +65,7 @@ const MeetTheTeam = () => {
         </div>
 
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 max-w-3xl mx-auto">
+          <div className="liquid-glass-surface rounded-2xl p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Learn from Real Experience
             </h3>

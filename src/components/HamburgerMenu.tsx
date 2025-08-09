@@ -52,8 +52,8 @@ const HamburgerMenu = () => {
       <Button
         onClick={toggleMenu}
         size="icon"
-        variant="ghost"
-        className="fixed top-6 right-6 z-50 w-10 h-10 rounded-md hover:bg-black/10 dark:hover:bg-white/10"
+        variant="liquid"
+        className="fixed top-6 right-6 z-50 w-10 h-10 rounded-md"
         aria-label="Toggle menu"
       >
         {isOpen ? (
@@ -66,28 +66,28 @@ const HamburgerMenu = () => {
       {/* Overlay */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 transition-all duration-300"
+          className="fixed inset-0 bg-background/40 backdrop-blur-md z-40 transition-all duration-300"
           onClick={toggleMenu}
         />
       )}
 
       {/* Side Menu */}
       <div className={`
-        fixed top-0 right-0 h-full w-80 bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg shadow-2xl z-50
-        transform transition-transform duration-300 ease-in-out border-l border-gray-200 dark:border-gray-700
+        fixed top-0 right-0 h-full w-80 liquid-glass-surface shadow-2xl z-50
+        transform transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : 'translate-x-full'}
       `}>
         <div className="p-6 pt-20">
           <nav className="space-y-2">
             {menuItems.map((item, index) => {
               if (item.type === 'divider') {
-                return <hr key={index} className="my-4 border-gray-300 dark:border-gray-600" />;
+                return <hr key={index} className="my-4 border-border" />;
               }
               
               if (item.type === 'header') {
                 return (
                   <div key={index} className="py-2 px-4">
-                    <h3 className="text-sm font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                    <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
                       {item.label}
                     </h3>
                   </div>
@@ -98,7 +98,7 @@ const HamburgerMenu = () => {
                 <button
                   key={index}
                   onClick={item.action}
-                  className="block w-full text-left py-3 px-4 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
+                  className="block w-full text-left py-3 px-4 text-lg font-medium text-foreground hover:bg-foreground/5 rounded-lg transition-colors duration-200"
                 >
                   {item.label}
                 </button>

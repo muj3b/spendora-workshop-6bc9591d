@@ -45,7 +45,7 @@ const AboutSpendora = () => {
           />
         </div>
 
-        <div className="glass rounded-2xl p-8 md:p-12 animate-fade-in transform transition-all duration-700 hover:scale-105 shadow-medium hover:shadow-large mb-16" style={{ animationDelay: '0.4s' }} aria-labelledby="team-video">
+        <div className="liquid-glass-surface rounded-2xl p-8 md:p-12 animate-fade-in transform transition-all duration-700 hover:scale-105 shadow-medium hover:shadow-large mb-16" style={{ animationDelay: '0.4s' }} aria-labelledby="team-video">
           <div className="max-w-4xl mx-auto text-center">
             <h3 id="team-video" className="text-heading text-card-foreground mb-6">
               Meet the Team Behind Spendora
@@ -68,7 +68,7 @@ const AboutSpendora = () => {
           </div>
         </div>
 
-        <aside className="glass rounded-2xl p-8 md:p-12 animate-fade-in transform transition-all duration-700 hover:scale-105 shadow-medium hover:shadow-large" style={{ animationDelay: '0.6s' }} aria-labelledby="free-attendance">
+        <aside className="liquid-glass-surface rounded-2xl p-8 md:p-12 animate-fade-in transform transition-all duration-700 hover:scale-105 shadow-medium hover:shadow-large" style={{ animationDelay: '0.6s' }} aria-labelledby="free-attendance">
           <div className="max-w-3xl mx-auto text-center">
             <h3 id="free-attendance" className="text-heading text-card-foreground mb-4">
               Completely Free to Attend

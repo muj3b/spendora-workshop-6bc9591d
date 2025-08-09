@@ -51,7 +51,7 @@ const WorkshopSchedule = () => {
           <p className="text-body-large text-muted-foreground mb-4">
             Each day builds on the last, creating a comprehensive foundation in financial literacy
           </p>
-          <div className="glass border-blue-200 dark:border-blue-700 rounded-lg p-4 mb-8 animate-fade-in" role="note" aria-label="Important schedule information">
+          <div className="liquid-glass-surface rounded-lg p-4 mb-8 animate-fade-in" role="note" aria-label="Important schedule information">
             <p className="text-blue-800 dark:text-blue-200 font-medium">
               <span role="img" aria-label="Calendar">📅</span> Specific dates, times, and locations will be sent to you via your contact information some time after you sign up!
             </p>
@@ -78,7 +78,7 @@ const WorkshopSchedule = () => {
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3" role="list" aria-label={`${day.day} activities`}>
                       {day.activities.map((activity, actIndex) => (
-                        <div key={actIndex} className="glass rounded-lg p-3 text-sm text-card-foreground hover:glass-strong transition-colors duration-200" role="listitem">
+                        <div key={actIndex} className="liquid-glass-surface rounded-lg p-3 text-sm text-card-foreground transition-colors duration-200" role="listitem">
                           <span aria-hidden="true">•</span> {activity}
                         </div>
                       ))}
