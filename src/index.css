@@ -309,7 +309,6 @@
     transform: translateY(0);
     box-shadow: var(--shadow-soft);
   }
-}
 
 @layer components {
   /* Cursor spotlight highlight target */
