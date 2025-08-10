@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-// Global cursor spotlight overlay + nearest-element highlight
+// Global cursor spotlight overlay + nearest-element highlight + liquid glass positional glow
 const SpotlightCursor = () => {
   const rafRef = useRef<number | null>(null);
   const [pos, setPos] = useState({ x: -1, y: -1 });
+  const [isDark, setIsDark] = useState<boolean>(
+    typeof document !== "undefined" && document.documentElement.classList.contains("dark")
+  );
   const lastTargetRef = useRef<HTMLElement | null>(null);
   const candidatesRef = useRef<NodeListOf<HTMLElement> | null>(null);
 
@@ -14,8 +17,28 @@ const SpotlightCursor = () => {
       );
     };
     updateCandidates();
-    const ro = new MutationObserver(updateCandidates);
-    ro.observe(document.body, { childList: true, subtree: true, attributes: true });
+
+    // Observe DOM changes (and theme changes on <html>)
+    const domObserver = new MutationObserver((mut) => {
+      updateCandidates();
+      // Watch for theme toggle
+      const html = document.documentElement;
+      setIsDark(html.classList.contains("dark"));
+    });
+    domObserver.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    const setGlowOnEl = (el: HTMLElement, clientX: number, clientY: number) => {
+      const rect = el.getBoundingClientRect();
+      const px = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      const py = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
+      el.style.setProperty("--gx", `${px * 100}%`);
+      el.style.setProperty("--gy", `${py * 100}%`);
+    };
 
     const onMove = (clientX: number, clientY: number) => {
       setPos({ x: clientX, y: clientY });
@@ -34,10 +57,14 @@ const SpotlightCursor = () => {
           const d = Math.hypot(dx, dy);
           if (!best || d < best.d) best = { el, d };
         }
-        if (best && best.el !== lastTargetRef.current) {
-          lastTargetRef.current?.classList.remove("spotlight-target");
-          best.el.classList.add("spotlight-target");
-          lastTargetRef.current = best.el;
+        if (best) {
+          // Update classes and glow variables
+          if (best.el !== lastTargetRef.current) {
+            lastTargetRef.current?.classList.remove("spotlight-target");
+            best.el.classList.add("spotlight-target");
+            lastTargetRef.current = best.el;
+          }
+          setGlowOnEl(best.el, clientX, clientY);
         }
       });
     };
@@ -55,13 +82,19 @@ const SpotlightCursor = () => {
     return () => {
       window.removeEventListener("mousemove", handleMouse);
       window.removeEventListener("touchmove", handleTouch);
-      ro.disconnect();
+      domObserver.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
+  const spotlightColor = isDark
+    ? "hsl(var(--primary) / 0.28)"
+    : "hsl(var(--primary) / 0.18)";
+
   const style = {
-    background: `radial-gradient(180px circle at ${pos.x}px ${pos.y}px, hsl(var(--ring) / 0.22), transparent 60%)`,
+    background: `radial-gradient(160px circle at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 60%)`,
+    mixBlendMode: "screen" as const,
+    filter: "saturate(120%)",
   } as React.CSSProperties;
 
   return (
@@ -74,3 +107,4 @@ const SpotlightCursor = () => {
 };
 
 export default SpotlightCursor;
+

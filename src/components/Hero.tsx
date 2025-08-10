@@ -89,6 +89,7 @@ const Hero = memo(() => {
                   className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300"
                   onClick={handleDonate}
                   aria-label="Support Spendora with a donation"
+                  data-spotlight
                 >
                   <Heart className="w-5 h-5 mr-2" />
                   <span className="font-semibold">Support Our Mission</span>
@@ -100,6 +101,7 @@ const Hero = memo(() => {
                   className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300"
                   onClick={handleGallery}
                   aria-label="View workshop gallery"
+                  data-spotlight
                 >
                   <Camera className="w-5 h-5 mr-2" />
                   <span className="font-semibold">Workshop Gallery</span>
