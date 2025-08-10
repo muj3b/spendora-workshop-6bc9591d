@@ -40,13 +40,13 @@ const Gallery = () => {
   const renderMediaGrid = (photos, videos = []) => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
       {photos.map((photo, index) => (
-        <div key={`photo-${index}`} className="group relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+        <div key={`photo-${index}`} className="group relative overflow-hidden rounded-2xl liquid-glass-surface shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
           <img src={photo.src} alt={photo.alt} className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110" loading="lazy" />
           <div className="p-4"><p className="text-sm text-muted-foreground">{photo.alt}</p></div>
         </div>
       ))}
       {videos.map((video, index) => (
-        <div key={`video-${index}`} className="group relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+        <div key={`video-${index}`} className="group relative overflow-hidden rounded-2xl liquid-glass-surface shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
           <video src={video.src} controls className="w-full h-64 object-cover" />
           <div className="p-4"><p className="text-sm text-muted-foreground">{video.alt}</p></div>
         </div>
@@ -56,7 +56,7 @@ const Gallery = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300">
+      <div className="min-h-screen liquid-page transition-colors duration-300">
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center gap-4 mb-8 ml-32">
             <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="flex items-center gap-2 hover:bg-primary/10">
@@ -70,7 +70,7 @@ const Gallery = () => {
           </div>
 
           <div className="max-w-6xl mx-auto space-y-8">
-            <Collapsible defaultOpen className="border rounded-lg p-6 bg-white/50 dark:bg-gray-800/50">
+            <Collapsible defaultOpen className="border rounded-lg p-6 liquid-glass-surface">
               <CollapsibleTrigger className="flex items-center justify-between w-full text-left">
                 <div className="flex items-center gap-4">
                   <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-bold text-xl">DAY 1</div>
@@ -83,7 +83,7 @@ const Gallery = () => {
               </CollapsibleContent>
             </Collapsible>
 
-            <Collapsible defaultOpen className="border rounded-lg p-6 bg-white/50 dark:bg-gray-800/50">
+            <Collapsible defaultOpen className="border rounded-lg p-6 liquid-glass-surface">
               <CollapsibleTrigger className="flex items-center justify-between w-full text-left">
                 <div className="flex items-center gap-4">
                   <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-xl font-bold text-xl">DAY 2</div>

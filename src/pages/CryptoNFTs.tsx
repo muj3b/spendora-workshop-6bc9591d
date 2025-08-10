@@ -28,7 +28,7 @@ In present day crypto is gaining more credibility with many banks, companies, an
 
   return (
     <PageTransition transitionType="fade">
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+      <div className="min-h-screen liquid-page transition-colors duration-300">
         <div className="container mx-auto px-6 py-12">
           <div className="max-w-7xl mx-auto">
             <Button 

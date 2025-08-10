@@ -4,7 +4,7 @@ import { FeatureCard } from "@/components/ui/feature-card";
 import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart, Camera } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
-import HamburgerMenu from "@/components/HamburgerMenu";
+
 
 const Hero = memo(() => {
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ const Hero = memo(() => {
 
   return (
     <main className="relative min-h-screen bg-transparent flex items-center overflow-hidden transition-colors duration-300 pt-16" role="main" aria-label="Spendora Workshop Hero Section">
-      <HamburgerMenu />
+      {/* Top navigation rendered globally */}
       {/* Background decorative elements */}
       {decorativeElements}
 

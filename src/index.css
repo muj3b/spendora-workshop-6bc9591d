@@ -283,3 +283,14 @@
     box-shadow: var(--shadow-soft);
   }
 }
+
+@layer components {
+  /* Cursor spotlight highlight target */
+  .spotlight-target {
+    outline: 0;
+    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.35), 0 10px 25px hsl(var(--ring) / 0.25);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    transform: translateZ(0);
+    border-radius: var(--radius);
+  }
+}

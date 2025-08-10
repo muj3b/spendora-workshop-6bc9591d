@@ -9,7 +9,7 @@ const Donate = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-12 px-4">
+    <div className="min-h-screen liquid-page py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -36,7 +36,7 @@ const Donate = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Side - Donation Section */}
           <div className="space-y-6">
-            <Card className="border-2 border-blue-200 dark:border-blue-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 shadow-xl">
+            <Card className="liquid-glass-surface border-2 border-blue-200 dark:border-blue-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 shadow-xl">
               <CardHeader className="text-center">
                 <CardTitle className="text-3xl text-blue-800 dark:text-blue-200 mb-2">
                   Choose Your Amount
@@ -74,7 +74,7 @@ const Donate = () => {
             </Card>
 
             {/* Alternative Support Methods */}
-            <Card className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-700">
+            <Card className="liquid-glass-surface bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-700">
               <CardHeader>
                 <CardTitle className="text-green-800 dark:text-green-200 text-xl">
                   Other Ways to Support Us
@@ -103,7 +103,7 @@ const Donate = () => {
 
           {/* Right Side - Impact & Benefits */}
           <div className="space-y-6">
-            <Card className="shadow-xl">
+            <Card className="liquid-glass-surface shadow-xl">
               <CardHeader>
                 <CardTitle className="text-2xl text-gray-900 dark:text-white">
                   Your Impact in Action
@@ -144,7 +144,7 @@ const Donate = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border-indigo-200 dark:border-indigo-700">
+            <Card className="liquid-glass-surface bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border-indigo-200 dark:border-indigo-700">
               <CardHeader>
                 <CardTitle className="text-indigo-800 dark:text-indigo-200 text-xl">
                   Student-Led, Community-Supported
@@ -160,7 +160,7 @@ const Donate = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-emerald-200 dark:border-emerald-700">
+            <Card className="liquid-glass-surface bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-emerald-200 dark:border-emerald-700">
               <CardHeader>
                 <CardTitle className="text-emerald-800 dark:text-emerald-200 text-xl">
                   Real Student Impact
