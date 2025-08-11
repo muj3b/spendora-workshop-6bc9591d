@@ -380,3 +380,26 @@
   50%  { transform: translateY(-4px) translateX(2px); }
   100% { transform: translateY(0) translateX(0); }
 }
+
+/* Aurora animated background for hero */
+.aurora-bg {
+  position: absolute;
+  inset: -10% -10% auto -10%;
+  height: 70vh;
+  filter: blur(40px) saturate(140%);
+  pointer-events: none;
+  z-index: 0;
+  background:
+    conic-gradient(from 0deg at 30% 50%, hsl(217 91% 60% / 0.18), transparent 30%),
+    conic-gradient(from 90deg at 70% 40%, hsl(271 91% 65% / 0.18), transparent 35%),
+    conic-gradient(from 180deg at 40% 60%, hsl(158 64% 52% / 0.18), transparent 40%);
+  animation: aurora-shift 16s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+.dark .aurora-bg { filter: blur(48px) saturate(160%); }
+
+@keyframes aurora-shift {
+  0%   { transform: translateY(0) translateX(0); }
+  50%  { transform: translateY(-20px) translateX(10px); }
+  100% { transform: translateY(0) translateX(0); }
+}

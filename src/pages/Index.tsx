@@ -8,6 +8,24 @@ import PageTransition from "@/components/PageTransition";
 const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    // SEO: title, description, canonical
+    document.title = "Spendora Financial Literacy Workshop";
+    const desc = "Free student-led financial literacy workshop: budgeting, stocks, crypto, online business. Join Spendora.";
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'description');
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', desc);
+
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', window.location.origin + '/');
   }, []);
 
   return (

@@ -60,7 +60,7 @@ const WorkshopSchedule = () => {
 
         <div className="space-y-6 max-w-4xl mx-auto" role="list" aria-label="Daily workshop schedule">
           {schedule.map((day, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-large transition-all duration-300 transform hover:-translate-y-1 animate-dynamic-island-pop shadow-soft" style={{ animationDelay: `${index * 0.1}s` }} role="listitem">
+            <Card key={index} className="liquid-glass-surface glass-interactive overflow-hidden hover:shadow-large transition-all duration-300 transform hover:-translate-y-1 animate-dynamic-island-pop shadow-soft" style={{ animationDelay: `${index * 0.1}s` }} role="listitem">
               <div className="flex">
                 <div className={`w-2 bg-gradient-to-b ${day.color}`} aria-hidden="true"></div>
                 <div className="flex-1 p-6 md:p-8">
@@ -78,7 +78,7 @@ const WorkshopSchedule = () => {
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3" role="list" aria-label={`${day.day} activities`}>
                       {day.activities.map((activity, actIndex) => (
-                        <div key={actIndex} className="liquid-glass-surface rounded-lg p-3 text-sm text-card-foreground transition-colors duration-200" role="listitem">
+                        <div key={actIndex} className="liquid-glass-surface glass-interactive rounded-lg p-3 text-sm text-card-foreground transition-colors duration-200" role="listitem">
                           <span aria-hidden="true">•</span> {activity}
                         </div>
                       ))}

@@ -33,10 +33,10 @@ const MeetTheTeam = () => {
     <section className="py-20 bg-background transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Meet the <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Team</span>
           </h2>
-          <p className="text-xl text-gray-700 dark:text-gray-300">
+          <p className="text-xl text-muted-foreground">
             High school entrepreneurs and investors sharing their real-world experience
           </p>
         </div>
@@ -50,14 +50,14 @@ const MeetTheTeam = () => {
                     {member.name.charAt(0)}
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-2xl font-bold text-foreground mb-2">
                   {member.name}
                 </h3>
                 <p className={`text-sm font-semibold bg-gradient-to-r ${member.gradient} bg-clip-text text-transparent`}>
                   {member.expertise}
                 </p>
               </div>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-center">
+              <p className="text-muted-foreground leading-relaxed text-center">
                 {member.bio}
               </p>
             </Card>
