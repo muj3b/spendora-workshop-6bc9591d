@@ -87,14 +87,12 @@ const SpotlightCursor = () => {
     };
   }, []);
 
-  const spotlightColor = isDark
-    ? "hsl(var(--primary) / 0.28)"
-    : "hsl(var(--primary) / 0.18)";
+  const spotlightColor = "hsl(var(--spotlight) / var(--spotlight-opacity))";
 
   const style = {
-    background: `radial-gradient(160px circle at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 60%)`,
+    background: `radial-gradient(180px circle at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 60%)`,
     mixBlendMode: "screen" as const,
-    filter: "saturate(120%)",
+    filter: "saturate(130%)",
   } as React.CSSProperties;
 
   return (
