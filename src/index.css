@@ -233,13 +233,13 @@
   /* Liquid Glass Surfaces */
   .liquid-glass-surface {
     position: relative;
-    background: linear-gradient(180deg, hsl(var(--background) / 0.08), hsl(var(--background) / 0.14));
-    border: 1px solid hsl(var(--border) / 0.4);
-    backdrop-filter: saturate(140%) blur(14px);
-    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    background: linear-gradient(180deg, hsl(var(--background) / 0.08), hsl(var(--background) / 0.16));
+    border: 1px solid hsl(var(--border) / 0.45);
+    backdrop-filter: saturate(150%) blur(16px);
+    -webkit-backdrop-filter: saturate(150%) blur(16px);
     box-shadow: var(--shadow-soft);
     color: hsl(var(--foreground));
-    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+    transition: transform 0.25s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
     border-radius: var(--radius);
     overflow: hidden;
     isolation: isolate;
@@ -259,12 +259,30 @@
     transition: opacity 0.25s ease;
   }
 
-  .liquid-glass-surface:hover { box-shadow: var(--shadow-medium), var(--shadow-glow); transform: translateY(-1px); }
+  /* Animated sheen that sweeps across on hover/focus */
+  .liquid-glass-surface::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    border-radius: inherit;
+    background: linear-gradient(120deg,
+      transparent 20%,
+      hsl(var(--foreground) / 0.06) 45%,
+      hsl(var(--foreground) / 0.12) 50%,
+      hsl(var(--foreground) / 0.06) 55%,
+      transparent 80%);
+    transform: translateX(-60%) rotate(8deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .liquid-glass-surface:hover { box-shadow: var(--shadow-medium), var(--shadow-glow); transform: translateY(-2px); }
   .liquid-glass-surface:active { transform: translateY(0); box-shadow: var(--shadow-soft); }
+  .liquid-glass-surface:hover::after, .liquid-glass-surface:focus-visible::after { opacity: 1; animation: glass-sheen 1.2s ease forwards; }
 
   .dark .liquid-glass-surface {
-    background: linear-gradient(180deg, hsl(var(--background) / 0.18), hsl(var(--background) / 0.26));
-    border-color: hsl(var(--border) / 0.5);
+    background: linear-gradient(180deg, hsl(var(--background) / 0.18), hsl(var(--background) / 0.28));
+    border-color: hsl(var(--border) / 0.55);
   }
 
   /* Liquid Glass Button - reacts to pointer and device tilt via CSS vars --gx/--gy */
@@ -276,8 +294,8 @@
     background: linear-gradient(180deg, hsl(var(--background) / 0.08), hsl(var(--background) / 0.16));
     color: hsl(var(--foreground));
     border: 1px solid hsl(var(--border) / 0.45);
-    backdrop-filter: saturate(140%) blur(14px);
-    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    backdrop-filter: saturate(150%) blur(14px);
+    -webkit-backdrop-filter: saturate(150%) blur(14px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform, filter;
     box-shadow: 0 1px 0 hsl(var(--foreground) / 0.05) inset, var(--shadow-soft);
@@ -285,8 +303,8 @@
   }
 
   .dark .liquid-glass-btn {
-    background: linear-gradient(180deg, hsl(var(--background) / 0.18), hsl(var(--background) / 0.26));
-    border-color: hsl(var(--border) / 0.5);
+    background: linear-gradient(180deg, hsl(var(--background) / 0.18), hsl(var(--background) / 0.28));
+    border-color: hsl(var(--border) / 0.55);
     box-shadow: 0 1px 0 hsl(var(--foreground) / 0.06) inset, var(--shadow-soft);
   }
 
@@ -304,9 +322,26 @@
     mix-blend-mode: screen;
   }
 
+  .liquid-glass-btn::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    border-radius: inherit;
+    background: linear-gradient(120deg,
+      transparent 20%,
+      hsl(var(--foreground) / 0.06) 45%,
+      hsl(var(--foreground) / 0.12) 50%,
+      hsl(var(--foreground) / 0.06) 55%,
+      transparent 80%);
+    transform: translateX(-60%) rotate(8deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
   .liquid-glass-btn:hover::before,
   .liquid-glass-btn:focus-visible::before,
   .liquid-glass-btn:active::before { opacity: 1; }
+  .liquid-glass-btn:hover::after, .liquid-glass-btn:focus-visible::after { opacity: 1; animation: glass-sheen 1s ease forwards; }
 
   .liquid-glass-btn:hover {
     box-shadow: var(--shadow-medium), var(--shadow-glow);
@@ -327,4 +362,21 @@
     transform: translateZ(0);
     border-radius: var(--radius);
   }
+
+  /* Floating and interactive helpers for glass surfaces */
+  .glass-floating { animation: float-xy 8s ease-in-out infinite alternate; will-change: transform; }
+  .glass-interactive { transition: transform 0.25s ease, box-shadow 0.3s ease; }
+  .glass-interactive:hover { transform: translateY(-2px) scale(1.01); }
+  .glass-interactive:active { transform: translateY(0) scale(0.995); }
+}
+
+@keyframes glass-sheen {
+  from { transform: translateX(-60%) rotate(8deg); }
+  to   { transform: translateX(120%) rotate(8deg); }
+}
+
+@keyframes float-xy {
+  0%   { transform: translateY(0) translateX(0); }
+  50%  { transform: translateY(-4px) translateX(2px); }
+  100% { transform: translateY(0) translateX(0); }
 }
