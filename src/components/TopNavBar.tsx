@@ -62,7 +62,7 @@ const TopNavBar = () => {
                   <MoreHorizontal className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="liquid-glass-surface border z-[60]">
+              <DropdownMenuContent align="end" className="glass-menu rounded-xl" sideOffset={8}>
                 <DropdownMenuLabel>Explore</DropdownMenuLabel>
                 <DropdownMenuItem asChild>
                   <Link to="/gallery" data-spotlight>

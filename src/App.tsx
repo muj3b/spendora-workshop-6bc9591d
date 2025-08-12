@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import TopNavBar from "@/components/TopNavBar";
 import SpotlightCursor from "@/components/SpotlightCursor";
+import LiquidGlassInteractions from "@/components/LiquidGlassInteractions";
 
 import Index from "./pages/Index";
 import StockMarkets from "./pages/StockMarkets";
@@ -27,6 +28,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <SpotlightCursor />
+        <LiquidGlassInteractions />
         <BrowserRouter>
           <TopNavBar />
           <Routes>
