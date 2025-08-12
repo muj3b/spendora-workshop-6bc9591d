@@ -11,6 +11,15 @@ const StockMarkets = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // SEO
+    document.title = 'Stock Markets & Investing | Spendora';
+    const desc = 'Learn the basics of stocks, markets, diversification and investing with Spendora.';
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','description'); document.head.appendChild(meta); }
+    meta.setAttribute('content', desc);
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!link) { link = document.createElement('link'); link.setAttribute('rel','canonical'); document.head.appendChild(link); }
+    link.setAttribute('href', window.location.origin + '/stock-markets');
   }, []);
 
   const articleText = `To begin we need to talk about what a stock is. A stock is a small part of a company that you own. Whenever you buy a stock that means you now own a share of that specific company. For example when you buy a share of apple you now own a small part of apple.
@@ -41,21 +50,21 @@ Learning about stocks will help you understand money and how these companies wor
             <Button 
               variant="ghost" 
               onClick={() => navigate('/')}
-              className="mb-8 flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="mb-8 flex items-center space-x-2 hover:bg-foreground/5"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Home</span>
             </Button>
 
 
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
+            <h1 className="text-display mb-8 gradient-text-primary">
               Stock Markets & Investing
             </h1>
 
             <div className="prose prose-lg max-w-none dark:prose-invert">
               <WordByWordText 
                 text={articleText}
-                className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                className="text-body text-muted-foreground leading-relaxed"
                 delay={100}
                 wordDelay={200}
               />

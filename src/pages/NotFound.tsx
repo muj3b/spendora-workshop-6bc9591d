@@ -9,6 +9,11 @@ const NotFound = () => {
       "404 Error: User attempted to access non-existent route:",
       location.pathname
     );
+    // SEO
+    document.title = '404 Not Found | Spendora';
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!link) { link = document.createElement('link'); link.setAttribute('rel','canonical'); document.head.appendChild(link); }
+    link.setAttribute('href', window.location.origin + location.pathname);
   }, [location.pathname]);
 
   return (

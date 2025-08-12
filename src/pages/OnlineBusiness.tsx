@@ -11,6 +11,15 @@ const OnlineBusiness = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // SEO
+    document.title = 'Online Business & Entrepreneurship | Spendora';
+    const desc = 'Explore dropshipping, TikTok Shop, marketing and how to start an online business with Spendora.';
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','description'); document.head.appendChild(meta); }
+    meta.setAttribute('content', desc);
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!link) { link = document.createElement('link'); link.setAttribute('rel','canonical'); document.head.appendChild(link); }
+    link.setAttribute('href', window.location.origin + '/online-business');
   }, []);
 
   const businessText = `Scrolling through TikTok or Instagram, you've probably seen countless people your age running their own businesses, selling anything from trendy sneakers to custom-made jewelry. You might have wondered, "How exactly do they do that?" Well, welcome to the exciting world of online business, a modern way for anyone, anywhere, to make money from their own ideas—without needing a physical store.
@@ -35,21 +44,21 @@ At Spendora, we'll guide you step-by-step through setting up your own online bus
             <Button 
               variant="ghost" 
               onClick={() => navigate('/')}
-              className="mb-8 flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="mb-8 flex items-center space-x-2 hover:bg-foreground/5"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Home</span>
             </Button>
 
 
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
+            <h1 className="text-display mb-8 gradient-text-primary">
               Online Business & Entrepreneurship
             </h1>
 
             <div className="prose prose-lg max-w-none dark:prose-invert">
               <WordByWordText 
                 text={businessText}
-                className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                className="text-body text-muted-foreground leading-relaxed"
                 delay={100}
                 wordDelay={200}
               />

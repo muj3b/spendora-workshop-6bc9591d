@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -7,6 +8,17 @@ const Donate = () => {
   const handleDonate = () => {
     window.open('https://buy.stripe.com/cNicN5gG3f8ocU4cjN0Ba00', '_blank');
   };
+
+  useEffect(() => {
+    document.title = 'Support Our Mission | Spendora';
+    const desc = 'Donate to support free student-led financial literacy workshops by Spendora.';
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name', 'description'); document.head.appendChild(meta); }
+    meta.setAttribute('content', desc);
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!link) { link = document.createElement('link'); link.setAttribute('rel', 'canonical'); document.head.appendChild(link); }
+    link.setAttribute('href', window.location.origin + '/donate');
+  }, []);
 
   return (
     <div className="min-h-screen liquid-page py-12 px-4">
@@ -23,10 +35,10 @@ const Donate = () => {
               Back to Home
             </Link>
           </Button>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Support <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Spendora</span>
+          <h1 className="text-display text-foreground mb-4">
+            Support <span className="gradient-text-primary">Spendora</span>
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-body-large text-muted-foreground max-w-3xl mx-auto">
             Help us continue providing free financial literacy workshops to students. 
             Your donation makes a real difference in young people's financial education.
           </p>
@@ -36,7 +48,7 @@ const Donate = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Side - Donation Section */}
           <div className="space-y-6">
-            <Card className="liquid-glass-surface border-2 border-blue-200 dark:border-blue-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 shadow-xl">
+            <Card className="liquid-glass-surface shadow-xl">
               <CardHeader className="text-center">
                 <CardTitle className="text-3xl text-blue-800 dark:text-blue-200 mb-2">
                   Choose Your Amount
@@ -60,21 +72,21 @@ const Donate = () => {
                 <Button
                   onClick={handleDonate}
                   size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-xl"
-                >
+                  className="px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-xl"
+               >
                   <Heart className="w-6 h-6 mr-3" />
                   Donate Now
                   <ArrowRight className="w-6 h-6 ml-3" />
                 </Button>
                 
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  💳 Secure payment processing powered by Stripe
+                <p className="text-sm text-muted-foreground">
+                  Secure payment processing powered by Stripe
                 </p>
               </CardContent>
             </Card>
 
             {/* Alternative Support Methods */}
-            <Card className="liquid-glass-surface bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-700">
+            <Card className="liquid-glass-surface">
               <CardHeader>
                 <CardTitle className="text-green-800 dark:text-green-200 text-xl">
                   Other Ways to Support Us
@@ -113,28 +125,28 @@ const Donate = () => {
                 </p>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-start space-x-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <div className="flex items-start space-x-4 p-4 liquid-glass-surface rounded-lg">
                   <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">$</div>
                   <div>
                     <h4 className="font-semibold text-blue-800 dark:text-blue-200">Learning Materials & Supplies</h4>
                     <p className="text-sm text-blue-700 dark:text-blue-300">Workbooks, calculators, and hands-on materials for every student</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                <div className="flex items-start space-x-4 p-4 liquid-glass-surface rounded-lg">
                   <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">🏢</div>
                   <div>
                     <h4 className="font-semibold text-green-800 dark:text-green-200">Venue & Facility Costs</h4>
                     <p className="text-sm text-green-700 dark:text-green-300">Library partnerships and equipment rental to keep workshops accessible</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                <div className="flex items-start space-x-4 p-4 liquid-glass-surface rounded-lg">
                   <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">📚</div>
                   <div>
                     <h4 className="font-semibold text-purple-800 dark:text-purple-200">Curriculum Development</h4>
                     <p className="text-sm text-purple-700 dark:text-purple-300">Creating engaging, age-appropriate financial education content</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4 p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                <div className="flex items-start space-x-4 p-4 liquid-glass-surface rounded-lg">
                   <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm">🎯</div>
                   <div>
                     <h4 className="font-semibold text-orange-800 dark:text-orange-200">Program Expansion</h4>
@@ -144,7 +156,7 @@ const Donate = () => {
               </CardContent>
             </Card>
 
-            <Card className="liquid-glass-surface bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border-indigo-200 dark:border-indigo-700">
+            <Card className="liquid-glass-surface">
               <CardHeader>
                 <CardTitle className="text-indigo-800 dark:text-indigo-200 text-xl">
                   Student-Led, Community-Supported
@@ -160,7 +172,7 @@ const Donate = () => {
               </CardContent>
             </Card>
 
-            <Card className="liquid-glass-surface bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-emerald-200 dark:border-emerald-700">
+            <Card className="liquid-glass-surface">
               <CardHeader>
                 <CardTitle className="text-emerald-800 dark:text-emerald-200 text-xl">
                   Real Student Impact

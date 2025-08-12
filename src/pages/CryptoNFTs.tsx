@@ -11,6 +11,15 @@ const CryptoNFTs = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // SEO
+    document.title = 'Crypto & NFTs | Spendora';
+    const desc = 'Understand cryptocurrency, blockchain, NFTs and digital ownership with Spendora.';
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','description'); document.head.appendChild(meta); }
+    meta.setAttribute('content', desc);
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!link) { link = document.createElement('link'); link.setAttribute('rel','canonical'); document.head.appendChild(link); }
+    link.setAttribute('href', window.location.origin + '/crypto-nfts');
   }, []);
 
   const cryptoText = `There always seems to be another coin out there. From figures like KSI to Logan Paul it really does look like anyone can just make a crypto these days, and somehow people still buy them and get surprised when they lose their entire investment. As a general rule of thumb, if everyone in the world is calling it a meme coin then you can't be too surprised that it isn't a great asset.
@@ -34,29 +43,29 @@ In present day crypto is gaining more credibility with many banks, companies, an
             <Button 
               variant="ghost" 
               onClick={() => navigate('/')}
-              className="mb-8 flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="mb-8 flex items-center space-x-2 hover:bg-foreground/5"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Home</span>
             </Button>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-12 text-center">
+            <h1 className="text-display mb-12 gradient-text-primary text-center">
               Crypto + NFTs
             </h1>
 
             {/* Resizable Split Layout */}
-            <ResizablePanelGroup direction="horizontal" className="min-h-[600px] rounded-lg border">
+            <ResizablePanelGroup direction="horizontal" className="min-h-[600px] rounded-lg border liquid-glass-surface">
               {/* Left Side - What is Crypto */}
               <ResizablePanel defaultSize={60} minSize={30}>
-                <div className="h-full p-8 bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20">
-                  <h2 className="text-3xl font-bold text-orange-800 dark:text-orange-200 mb-6">
+                <div className="h-full p-8 liquid-glass-surface">
+                  <h2 className="text-3xl font-bold mb-6">
                     What is Crypto?
                   </h2>
                   
                   <div className="prose prose-lg max-w-none dark:prose-invert overflow-y-auto max-h-[500px]">
                     <WordByWordText 
                       text={cryptoText}
-                      className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                      className="text-body text-muted-foreground leading-relaxed"
                       delay={100}
                       wordDelay={200}
                     />
@@ -68,21 +77,21 @@ In present day crypto is gaining more credibility with many banks, companies, an
               
               {/* Right Side - NFTs */}
               <ResizablePanel defaultSize={40} minSize={30}>
-                <div className="h-full p-8 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
-                  <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 mb-6">
-                    <h3 className="text-lg font-semibold text-orange-800 dark:text-orange-200 mb-2">
+                <div className="h-full p-8 liquid-glass-surface">
+                  <div className="liquid-glass-surface rounded-lg p-4 mb-6">
+                    <h3 className="text-lg font-semibold mb-2">
                       🤖 Temporary AI Content
                     </h3>
-                    <p className="text-sm text-orange-700 dark:text-orange-300">
+                    <p className="text-sm text-muted-foreground">
                       This NFT content is temporarily AI-generated. A human will review and write better content soon!
                     </p>
                   </div>
                   
-                  <h2 className="text-3xl font-bold text-purple-800 dark:text-purple-200 mb-6">
+                  <h2 className="text-3xl font-bold mb-6">
                     NFTs (Non-Fungible Tokens)
                   </h2>
                   
-                  <div className="text-gray-700 dark:text-gray-300 space-y-4 text-sm leading-relaxed overflow-y-auto max-h-[500px]">
+                  <div className="text-muted-foreground space-y-4 text-sm leading-relaxed overflow-y-auto max-h-[500px]">
                     <p>
                       You've probably seen those expensive digital art pieces that sell for thousands of dollars and wondered "Why would anyone pay real money for a JPEG?" Well, NFTs are way more than just digital pictures—they're like digital certificates of ownership that prove you own something unique on the blockchain.
                     </p>

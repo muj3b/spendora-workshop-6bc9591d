@@ -12,6 +12,15 @@ const Gallery = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // SEO
+    document.title = 'Workshop Gallery | Spendora';
+    const desc = 'Photos and videos from Spendora financial literacy workshops: Day 1 and Day 2 highlights.';
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','description'); document.head.appendChild(meta); }
+    meta.setAttribute('content', desc);
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!link) { link = document.createElement('link'); link.setAttribute('rel','canonical'); document.head.appendChild(link); }
+    link.setAttribute('href', window.location.origin + '/gallery');
   }, []);
 
   const day1Photos = [
@@ -47,7 +56,7 @@ const Gallery = () => {
       ))}
       {videos.map((video, index) => (
         <div key={`video-${index}`} className="group relative overflow-hidden rounded-2xl liquid-glass-surface shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-          <video src={video.src} controls className="w-full h-64 object-cover" />
+          <video src={video.src} controls preload="metadata" className="w-full h-64 object-cover" />
           <div className="p-4"><p className="text-sm text-muted-foreground">{video.alt}</p></div>
         </div>
       ))}
@@ -58,15 +67,15 @@ const Gallery = () => {
     <PageTransition>
       <div className="min-h-screen liquid-page transition-colors duration-300">
         <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-4 mb-8 ml-32">
+          <div className="flex items-center gap-4 mb-8">
             <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="flex items-center gap-2 hover:bg-primary/10">
               <ArrowLeft className="w-4 h-4" />Back to Home
             </Button>
           </div>
 
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text-primary">Workshop Gallery</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Highlights from our financial literacy workshops</p>
+            <h1 className="text-display mb-4 gradient-text-primary">Workshop Gallery</h1>
+            <p className="text-body-large text-muted-foreground max-w-3xl mx-auto">Highlights from our financial literacy workshops</p>
           </div>
 
           <div className="max-w-6xl mx-auto space-y-8">
@@ -108,7 +117,7 @@ const Gallery = () => {
             </p>
             <Button
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
             >
               Reserve Your Spot - It's Free! 🚀
