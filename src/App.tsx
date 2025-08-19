@@ -8,7 +8,6 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import TopNavBar from "@/components/TopNavBar";
 import SpotlightCursor from "@/components/SpotlightCursor";
 import LiquidGlassInteractions from "@/components/LiquidGlassInteractions";
-import './new-liquid-glass-effects.css';
 
 import Index from "./pages/Index";
 import StockMarkets from "./pages/StockMarkets";

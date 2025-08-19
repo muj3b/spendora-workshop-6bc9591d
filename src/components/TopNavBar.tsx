@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,10 +11,31 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Menu, MoreHorizontal, Moon, Sun, Instagram } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { NavMenuContent } from "./NavMenuContent";
 
 const TopNavBar = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
+  const [isShrunken, setIsShrunken] = useState(false);
+  const lastScrollY = React.useRef(0);
+
+  const handleScroll = useCallback(() => {
+    const scrollY = window.scrollY;
+    if (scrollY > lastScrollY.current && scrollY > 50) {
+      setIsShrunken(true);
+    } else {
+      setIsShrunken(false);
+    }
+    lastScrollY.current = scrollY;
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
 
   const mainNav = [
     { label: "Home", href: "/#top" },
@@ -29,9 +51,9 @@ const TopNavBar = () => {
     }`;
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50">
+    <header className={cn("fixed top-0 inset-x-0 z-50 transition-all duration-300", isShrunken ? "py-1" : "py-3")}>
       <div className="container mx-auto px-3 sm:px-6">
-        <div className="mt-3 liquid-glass-surface rounded-2xl px-3 sm:px-4 py-2.5 flex items-center justify-between shadow-medium">
+        <div className="liquid-glass-surface rounded-2xl px-3 sm:px-4 py-2.5 flex items-center justify-between shadow-medium transition-all duration-300">
           {/* Left: Brand */}
           <div className="flex items-center gap-2">
             <Button asChild variant="liquid" size="sm" className="rounded-xl" data-spotlight>
@@ -40,7 +62,7 @@ const TopNavBar = () => {
           </div>
 
           {/* Center: Main nav (hide on very small screens) */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
+          <nav className={cn("hidden md:flex items-center gap-1 transition-all duration-300", isShrunken ? "opacity-0 -translate-x-4 pointer-events-none" : "opacity-100 translate-x-0")} aria-label="Primary">
             {mainNav.map((item) => (
               <a
                 key={item.label}
@@ -55,64 +77,33 @@ const TopNavBar = () => {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-1 sm:gap-2">
-            {/* More dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="liquid" size="sm" aria-label="More" className="rounded-xl" data-spotlight>
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="glass-menu rounded-xl" sideOffset={8}>
-                <DropdownMenuLabel>Explore</DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <Link to="/gallery" data-spotlight>
-                    Workshop Gallery
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/quiz" data-spotlight>
-                    Financial Literacy Quiz
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/resources" data-spotlight>
-                    Financial Resources
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/success" data-spotlight>
-                    Success Stories
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/donate" data-spotlight>
-                    Support Our Mission
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuLabel>Workshop Topics</DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <Link to="/stock-markets" data-spotlight>
-                    Stock Markets & Investing
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/budgeting" data-spotlight>
-                    Budgeting & Finance
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/online-business" data-spotlight>
-                    Online Business
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/crypto-nfts" data-spotlight>
-                    Crypto & NFTs
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* Hamburger Menu (visible when shrunken) */}
+            <div className={cn("transition-all duration-300", !isShrunken ? "opacity-0 translate-x-4 pointer-events-none" : "opacity-100 translate-x-0")}>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="liquid" size="sm" aria-label="Menu" className="rounded-xl" data-spotlight>
+                    <Menu className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="glass-menu rounded-xl" sideOffset={8}>
+                  <NavMenuContent isHamburger={true} />
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* More dropdown (visible when not shrunken) */}
+            <div className={cn("transition-all duration-300", isShrunken ? "opacity-0 -translate-x-4 pointer-events-none" : "opacity-100 translate-x-0")}>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="liquid" size="sm" aria-label="More" className="rounded-xl" data-spotlight>
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="glass-menu rounded-xl" sideOffset={8}>
+                  <NavMenuContent />
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
 
             {/* Theme toggle */}
             <Button
