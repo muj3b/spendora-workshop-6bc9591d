@@ -1,0 +1,67 @@
+/* New Liquid Glass Effect */
+
+/* Base styles for the glass effect */
+.new-liquid-glass-surface {
+  position: relative;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover effect */
+.new-liquid-glass-surface:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Inner glow and border highlight */
+.new-liquid-glass-surface::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.15), transparent 50%);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover effect for the inner glow */
+.new-liquid-glass-surface:hover::before {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.25), transparent 60%);
+}
+
+/* Parallax effect on hover */
+.new-liquid-glass-surface .parallax-content {
+  transform: translateZ(50px);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.new-liquid-glass-surface:hover .parallax-content {
+  transform: translateZ(60px);
+}
+
+/* Dark mode adjustments */
+.dark .new-liquid-glass-surface {
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.dark .new-liquid-glass-surface:hover {
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
+}
+
+.dark .new-liquid-glass-surface::before {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1), transparent 50%);
+}
+
+.dark .new-liquid-glass-surface:hover::before {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.15), transparent 60%);
+}
