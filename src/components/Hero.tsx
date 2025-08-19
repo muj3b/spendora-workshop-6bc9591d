@@ -75,36 +75,38 @@ const Hero = memo(() => {
                 size="xl" 
                 variant="secondary" 
                 pulse={true}
-                className="w-full sm:w-auto rounded-full text-xl px-12 py-6 hover:scale-110 transition-all duration-300 shadow-glow glass-floating"
+                className="w-full sm:w-auto rounded-full text-xl px-12 py-6 hover:scale-110 transition-all duration-300 shadow-glow"
                 onClick={handleSignup}
                 aria-label="Sign up for the free Spendora workshop"
               >
                 <span className="font-bold">Reserve Your Spot - It's Free!</span> <span role="img" aria-label="Rocket">🚀</span>
               </GradientButton>
               
-              {/* Additional Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
-                <Button
-                  variant="liquid"
-                  size="lg"
+              {/* Support and Gallery buttons */}
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <GradientButton 
+                  size="lg" 
+                  variant="warm" 
+                  className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300"
                   onClick={handleDonate}
-                  className="rounded-full px-8 py-4 text-lg font-semibold hover:scale-105 transition-all duration-300 shadow-medium"
-                  data-liquid
+                  aria-label="Support Spendora with a donation"
+                  data-spotlight
                 >
                   <Heart className="w-5 h-5 mr-2" />
-                  Support Our Mission
-                </Button>
+                  <span className="font-semibold">Support Our Mission</span>
+                </GradientButton>
                 
-                <Button
-                  variant="liquid"
-                  size="lg"
+                <GradientButton 
+                  size="lg" 
+                  variant="accent" 
+                  className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300"
                   onClick={handleGallery}
-                  className="rounded-full px-8 py-4 text-lg font-semibold hover:scale-105 transition-all duration-300 shadow-medium"
-                  data-liquid
+                  aria-label="View workshop gallery"
+                  data-spotlight
                 >
                   <Camera className="w-5 h-5 mr-2" />
-                  Workshop Gallery
-                </Button>
+                  <span className="font-semibold">Workshop Gallery</span>
+                </GradientButton>
               </div>
               
               <p className="text-muted-foreground mt-3 text-lg">
@@ -112,12 +114,14 @@ const Hero = memo(() => {
               </p>
             </div>
 
-            {/* Dynamic Workshop Info Section - Revamped */}
+            {/* Dynamic Workshop Info Section - Redesigned */}
             <div className="relative max-w-4xl mx-auto">
-              <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:-mx-8">
+              {/* Main Content Grid */}
+              <div className="grid lg:grid-cols-2 gap-8 items-start">
                 {/* Timer Section */}
-                <div className="relative lg:w-1/2 lg:z-10">
-                  <div className="liquid-glass-surface glass-floating rounded-3xl p-8 shadow-large relative overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div className="relative">
+                  <div className="liquid-glass-surface glass-interactive glass-floating rounded-3xl p-8 shadow-large relative overflow-hidden">
+                    {/* Background pattern */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent_70%)]"></div>
                     <div className="relative z-10">
                       <LiveEventTimer 
@@ -132,49 +136,47 @@ const Hero = memo(() => {
                 </div>
 
                 {/* Location & Details Section */}
-                <div className="relative lg:w-1/2 lg:-ml-16">
-                  <div className="space-y-6">
-                    {/* Location Card */}
-                    <div className="liquid-glass-surface glass-floating rounded-2xl p-6 shadow-medium transform hover:scale-105 transition-transform duration-300" style={{ animationDelay: '0.5s' }}>
-                      <div className="text-center space-y-4">
-                        <div className="flex items-center justify-center space-x-3">
-                          <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
-                            <span role="img" aria-label="Location" className="text-2xl">📍</span>
-                          </div>
-                          <div>
-                            <h3 className="text-2xl font-bold text-foreground">R.H. Stafford Library</h3>
-                            <p className="text-muted-foreground text-sm">Workshop Location</p>
-                          </div>
+                <div className="space-y-6">
+                  {/* Location Card */}
+                  <div className="liquid-glass-surface glass-interactive glass-floating rounded-2xl p-6 shadow-medium">
+                    <div className="text-center space-y-4">
+                      <div className="flex items-center justify-center space-x-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
+                          <span role="img" aria-label="Location" className="text-2xl">📍</span>
                         </div>
-                        <a
-                          href="https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center space-x-2 text-lg text-primary hover:text-primary/80 transition-all duration-300 font-medium group bg-primary/10 px-4 py-2 rounded-full"
-                        >
-                          <span>View on Maps</span>
-                          <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                        </a>
+                        <div>
+                          <h3 className="text-2xl font-bold text-foreground">R.H. Stafford Library</h3>
+                          <p className="text-muted-foreground text-sm">Workshop Location</p>
+                        </div>
                       </div>
+                      <a 
+                        href="https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-2 text-lg text-primary hover:text-primary/80 transition-all duration-300 font-medium group bg-primary/10 px-4 py-2 rounded-full"
+                      >
+                        <span>View on Maps</span>
+                        <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                      </a>
                     </div>
+                  </div>
 
-                    {/* Features Card */}
-                    <div className="liquid-glass-surface glass-floating rounded-2xl p-6 shadow-medium transform hover:scale-105 transition-transform duration-300" style={{ animationDelay: '1s' }}>
-                      <div className="text-center space-y-3">
-                        <h4 className="text-xl font-bold text-foreground">What's Included</h4>
-                        <div className="grid grid-cols-1 gap-2 text-foreground">
-                          <div className="flex items-center justify-center space-x-2">
-                            <span role="img" aria-label="Money">💰</span>
-                            <span className="font-medium">Completely Free</span>
-                          </div>
-                          <div className="flex items-center justify-center space-x-2">
-                            <span role="img" aria-label="Supplies">📚</span>
-                            <span className="font-medium">All Supplies Included</span>
-                          </div>
-                          <div className="flex items-center justify-center space-x-2">
-                            <span role="img" aria-label="Snacks">🍪</span>
-                            <span className="font-medium">Snacks Provided</span>
-                          </div>
+                  {/* Features Card */}
+                  <div className="liquid-glass-surface glass-interactive glass-floating rounded-2xl p-6 shadow-medium">
+                    <div className="text-center space-y-3">
+                      <h4 className="text-xl font-bold text-foreground">What's Included</h4>
+                      <div className="grid grid-cols-1 gap-2 text-foreground">
+                        <div className="flex items-center justify-center space-x-2">
+                          <span role="img" aria-label="Money">💰</span>
+                          <span className="font-medium">Completely Free</span>
+                        </div>
+                        <div className="flex items-center justify-center space-x-2">
+                          <span role="img" aria-label="Supplies">📚</span>
+                          <span className="font-medium">All Supplies Included</span>
+                        </div>
+                        <div className="flex items-center justify-center space-x-2">
+                          <span role="img" aria-label="Snacks">🍪</span>
+                          <span className="font-medium">Snacks Provided</span>
                         </div>
                       </div>
                     </div>
