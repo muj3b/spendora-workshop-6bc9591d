@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import TopNavBar from "@/components/TopNavBar";
 import SpotlightCursor from "@/components/SpotlightCursor";
 import LiquidGlassInteractions from "@/components/LiquidGlassInteractions";
+import './new-liquid-glass-effects.css';
 
 import Index from "./pages/Index";
 import StockMarkets from "./pages/StockMarkets";
@@ -17,6 +18,8 @@ import Success from "./pages/Success";
 import Donate from "./pages/Donate";
 import Gallery from "./pages/Gallery";
 import Budgeting from "./pages/Budgeting";
+import Quiz from "./pages/Quiz";
+import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +43,8 @@ const App = () => (
             <Route path="/donate" element={<Donate />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/budgeting" element={<Budgeting />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/resources" element={<Resources />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

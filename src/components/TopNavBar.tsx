@@ -70,6 +70,16 @@ const TopNavBar = () => {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
+                  <Link to="/quiz" data-spotlight>
+                    Financial Literacy Quiz
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/resources" data-spotlight>
+                    Financial Resources
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link to="/success" data-spotlight>
                     Success Stories
                   </Link>
