@@ -62,7 +62,7 @@ const TopNavBar = () => {
           </div>
 
           {/* Center: Main nav (hide on very small screens) */}
-          <nav className={cn("hidden md:flex items-center gap-1 transition-all duration-300", isShrunken ? "opacity-0 -translate-x-4 pointer-events-none" : "opacity-100 translate-x-0")} aria-label="Primary">
+          <nav className={cn("hidden md:flex items-center gap-1", isShrunken && "hidden")} aria-label="Primary">
             {mainNav.map((item) => (
               <a
                 key={item.label}
@@ -78,7 +78,7 @@ const TopNavBar = () => {
           {/* Right: Actions */}
           <div className="flex items-center gap-1 sm:gap-2">
             {/* Hamburger Menu (visible when shrunken) */}
-            <div className={cn("transition-all duration-300", !isShrunken ? "opacity-0 translate-x-4 pointer-events-none" : "opacity-100 translate-x-0")}>
+            <div className={cn(!isShrunken && "hidden")}>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="liquid" size="sm" aria-label="Menu" className="rounded-xl" data-spotlight>
@@ -92,7 +92,7 @@ const TopNavBar = () => {
             </div>
 
             {/* More dropdown (visible when not shrunken) */}
-            <div className={cn("transition-all duration-300", isShrunken ? "opacity-0 -translate-x-4 pointer-events-none" : "opacity-100 translate-x-0")}>
+            <div className={cn(isShrunken && "hidden")}>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="liquid" size="sm" aria-label="More" className="rounded-xl" data-spotlight>
