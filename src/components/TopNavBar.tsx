@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +18,7 @@ const TopNavBar = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const [isShrunken, setIsShrunken] = useState(false);
-  const lastScrollY = React.useRef(0);
+  const lastScrollY = useRef(0);
 
   const handleScroll = useCallback(() => {
     const scrollY = window.scrollY;
