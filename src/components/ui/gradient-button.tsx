@@ -45,6 +45,7 @@ const GradientButton = React.forwardRef<HTMLButtonElement, GradientButtonProps>(
         className={cn(gradientButtonVariants({ variant, size, pulse, className }))}
         ref={ref}
         {...props}
+        data-liquid
       >
         {children}
       </Button>
