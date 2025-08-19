@@ -82,6 +82,31 @@ const Hero = memo(() => {
                 <span className="font-bold">Reserve Your Spot - It's Free!</span> <span role="img" aria-label="Rocket">🚀</span>
               </GradientButton>
               
+              {/* Additional Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+                <Button
+                  variant="liquid"
+                  size="lg"
+                  onClick={handleDonate}
+                  className="rounded-full px-8 py-4 text-lg font-semibold hover:scale-105 transition-all duration-300 shadow-medium"
+                  data-liquid
+                >
+                  <Heart className="w-5 h-5 mr-2" />
+                  Support Our Mission
+                </Button>
+                
+                <Button
+                  variant="liquid"
+                  size="lg"
+                  onClick={handleGallery}
+                  className="rounded-full px-8 py-4 text-lg font-semibold hover:scale-105 transition-all duration-300 shadow-medium"
+                  data-liquid
+                >
+                  <Camera className="w-5 h-5 mr-2" />
+                  Workshop Gallery
+                </Button>
+              </div>
+              
               <p className="text-muted-foreground mt-3 text-lg">
                 Limited spots available - Don't miss out! 
               </p>

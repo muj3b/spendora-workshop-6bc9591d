@@ -22,9 +22,9 @@ const TopNavBar = () => {
 
   const handleScroll = useCallback(() => {
     const scrollY = window.scrollY;
-    if (scrollY > lastScrollY.current && scrollY > 50) {
+    if (scrollY > lastScrollY.current && scrollY > 100) {
       setIsShrunken(true);
-    } else {
+    } else if (scrollY < lastScrollY.current && scrollY < 50) {
       setIsShrunken(false);
     }
     lastScrollY.current = scrollY;
@@ -51,18 +51,27 @@ const TopNavBar = () => {
     }`;
 
   return (
-    <header className={cn("fixed top-0 inset-x-0 z-50 transition-all duration-300", isShrunken ? "py-1" : "py-3")}>
+    <header className={cn(
+      "fixed top-0 inset-x-0 z-50 transition-all duration-500 ease-in-out",
+      isShrunken ? "py-2" : "py-4"
+    )}>
       <div className="container mx-auto px-3 sm:px-6">
-        <div className="liquid-glass-surface rounded-2xl px-3 sm:px-4 py-2.5 flex items-center justify-between shadow-medium transition-all duration-300">
+        <div className={cn(
+          "liquid-glass-surface rounded-2xl px-4 py-3 flex items-center justify-between shadow-medium transition-all duration-500 ease-in-out",
+          isShrunken ? "backdrop-blur-xl bg-background/20" : "backdrop-blur-lg bg-background/10"
+        )} data-liquid>
           {/* Left: Brand */}
           <div className="flex items-center gap-2">
-            <Button asChild variant="liquid" size="sm" className="rounded-xl" data-spotlight>
+            <Button asChild variant="liquid" size="sm" className="rounded-xl font-bold" data-spotlight>
               <Link to="/">Spendora</Link>
             </Button>
           </div>
 
-          {/* Center: Main nav (hide on very small screens) */}
-          <nav className={cn("hidden md:flex items-center gap-1", isShrunken && "hidden")} aria-label="Primary">
+          {/* Center: Main nav (hide when shrunken) */}
+          <nav className={cn(
+            "flex items-center gap-1 transition-all duration-500 ease-in-out",
+            isShrunken ? "opacity-0 scale-95 pointer-events-none hidden" : "opacity-100 scale-100"
+          )} aria-label="Primary">
             {mainNav.map((item) => (
               <a
                 key={item.label}
@@ -76,9 +85,12 @@ const TopNavBar = () => {
           </nav>
 
           {/* Right: Actions */}
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-2">
             {/* Hamburger Menu (visible when shrunken) */}
-            <div className={cn(!isShrunken && "hidden")}>
+            <div className={cn(
+              "transition-all duration-500 ease-in-out",
+              isShrunken ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none hidden"
+            )}>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="liquid" size="sm" aria-label="Menu" className="rounded-xl" data-spotlight>
@@ -92,7 +104,10 @@ const TopNavBar = () => {
             </div>
 
             {/* More dropdown (visible when not shrunken) */}
-            <div className={cn(isShrunken && "hidden")}>
+            <div className={cn(
+              "transition-all duration-500 ease-in-out",
+              isShrunken ? "opacity-0 scale-95 pointer-events-none hidden" : "opacity-100 scale-100"
+            )}>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="liquid" size="sm" aria-label="More" className="rounded-xl" data-spotlight>
