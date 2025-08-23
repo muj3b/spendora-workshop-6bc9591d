@@ -34,21 +34,26 @@ export const SignupForm = () => {
     }
 
     try {
-      const { error } = await supabase.auth.signUp({
+      const { error: signUpError } = await supabase.auth.signUp({
         email,
         password,
-        options: {
-          emailRedirectTo: undefined, // Disable email confirmation
-        },
       });
 
-      if (error) {
-        setError(error.message);
+      if (signUpError) {
+        setError(signUpError.message);
       } else {
-        setSuccess(true);
-        setTimeout(() => {
-          navigate('/');
-        }, 2000);
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (signInError) {
+          // If sign-in fails, you might want to inform the user
+          // that their account was created but they need to log in manually.
+          setError(`Account created, but failed to log in: ${signInError.message}`);
+        } else {
+          navigate('/'); // Redirect to home on successful login
+        }
       }
     } catch (err) {
       setError('An unexpected error occurred');
@@ -56,22 +61,6 @@ export const SignupForm = () => {
       setLoading(false);
     }
   };
-
-  if (success) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
-        <Card className="w-full max-w-md">
-          <CardContent className="pt-6">
-            <Alert>
-              <AlertDescription>
-                Account created successfully! Redirecting to home page...
-              </AlertDescription>
-            </Alert>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">

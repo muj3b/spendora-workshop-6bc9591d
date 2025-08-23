@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Menu, MoreHorizontal, Moon, Sun, Instagram } from "lucide-react";
+import { AuthButton } from "@/components/auth/AuthButton";
 
 const TopNavBar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -131,6 +132,8 @@ const TopNavBar = () => {
             >
               <Instagram className="h-4 w-4 text-foreground" />
             </Button>
+
+            <AuthButton />
           </div>
         </div>
       </div>
