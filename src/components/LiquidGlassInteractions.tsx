@@ -21,7 +21,7 @@ export default function LiquidGlassInteractions() {
     let scrollCooldown: number | null = null;
 
     const onPointerMove = (e: PointerEvent) => {
-      const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
+      const target = (e.target as HTMLElement)?.closest?.(SELECTOR) as HTMLElement | null;
       if (!target) return;
       const rect = target.getBoundingClientRect();
       const gx = ((e.clientX - rect.left) / rect.width) * 100;
@@ -31,19 +31,19 @@ export default function LiquidGlassInteractions() {
     };
 
     const onPointerEnter = (e: Event) => {
-      const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
+      const target = (e.target as HTMLElement)?.closest?.(SELECTOR) as HTMLElement | null;
       if (!target) return;
       target.classList.add("is-hovered");
     };
 
     const onPointerLeave = (e: Event) => {
-      const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
+      const target = (e.target as HTMLElement)?.closest?.(SELECTOR) as HTMLElement | null;
       if (!target) return;
       target.classList.remove("is-hovered");
     };
 
     const onPointerDown = (e: PointerEvent) => {
-      const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
+      const target = (e.target as HTMLElement)?.closest?.(SELECTOR) as HTMLElement | null;
       if (!target) return;
       const rect = target.getBoundingClientRect();
       const rx = e.clientX - rect.left;
@@ -56,7 +56,7 @@ export default function LiquidGlassInteractions() {
     };
 
     const onPointerUp = (e: PointerEvent) => {
-      const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
+      const target = (e.target as HTMLElement)?.closest?.(SELECTOR) as HTMLElement | null;
       if (!target) return;
       target.classList.remove("is-pressed");
     };

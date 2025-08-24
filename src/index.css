@@ -52,8 +52,8 @@
     --gradient-warm: linear-gradient(135deg, hsl(31 81% 56%), hsl(20 90% 48%));
     
     /* Spotlight tokens */
-    --spotlight: 217 91% 60%;
-    --spotlight-opacity: 0.18;
+    --spotlight: 222.2 47.4% 11.2%;
+    --spotlight-opacity: 0.1;
     
     --shadow-soft: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
     --shadow-medium: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
@@ -104,7 +104,7 @@
 
     /* Spotlight tokens (dark mode) */
     --spotlight: 217 91% 60%;
-    --spotlight-opacity: 0.28;
+    --spotlight-opacity: 0.35;
 
     /* Dark mode overrides */
     --bg-glass: hsl(0 0% 0% / 0.2);
@@ -357,17 +357,20 @@
   /* Cursor spotlight highlight target */
   .spotlight-target {
     outline: 0;
-    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.35), 0 10px 25px hsl(var(--primary) / 0.25);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-    transform: translateZ(0);
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.4), 
+                0 15px 35px hsl(var(--primary) / 0.3),
+                0 0 40px hsl(var(--primary) / 0.2);
+    transition: box-shadow 300ms cubic-bezier(0.23, 1, 0.32, 1), 
+                transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateZ(0) scale(1.01);
     border-radius: var(--radius);
   }
 
   /* Floating and interactive helpers for glass surfaces */
-  .glass-floating { animation: float-xy 8s ease-in-out infinite alternate; will-change: transform; }
-  .glass-interactive { transition: transform 0.25s ease, box-shadow 0.3s ease; }
-  .glass-interactive:hover { transform: translateY(-2px) scale(1.01); }
-  .glass-interactive:active { transform: translateY(0) scale(0.995); }
+  .glass-floating { animation: liquid-float 8s ease-in-out infinite; will-change: transform; }
+  .glass-interactive { transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 300ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .glass-interactive:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.2); }
+  .glass-interactive:active { transform: translateY(0) scale(0.99); box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.15); }
 }
 
 @keyframes glass-sheen {
@@ -375,10 +378,11 @@
   to   { transform: translateX(120%) rotate(8deg); }
 }
 
-@keyframes float-xy {
-  0%   { transform: translateY(0) translateX(0); }
-  50%  { transform: translateY(-4px) translateX(2px); }
-  100% { transform: translateY(0) translateX(0); }
+@keyframes liquid-float {
+  0%   { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  33%  { transform: translateY(-8px) translateX(4px) rotate(0.5deg); }
+  66%  { transform: translateY(-4px) translateX(-2px) rotate(-0.3deg); }
+  100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
 }
 
 /* Aurora animated background for hero */

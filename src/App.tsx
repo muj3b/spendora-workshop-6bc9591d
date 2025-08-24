@@ -1,6 +1,4 @@
 
-import { useEffect } from "react";
-import { initializeBodyScrollMotionBlur } from "@/lib/motionblur";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,42 +17,40 @@ import Success from "./pages/Success";
 import Donate from "./pages/Donate";
 import Gallery from "./pages/Gallery";
 import Budgeting from "./pages/Budgeting";
+import Quiz from "./pages/Quiz";
+import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  useEffect(() => {
-    initializeBodyScrollMotionBlur();
-  }, []);
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <SpotlightCursor />
-          <LiquidGlassInteractions />
-          <BrowserRouter>
-            <TopNavBar />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/stock-markets" element={<StockMarkets />} />
-              <Route path="/crypto-nfts" element={<CryptoNFTs />} />
-              <Route path="/online-business" element={<OnlineBusiness />} />
-              <Route path="/success" element={<Success />} />
-              <Route path="/donate" element={<Donate />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/budgeting" element={<Budgeting />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
-  );
-};
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <SpotlightCursor />
+        <LiquidGlassInteractions />
+        <BrowserRouter>
+          <TopNavBar />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/stock-markets" element={<StockMarkets />} />
+            <Route path="/crypto-nfts" element={<CryptoNFTs />} />
+            <Route path="/online-business" element={<OnlineBusiness />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/donate" element={<Donate />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/budgeting" element={<Budgeting />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/resources" element={<Resources />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
+  </QueryClientProvider>
+);
 
 export default App;
