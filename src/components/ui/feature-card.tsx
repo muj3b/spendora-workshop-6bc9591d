@@ -10,7 +10,7 @@ const featureCardVariants = cva(
     variants: {
       variant: {
         default: "bg-card border-border hover:shadow-medium",
-        glass: "liquid-glass-surface",
+        glass: "glass hover:glass-strong",
         elevated: "shadow-soft hover:shadow-medium bg-card",
       },
       animation: {
@@ -97,7 +97,6 @@ const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
         } : undefined}
         aria-label={onCardClick ? `Click to learn more about ${title}` : undefined}
         {...props}
-        data-liquid
       >
         <div className="p-6 text-center">
           <div className={cn(iconContainerVariants({ size: iconSize, gradient: iconGradient }), "rounded-2xl")}>

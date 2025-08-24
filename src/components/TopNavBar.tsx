@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,31 +10,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Menu, MoreHorizontal, Moon, Sun, Instagram } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { NavMenuContent } from "./NavMenuContent";
 
 const TopNavBar = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
-  const [isShrunken, setIsShrunken] = useState(false);
-  const lastScrollY = useRef(0);
-
-  const handleScroll = useCallback(() => {
-    const scrollY = window.scrollY;
-    if (scrollY > lastScrollY.current && scrollY > 100) {
-      setIsShrunken(true);
-    } else if (scrollY < lastScrollY.current && scrollY < 50) {
-      setIsShrunken(false);
-    }
-    lastScrollY.current = scrollY;
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [handleScroll]);
 
   const mainNav = [
     { label: "Home", href: "/#top" },
@@ -51,27 +29,18 @@ const TopNavBar = () => {
     }`;
 
   return (
-    <header className={cn(
-      "fixed top-0 inset-x-0 z-50 transition-all duration-500 ease-in-out",
-      isShrunken ? "py-2" : "py-4"
-    )}>
+    <header className="fixed top-0 inset-x-0 z-50">
       <div className="container mx-auto px-3 sm:px-6">
-        <div className={cn(
-          "liquid-glass-surface rounded-2xl px-4 py-3 flex items-center justify-between shadow-medium transition-all duration-500 ease-in-out",
-          isShrunken ? "backdrop-blur-xl bg-background/20" : "backdrop-blur-lg bg-background/10"
-        )} data-liquid>
+        <div className="mt-3 liquid-glass-surface rounded-2xl px-3 sm:px-4 py-2.5 flex items-center justify-between shadow-medium">
           {/* Left: Brand */}
           <div className="flex items-center gap-2">
-            <Button asChild variant="liquid" size="sm" className="rounded-xl font-bold" data-spotlight>
+            <Button asChild variant="liquid" size="sm" className="rounded-xl" data-spotlight>
               <Link to="/">Spendora</Link>
             </Button>
           </div>
 
-          {/* Center: Main nav (hide when shrunken) */}
-          <nav className={cn(
-            "flex items-center gap-1 transition-all duration-500 ease-in-out",
-            isShrunken ? "opacity-0 scale-95 pointer-events-none hidden" : "opacity-100 scale-100"
-          )} aria-label="Primary">
+          {/* Center: Main nav (hide on very small screens) */}
+          <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
             {mainNav.map((item) => (
               <a
                 key={item.label}
@@ -85,40 +54,55 @@ const TopNavBar = () => {
           </nav>
 
           {/* Right: Actions */}
-          <div className="flex items-center gap-2">
-            {/* Hamburger Menu (visible when shrunken) */}
-            <div className={cn(
-              "transition-all duration-500 ease-in-out",
-              isShrunken ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none hidden"
-            )}>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="liquid" size="sm" aria-label="Menu" className="rounded-xl" data-spotlight>
-                    <Menu className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="glass-menu rounded-xl" sideOffset={8}>
-                  <NavMenuContent isHamburger={true} />
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-
-            {/* More dropdown (visible when not shrunken) */}
-            <div className={cn(
-              "transition-all duration-500 ease-in-out",
-              isShrunken ? "opacity-0 scale-95 pointer-events-none hidden" : "opacity-100 scale-100"
-            )}>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="liquid" size="sm" aria-label="More" className="rounded-xl" data-spotlight>
-                    <MoreHorizontal className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="glass-menu rounded-xl" sideOffset={8}>
-                  <NavMenuContent />
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+          <div className="flex items-center gap-1 sm:gap-2">
+            {/* More dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="liquid" size="sm" aria-label="More" className="rounded-xl" data-spotlight>
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="glass-menu rounded-xl" sideOffset={8}>
+                <DropdownMenuLabel>Explore</DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                  <Link to="/gallery" data-spotlight>
+                    Workshop Gallery
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/success" data-spotlight>
+                    Success Stories
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/donate" data-spotlight>
+                    Support Our Mission
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuLabel>Workshop Topics</DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                  <Link to="/stock-markets" data-spotlight>
+                    Stock Markets & Investing
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/budgeting" data-spotlight>
+                    Budgeting & Finance
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/online-business" data-spotlight>
+                    Online Business
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/crypto-nfts" data-spotlight>
+                    Crypto & NFTs
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* Theme toggle */}
             <Button

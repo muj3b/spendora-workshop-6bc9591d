@@ -225,11 +225,11 @@ const LiveEventTimer = ({
   const getStatusColor = () => {
     switch (eventStatus.type) {
       case 'happening-now':
-        return 'text-red-500 dark:text-red-400 animate-[pulse_3s_ease-in-out_infinite]';
+        return 'text-red-400 animate-[pulse_3s_ease-in-out_infinite]';
       case 'day-ended':
-        return 'text-yellow-500 dark:text-yellow-400';
+        return 'text-yellow-400';
       case 'all-ended':
-        return 'text-green-500 dark:text-green-400 font-bold';
+        return 'text-green-400 font-bold';
       case 'countdown':
         return eventStatus.isFlashing 
           ? 'text-foreground animate-[pulse_3s_ease-in-out_infinite]' 
@@ -245,7 +245,7 @@ const LiveEventTimer = ({
         {eventStatus.message}
       </h2>
       {eventStatus.type === 'happening-now' && (
-        <p className="text-lg sm:text-xl text-green-500 dark:text-green-300 animate-bounce font-semibold">
+        <p className="text-lg sm:text-xl text-green-300 animate-bounce font-semibold">
           <span role="img" aria-label="Live">🔴</span> LIVE NOW!
         </p>
       )}
@@ -256,21 +256,21 @@ const LiveEventTimer = ({
         <div className="text-center space-y-3 max-w-full">
           <div className="mx-auto max-w-fit bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm border border-green-300/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 shadow-lg shadow-green-400/20 glow">
             <p className="text-foreground font-bold text-sm sm:text-lg break-words text-center">
-              <span className="text-green-500 dark:text-green-300">🎯 Day 3:</span>
+              <span className="text-green-300">🎯 Day 3:</span> 
               <span className="block sm:inline animate-pulse"> Date & Time Coming Soon</span>
             </p>
           </div>
           <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">
-            <p className="text-muted-foreground font-medium line-through text-xs sm:text-sm break-words text-center">
-              <span className="text-muted-foreground">✓ Day 2:</span>
+            <p className="text-gray-300 font-medium line-through text-xs sm:text-sm break-words text-center">
+              <span className="text-gray-400">✓ Day 2:</span> 
               <span className="block sm:inline"> Friday, July 18th</span>
               <br className="sm:hidden" />
               <span className="block sm:inline"> • 3:30 PM - 5:00 PM CDT (Completed)</span>
             </p>
           </div>
           <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">
-            <p className="text-muted-foreground font-medium line-through text-xs sm:text-sm break-words text-center">
-              <span className="text-muted-foreground">✓ Day 1:</span>
+            <p className="text-gray-300 font-medium line-through text-xs sm:text-sm break-words text-center">
+              <span className="text-gray-400">✓ Day 1:</span> 
               <span className="block sm:inline"> Thursday, July 10th</span>
               <br className="sm:hidden" />
               <span className="block sm:inline"> • 11:00 AM - 12:30 PM CDT (Completed)</span>
