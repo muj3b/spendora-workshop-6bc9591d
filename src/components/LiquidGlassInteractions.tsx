@@ -34,12 +34,24 @@ export default function LiquidGlassInteractions() {
       const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
       if (!target) return;
       target.classList.add("is-hovered");
+      // Set hover size based on element dimensions
+      const rect = target.getBoundingClientRect();
+      const maxSize = Math.max(rect.width, rect.height) + 40;
+      target.style.setProperty("--hover-size", `${maxSize}px`);
+      target.style.setProperty("--btn-hover-size", `${maxSize}px`);
+      target.style.setProperty("--hover-intensity", "0.15");
+      target.style.setProperty("--btn-hover-intensity", "0.18");
     };
 
     const onPointerLeave = (e: Event) => {
       const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
       if (!target) return;
       target.classList.remove("is-hovered");
+      // Reset to small mouse-sized blur
+      target.style.setProperty("--hover-size", "40px");
+      target.style.setProperty("--btn-hover-size", "30px");
+      target.style.setProperty("--hover-intensity", "0.08");
+      target.style.setProperty("--btn-hover-intensity", "0.08");
     };
 
     const onPointerDown = (e: PointerEvent) => {

@@ -17,6 +17,10 @@
   --press: 1;
   --squish-x: 1;
   --squish-y: 1;
+  --hover-size: 40px;
+  --hover-intensity: 0.08;
+  --btn-hover-size: 30px;
+  --btn-hover-intensity: 0.08;
   transform: scale(var(--press)) scaleX(var(--squish-x)) scaleY(var(--squish-y));
   transition: transform 150ms ease, box-shadow 250ms ease, background 250ms ease, filter 250ms ease;
 }
@@ -35,13 +39,14 @@
   --press: 0.985;
 }
 
-/* Strengthen inner glow under press */
+/* Remove the old inner glow effect */
 .liquid-glass-surface.is-pressed::before,
 .liquid-glass-btn.is-pressed::before,
 [data-liquid].is-pressed::before {
-  background:
-    radial-gradient(180px circle at var(--gx, 50%) var(--gy, 50%), hsl(var(--foreground) / 0.24), transparent 60%),
-    linear-gradient(to bottom, hsl(var(--foreground) / 0.08), transparent 40%);
+  --hover-size: 300px;
+  --hover-intensity: 0.2;
+  --btn-hover-size: 150px;
+  --btn-hover-intensity: 0.25;
 }
 
 /* Ripple effect using ::after (coexists with sheen) */
