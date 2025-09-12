@@ -241,7 +241,7 @@
     -webkit-backdrop-filter: saturate(150%) blur(16px);
     box-shadow: var(--shadow-soft);
     color: hsl(var(--foreground));
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease, background 0.6s ease, border-color 0.6s ease, border-radius 0.6s ease;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, background 0.4s ease, border-color 0.4s ease, border-radius 0.4s ease;
     border-radius: 2rem;
     overflow: hidden;
     isolation: isolate;
@@ -254,39 +254,32 @@
     border-radius: inherit;
     pointer-events: none;
     background: radial-gradient(
-      var(--hover-size, 0px) circle at var(--gx, 50%) var(--gy, 50%), 
-      hsl(var(--foreground) / var(--hover-intensity, 0)), 
+      var(--hover-size, 40px) circle at var(--gx, 50%) var(--gy, 50%), 
+      hsl(var(--foreground) / var(--hover-intensity, 0.08)), 
       transparent
     );
     opacity: 1;
-    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: --hover-size 0.4s cubic-bezier(0.23, 1, 0.32, 1), --hover-intensity 0.4s ease;
     mix-blend-mode: screen;
+  }
+
+  /* Remove the shine effect completely */
+  .liquid-glass-surface::after {
+    display: none;
   }
 
   .liquid-glass-surface:hover { 
     box-shadow: var(--shadow-medium), var(--shadow-glow); 
     transform: translateY(-3px) scale(1.01);
-  }
-  
-  .liquid-glass-surface:hover::before {
-    background: radial-gradient(
-      200px circle at var(--gx, 50%) var(--gy, 50%), 
-      hsl(var(--foreground) / 0.15), 
-      transparent 70%
-    );
+    --hover-size: 200px;
+    --hover-intensity: 0.15;
   }
   
   .liquid-glass-surface:active { 
     transform: translateY(0) scale(0.99); 
     box-shadow: var(--shadow-soft);
-  }
-  
-  .liquid-glass-surface:active::before {
-    background: radial-gradient(
-      300px circle at var(--gx, 50%) var(--gy, 50%), 
-      hsl(var(--foreground) / 0.2), 
-      transparent 70%
-    );
+    --hover-size: 300px;
+    --hover-intensity: 0.2;
   }
 
   .dark .liquid-glass-surface {
@@ -305,7 +298,7 @@
     border: 1px solid hsl(var(--border) / 0.45);
     backdrop-filter: saturate(150%) blur(14px);
     -webkit-backdrop-filter: saturate(150%) blur(14px);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     will-change: transform, filter;
     box-shadow: 0 1px 0 hsl(var(--foreground) / 0.05) inset, var(--shadow-soft);
     touch-action: manipulation;
@@ -325,40 +318,35 @@
     border-radius: inherit;
     pointer-events: none;
     background: radial-gradient(
-      var(--btn-hover-size, 0px) circle at var(--gx, 50%) var(--gy, 50%), 
-      hsl(var(--foreground) / var(--btn-hover-intensity, 0)), 
+      var(--btn-hover-size, 30px) circle at var(--gx, 50%) var(--gy, 50%), 
+      hsl(var(--foreground) / var(--btn-hover-intensity, 0.08)), 
       transparent
     );
     opacity: 1;
-    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: --btn-hover-size 0.4s cubic-bezier(0.23, 1, 0.32, 1), --btn-hover-intensity 0.4s ease;
     mix-blend-mode: screen;
+  }
+
+  /* Remove the shine effect from buttons too */
+  .liquid-glass-btn::after {
+    display: none;
   }
 
   .liquid-glass-btn:hover {
     box-shadow: var(--shadow-medium), var(--shadow-glow);
     transform: translateY(-2px) scale(1.02);
-  }
-
-  .liquid-glass-btn:hover::before {
-    background: radial-gradient(
-      120px circle at var(--gx, 50%) var(--gy, 50%), 
-      hsl(var(--foreground) / 0.18), 
-      transparent 70%
-    );
+    --btn-hover-size: 120px;
+    --btn-hover-intensity: 0.18;
   }
 
   .liquid-glass-btn:active {
     transform: translateY(0) scale(0.98);
     box-shadow: var(--shadow-soft);
+    --btn-hover-size: 150px;
+    --btn-hover-intensity: 0.25;
   }
 
-  .liquid-glass-btn:active::before {
-    background: radial-gradient(
-      150px circle at var(--gx, 50%) var(--gy, 50%), 
-      hsl(var(--foreground) / 0.25), 
-      transparent 70%
-    );
-  }
+  /* Remove old hover/active styles since they're now above */
 
 @layer components {
   /* Cursor spotlight highlight target */

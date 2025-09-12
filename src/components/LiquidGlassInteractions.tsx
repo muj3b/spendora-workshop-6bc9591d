@@ -21,76 +21,56 @@ export default function LiquidGlassInteractions() {
     let scrollCooldown: number | null = null;
 
     const onPointerMove = (e: PointerEvent) => {
-      const target = e.target as HTMLElement;
-      if (!target || !target.closest) return;
-      
-      const liquidElement = target.closest(SELECTOR) as HTMLElement | null;
-      if (!liquidElement) return;
-      
-      const rect = liquidElement.getBoundingClientRect();
+      const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
       const gx = ((e.clientX - rect.left) / rect.width) * 100;
       const gy = ((e.clientY - rect.top) / rect.height) * 100;
-      liquidElement.style.setProperty("--gx", `${gx}%`);
-      liquidElement.style.setProperty("--gy", `${gy}%`);
+      target.style.setProperty("--gx", `${gx}%`);
+      target.style.setProperty("--gy", `${gy}%`);
     };
 
     const onPointerEnter = (e: Event) => {
-      const target = e.target as HTMLElement;
-      if (!target || !target.closest) return;
-      
-      const liquidElement = target.closest(SELECTOR) as HTMLElement | null;
-      if (!liquidElement) return;
-      
-      liquidElement.classList.add("is-hovered");
+      const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
+      if (!target) return;
+      target.classList.add("is-hovered");
       // Set hover size based on element dimensions
-      const rect = liquidElement.getBoundingClientRect();
+      const rect = target.getBoundingClientRect();
       const maxSize = Math.max(rect.width, rect.height) + 40;
-      liquidElement.style.setProperty("--hover-size", `${maxSize}px`);
-      liquidElement.style.setProperty("--btn-hover-size", `${maxSize}px`);
-      liquidElement.style.setProperty("--hover-intensity", "0.15");
-      liquidElement.style.setProperty("--btn-hover-intensity", "0.18");
+      target.style.setProperty("--hover-size", `${maxSize}px`);
+      target.style.setProperty("--btn-hover-size", `${maxSize}px`);
+      target.style.setProperty("--hover-intensity", "0.15");
+      target.style.setProperty("--btn-hover-intensity", "0.18");
     };
 
     const onPointerLeave = (e: Event) => {
-      const target = e.target as HTMLElement;
-      if (!target || !target.closest) return;
-      
-      const liquidElement = target.closest(SELECTOR) as HTMLElement | null;
-      if (!liquidElement) return;
-      
-      liquidElement.classList.remove("is-hovered");
+      const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
+      if (!target) return;
+      target.classList.remove("is-hovered");
       // Reset to small mouse-sized blur
-      liquidElement.style.setProperty("--hover-size", "40px");
-      liquidElement.style.setProperty("--btn-hover-size", "30px");
-      liquidElement.style.setProperty("--hover-intensity", "0.08");
-      liquidElement.style.setProperty("--btn-hover-intensity", "0.08");
+      target.style.setProperty("--hover-size", "40px");
+      target.style.setProperty("--btn-hover-size", "30px");
+      target.style.setProperty("--hover-intensity", "0.08");
+      target.style.setProperty("--btn-hover-intensity", "0.08");
     };
 
     const onPointerDown = (e: PointerEvent) => {
-      const target = e.target as HTMLElement;
-      if (!target || !target.closest) return;
-      
-      const liquidElement = target.closest(SELECTOR) as HTMLElement | null;
-      if (!liquidElement) return;
-      
-      const rect = liquidElement.getBoundingClientRect();
+      const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
       const rx = e.clientX - rect.left;
       const ry = e.clientY - rect.top;
-      liquidElement.style.setProperty("--rx", `${rx}px`);
-      liquidElement.style.setProperty("--ry", `${ry}px`);
-      liquidElement.classList.add("is-pressed", "is-rippling");
+      target.style.setProperty("--rx", `${rx}px`);
+      target.style.setProperty("--ry", `${ry}px`);
+      target.classList.add("is-pressed", "is-rippling");
       // remove ripple after animation
-      window.setTimeout(() => liquidElement.classList.remove("is-rippling"), 750);
+      window.setTimeout(() => target.classList.remove("is-rippling"), 750);
     };
 
     const onPointerUp = (e: PointerEvent) => {
-      const target = e.target as HTMLElement;
-      if (!target || !target.closest) return;
-      
-      const liquidElement = target.closest(SELECTOR) as HTMLElement | null;
-      if (!liquidElement) return;
-      
-      liquidElement.classList.remove("is-pressed");
+      const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
+      if (!target) return;
+      target.classList.remove("is-pressed");
     };
 
     const onScroll = () => {

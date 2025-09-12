@@ -39,7 +39,7 @@
   --press: 0.985;
 }
 
-/* Enhanced hover glow effect */
+/* Remove the old inner glow effect */
 .liquid-glass-surface.is-pressed::before,
 .liquid-glass-btn.is-pressed::before,
 [data-liquid].is-pressed::before {

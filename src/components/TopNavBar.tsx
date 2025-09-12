@@ -38,54 +38,89 @@ const TopNavBar = () => {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
-      <div className={`transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+      <div className={`transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
         scrolled 
           ? 'mx-4 mt-2' 
           : 'container mx-auto px-4 mt-4'
       }`}>
-        <div className={`liquid-glass-surface transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-medium ${
+        <div className={`liquid-glass-surface transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-medium ${
           scrolled 
             ? 'rounded-full px-4 py-2 w-auto ml-auto mr-0 max-w-fit transform scale-90' 
             : 'rounded-3xl px-6 py-3 transform scale-100'
         }`}>
           
           {/* Expanded state - when at top */}
-          <div className={`flex items-center justify-between w-full transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-            scrolled ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100 pointer-events-auto h-auto'
-          }`}>
-            {/* Brand */}
-            <Button asChild variant="liquid" size="sm" className="rounded-full px-4" data-liquid>
-              <Link to="/">Spendora</Link>
-            </Button>
+          {!scrolled && (
+            <div className="flex items-center justify-between w-full transition-opacity duration-500 ease-out">
+              {/* Brand */}
+              <Button asChild variant="liquid" size="sm" className="rounded-full px-4" data-liquid>
+                <Link to="/">Spendora</Link>
+              </Button>
 
-            {/* Main nav */}
-            <nav className="hidden md:flex items-center gap-2" aria-label="Primary">
-              {mainNav.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={linkCls(item.href)}
+              {/* Main nav */}
+              <nav className="hidden md:flex items-center gap-2" aria-label="Primary">
+                {mainNav.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className={linkCls(item.href)}
+                    data-liquid
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
+
+              {/* Actions */}
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="liquid"
+                  size="icon"
+                  onClick={toggleTheme}
+                  aria-label="Toggle theme"
+                  className="rounded-full"
                   data-liquid
                 >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
+                  {theme === "light" ? (
+                    <Moon className="h-4 w-4" />
+                  ) : (
+                    <Sun className="h-4 w-4" />
+                  )}
+                </Button>
+                
+                <Button
+                  variant="liquid"
+                  size="icon"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  aria-label="Menu"
+                  className="rounded-full"
+                  data-liquid
+                >
+                  <Menu className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          )}
 
-            {/* Actions */}
-            <div className="flex items-center gap-2">
+          {/* Collapsed state - when scrolled */}
+          {scrolled && (
+            <div className="flex items-center gap-3 transition-opacity duration-500 ease-out">
+              <Button asChild variant="liquid" size="sm" className="rounded-full px-3 text-xs" data-liquid>
+                <Link to="/">S</Link>
+              </Button>
+              
               <Button
                 variant="liquid"
                 size="icon"
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
-                className="rounded-full"
+                className="rounded-full h-8 w-8"
                 data-liquid
               >
                 {theme === "light" ? (
-                  <Moon className="h-4 w-4" />
+                  <Moon className="h-3 w-3" />
                 ) : (
-                  <Sun className="h-4 w-4" />
+                  <Sun className="h-3 w-3" />
                 )}
               </Button>
               
@@ -94,48 +129,13 @@ const TopNavBar = () => {
                 size="icon"
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label="Menu"
-                className="rounded-full"
+                className="rounded-full h-8 w-8"
                 data-liquid
               >
-                <Menu className="h-4 w-4" />
+                <Menu className="h-3 w-3" />
               </Button>
             </div>
-          </div>
-
-          {/* Collapsed state - when scrolled */}
-          <div className={`flex items-center gap-3 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-            scrolled ? 'opacity-100 pointer-events-auto h-auto' : 'opacity-0 pointer-events-none h-0 overflow-hidden'
-          }`}>
-            <Button asChild variant="liquid" size="sm" className="rounded-full px-3 text-xs" data-liquid>
-              <Link to="/">S</Link>
-            </Button>
-            
-            <Button
-              variant="liquid"
-              size="icon"
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="rounded-full h-8 w-8"
-              data-liquid
-            >
-              {theme === "light" ? (
-                <Moon className="h-3 w-3" />
-              ) : (
-                <Sun className="h-3 w-3" />
-              )}
-            </Button>
-            
-            <Button
-              variant="liquid"
-              size="icon"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Menu"
-              className="rounded-full h-8 w-8"
-              data-liquid
-            >
-              <Menu className="h-3 w-3" />
-            </Button>
-          </div>
+          )}
         </div>
       </div>
 
