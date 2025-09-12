@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,131 +10,248 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Menu, MoreHorizontal, Moon, Sun, Instagram } from "lucide-react";
+import { Menu, MoreHorizontal, Moon, Sun, Instagram, X } from "lucide-react";
 
 const TopNavBar = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const mainNav = [
-    { label: "Home", href: "/#top" },
-    { label: "Features", href: "/#features" },
-    { label: "About Spendora", href: "/#about-spendora" },
-    { label: "Workshop Schedule", href: "/#workshop-schedule" },
-    { label: "Meet The Team", href: "/#meet-the-team" },
+    { label: "About", href: "/#about-spendora" },
+    { label: "Workshops", href: "/#workshop-schedule" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const linkCls = (href: string) =>
-    `px-3 py-2 rounded-lg text-sm md:text-base text-foreground/90 hover:text-foreground hover:bg-foreground/5 transition-colors duration-200 hover-scale ${
-      location.hash && href.endsWith(location.hash) ? "font-semibold" : ""
+    `px-4 py-2 rounded-3xl text-sm text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn ${
+      location.hash && href.endsWith(location.hash) ? "bg-foreground/12 font-medium" : ""
     }`;
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
-      <div className="container mx-auto px-3 sm:px-6">
-        <div className="mt-3 liquid-glass-surface rounded-2xl px-3 sm:px-4 py-2.5 flex items-center justify-between shadow-medium">
-          {/* Left: Brand */}
-          <div className="flex items-center gap-2">
-            <Button asChild variant="liquid" size="sm" className="rounded-xl" data-spotlight>
-              <Link to="/">Spendora</Link>
-            </Button>
-          </div>
+      <div className={`transition-all duration-500 ease-out ${
+        scrolled 
+          ? 'mx-4 mt-2' 
+          : 'container mx-auto px-4 mt-4'
+      }`}>
+        <div className={`liquid-glass-surface transition-all duration-500 ease-out shadow-medium ${
+          scrolled 
+            ? 'rounded-full px-4 py-2 w-auto ml-auto mr-0 max-w-fit' 
+            : 'rounded-3xl px-6 py-3'
+        }`}>
+          
+          {/* Expanded state - when at top */}
+          {!scrolled && (
+            <div className="flex items-center justify-between w-full">
+              {/* Brand */}
+              <Button asChild variant="liquid" size="sm" className="rounded-full px-4" data-liquid>
+                <Link to="/">Spendora</Link>
+              </Button>
 
-          {/* Center: Main nav (hide on very small screens) */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
-            {mainNav.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={linkCls(item.href)}
-                data-spotlight
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+              {/* Main nav */}
+              <nav className="hidden md:flex items-center gap-2" aria-label="Primary">
+                {mainNav.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className={linkCls(item.href)}
+                    data-liquid
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
 
-          {/* Right: Actions */}
-          <div className="flex items-center gap-1 sm:gap-2">
-            {/* More dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="liquid" size="sm" aria-label="More" className="rounded-xl" data-spotlight>
-                  <MoreHorizontal className="h-4 w-4" />
+              {/* Actions */}
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="liquid"
+                  size="icon"
+                  onClick={toggleTheme}
+                  aria-label="Toggle theme"
+                  className="rounded-full"
+                  data-liquid
+                >
+                  {theme === "light" ? (
+                    <Moon className="h-4 w-4" />
+                  ) : (
+                    <Sun className="h-4 w-4" />
+                  )}
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="glass-menu rounded-xl" sideOffset={8}>
-                <DropdownMenuLabel>Explore</DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <Link to="/gallery" data-spotlight>
-                    Workshop Gallery
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/success" data-spotlight>
-                    Success Stories
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/donate" data-spotlight>
-                    Support Our Mission
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuLabel>Workshop Topics</DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <Link to="/stock-markets" data-spotlight>
-                    Stock Markets & Investing
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/budgeting" data-spotlight>
-                    Budgeting & Finance
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/online-business" data-spotlight>
-                    Online Business
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/crypto-nfts" data-spotlight>
-                    Crypto & NFTs
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                
+                <Button
+                  variant="liquid"
+                  size="icon"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  aria-label="Menu"
+                  className="rounded-full"
+                  data-liquid
+                >
+                  <Menu className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          )}
 
-            {/* Theme toggle */}
-            <Button
-              variant="liquid"
-              size="icon"
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="rounded-xl"
-              data-spotlight
-            >
-              {theme === "light" ? (
-                <Moon className="h-4 w-4 text-foreground" />
-              ) : (
-                <Sun className="h-4 w-4 text-foreground" />
-              )}
-            </Button>
-
-            {/* Instagram */}
-            <Button
-              variant="liquid"
-              size="icon"
-              onClick={() => window.open('https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', '_blank')}
-              aria-label="Follow us on Instagram"
-              className="rounded-xl"
-              data-spotlight
-            >
-              <Instagram className="h-4 w-4 text-foreground" />
-            </Button>
-          </div>
+          {/* Collapsed state - when scrolled */}
+          {scrolled && (
+            <div className="flex items-center gap-3">
+              <Button asChild variant="liquid" size="sm" className="rounded-full px-3 text-xs" data-liquid>
+                <Link to="/">S</Link>
+              </Button>
+              
+              <Button
+                variant="liquid"
+                size="icon"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="rounded-full h-8 w-8"
+                data-liquid
+              >
+                {theme === "light" ? (
+                  <Moon className="h-3 w-3" />
+                ) : (
+                  <Sun className="h-3 w-3" />
+                )}
+              </Button>
+              
+              <Button
+                variant="liquid"
+                size="icon"
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="Menu"
+                className="rounded-full h-8 w-8"
+                data-liquid
+              >
+                <Menu className="h-3 w-3" />
+              </Button>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Overlay Menu */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm">
+          <div className="absolute top-20 right-4 liquid-glass-surface rounded-3xl p-6 w-80 shadow-large">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold">Menu</h3>
+              <Button
+                variant="liquid"
+                size="icon"
+                onClick={() => setMenuOpen(false)}
+                className="rounded-full"
+                data-liquid
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-foreground/60">Navigate</h4>
+                {mainNav.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block px-4 py-3 rounded-2xl text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn"
+                    data-liquid
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+              
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-foreground/60">Explore</h4>
+                <Link
+                  to="/gallery"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-4 py-3 rounded-2xl text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn"
+                  data-liquid
+                >
+                  Workshop Gallery
+                </Link>
+                <Link
+                  to="/success"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-4 py-3 rounded-2xl text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn"
+                  data-liquid
+                >
+                  Success Stories
+                </Link>
+                <Link
+                  to="/donate"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-4 py-3 rounded-2xl text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn"
+                  data-liquid
+                >
+                  Support Our Mission
+                </Link>
+              </div>
+
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-foreground/60">Workshop Topics</h4>
+                <Link
+                  to="/stock-markets"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-4 py-3 rounded-2xl text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn"
+                  data-liquid
+                >
+                  Stock Markets & Investing
+                </Link>
+                <Link
+                  to="/budgeting"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-4 py-3 rounded-2xl text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn"
+                  data-liquid
+                >
+                  Budgeting & Finance
+                </Link>
+                <Link
+                  to="/online-business"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-4 py-3 rounded-2xl text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn"
+                  data-liquid
+                >
+                  Online Business
+                </Link>
+                <Link
+                  to="/crypto-nfts"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-4 py-3 rounded-2xl text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn"
+                  data-liquid
+                >
+                  Crypto & NFTs
+                </Link>
+              </div>
+
+              <div className="pt-4 border-t border-foreground/10">
+                <Button
+                  variant="liquid"
+                  size="sm"
+                  onClick={() => window.open('https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', '_blank')}
+                  className="w-full rounded-2xl"
+                  data-liquid
+                >
+                  <Instagram className="h-4 w-4 mr-2" />
+                  Follow on Instagram
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
