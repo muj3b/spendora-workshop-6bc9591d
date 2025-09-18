@@ -37,6 +37,7 @@ const SoundEffects = () => {
     };
 
     const handleClick = (e: Event) => {
+      if (!(e.target instanceof Element)) return;
       const target = e.target as HTMLElement;
       if (target.matches('.liquid-glass-btn, button, [role="button"]')) {
         createTone(800, 0.1, 0.03);
@@ -44,6 +45,7 @@ const SoundEffects = () => {
     };
 
     const handleHover = (e: Event) => {
+      if (!(e.target instanceof Element)) return;
       const target = e.target as HTMLElement;
       if (target.matches('.liquid-glass-btn, button, [role="button"]')) {
         createTone(600, 0.05, 0.02);
