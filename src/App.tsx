@@ -14,10 +14,18 @@ import StockMarkets from "./pages/StockMarkets";
 import CryptoNFTs from "./pages/CryptoNFTs";
 import OnlineBusiness from "./pages/OnlineBusiness";
 import Success from "./pages/Success";
+import SuccessStories from "./pages/SuccessStories";
 import Donate from "./pages/Donate";
 import Gallery from "./pages/Gallery";
 import Budgeting from "./pages/Budgeting";
 import NotFound from "./pages/NotFound";
+import PageTransitions from "./components/PageTransitions";
+import ParticleEffects from "./components/ParticleEffects";
+import DynamicBackground from "./components/DynamicBackground";
+import SoundEffects from "./components/SoundEffects";
+import AutoHideNavigation from "./components/AutoHideNavigation";
+import ParallaxScrolling from "./components/ParallaxScrolling";
+import Breadcrumbs from "./components/Breadcrumbs";
 
 const queryClient = new QueryClient();
 
@@ -27,22 +35,32 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <DynamicBackground />
+        <ParticleEffects />
         <SpotlightCursor />
         <LiquidGlassInteractions />
+        <SoundEffects />
+        <AutoHideNavigation />
+        <ParallaxScrolling />
         <BrowserRouter>
+          <PageTransitions />
           <TopNavBar />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/stock-markets" element={<StockMarkets />} />
-            <Route path="/crypto-nfts" element={<CryptoNFTs />} />
-            <Route path="/online-business" element={<OnlineBusiness />} />
-            <Route path="/success" element={<Success />} />
-            <Route path="/donate" element={<Donate />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/budgeting" element={<Budgeting />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <div className="relative">
+            <Breadcrumbs />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/stock-markets" element={<StockMarkets />} />
+              <Route path="/crypto-nfts" element={<CryptoNFTs />} />
+              <Route path="/online-business" element={<OnlineBusiness />} />
+              <Route path="/success" element={<Success />} />
+              <Route path="/success-stories" element={<SuccessStories />} />
+              <Route path="/donate" element={<Donate />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/budgeting" element={<Budgeting />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>

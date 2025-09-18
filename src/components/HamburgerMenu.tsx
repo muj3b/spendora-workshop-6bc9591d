@@ -42,7 +42,7 @@ const HamburgerMenu = () => {
     { type: 'divider' },
     { label: 'More', type: 'header' },
     { label: 'Workshop Gallery', action: () => navigateToPage('/gallery') },
-    { label: 'Success Stories', action: () => navigateToPage('/success') },
+    { label: 'Success Stories', action: () => navigateToPage('/success-stories') },
     { label: 'Support Our Mission', action: () => navigateToPage('/donate') },
   ];
 

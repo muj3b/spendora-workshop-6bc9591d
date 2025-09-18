@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Menu, MoreHorizontal, Moon, Sun, Instagram, X } from "lucide-react";
+import SearchBar from "./SearchBar";
 
 const TopNavBar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -73,6 +74,7 @@ const TopNavBar = () => {
 
               {/* Actions */}
               <div className="flex items-center gap-2">
+                <SearchBar />
                 <Button
                   variant="liquid"
                   size="icon"
@@ -141,8 +143,8 @@ const TopNavBar = () => {
 
       {/* Overlay Menu */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm">
-          <div className="absolute top-20 right-4 liquid-glass-surface rounded-3xl p-6 w-80 shadow-large">
+        <div className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm animate-fade-in">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 liquid-glass-surface rounded-3xl p-6 w-80 shadow-large animate-scale-in">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-semibold">Menu</h3>
               <Button
@@ -183,7 +185,7 @@ const TopNavBar = () => {
                   Workshop Gallery
                 </Link>
                 <Link
-                  to="/success"
+                  to="/success-stories"
                   onClick={() => setMenuOpen(false)}
                   className="block px-4 py-3 rounded-2xl text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn"
                   data-liquid
