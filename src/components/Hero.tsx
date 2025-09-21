@@ -1,6 +1,7 @@
 import { memo, useMemo, useCallback } from 'react';
 import { GradientButton } from "@/components/ui/gradient-button";
 import { FeatureCard } from "@/components/ui/feature-card";
+import { GooeyText } from "@/components/ui/gooey-text-morphing";
 import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart, Camera } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
@@ -56,11 +57,15 @@ const Hero = memo(() => {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="relative text-display mb-6 sm:mb-8 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out]" style={{ animationDelay: '0.2s' }}>
-            <span className="relative inline-block gradient-text-primary">
-              <span className="animate-letter-shine">Level Up Your Money Skills</span>
-            </span>
-          </h1>
+          <div className="relative mb-6 sm:mb-8 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out]" style={{ animationDelay: '0.2s' }}>
+            <GooeyText
+              texts={["Level Up", "Your Money", "Skills", "Today"]}
+              morphTime={1.2}
+              cooldownTime={0.8}
+              className="gradient-text-primary font-bold"
+              textClassName="text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+            />
+          </div>
           
           <p className="text-body-large text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.4s_both]">
             A free workshop designed by high school students to teach 
