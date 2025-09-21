@@ -13,33 +13,50 @@ interface GooeyTextProps {
 
 export function GooeyText({
   texts,
-  morphTime = 1,
-  cooldownTime = 0.25,
+  morphTime = 0.8,
+  cooldownTime = 0.6,
   className,
   textClassName
 }: GooeyTextProps) {
   const text1Ref = React.useRef<HTMLSpanElement>(null);
   const text2Ref = React.useRef<HTMLSpanElement>(null);
+  const animationRef = React.useRef<number>();
+  const stateRef = React.useRef({
+    textIndex: 0,
+    morph: 0,
+    cooldown: cooldownTime,
+    lastTime: performance.now()
+  });
 
   React.useEffect(() => {
-    let textIndex = texts.length - 1;
-    let time = new Date();
-    let morph = 0;
-    let cooldown = cooldownTime;
+    // Initialize text content immediately
+    if (text1Ref.current && text2Ref.current && texts.length > 0) {
+      text1Ref.current.textContent = texts[0];
+      text2Ref.current.textContent = texts[1] || texts[0];
+      text1Ref.current.style.opacity = "100%";
+      text2Ref.current.style.opacity = "0%";
+      text1Ref.current.style.filter = "";
+      text2Ref.current.style.filter = "";
+    }
 
     const setMorph = (fraction: number) => {
       if (text1Ref.current && text2Ref.current) {
-        text2Ref.current.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-        text2Ref.current.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+        // Clamp values to prevent extreme effects
+        const blur2 = Math.max(0, Math.min(100, 8 / Math.max(fraction, 0.1) - 8));
+        const opacity2 = Math.max(0, Math.min(100, Math.pow(fraction, 0.4) * 100));
+        
+        const blur1 = Math.max(0, Math.min(100, 8 / Math.max(1 - fraction, 0.1) - 8));
+        const opacity1 = Math.max(0, Math.min(100, Math.pow(1 - fraction, 0.4) * 100));
 
-        fraction = 1 - fraction;
-        text1Ref.current.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-        text1Ref.current.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+        text2Ref.current.style.filter = `blur(${blur2}px)`;
+        text2Ref.current.style.opacity = `${opacity2}%`;
+        text1Ref.current.style.filter = `blur(${blur1}px)`;
+        text1Ref.current.style.opacity = `${opacity1}%`;
       }
     };
 
     const doCooldown = () => {
-      morph = 0;
+      stateRef.current.morph = 0;
       if (text1Ref.current && text2Ref.current) {
         text2Ref.current.style.filter = "";
         text2Ref.current.style.opacity = "100%";
@@ -49,61 +66,58 @@ export function GooeyText({
     };
 
     const doMorph = () => {
-      morph -= cooldown;
-      cooldown = 0;
-      let fraction = morph / morphTime;
+      stateRef.current.morph -= stateRef.current.cooldown;
+      stateRef.current.cooldown = 0;
+      let fraction = stateRef.current.morph / morphTime;
 
       if (fraction > 1) {
-        cooldown = cooldownTime;
+        stateRef.current.cooldown = cooldownTime;
         fraction = 1;
       }
 
       setMorph(fraction);
     };
 
-    function animate() {
-      requestAnimationFrame(animate);
-      const newTime = new Date();
-      const shouldIncrementIndex = cooldown > 0;
-      const dt = (newTime.getTime() - time.getTime()) / 1000;
-      time = newTime;
+    const animate = (currentTime: number) => {
+      const state = stateRef.current;
+      const dt = Math.min((currentTime - state.lastTime) / 1000, 1/30); // Cap at 30fps for stability
+      state.lastTime = currentTime;
 
-      cooldown -= dt;
+      const shouldIncrementIndex = state.cooldown > 0;
+      state.cooldown -= dt;
 
-      if (cooldown <= 0) {
+      if (state.cooldown <= 0) {
         if (shouldIncrementIndex) {
-          textIndex = (textIndex + 1) % texts.length;
+          state.textIndex = (state.textIndex + 1) % texts.length;
           if (text1Ref.current && text2Ref.current) {
-            text1Ref.current.textContent = texts[textIndex % texts.length];
-            text2Ref.current.textContent = texts[(textIndex + 1) % texts.length];
+            text1Ref.current.textContent = texts[state.textIndex];
+            text2Ref.current.textContent = texts[(state.textIndex + 1) % texts.length];
           }
         }
         doMorph();
       } else {
         doCooldown();
       }
-    }
 
-    // Initialize text content immediately
-    if (text1Ref.current && text2Ref.current && texts.length > 0) {
-      text1Ref.current.textContent = texts[0];
-      text2Ref.current.textContent = texts[1] || texts[0];
-      text1Ref.current.style.opacity = "100%";
-      text2Ref.current.style.opacity = "0%";
-    }
+      animationRef.current = requestAnimationFrame(animate);
+    };
 
-    animate();
+    // Start animation
+    stateRef.current.lastTime = performance.now();
+    animationRef.current = requestAnimationFrame(animate);
 
     return () => {
-      // Cleanup function if needed
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
     };
   }, [texts, morphTime, cooldownTime]);
 
   return (
-    <div className={cn("relative h-20 sm:h-24 md:h-28 lg:h-32 flex items-center justify-center", className)}>
+    <div className={cn("relative", className)}>
       <svg className="absolute h-0 w-0" aria-hidden="true" focusable="false">
         <defs>
-          <filter id="threshold">
+          <filter id="gooey-threshold">
             <feColorMatrix
               in="SourceGraphic"
               type="matrix"
@@ -117,37 +131,25 @@ export function GooeyText({
       </svg>
 
       <div
-        className="relative w-full h-full flex items-center justify-center"
-        style={{ filter: "url(#threshold)" }}
+        className="flex items-center justify-center relative"
+        style={{ filter: "url(#gooey-threshold)" }}
       >
         <span
           ref={text1Ref}
           className={cn(
-            "absolute inline-block select-none text-center",
-            "text-white font-bold drop-shadow-lg",
-            textClassName
+            "absolute inline-block select-none text-center whitespace-nowrap",
+            "text-foreground will-change-transform",
+            textClassName || "text-6xl md:text-[60pt]"
           )}
-          style={{
-            fontSize: 'clamp(2rem, 8vw, 5rem)',
-            lineHeight: '1.1'
-          }}
-        >
-          {texts[0] || 'Level Up'}
-        </span>
+        />
         <span
           ref={text2Ref}
           className={cn(
-            "absolute inline-block select-none text-center",
-            "text-white font-bold drop-shadow-lg",
-            textClassName
+            "absolute inline-block select-none text-center whitespace-nowrap",
+            "text-foreground will-change-transform",
+            textClassName || "text-6xl md:text-[60pt]"
           )}
-          style={{
-            fontSize: 'clamp(2rem, 8vw, 5rem)',
-            lineHeight: '1.1'
-          }}
-        >
-          {texts[1] || texts[0] || 'Your Money'}
-        </span>
+        />
       </div>
     </div>
   );

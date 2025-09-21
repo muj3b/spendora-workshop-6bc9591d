@@ -28,10 +28,15 @@ export const RobotBackground = () => {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!isMobile) {
-        // More responsive mouse following
-        const x = (e.clientX / window.innerWidth) * 2 - 1;
-        const y = (e.clientY / window.innerHeight) * 2 - 1;
-        setMousePosition({ x: x * 0.8, y: y * 0.6 }); // Increased intensity
+        // Proper mouse tracking for robot head
+        const rect = window.innerWidth;
+        const height = window.innerHeight;
+        const x = (e.clientX / rect - 0.5) * 2; // -1 to 1
+        const y = (e.clientY / height - 0.5) * 2; // -1 to 1
+        setMousePosition({ 
+          x: x * 0.8, // Good sensitivity
+          y: y * 0.6  // Good sensitivity
+        });
       }
     };
 
@@ -57,40 +62,40 @@ export const RobotBackground = () => {
   const parallaxY = scrollY * 0.2;
 
   return (
-    // Position robot at the top of the page, behind all content
+    // Position robot lower to accommodate text at top and buttons at body level
     <div 
-      className="fixed top-24 inset-x-0 h-screen z-0 pointer-events-none overflow-hidden"
+      className="fixed top-56 inset-x-0 h-screen z-30 pointer-events-none overflow-hidden"
       style={{
         opacity: finalOpacity,
         transform: `scale(${scale}) translateY(${parallaxY}px)`,
         transition: 'opacity 1s ease-out, transform 0.3s ease-out'
       }}
     >
-      {/* Robot Spline Scene positioned at top with mouse tracking */}
+      {/* Robot Spline Scene positioned lower with mouse tracking */}
       <div className="absolute top-0 inset-x-0 h-full opacity-80">
         <div 
-          className={`absolute inset-0 transform-gpu origin-top flex items-start justify-center transition-transform duration-200 ease-out ${
-            isMobile ? 'scale-[0.5] -translate-y-24' : 'scale-[0.8] -translate-y-12'
+          className={`absolute inset-0 transform-gpu origin-center flex items-start justify-center transition-transform duration-200 ease-out ${
+            isMobile ? 'scale-[0.7] -translate-y-8' : 'scale-[1.1] -translate-y-16'
           }`}
           style={{
             transform: `
-              scale(${isMobile ? 0.5 : 0.8}) 
-              translateY(${isMobile ? -96 : -48}px) 
-              rotateX(${mousePosition.y * 12}deg) 
-              rotateY(${mousePosition.x * 15}deg)
+              scale(${isMobile ? 0.7 : 1.1}) 
+              translateY(${isMobile ? -32 : -64}px) 
+              rotateX(${mousePosition.y * 15}deg) 
+              rotateY(${mousePosition.x * 12}deg)
             `,
             transformStyle: 'preserve-3d'
           }}
         >
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className={`w-full ${isMobile ? 'h-[70vh] max-w-md' : 'h-[90vh] max-w-5xl'}`}
+            className={`w-full ${isMobile ? 'h-[80vh] max-w-lg' : 'h-[100vh] max-w-6xl'}`}
           />
         </div>
       </div>
       
       {/* Gradient overlay to ensure content readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/60 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/30 pointer-events-none" />
     </div>
   );
 };
