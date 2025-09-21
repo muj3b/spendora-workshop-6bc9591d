@@ -401,3 +401,35 @@
   50%  { transform: translateY(-20px) translateX(10px); }
   100% { transform: translateY(0) translateX(0); }
 }
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .liquid-glass-surface,
+  .liquid-glass-btn {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  /* Reduce animations on mobile for better performance */
+  .aurora-bg {
+    animation-duration: 20s;
+    filter: blur(30px) saturate(120%);
+  }
+  
+  /* Optimize transforms for mobile */
+  .glass-floating {
+    animation: none;
+    will-change: auto;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-bg {
+    animation: none;
+  }
+  
+  .glass-floating {
+    animation: none;
+  }
+}

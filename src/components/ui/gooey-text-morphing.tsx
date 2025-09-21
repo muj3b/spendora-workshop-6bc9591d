@@ -22,7 +22,7 @@ export function GooeyText({
   const text2Ref = React.useRef<HTMLSpanElement>(null);
 
   React.useEffect(() => {
-    let textIndex = texts.length - 1;
+    let textIndex = 0;
     let time = new Date();
     let morph = 0;
     let cooldown = cooldownTime;
@@ -33,6 +33,8 @@ export function GooeyText({
       text2Ref.current.textContent = texts[1] || texts[0];
       text2Ref.current.style.opacity = "0%";
       text1Ref.current.style.opacity = "100%";
+      text1Ref.current.style.filter = "";
+      text2Ref.current.style.filter = "";
     }
 
     const setMorph = (fraction: number) => {
@@ -123,19 +125,23 @@ export function GooeyText({
         <span
           ref={text1Ref}
           className={cn(
-            "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
-            "text-white",
+            "absolute inline-block select-none text-center font-bold",
+            "text-white drop-shadow-lg",
             textClassName
           )}
-        />
+        >
+          {texts[0]}
+        </span>
         <span
           ref={text2Ref}
           className={cn(
-            "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
-            "text-foreground",
+            "absolute inline-block select-none text-center font-bold",
+            "text-white drop-shadow-lg",
             textClassName
           )}
-        />
+        >
+          {texts[1] || texts[0]}
+        </span>
       </div>
     </div>
   );

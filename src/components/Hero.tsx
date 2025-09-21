@@ -60,13 +60,13 @@ const Hero = memo(() => {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="relative mb-6 sm:mb-8 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out]" style={{ animationDelay: '0.2s' }}>
+          <div className="relative mb-8 sm:mb-12 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out]" style={{ animationDelay: '0.2s' }}>
             <GooeyText
               texts={["Level Up", "Your Money", "Skills", "Today"]}
-              morphTime={1.2}
-              cooldownTime={0.8}
-              className="gradient-text-primary font-bold"
-              textClassName="text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+              morphTime={1.5}
+              cooldownTime={1.2}
+              className="gradient-text-primary font-bold h-16 sm:h-20 md:h-24 lg:h-32"
+              textClassName="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight"
             />
           </div>
           

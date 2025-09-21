@@ -87,15 +87,14 @@ const SpotlightCursor = () => {
     };
   }, []);
 
-  // Remove particle trail effect for a clean single-glow cursor
-  // (Intentionally no particles per user request)
-
-  const spotlightColor = "rgba(255, 255, 255, 0.9)";
+  // Clean single white glow cursor
+  const spotlightColor = "rgba(255, 255, 255, 0.4)";
+  const glowColor = "rgba(255, 255, 255, 0.8)";
 
   const style = {
-    background: `radial-gradient(160px circle at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 70%)`,
+    background: `radial-gradient(100px circle at ${pos.x}px ${pos.y}px, ${glowColor}, ${spotlightColor} 40%, transparent 70%)`,
     mixBlendMode: "screen" as const,
-    filter: "saturate(130%)",
+    filter: "blur(0.5px)",
   } as React.CSSProperties;
 
   return (
