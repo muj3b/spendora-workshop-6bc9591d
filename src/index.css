@@ -259,7 +259,7 @@
       transparent
     );
     opacity: 1;
-    transition: --hover-size 0.4s cubic-bezier(0.23, 1, 0.32, 1), --hover-intensity 0.4s ease;
+    transition: --hover-size 0.6s cubic-bezier(0.22, 1, 0.36, 1), --hover-intensity 0.6s ease;
     mix-blend-mode: screen;
   }
 
@@ -271,7 +271,8 @@
   .liquid-glass-surface:hover { 
     box-shadow: var(--shadow-medium), var(--shadow-glow); 
     transform: translateY(-3px) scale(1.01);
-    --hover-size: 200px;
+    /* Expand the blur to fill the entire element smoothly */
+    --hover-size: 2000px;
     --hover-intensity: 0.15;
   }
   
@@ -323,7 +324,7 @@
       transparent
     );
     opacity: 1;
-    transition: --btn-hover-size 0.4s cubic-bezier(0.23, 1, 0.32, 1), --btn-hover-intensity 0.4s ease;
+    transition: --btn-hover-size 0.6s cubic-bezier(0.22, 1, 0.36, 1), --btn-hover-intensity 0.6s ease;
     mix-blend-mode: screen;
   }
 
@@ -335,7 +336,8 @@
   .liquid-glass-btn:hover {
     box-shadow: var(--shadow-medium), var(--shadow-glow);
     transform: translateY(-2px) scale(1.02);
-    --btn-hover-size: 120px;
+    /* Expand to fill the button area smoothly */
+    --btn-hover-size: 1500px;
     --btn-hover-intensity: 0.18;
   }
 
@@ -352,8 +354,9 @@
   /* Cursor spotlight highlight target */
   .spotlight-target {
     outline: 0;
-    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.35), 0 10px 25px hsl(var(--primary) / 0.25);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    /* Remove extra shine/outline on hover: keep only subtle transform radius */
+    box-shadow: none;
+    transition: transform 0.2s ease;
     transform: translateZ(0);
     border-radius: var(--radius);
   }

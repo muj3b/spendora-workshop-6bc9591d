@@ -142,9 +142,9 @@ const TopNavBar = () => {
       </div>
 
       {/* Overlay Menu */}
-      {menuOpen && (
+          {menuOpen && (
         <div className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm animate-fade-in">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 liquid-glass-surface rounded-3xl p-6 w-80 shadow-large animate-scale-in">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 liquid-glass-surface rounded-3xl p-6 w-80 shadow-large animate-dynamic-island-pop">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-semibold">Menu</h3>
               <Button

@@ -2,7 +2,6 @@ import { memo, useMemo, useCallback } from 'react';
 import { GradientButton } from "@/components/ui/gradient-button";
 import { FeatureCard } from "@/components/ui/feature-card";
 import { GooeyText } from "@/components/ui/gooey-text-morphing";
-import { InteractiveSpotlight } from "@/components/ui/interactive-spotlight";
 import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart, Camera } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
@@ -53,7 +52,6 @@ const Hero = memo(() => {
   return (
     <main className="relative min-h-screen bg-transparent flex items-center overflow-hidden transition-colors duration-300 pt-16" role="main" aria-label="Spendora Workshop Hero Section">
       <RobotBackground />
-      <InteractiveSpotlight size={300} className="from-white via-white/50 to-transparent" />
       
       {/* Aurora animated background */}
       <div className="aurora-bg" aria-hidden />

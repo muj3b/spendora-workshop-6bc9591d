@@ -124,7 +124,7 @@ export function GooeyText({
           ref={text1Ref}
           className={cn(
             "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
-            "text-foreground",
+            "text-white",
             textClassName
           )}
         />

@@ -20,7 +20,6 @@ import Gallery from "./pages/Gallery";
 import Budgeting from "./pages/Budgeting";
 import NotFound from "./pages/NotFound";
 import PageTransitions from "./components/PageTransitions";
-import ParticleEffects from "./components/ParticleEffects";
 import DynamicBackground from "./components/DynamicBackground";
 import SoundEffects from "./components/SoundEffects";
 import AutoHideNavigation from "./components/AutoHideNavigation";
@@ -36,7 +35,6 @@ const App = () => (
         <Toaster />
         <Sonner />
         <DynamicBackground />
-        <ParticleEffects />
         <SpotlightCursor />
         <LiquidGlassInteractions />
         <SoundEffects />

@@ -87,70 +87,13 @@ const SpotlightCursor = () => {
     };
   }, []);
 
-  // Add particle trail effect
-  useEffect(() => {
-    const particles: HTMLDivElement[] = [];
-    const maxParticles = 20;
-    
-    const createParticle = (x: number, y: number) => {
-      if (particles.length >= maxParticles) return;
-      
-      const particle = document.createElement('div');
-      particle.style.cssText = `
-        position: fixed;
-        left: ${x}px;
-        top: ${y}px;
-        width: 3px;
-        height: 3px;
-        background: rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 999;
-        animation: particle-fade 1s ease-out forwards;
-      `;
-      
-      document.body.appendChild(particle);
-      particles.push(particle);
-      
-      setTimeout(() => {
-        if (particle.parentNode) {
-          particle.parentNode.removeChild(particle);
-        }
-        const index = particles.indexOf(particle);
-        if (index > -1) particles.splice(index, 1);
-      }, 1000);
-    };
+  // Remove particle trail effect for a clean single-glow cursor
+  // (Intentionally no particles per user request)
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (Math.random() < 0.3) {
-        createParticle(e.clientX + Math.random() * 10 - 5, e.clientY + Math.random() * 10 - 5);
-      }
-    };
-
-    // Add particle animation CSS
-    if (!document.getElementById('particle-styles')) {
-      const style = document.createElement('style');
-      style.id = 'particle-styles';
-      style.textContent = `
-        @keyframes particle-fade {
-          0% { opacity: 1; transform: scale(1); }
-          100% { opacity: 0; transform: scale(0.3) translateY(-20px); }
-        }
-      `;
-      document.head.appendChild(style);
-    }
-
-    document.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      particles.forEach(p => p.parentNode?.removeChild(p));
-    };
-  }, []);
-
-  const spotlightColor = "rgba(255, 255, 255, 0.4)";
+  const spotlightColor = "rgba(255, 255, 255, 0.9)";
 
   const style = {
-    background: `radial-gradient(200px circle at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 70%)`,
+    background: `radial-gradient(160px circle at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 70%)`,
     mixBlendMode: "screen" as const,
     filter: "saturate(130%)",
   } as React.CSSProperties;
