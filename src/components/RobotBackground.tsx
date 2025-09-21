@@ -56,7 +56,7 @@ export const RobotBackground = () => {
   return (
     // Position robot at the top of the page, behind all content
     <div 
-      className="fixed top-0 inset-x-0 h-screen z-0 pointer-events-none overflow-hidden"
+      className="fixed top-16 inset-x-0 h-screen z-0 pointer-events-none overflow-hidden"
       style={{
         opacity,
         transform: `scale(${scale}) translateY(${parallaxY}px)`,

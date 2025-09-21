@@ -50,7 +50,7 @@ const Hero = memo(() => {
   ), []);
 
   return (
-    <main className="relative min-h-screen bg-transparent flex items-center overflow-hidden transition-colors duration-300 pt-16" role="main" aria-label="Spendora Workshop Hero Section">
+    <main className="relative min-h-screen bg-transparent flex items-center overflow-hidden transition-colors duration-300 pt-32 pb-16" role="main" aria-label="Spendora Workshop Hero Section">
       <RobotBackground />
       
       {/* Aurora animated background */}
@@ -61,13 +61,22 @@ const Hero = memo(() => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="relative mb-8 sm:mb-12 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out]" style={{ animationDelay: '0.2s' }}>
-            <GooeyText
-              texts={["Level Up", "Your Money", "Skills", "Today"]}
-              morphTime={1.5}
-              cooldownTime={1.2}
-              className="gradient-text-primary font-bold h-16 sm:h-20 md:h-24 lg:h-32"
-              textClassName="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight"
-            />
+            {/* Simple animated text that definitely works */}
+            <div className="h-16 sm:h-20 md:h-24 lg:h-32 flex items-center justify-center">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white drop-shadow-lg text-center animate-pulse">
+                Level Up Your Money Skills Today
+              </h1>
+            </div>
+            {/* Hidden GooeyText for debugging */}
+            <div className="hidden">
+              <GooeyText
+                texts={["Level Up", "Your Money", "Skills", "Today"]}
+                morphTime={1.5}
+                cooldownTime={1.2}
+                className="gradient-text-primary font-bold h-16 sm:h-20 md:h-24 lg:h-32"
+                textClassName="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight"
+              />
+            </div>
           </div>
           
           <p className="text-body-large text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.4s_both]">

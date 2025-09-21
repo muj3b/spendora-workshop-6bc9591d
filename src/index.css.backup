@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@tailwind base;
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
@@ -115,7 +115,9 @@
     --border-glass: hsl(0 0% 100% / 0.1);
     --shadow-glow: 0 0 20px hsl(217 91% 60% / 0.2);
   }
+}
 
+@layer base {
   * {
     @apply border-border;
   }
@@ -208,14 +210,16 @@
   .text-body {
     @apply text-base leading-relaxed;
   }
+}
 
+@layer components {
   /* Liquid Inputs */
   .liquid-input {
     background: linear-gradient(180deg, hsl(var(--background) / 0.7), hsl(var(--background) / 0.85));
     border-color: hsl(var(--border) / 0.6);
     backdrop-filter: blur(10px) saturate(120%);
     -webkit-backdrop-filter: blur(10px) saturate(120%);
-    transition: all 0.3s ease;
+    transition: var(--transition-smooth, all 0.3s ease);
   }
   .liquid-input:focus {
     background: linear-gradient(180deg, hsl(var(--background) / 0.8), hsl(var(--background) / 0.95));
@@ -230,7 +234,9 @@
       radial-gradient(1000px 700px at 100% 10%, hsl(271 91% 65% / 0.08), transparent 60%),
       linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
   }
+}
 
+@layer components {
   /* Liquid Glass Surfaces */
   .liquid-glass-surface {
     position: relative;
@@ -287,7 +293,7 @@
     border-color: hsl(var(--border) / 0.55);
   }
 
-  /* Liquid Glass Button */
+  /* Liquid Glass Button - reacts to pointer and device tilt via CSS vars --gx/--gy */
   .liquid-glass-btn {
     position: relative;
     overflow: hidden;
@@ -347,9 +353,13 @@
     --btn-hover-intensity: 0.25;
   }
 
+  /* Remove old hover/active styles since they're now above */
+
+@layer components {
   /* Cursor spotlight highlight target */
   .spotlight-target {
     outline: 0;
+    /* Remove extra shine/outline on hover: keep only subtle transform radius */
     box-shadow: none;
     transition: transform 0.2s ease;
     transform: translateZ(0);
@@ -357,22 +367,10 @@
   }
 
   /* Floating and interactive helpers for glass surfaces */
-  .glass-floating { 
-    animation: float-xy 8s ease-in-out infinite alternate; 
-    will-change: transform; 
-  }
-  
-  .glass-interactive { 
-    transition: transform 0.25s ease, box-shadow 0.3s ease; 
-  }
-  
-  .glass-interactive:hover { 
-    transform: translateY(-2px) scale(1.01); 
-  }
-  
-  .glass-interactive:active { 
-    transform: translateY(0) scale(0.995); 
-  }
+  .glass-floating { animation: float-xy 8s ease-in-out infinite alternate; will-change: transform; }
+  .glass-interactive { transition: transform 0.25s ease, box-shadow 0.3s ease; }
+  .glass-interactive:hover { transform: translateY(-2px) scale(1.01); }
+  .glass-interactive:active { transform: translateY(0) scale(0.995); }
 }
 
 @keyframes glass-sheen {
@@ -401,10 +399,7 @@
   animation: aurora-shift 16s ease-in-out infinite alternate;
   mix-blend-mode: screen;
 }
-
-.dark .aurora-bg { 
-  filter: blur(48px) saturate(160%); 
-}
+.dark .aurora-bg { filter: blur(48px) saturate(160%); }
 
 @keyframes aurora-shift {
   0%   { transform: translateY(0) translateX(0); }
@@ -443,14 +438,4 @@
     animation: none;
   }
 }
-
-/* GooeyText fallback */
-.gooey-fallback {
-  animation: gooey-fallback-check 3s ease-in-out;
-}
-
-@keyframes gooey-fallback-check {
-  0% { opacity: 0; }
-  90% { opacity: 0; }
-  100% { opacity: 1; }
 }
