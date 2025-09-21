@@ -205,6 +205,10 @@ export default {
 					'100%': { 
 						backgroundColor: 'hsl(var(--primary))'
 					}
+				},
+				'spotlight': {
+					'0%': { opacity: '0', transform: 'translate(-72%, -62%) scale(0.5)' },
+					'100%': { opacity: '1', transform: 'translate(-50%, -40%) scale(1)' }
 				}
 			},
 			animation: {
@@ -218,7 +222,8 @@ export default {
 				'pulse-slow': 'gentle-pulse 4s ease-in-out infinite',
 				'smooth-fade-in': 'smooth-fade-in 0.6s ease-out forwards',
 				'slide-up': 'slide-up 0.6s ease-out forwards',
-				'flash': 'flash 1s ease-in-out infinite alternate'
+				'flash': 'flash 1s ease-in-out infinite alternate',
+				'spotlight': 'spotlight 2s ease-out forwards 3s'
 			}
 		}
 	},

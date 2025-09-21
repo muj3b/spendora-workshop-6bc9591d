@@ -28,9 +28,9 @@ export function GooeyText({
     let cooldown = cooldownTime;
 
     // Initialize text content immediately
-    if (text1Ref.current && text2Ref.current) {
-      text1Ref.current.textContent = texts[0] || "";
-      text2Ref.current.textContent = texts[1] || "";
+    if (text1Ref.current && text2Ref.current && texts.length > 0) {
+      text1Ref.current.textContent = texts[0];
+      text2Ref.current.textContent = texts[1] || texts[0];
       text2Ref.current.style.opacity = "0%";
       text1Ref.current.style.opacity = "100%";
     }
