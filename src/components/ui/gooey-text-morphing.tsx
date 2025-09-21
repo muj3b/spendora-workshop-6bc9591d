@@ -22,39 +22,10 @@ export function GooeyText({
   const text2Ref = React.useRef<HTMLSpanElement>(null);
 
   React.useEffect(() => {
-    console.log('GooeyText: Component mounted with texts:', texts);
-    
-    if (!text1Ref.current || !text2Ref.current || texts.length === 0) {
-      console.log('GooeyText: Missing refs or texts');
-      return;
-    }
-
-    let textIndex = 0;
+    let textIndex = texts.length - 1;
     let time = new Date();
     let morph = 0;
     let cooldown = cooldownTime;
-
-    // Initialize text content immediately with fallback
-    const initializeText = () => {
-      if (text1Ref.current && text2Ref.current && texts.length > 0) {
-        console.log('GooeyText: Initializing text content');
-        text1Ref.current.textContent = texts[0] || 'Level Up';
-        text2Ref.current.textContent = texts[1] || texts[0] || 'Your Money';
-        text2Ref.current.style.opacity = "0";
-        text1Ref.current.style.opacity = "1";
-        text1Ref.current.style.filter = "none";
-        text2Ref.current.style.filter = "none";
-        text1Ref.current.style.visibility = "visible";
-        text2Ref.current.style.visibility = "visible";
-        console.log('GooeyText: Text initialized:', text1Ref.current.textContent);
-      }
-    };
-
-    // Initialize immediately
-    initializeText();
-    
-    // Also initialize after a short delay as fallback
-    const timeoutId = setTimeout(initializeText, 100);
 
     const setMorph = (fraction: number) => {
       if (text1Ref.current && text2Ref.current) {
@@ -113,19 +84,26 @@ export function GooeyText({
       }
     }
 
+    // Initialize text content immediately
+    if (text1Ref.current && text2Ref.current && texts.length > 0) {
+      text1Ref.current.textContent = texts[0];
+      text2Ref.current.textContent = texts[1] || texts[0];
+      text1Ref.current.style.opacity = "100%";
+      text2Ref.current.style.opacity = "0%";
+    }
+
     animate();
 
     return () => {
-      console.log('GooeyText: Cleanup');
-      clearTimeout(timeoutId);
+      // Cleanup function if needed
     };
   }, [texts, morphTime, cooldownTime]);
 
   return (
-    <div className={cn("relative h-16 sm:h-20 md:h-24 lg:h-32 flex items-center justify-center", className)}>
+    <div className={cn("relative", className)}>
       <svg className="absolute h-0 w-0" aria-hidden="true" focusable="false">
         <defs>
-          <filter id={`threshold-${Math.random().toString(36).substr(2, 9)}`}>
+          <filter id="threshold">
             <feColorMatrix
               in="SourceGraphic"
               type="matrix"
@@ -139,39 +117,25 @@ export function GooeyText({
       </svg>
 
       <div
-        className="relative flex items-center justify-center h-full w-full"
+        className="flex items-center justify-center"
         style={{ filter: "url(#threshold)" }}
       >
         <span
           ref={text1Ref}
           className={cn(
-            "absolute inline-block select-none text-center font-bold z-10",
-            "text-white drop-shadow-lg",
+            "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
+            "text-foreground",
             textClassName
           )}
-          style={{
-            visibility: 'visible',
-            opacity: 1,
-            display: 'block'
-          }}
-        >
-          {texts[0] || 'Level Up'}
-        </span>
+        />
         <span
           ref={text2Ref}
           className={cn(
-            "absolute inline-block select-none text-center font-bold z-10",
-            "text-white drop-shadow-lg",
+            "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
+            "text-foreground",
             textClassName
           )}
-          style={{
-            visibility: 'visible',
-            opacity: 0,
-            display: 'block'
-          }}
-        >
-          {texts[1] || texts[0] || 'Your Money'}
-        </span>
+        />
       </div>
     </div>
   );

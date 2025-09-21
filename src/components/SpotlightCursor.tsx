@@ -100,7 +100,7 @@ const SpotlightCursor = () => {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-40 transition-[background] duration-150"
+      className="pointer-events-none fixed inset-0 z-[-1] transition-[background] duration-150"
       style={style}
     />
   );

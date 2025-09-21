@@ -56,7 +56,7 @@ export const RobotBackground = () => {
   return (
     // Position robot at the top of the page, behind all content
     <div 
-      className="fixed top-16 inset-x-0 h-screen z-0 pointer-events-none overflow-hidden"
+      className="fixed top-24 inset-x-0 h-screen z-0 pointer-events-none overflow-hidden"
       style={{
         opacity,
         transform: `scale(${scale}) translateY(${parallaxY}px)`,
@@ -87,7 +87,6 @@ export const RobotBackground = () => {
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className={`w-full ${isMobile ? 'h-[60vh] max-w-sm' : 'h-[80vh] max-w-4xl'}`}
-            followMouse={!isMobile}
           />
         </div>
       </div>
