@@ -27,6 +27,14 @@ export function GooeyText({
     let morph = 0;
     let cooldown = cooldownTime;
 
+    // Initialize text content immediately
+    if (text1Ref.current && text2Ref.current) {
+      text1Ref.current.textContent = texts[0] || "";
+      text2Ref.current.textContent = texts[1] || "";
+      text2Ref.current.style.opacity = "0%";
+      text1Ref.current.style.opacity = "100%";
+    }
+
     const setMorph = (fraction: number) => {
       if (text1Ref.current && text2Ref.current) {
         text2Ref.current.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
@@ -92,7 +100,7 @@ export function GooeyText({
   }, [texts, morphTime, cooldownTime]);
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative h-20 sm:h-24 md:h-32 lg:h-40", className)}>
       <svg className="absolute h-0 w-0" aria-hidden="true" focusable="false">
         <defs>
           <filter id="threshold">
@@ -109,7 +117,7 @@ export function GooeyText({
       </svg>
 
       <div
-        className="flex items-center justify-center"
+        className="flex items-center justify-center h-full"
         style={{ filter: "url(#threshold)" }}
       >
         <span
