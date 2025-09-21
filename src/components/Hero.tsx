@@ -65,8 +65,8 @@ const Hero = memo(() => {
               texts={["Level Up", "Your Money", "Skills", "Today"]}
               morphTime={1.5}
               cooldownTime={1.2}
-              className="gradient-text-primary font-bold h-20 sm:h-24 md:h-28 lg:h-32"
-              textClassName="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white"
+              className="gradient-text-primary font-bold"
+              textClassName="font-black tracking-tight"
             />
           </div>
           

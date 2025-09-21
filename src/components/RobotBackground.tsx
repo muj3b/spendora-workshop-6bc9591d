@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { SplineScene } from '@/components/ui/spline-scene';
-import { Spotlight } from '@/components/ui/spotlight';
 
 export const RobotBackground = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
+  const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
 
   useEffect(() => {
     // Check if device is mobile
@@ -17,21 +16,22 @@ export const RobotBackground = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
+    // Fade in on mount
+    const timer = setTimeout(() => {
+      setHasAnimatedIn(true);
+    }, 100);
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrollY(currentScrollY);
-      
-      // Hide robot when scrolling down past 150px (earlier for mobile)
-      const threshold = isMobile ? 100 : 200;
-      setIsVisible(currentScrollY < threshold);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!isMobile) {
-        // Convert mouse position to normalized coordinates (-1 to 1)
+        // More responsive mouse following
         const x = (e.clientX / window.innerWidth) * 2 - 1;
         const y = (e.clientY / window.innerHeight) * 2 - 1;
-        setMousePosition({ x: x * 0.3, y: y * 0.2 }); // Reduced intensity for subtle movement
+        setMousePosition({ x: x * 0.8, y: y * 0.6 }); // Increased intensity
       }
     };
 
@@ -44,49 +44,47 @@ export const RobotBackground = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', checkMobile);
+      clearTimeout(timer);
     };
   }, [isMobile]);
 
-  const opacity = Math.max(0, 1 - scrollY / 300);
-  const scale = Math.max(0.7, 1 - scrollY / 1000);
-  const parallaxY = scrollY * 0.3;
-
-  if (!isVisible) return null;
+  // Calculate opacity based on scroll and initial animation
+  const baseOpacity = hasAnimatedIn ? 1 : 0;
+  const scrollOpacity = Math.max(0, 1 - scrollY / 300);
+  const finalOpacity = baseOpacity * scrollOpacity;
+  
+  const scale = Math.max(0.8, 1 - scrollY / 1000); // Bigger robot
+  const parallaxY = scrollY * 0.2;
 
   return (
     // Position robot at the top of the page, behind all content
     <div 
       className="fixed top-24 inset-x-0 h-screen z-0 pointer-events-none overflow-hidden"
       style={{
-        opacity,
+        opacity: finalOpacity,
         transform: `scale(${scale}) translateY(${parallaxY}px)`,
-        transition: 'opacity 0.3s ease-out'
+        transition: 'opacity 1s ease-out, transform 0.3s ease-out'
       }}
     >
-      <Spotlight
-        className={`-top-40 left-0 md:left-60 md:-top-20 ${isMobile ? 'opacity-10' : 'opacity-20'}`}
-        fill="white"
-      />
-      
       {/* Robot Spline Scene positioned at top with mouse tracking */}
-      <div className="absolute top-0 inset-x-0 h-full opacity-60">
+      <div className="absolute top-0 inset-x-0 h-full opacity-80">
         <div 
-          className={`absolute inset-0 transform-gpu origin-top flex items-start justify-center transition-transform duration-100 ease-out ${
-            isMobile ? 'scale-[0.4] -translate-y-32' : 'scale-[0.6] -translate-y-20'
+          className={`absolute inset-0 transform-gpu origin-top flex items-start justify-center transition-transform duration-200 ease-out ${
+            isMobile ? 'scale-[0.5] -translate-y-24' : 'scale-[0.8] -translate-y-12'
           }`}
           style={{
             transform: `
-              scale(${isMobile ? 0.4 : 0.6}) 
-              translateY(${isMobile ? -128 : -80}px) 
-              rotateX(${mousePosition.y * 5}deg) 
-              rotateY(${mousePosition.x * 8}deg)
+              scale(${isMobile ? 0.5 : 0.8}) 
+              translateY(${isMobile ? -96 : -48}px) 
+              rotateX(${mousePosition.y * 12}deg) 
+              rotateY(${mousePosition.x * 15}deg)
             `,
             transformStyle: 'preserve-3d'
           }}
         >
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className={`w-full ${isMobile ? 'h-[60vh] max-w-sm' : 'h-[80vh] max-w-4xl'}`}
+            className={`w-full ${isMobile ? 'h-[70vh] max-w-md' : 'h-[90vh] max-w-5xl'}`}
           />
         </div>
       </div>

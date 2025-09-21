@@ -234,8 +234,8 @@
   /* Liquid Glass Surfaces */
   .liquid-glass-surface {
     position: relative;
-    background: linear-gradient(180deg, hsl(var(--background) / 0.08), hsl(var(--background) / 0.16));
-    border: 1px solid hsl(var(--border) / 0.45);
+    background: linear-gradient(180deg, hsl(var(--background) / 0.05), hsl(var(--background) / 0.12));
+    border: 1px solid hsl(var(--border) / 0.3);
     backdrop-filter: saturate(150%) blur(16px);
     -webkit-backdrop-filter: saturate(150%) blur(16px);
     box-shadow: var(--shadow-soft);
@@ -283,8 +283,8 @@
   }
 
   .dark .liquid-glass-surface {
-    background: linear-gradient(180deg, hsl(var(--background) / 0.18), hsl(var(--background) / 0.28));
-    border-color: hsl(var(--border) / 0.55);
+    background: linear-gradient(180deg, hsl(var(--background) / 0.12), hsl(var(--background) / 0.20));
+    border-color: hsl(var(--border) / 0.4);
   }
 
   /* Liquid Glass Button */
@@ -293,9 +293,9 @@
     overflow: hidden;
     isolation: isolate;
     border-radius: 2rem;
-    background: linear-gradient(180deg, hsl(var(--background) / 0.08), hsl(var(--background) / 0.16));
+    background: linear-gradient(180deg, hsl(var(--background) / 0.05), hsl(var(--background) / 0.12));
     color: hsl(var(--foreground));
-    border: 1px solid hsl(var(--border) / 0.45);
+    border: 1px solid hsl(var(--border) / 0.3);
     backdrop-filter: saturate(150%) blur(14px);
     -webkit-backdrop-filter: saturate(150%) blur(14px);
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -305,8 +305,8 @@
   }
 
   .dark .liquid-glass-btn {
-    background: linear-gradient(180deg, hsl(var(--background) / 0.18), hsl(var(--background) / 0.28));
-    border-color: hsl(var(--border) / 0.55);
+    background: linear-gradient(180deg, hsl(var(--background) / 0.12), hsl(var(--background) / 0.20));
+    border-color: hsl(var(--border) / 0.4);
     box-shadow: 0 1px 0 hsl(var(--foreground) / 0.06) inset, var(--shadow-soft);
     border-radius: 2rem;
   }

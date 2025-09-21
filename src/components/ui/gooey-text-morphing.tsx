@@ -100,7 +100,7 @@ export function GooeyText({
   }, [texts, morphTime, cooldownTime]);
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative h-20 sm:h-24 md:h-28 lg:h-32 flex items-center justify-center", className)}>
       <svg className="absolute h-0 w-0" aria-hidden="true" focusable="false">
         <defs>
           <filter id="threshold">
@@ -117,25 +117,37 @@ export function GooeyText({
       </svg>
 
       <div
-        className="flex items-center justify-center"
+        className="relative w-full h-full flex items-center justify-center"
         style={{ filter: "url(#threshold)" }}
       >
         <span
           ref={text1Ref}
           className={cn(
-            "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
-            "text-foreground",
+            "absolute inline-block select-none text-center",
+            "text-white font-bold drop-shadow-lg",
             textClassName
           )}
-        />
+          style={{
+            fontSize: 'clamp(2rem, 8vw, 5rem)',
+            lineHeight: '1.1'
+          }}
+        >
+          {texts[0] || 'Level Up'}
+        </span>
         <span
           ref={text2Ref}
           className={cn(
-            "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
-            "text-foreground",
+            "absolute inline-block select-none text-center",
+            "text-white font-bold drop-shadow-lg",
             textClassName
           )}
-        />
+          style={{
+            fontSize: 'clamp(2rem, 8vw, 5rem)',
+            lineHeight: '1.1'
+          }}
+        >
+          {texts[1] || texts[0] || 'Your Money'}
+        </span>
       </div>
     </div>
   );
