@@ -102,11 +102,11 @@ const Hero = memo(() => {
         </div>
 
         {/* Robot Space - Larger area for robot */}
-        <div className="flex-1 min-h-[500px] relative flex items-center justify-center">
+        <div className="flex-1 min-h-[400px] relative">
           {/* Robot renders here via RobotBackground component */}
           
-          {/* Buttons positioned below the centered robot */}
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl px-4">
+          {/* Buttons positioned at robot's body/legs level */}
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-4xl px-4">
             <div className="text-center space-y-6 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.6s_both]">
               {/* Primary signup button */}
               <div className="space-y-4">
