@@ -1,7 +1,7 @@
 import { memo, useMemo, useCallback } from 'react';
 import { GradientButton } from "@/components/ui/gradient-button";
 import { FeatureCard } from "@/components/ui/feature-card";
-import { GooeyText } from "@/components/ui/gooey-text-morphing";
+import TextPressure from "@/components/ui/text-pressure";
 import { Spotlight } from "@/components/ui/spotlight-mouse";
 import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart, Camera } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -76,13 +76,19 @@ const Hero = memo(() => {
       <div className="container mx-auto px-4 sm:px-6 relative z-30 flex-1 flex flex-col">
         {/* Title and Subtitle Section - Compact at top */}
         <div className="text-center pt-1 pb-2">
-          <div className="relative mb-1 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out]" style={{ animationDelay: '0.2s' }}>
-            <GooeyText
-              texts={["Level", "up", "your", "money", "skills"]}
-              morphTime={0.6}
-              cooldownTime={0.15}
-              className="font-bold h-20"
-              textClassName="font-black tracking-tight text-5xl md:text-6xl lg:text-7xl"
+          <div className="relative mb-1 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out]" style={{ animationDelay: '0.2s', height: '120px' }}>
+            <TextPressure
+              text="Level up your money skills"
+              flex={true}
+              alpha={false}
+              stroke={false}
+              width={true}
+              weight={true}
+              italic={true}
+              textColor="hsl(var(--foreground))"
+              strokeColor="#ff0000"
+              minFontSize={32}
+              className="font-black tracking-tight"
             />
           </div>
           
