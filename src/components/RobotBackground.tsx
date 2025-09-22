@@ -62,25 +62,24 @@ export const RobotBackground = () => {
   const parallaxY = scrollY * 0.2;
 
   return (
-    // Position robot lower to accommodate text at top and buttons at body level
+    // Center robot in the middle of the viewport
     <div 
-      className="fixed top-56 inset-x-0 h-screen z-30 pointer-events-none overflow-hidden"
+      className="fixed inset-0 z-30 pointer-events-none overflow-hidden flex items-center justify-center"
       style={{
         opacity: finalOpacity,
         transform: `scale(${scale}) translateY(${parallaxY}px)`,
         transition: 'opacity 1s ease-out, transform 0.3s ease-out'
       }}
     >
-      {/* Robot Spline Scene positioned lower with mouse tracking */}
-      <div className="absolute top-0 inset-x-0 h-full opacity-80">
+      {/* Robot Spline Scene centered with mouse tracking */}
+      <div className="relative opacity-80">
         <div 
-          className={`absolute inset-0 transform-gpu origin-center flex items-start justify-center transition-transform duration-200 ease-out ${
-            isMobile ? 'scale-[0.7] -translate-y-8' : 'scale-[1.1] -translate-y-16'
+          className={`transform-gpu origin-center transition-transform duration-200 ease-out ${
+            isMobile ? 'scale-[0.8]' : 'scale-[1.2]'
           }`}
           style={{
             transform: `
-              scale(${isMobile ? 0.7 : 1.1}) 
-              translateY(${isMobile ? -32 : -64}px) 
+              scale(${isMobile ? 0.8 : 1.2}) 
               rotateX(${mousePosition.y * 15}deg) 
               rotateY(${mousePosition.x * 12}deg)
             `,
@@ -89,7 +88,7 @@ export const RobotBackground = () => {
         >
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className={`w-full ${isMobile ? 'h-[80vh] max-w-lg' : 'h-[100vh] max-w-6xl'}`}
+            className={`${isMobile ? 'w-[400px] h-[400px]' : 'w-[600px] h-[600px]'}`}
           />
         </div>
       </div>
