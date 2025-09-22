@@ -41,9 +41,10 @@ const MeetTheTeam = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
           {team.map((member, index) => (
-            <Card key={index} className="liquid-glass-surface p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-dynamic-island-pop" style={{ animationDelay: `${index * 0.1}s` }}>
+            <div key={index} className="w-full md:w-[calc(50%-1rem)] max-w-md">
+              <Card className="liquid-glass-surface p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-dynamic-island-pop h-full" style={{ animationDelay: `${index * 0.1}s` }}>
               <div className="text-center mb-6">
                 <div className={`w-20 h-20 rounded-full bg-gradient-to-r ${member.gradient} mx-auto mb-4 flex items-center justify-center`}>
                   <span className="text-white text-2xl font-bold">
@@ -60,7 +61,8 @@ const MeetTheTeam = () => {
               <p className="text-muted-foreground leading-relaxed text-center">
                 {member.bio}
               </p>
-            </Card>
+              </Card>
+            </div>
           ))}
         </div>
 
