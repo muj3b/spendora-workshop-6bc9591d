@@ -16,7 +16,7 @@ const AboutSpendora = () => {
           </p>
         </header>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16 justify-items-center max-w-6xl mx-auto" role="list" aria-label="Workshop features">
+        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 mb-16 max-w-6xl mx-auto" role="list" aria-label="Workshop features">
           <FeatureCard
             icon={Coins}
             title="Real-World Skills"
