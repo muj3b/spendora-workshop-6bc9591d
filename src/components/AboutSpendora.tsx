@@ -1,11 +1,10 @@
-
 import { FeatureCard } from "@/components/ui/feature-card";
 import { ChartLine, Coins, Store } from "lucide-react";
 
 const AboutSpendora = () => {
   return (
     <section className="py-20 bg-background transition-colors duration-300" aria-labelledby="about-spendora">
-      <div className="container mx-auto px-6">
+      <div className="w-full max-w-7xl mx-auto px-6">
         <header className="max-w-4xl mx-auto text-center mb-16 animate-fade-in">
           <h2 id="about-spendora" className="text-display text-foreground mb-6">
             About <span className="gradient-text-primary">Spendora</span>
@@ -16,33 +15,35 @@ const AboutSpendora = () => {
           </p>
         </header>
 
-        <div className="flex flex-wrap justify-center items-stretch gap-8 mb-16" role="list" aria-label="Workshop features">
-          <FeatureCard
-            icon={Coins}
-            title="Real-World Skills"
-            description="Learn budgeting, online payments, taxes, and smart spending habits that you'll actually use."
-            iconGradient="blue"
-            variant="elevated"
-            animationDelay="0.1s"
-          />
-          
-          <FeatureCard
-            icon={Store}
-            title="Modern Business"
-            description="Explore online businesses, TikTok Shop, reselling, and digital entrepreneurship opportunities."
-            iconGradient="green"
-            variant="elevated"
-            animationDelay="0.2s"
-          />
-          
-          <FeatureCard
-            icon={ChartLine}
-            title="Investment Basics"
-            description="Understand stocks, markets, and how to make your money work for you from an early age."
-            iconGradient="purple"
-            variant="elevated"
-            animationDelay="0.3s"
-          />
+        <div className="w-full flex justify-center mb-16">
+          <div className="flex flex-wrap justify-center gap-8" role="list" aria-label="Workshop features">
+            <FeatureCard
+              icon={Coins}
+              title="Real-World Skills"
+              description="Learn budgeting, online payments, taxes, and smart spending habits that you'll actually use."
+              iconGradient="blue"
+              variant="elevated"
+              animationDelay="0.1s"
+            />
+            
+            <FeatureCard
+              icon={Store}
+              title="Modern Business"
+              description="Explore online businesses, TikTok Shop, reselling, and digital entrepreneurship opportunities."
+              iconGradient="green"
+              variant="elevated"
+              animationDelay="0.2s"
+            />
+            
+            <FeatureCard
+              icon={ChartLine}
+              title="Investment Basics"
+              description="Understand stocks, markets, and how to make your money work for you from an early age."
+              iconGradient="purple"
+              variant="elevated"
+              animationDelay="0.3s"
+            />
+          </div>
         </div>
 
         <div className="liquid-glass-surface glass-interactive glass-floating rounded-2xl p-8 md:p-12 animate-fade-in transform transition-all duration-700 hover:scale-105 shadow-medium hover:shadow-large mb-16" style={{ animationDelay: '0.4s' }} aria-labelledby="team-video">

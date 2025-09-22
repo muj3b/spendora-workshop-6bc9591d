@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 
 const MeetTheTeam = () => {
@@ -31,7 +30,7 @@ const MeetTheTeam = () => {
 
   return (
     <section className="py-20 bg-background transition-colors duration-300">
-      <div className="container mx-auto px-6">
+      <div className="w-full max-w-7xl mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Meet the <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Team</span>
@@ -41,29 +40,31 @@ const MeetTheTeam = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-          {team.map((member, index) => (
-            <div key={index} className="w-full md:w-[calc(50%-1rem)] max-w-md">
-              <Card className="liquid-glass-surface p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-dynamic-island-pop h-full" style={{ animationDelay: `${index * 0.1}s` }}>
-              <div className="text-center mb-6">
-                <div className={`w-20 h-20 rounded-full bg-gradient-to-r ${member.gradient} mx-auto mb-4 flex items-center justify-center`}>
-                  <span className="text-white text-2xl font-bold">
-                    {member.name.charAt(0)}
-                  </span>
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">
-                  {member.name}
-                </h3>
-                <p className={`text-sm font-semibold bg-gradient-to-r ${member.gradient} bg-clip-text text-transparent`}>
-                  {member.expertise}
-                </p>
+        <div className="w-full flex justify-center">
+          <div className="flex flex-wrap justify-center gap-8 max-w-6xl">
+            {team.map((member, index) => (
+              <div key={index} className="w-full md:w-[calc(50%-1rem)] max-w-md">
+                <Card className="liquid-glass-surface p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-dynamic-island-pop h-full" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div className="text-center mb-6">
+                    <div className={`w-20 h-20 rounded-full bg-gradient-to-r ${member.gradient} mx-auto mb-4 flex items-center justify-center`}>
+                      <span className="text-white text-2xl font-bold">
+                        {member.name.charAt(0)}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-2">
+                      {member.name}
+                    </h3>
+                    <p className={`text-sm font-semibold bg-gradient-to-r ${member.gradient} bg-clip-text text-transparent`}>
+                      {member.expertise}
+                    </p>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-center">
+                    {member.bio}
+                  </p>
+                </Card>
               </div>
-              <p className="text-muted-foreground leading-relaxed text-center">
-                {member.bio}
-              </p>
-              </Card>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         <div className="text-center mt-16">
