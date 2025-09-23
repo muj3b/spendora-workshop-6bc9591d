@@ -64,10 +64,10 @@ export const RobotBackground = () => {
   return (
     // Position robot lower to accommodate text at top and buttons at body level
     <div 
-      className="fixed top-56 left-1/2 transform -translate-x-1/3 w-full h-screen z-30 pointer-events-none overflow-hidden"
+      className="fixed top-64 left-1/2 transform -translate-x-1/3 w-full h-screen z-30 pointer-events-none overflow-hidden"
       style={{
         opacity: finalOpacity,
-        transform: `translateX(calc(-33.333333% - 80px)) scale(${scale}) translateY(${parallaxY}px)`,
+        transform: `translateX(calc(-33.333333% - 60px)) scale(${scale}) translateY(${parallaxY}px)`,
         transition: 'opacity 1s ease-out, transform 0.3s ease-out'
       }}
     >
