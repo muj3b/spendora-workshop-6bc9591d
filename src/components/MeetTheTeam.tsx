@@ -66,10 +66,10 @@ const MeetTheTeam = () => {
 
         <div className="text-center mt-16">
           <div className="liquid-glass-surface rounded-2xl p-8 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-2xl font-bold text-foreground mb-4">
               Learn from Real Experience
             </h3>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
+            <p className="text-lg text-muted-foreground">
               Our team brings together state-level competition winners, successful entrepreneurs, 
               and experienced investors—all passionate about sharing what they've learned with the next generation.
             </p>
