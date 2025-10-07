@@ -67,19 +67,13 @@ class ElasticCursorController {
   }
 
   bindEvents() {
-    // Find all interactive elements
+    // Only target actual clickable elements - be very selective
     const selectors = [
-      'button',
-      'a',
-      '[role="button"]',
-      '.liquid-glass-surface',
-      '.card',
-      '.nav-link',
-      '[data-spotlight]',
-      'input',
-      'textarea',
-      'select',
-      '[data-sticky]'
+      'button:not([disabled])',
+      'a[href]',
+      'input[type="button"]',
+      'input[type="submit"]',
+      '[role="button"]:not(.card):not(.liquid-glass-surface)'
     ];
 
     const elements = document.querySelectorAll(selectors.join(', '));
@@ -87,91 +81,113 @@ class ElasticCursorController {
     elements.forEach((el) => {
       const element = el as HTMLElement;
       
-      // Skip if already marked as sticky
+      // Skip if already bound or if it's a parent container
       if (element.hasAttribute('data-sticky-bound')) return;
-      element.setAttribute('data-sticky-bound', 'true');
-      element.setAttribute('data-sticky', '');
       
-      // Create sticky area
-      let area = element.querySelector('[data-sticky-area]') as HTMLElement;
-      if (!area) {
-        area = document.createElement('div');
-        area.setAttribute('data-sticky-area', '');
-        area.style.cssText = 'position: absolute; inset: 0; pointer-events: none; z-index: 1;';
-        
-        // Ensure element can contain the area
-        const computedStyle = window.getComputedStyle(element);
-        if (computedStyle.position === 'static') {
-          element.style.position = 'relative';
-        }
-        element.appendChild(area);
-      }
-
-      const onPointerOver = () => {
+      // Skip elements that are too large (likely containers, not buttons)
+      const rect = element.getBoundingClientRect();
+      if (rect.width > 300 || rect.height > 100) return;
+      
+      element.setAttribute('data-sticky-bound', 'true');
+      
+      // Store original position for magnetic effect
+      const originalTransform = element.style.transform;
+      
+      const onPointerEnter = (ev: PointerEvent) => {
         this.active = true;
-        this.target = area;
+        this.target = element;
         element.classList.add('is-bubbled');
+        
+        // Get element center
+        const rect = element.getBoundingClientRect();
+        this.targetRect = {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+          width: rect.width,
+          height: rect.height
+        };
       };
 
-      const onPointerOut = () => {
+      const onPointerLeave = () => {
         this.active = false;
         this.target = null;
         element.classList.remove('is-bubbled');
+        
+        // Reset element position with smooth animation
+        gsap.to(element, {
+          x: 0,
+          y: 0,
+          duration: 0.6,
+          ease: 'elastic.out(1, 0.5)'
+        });
       };
 
-      element.addEventListener('pointerenter', onPointerOver, { passive: true });
-      element.addEventListener('pointerleave', onPointerOut, { passive: true });
-
-      const moveX = gsap.quickTo(element, 'x', { duration: 1, ease: 'elastic.out(1, 0.3)' });
-      const moveY = gsap.quickTo(element, 'y', { duration: 1, ease: 'elastic.out(1, 0.3)' });
+      const moveX = gsap.quickTo(element, 'x', { 
+        duration: 0.8, 
+        ease: 'power3.out'
+      });
+      const moveY = gsap.quickTo(element, 'y', { 
+        duration: 0.8, 
+        ease: 'power3.out'
+      });
 
       const onPointerMove = (ev: PointerEvent) => {
-        const { clientX, clientY } = ev;
+        if (!this.active || this.target !== element) return;
+        
         const rect = element.getBoundingClientRect();
-        const dx = clientX - (rect.left + rect.width / 2);
-        const dy = clientY - (rect.top + rect.height / 2);
-        moveX(dx * 0.2);
-        moveY(dy * 0.2);
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        // Calculate offset from center
+        const dx = ev.clientX - centerX;
+        const dy = ev.clientY - centerY;
+        
+        // Subtle magnetic pull (reduced intensity)
+        moveX(dx * 0.15);
+        moveY(dy * 0.15);
       };
 
-      const onPointerLeaveReset = () => {
-        moveX(0);
-        moveY(0);
-      };
-
+      element.addEventListener('pointerenter', onPointerEnter, { passive: true });
+      element.addEventListener('pointerleave', onPointerLeave, { passive: true });
       element.addEventListener('pointermove', onPointerMove, { passive: true });
-      element.addEventListener('pointerleave', onPointerLeaveReset, { passive: true });
 
       this.cleanups.push(() => {
-        element.removeEventListener('pointerenter', onPointerOver);
-        element.removeEventListener('pointerleave', onPointerOut);
+        element.removeEventListener('pointerenter', onPointerEnter);
+        element.removeEventListener('pointerleave', onPointerLeave);
         element.removeEventListener('pointermove', onPointerMove);
-        element.removeEventListener('pointerleave', onPointerLeaveReset);
         element.removeAttribute('data-sticky-bound');
+        element.style.transform = originalTransform;
       });
     });
   }
 
+  targetRect: { x: number; y: number; width: number; height: number } | null = null;
+
   moveTo(x: number, y: number) {
-    if (this.active && this.target) {
-      const rect = this.target.getBoundingClientRect();
-      const cx = rect.x + rect.width / 2;
-      const cy = rect.y + rect.height / 2;
-      const dx = x - cx;
-      const dy = y - cy;
+    if (this.active && this.target && this.targetRect) {
+      // Magnetic pull towards element center
+      const dx = x - this.targetRect.x;
+      const dy = y - this.targetRect.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      // Smooth interpolation towards target
+      this.pos.aim.x = this.targetRect.x + dx * 0.3;
+      this.pos.aim.y = this.targetRect.y + dy * 0.3;
+      
+      // Scale cursor to match button size
+      const avgSize = (this.targetRect.width + this.targetRect.height) / 2;
+      this.size.aim = Math.max(avgSize / 24, 2.5);
 
-      this.pos.aim.x = cx + dx * 0.15;
-      this.pos.aim.y = cy + dy * 0.15;
-      this.size.aim = 2;
-
+      // Rotate towards movement direction
       const angle = Math.atan2(dy, dx) * (180 / Math.PI);
-      const dist = Math.sqrt(dx * dx + dy * dy) * 0.01;
-      gsap.set(this.node, { rotate: angle });
+      const normalizedDist = Math.min(distance / 100, 1);
+      
       gsap.to(this.node, {
-        scaleX: this.size.aim + Math.pow(Math.min(dist, 0.6), 3) * 3,
-        scaleY: this.size.aim - Math.pow(Math.min(dist, 0.3), 3) * 3,
-        duration: 0.5,
-        ease: 'power4.out',
+        rotate: angle,
+        scaleX: this.size.aim * (1 + normalizedDist * 0.3),
+        scaleY: this.size.aim * (1 - normalizedDist * 0.15),
+        duration: 0.4,
+        ease: 'power2.out',
         overwrite: true
       });
     } else {

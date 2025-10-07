@@ -132,21 +132,21 @@
   }
 
   .elastic-bubble {
+    will-change: transform, scale;
+    pointer-events: none;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Only buttons get magnetic effect */
+  button[data-sticky-bound],
+  a[data-sticky-bound],
+  [role="button"][data-sticky-bound] {
     will-change: transform;
-    pointer-events: none;
+    transition: transform 0.1s ease-out;
   }
 
-  [data-sticky] {
-    position: relative;
-  }
-
-  [data-sticky-area] {
-    pointer-events: none;
-    transition: transform 0.3s ease;
-  }
-
-  [data-sticky]:hover [data-sticky-area] {
-    transform: scale(4);
+  .is-bubbled {
+    z-index: 10;
   }
 
   html.dark .is-bubbled svg,
