@@ -76,10 +76,10 @@ class ElasticCursorController {
       '.card',
       '.nav-link',
       '[data-spotlight]',
-      '.icon-btn',
       'input',
       'textarea',
-      'select'
+      'select',
+      '[data-sticky]'
     ];
 
     const elements = document.querySelectorAll(selectors.join(', '));
@@ -87,15 +87,23 @@ class ElasticCursorController {
     elements.forEach((el) => {
       const element = el as HTMLElement;
       
-      // Create sticky area if it doesn't exist
+      // Skip if already marked as sticky
+      if (element.hasAttribute('data-sticky-bound')) return;
+      element.setAttribute('data-sticky-bound', 'true');
+      element.setAttribute('data-sticky', '');
+      
+      // Create sticky area
       let area = element.querySelector('[data-sticky-area]') as HTMLElement;
       if (!area) {
         area = document.createElement('div');
         area.setAttribute('data-sticky-area', '');
-        area.style.position = 'absolute';
-        area.style.inset = '0';
-        area.style.pointerEvents = 'auto';
-        element.style.position = element.style.position || 'relative';
+        area.style.cssText = 'position: absolute; inset: 0; pointer-events: none; z-index: 1;';
+        
+        // Ensure element can contain the area
+        const computedStyle = window.getComputedStyle(element);
+        if (computedStyle.position === 'static') {
+          element.style.position = 'relative';
+        }
         element.appendChild(area);
       }
 
@@ -111,34 +119,35 @@ class ElasticCursorController {
         element.classList.remove('is-bubbled');
       };
 
-      area.addEventListener('pointerover', onPointerOver);
-      area.addEventListener('pointerout', onPointerOut);
+      element.addEventListener('pointerenter', onPointerOver, { passive: true });
+      element.addEventListener('pointerleave', onPointerOut, { passive: true });
 
       const moveX = gsap.quickTo(element, 'x', { duration: 1, ease: 'elastic.out(1, 0.3)' });
       const moveY = gsap.quickTo(element, 'y', { duration: 1, ease: 'elastic.out(1, 0.3)' });
 
       const onPointerMove = (ev: PointerEvent) => {
         const { clientX, clientY } = ev;
-        const { width, height, left, top } = element.getBoundingClientRect();
-        const dx = clientX - (left + width / 2);
-        const dy = clientY - (top + height / 2);
+        const rect = element.getBoundingClientRect();
+        const dx = clientX - (rect.left + rect.width / 2);
+        const dy = clientY - (rect.top + rect.height / 2);
         moveX(dx * 0.2);
         moveY(dy * 0.2);
       };
 
-      const onPointerOutReset = () => {
+      const onPointerLeaveReset = () => {
         moveX(0);
         moveY(0);
       };
 
-      element.addEventListener('pointermove', onPointerMove);
-      element.addEventListener('pointerout', onPointerOutReset);
+      element.addEventListener('pointermove', onPointerMove, { passive: true });
+      element.addEventListener('pointerleave', onPointerLeaveReset, { passive: true });
 
       this.cleanups.push(() => {
-        area.removeEventListener('pointerover', onPointerOver);
-        area.removeEventListener('pointerout', onPointerOut);
+        element.removeEventListener('pointerenter', onPointerOver);
+        element.removeEventListener('pointerleave', onPointerOut);
         element.removeEventListener('pointermove', onPointerMove);
-        element.removeEventListener('pointerout', onPointerOutReset);
+        element.removeEventListener('pointerleave', onPointerLeaveReset);
+        element.removeAttribute('data-sticky-bound');
       });
     });
   }

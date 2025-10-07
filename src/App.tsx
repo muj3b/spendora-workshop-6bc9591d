@@ -36,7 +36,6 @@ const App = () => (
         <Toaster />
         <Sonner />
         <DynamicBackground />
-        <SpotlightCursor />
         <LiquidGlassInteractions />
         <ElasticCursor />
         <SoundEffects />

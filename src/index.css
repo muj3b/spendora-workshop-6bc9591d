@@ -124,16 +124,24 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     scroll-behavior: smooth;
-    cursor: none;
   }
 
   /* Elastic Cursor Styles */
+  * {
+    cursor: none !important;
+  }
+
   .elastic-bubble {
     will-change: transform;
+    pointer-events: none;
+  }
+
+  [data-sticky] {
+    position: relative;
   }
 
   [data-sticky-area] {
-    pointer-events: auto;
+    pointer-events: none;
     transition: transform 0.3s ease;
   }
 
@@ -141,19 +149,9 @@
     transform: scale(4);
   }
 
-  html.dark .is-bubbled,
-  html.dark .is-bubbled * {
-    color: #fff !important;
-  }
-
   html.dark .is-bubbled svg,
   html.dark .is-bubbled svg * {
     stroke: #fff !important;
-  }
-
-  html:not(.dark) .is-bubbled,
-  html:not(.dark) .is-bubbled * {
-    color: #000 !important;
   }
 
   html:not(.dark) .is-bubbled svg,
