@@ -5,8 +5,8 @@ const MeetTheTeam = () => {
   const team = [
     {
       name: "Mujeeb Chaudhry",
-      expertise: "E-commerce & TikTok Shop",
-      bio: "Mujeeb specializes in complex online shops and has experience with dropshipping, creating crypto projects, and building profitable apps. He and Neil made thousands of dollars through their ventures and helps students learn advanced e-commerce strategies.",
+      expertise: "E-commerce & Investment Strategy",
+      bio: "Mujeeb competed in the Wharton Investment Competition and placed at nationals in BPA. He specializes in complex online shops, dropshipping, crypto projects, and has built multiple profitable apps. Together with Neil, he's made thousands through strategic investments and e-commerce ventures, teaching students advanced business strategies.",
       gradient: "from-blue-500 to-cyan-500"
     },
     {

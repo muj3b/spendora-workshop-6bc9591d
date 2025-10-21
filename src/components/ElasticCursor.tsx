@@ -165,27 +165,19 @@ class ElasticCursorController {
 
   moveTo(x: number, y: number) {
     if (this.active && this.target && this.targetRect) {
-      // Magnetic pull towards element center
-      const dx = x - this.targetRect.x;
-      const dy = y - this.targetRect.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+      // Center cursor on the target element
+      this.pos.aim.x = this.targetRect.x;
+      this.pos.aim.y = this.targetRect.y;
       
-      // Smooth interpolation towards target
-      this.pos.aim.x = this.targetRect.x + dx * 0.3;
-      this.pos.aim.y = this.targetRect.y + dy * 0.3;
-      
-      // Scale cursor to match button size
-      const avgSize = (this.targetRect.width + this.targetRect.height) / 2;
-      this.size.aim = Math.max(avgSize / 24, 2.5);
-
-      // Rotate towards movement direction
-      const angle = Math.atan2(dy, dx) * (180 / Math.PI);
-      const normalizedDist = Math.min(distance / 100, 1);
+      // Scale to exactly fill the target element
+      const scaleX = this.targetRect.width / 24;
+      const scaleY = this.targetRect.height / 24;
       
       gsap.to(this.node, {
-        rotate: angle,
-        scaleX: this.size.aim * (1 + normalizedDist * 0.3),
-        scaleY: this.size.aim * (1 - normalizedDist * 0.15),
+        rotate: 0,
+        scaleX: scaleX,
+        scaleY: scaleY,
+        borderRadius: '12px',
         duration: 0.4,
         ease: 'power2.out',
         overwrite: true
@@ -194,6 +186,12 @@ class ElasticCursorController {
       this.pos.aim.x = x;
       this.pos.aim.y = y;
       this.size.aim = 1;
+      
+      gsap.to(this.node, {
+        borderRadius: '50%',
+        duration: 0.3,
+        ease: 'power2.out'
+      });
     }
   }
 
