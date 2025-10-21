@@ -1,7 +1,28 @@
-
+import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 
 const MeetTheTeam = () => {
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasAnimated]);
   const team = [
     {
       name: "Mujeeb Chaudhry",
@@ -30,10 +51,17 @@ const MeetTheTeam = () => {
   ];
 
   return (
-    <section className="py-20 bg-background transition-colors duration-300">
+    <section 
+      ref={sectionRef}
+      className="py-20 bg-background transition-colors duration-300"
+    >
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className={`text-4xl md:text-5xl font-bold text-foreground mb-6 transition-all duration-1000 ${
+            hasAnimated 
+              ? 'opacity-100 scale-100 drop-shadow-[0_0_30px_rgba(147,51,234,0.5)]' 
+              : 'opacity-0 scale-95'
+          }`}>
             Meet the <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Founders</span>
           </h2>
           <p className="text-xl text-muted-foreground">
