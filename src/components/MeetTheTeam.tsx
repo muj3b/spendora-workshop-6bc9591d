@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 import { Card } from "@/components/ui/card";
 
 const MeetTheTeam = () => {
@@ -109,4 +109,4 @@ const MeetTheTeam = () => {
   );
 };
 
-export default MeetTheTeam;
+export default memo(MeetTheTeam);

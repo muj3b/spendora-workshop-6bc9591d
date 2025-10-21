@@ -196,28 +196,37 @@ class ElasticCursorController {
   }
 
   update() {
-    this.pos.now.lerp(this.pos.aim, this.pos.ease);
-    this.size.now = gsap.utils.interpolate(this.size.now, this.size.aim, this.size.ease);
+    // Reduce update frequency for better performance
+    if (!this.lastUpdate || Date.now() - this.lastUpdate > 16) {
+      this.pos.now.lerp(this.pos.aim, this.pos.ease);
+      this.size.now = gsap.utils.interpolate(this.size.now, this.size.aim, this.size.ease);
 
-    const diff = this.pos.now.clone().sub(this.pos.prev);
-    this.pos.prev.copy(this.pos.now);
-    this.size.prev = this.size.now;
+      const diff = this.pos.now.clone().sub(this.pos.prev);
+      this.pos.prev.copy(this.pos.now);
+      this.size.prev = this.size.now;
 
-    gsap.set(this.node, {
-      x: this.pos.now.x,
-      y: this.pos.now.y
-    });
-
-    if (!this.active) {
-      const ang = Math.atan2(diff.y, diff.x) * (180 / Math.PI);
-      const dist = Math.sqrt(diff.x ** 2 + diff.y ** 2) * 0.04;
       gsap.set(this.node, {
-        rotate: ang,
-        scaleX: this.size.now + Math.min(dist, 1),
-        scaleY: this.size.now - Math.min(dist, 0.3)
+        x: this.pos.now.x,
+        y: this.pos.now.y,
+        force3D: true
       });
+
+      if (!this.active) {
+        const ang = Math.atan2(diff.y, diff.x) * (180 / Math.PI);
+        const dist = Math.sqrt(diff.x ** 2 + diff.y ** 2) * 0.04;
+        gsap.set(this.node, {
+          rotate: ang,
+          scaleX: this.size.now + Math.min(dist, 1),
+          scaleY: this.size.now - Math.min(dist, 0.3),
+          force3D: true
+        });
+      }
+      
+      this.lastUpdate = Date.now();
     }
   }
+
+  private lastUpdate: number = 0;
 
   cleanup() {
     this.cleanups.forEach(fn => fn());
