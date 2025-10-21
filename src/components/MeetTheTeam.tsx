@@ -34,10 +34,10 @@ const MeetTheTeam = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Meet the <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Team</span>
+            Meet the <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Founders</span>
           </h2>
           <p className="text-xl text-muted-foreground">
-            High school entrepreneurs and investors sharing their real-world experience
+            Student entrepreneurs who've competed nationally and generated thousands in revenue—now teaching you their proven strategies
           </p>
         </div>
 
@@ -67,11 +67,12 @@ const MeetTheTeam = () => {
         <div className="text-center mt-16">
           <div className="liquid-glass-surface rounded-2xl p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-foreground mb-4">
-              Learn from Real Experience
+              Real Results, Real Education
             </h3>
             <p className="text-lg text-muted-foreground">
-              Our team brings together state-level competition winners, successful entrepreneurs, 
-              and experienced investors—all passionate about sharing what they've learned with the next generation.
+              Our founders have competed in prestigious competitions like Wharton Investment and BPA, 
+              built profitable ventures, and generated real revenue. Now they're sharing their proven strategies 
+              to help you build genuine financial literacy and entrepreneurial skills.
             </p>
           </div>
         </div>
