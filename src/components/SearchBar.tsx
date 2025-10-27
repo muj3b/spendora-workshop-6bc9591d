@@ -29,12 +29,21 @@ const SearchBar = () => {
     { title: 'Workshop Gallery', content: 'Photos and highlights from past workshops and student events', url: '/gallery', type: 'page' },
     { title: 'Success Stories', content: 'Student achievements, testimonials, and real transformation stories', url: '/success-stories', type: 'page' },
     { title: 'Donate', content: 'Support our mission and help fund free workshops for students', url: '/donate', type: 'page' },
-    
+
     // Home Page Sections
     { title: 'About Spendora', content: 'Mission, impact, and goals for financial education in schools', url: '/#about-spendora', type: 'section' },
     { title: 'Workshop Schedule', content: 'Upcoming dates, times, registration, and event calendar', url: '/#workshop-schedule', type: 'section' },
+    { title: 'Meet the Team', content: 'Student entrepreneurs leading Spendora workshops and founders', url: '/#meet-the-team', type: 'section' },
     { title: 'Meet the Founders', content: 'Student entrepreneurs leading Spendora workshops', url: '/#meet-the-team', type: 'section' },
-    
+
+    // Social Links & External
+    { title: 'Instagram', content: 'Follow us on Instagram @spendora.erhs for updates and workshop photos', url: 'https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', type: 'page' },
+    { title: 'Social Media', content: 'Connect with Spendora on social platforms and stay updated', url: 'https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', type: 'page' },
+    { title: 'Registration Form', content: 'Sign up for the free workshop using our Google Form', url: 'https://forms.gle/JWCVyGcfN5UKiwqHA', type: 'page' },
+    { title: 'Google Forms Signup', content: 'Register for Spendora workshops through our form', url: 'https://forms.gle/JWCVyGcfN5UKiwqHA', type: 'page' },
+    { title: 'R.H. Stafford Library', content: 'Workshop location and directions on Google Maps', url: 'https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc', type: 'page' },
+    { title: 'Location', content: 'Find the workshop venue at R.H. Stafford Library', url: 'https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc', type: 'page' },
+
     // Topics & Keywords
     { title: 'Financial Literacy', content: 'Essential money skills, financial planning, and economic education', url: '/', type: 'page' },
     { title: 'Investment Education', content: 'Stocks, bonds, ETFs, mutual funds, and portfolio building', url: '/stock-markets', type: 'page' },
@@ -46,11 +55,15 @@ const SearchBar = () => {
     { title: 'Cryptocurrency', content: 'Bitcoin, Ethereum, altcoins, wallets, and crypto investing', url: '/crypto-nfts', type: 'page' },
     { title: 'NFT Marketplace', content: 'Digital art, collectibles, minting, and NFT trading platforms', url: '/crypto-nfts', type: 'page' },
     { title: 'Blockchain Technology', content: 'Decentralized systems, smart contracts, and Web3 education', url: '/crypto-nfts', type: 'page' },
-    
-    // Actions
+
+    // Actions & Features
     { title: 'Register for Workshop', content: 'Sign up for free financial literacy workshops and events', url: '/#workshop-schedule', type: 'section' },
     { title: 'Contact Us', content: 'Get in touch with the Spendora team for questions or partnerships', url: '/#meet-the-team', type: 'section' },
     { title: 'Support Our Cause', content: 'Make a donation to help provide free education to students', url: '/donate', type: 'page' },
+    { title: 'Event Timer', content: 'Countdown to next workshop event and live event information', url: '/#workshop-schedule', type: 'section' },
+    { title: 'Free Workshop', content: 'Completely free financial literacy education for students', url: '/', type: 'page' },
+    { title: 'High School Students', content: 'Workshops designed by students for students at East Ridge High School', url: '/', type: 'page' },
+    { title: 'Student-Led', content: 'Peer-to-peer financial education led by motivated student entrepreneurs', url: '/#meet-the-team', type: 'section' },
   ];
 
   // Popular/default results to show when no query
@@ -94,11 +107,11 @@ const SearchBar = () => {
   }, []);
 
   const handleResultClick = (url: string) => {
-    if (url.startsWith('/#')) {
-      // Handle section navigation
-      const sectionId = url.substring(2); // Remove '/#'
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else if (url.startsWith('/#')) {
+      const sectionId = url.substring(2);
       if (window.location.pathname !== '/') {
-        // Navigate to home first, then scroll to section
         navigate('/');
         setTimeout(() => {
           const element = document.getElementById(sectionId);
@@ -107,14 +120,12 @@ const SearchBar = () => {
           }
         }, 100);
       } else {
-        // Already on home page, just scroll
         const element = document.getElementById(sectionId);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }
     } else {
-      // Handle page navigation
       navigate(url);
     }
     setIsOpen(false);
@@ -132,24 +143,30 @@ const SearchBar = () => {
   };
 
   const searchModal = isOpen ? createPortal(
-    <div 
-      className="fixed inset-0 z-[9999] bg-background/60 backdrop-blur-lg animate-fade-in"
+    <div
+      className="fixed inset-0 z-[9999] animate-fade-in"
       onClick={handleClose}
-      style={{ margin: 0, padding: 0 }}
+      style={{
+        margin: 0,
+        padding: 0,
+        background: 'rgba(0, 0, 0, 0.4)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+      }}
     >
       <div className="fixed inset-0 flex items-start justify-center pt-[10vh] px-4">
-        <Card 
-          className="w-full max-w-3xl shadow-2xl border-2 animate-scale-in bg-background/80 backdrop-blur-2xl" 
+        <Card
+          className="w-full max-w-3xl shadow-2xl border animate-scale-in liquid-glass-surface"
           onClick={(e) => e.stopPropagation()}
-          style={{ 
-            background: 'rgba(var(--background) / 0.85)',
-            backdropFilter: 'blur(40px)',
-            WebkitBackdropFilter: 'blur(40px)',
+          style={{
+            borderRadius: '1.5rem',
           }}
         >
           <CardContent className="p-0">
             {/* Search Input Header */}
-            <div className="flex items-center border-b px-6 py-5 bg-muted/20">
+            <div className="flex items-center border-b px-6 py-5" style={{
+              background: 'linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))',
+            }}>
               <Search className="h-6 w-6 text-muted-foreground mr-4 flex-shrink-0" />
               <Input
                 placeholder="Search workshops, topics, pages..."
@@ -162,7 +179,7 @@ const SearchBar = () => {
                 variant="ghost"
                 size="icon"
                 onClick={handleClose}
-                className="ml-3 h-10 w-10 hover:bg-muted/50 rounded-full flex-shrink-0"
+                className="ml-3 h-10 w-10 hover:bg-accent rounded-full flex-shrink-0 transition-all duration-200"
               >
                 <X className="h-5 w-5" />
               </Button>
@@ -172,7 +189,11 @@ const SearchBar = () => {
             {results.length > 0 && (
               <div className="max-h-[65vh] overflow-y-auto">
                 {query.length === 0 && (
-                  <div className="px-6 py-3 text-xs font-semibold text-muted-foreground bg-muted/20 border-b uppercase tracking-wider">
+                  <div className="px-6 py-3 text-xs font-semibold text-muted-foreground border-b uppercase tracking-wider"
+                    style={{
+                      background: 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))',
+                    }}
+                  >
                     Popular Results
                   </div>
                 )}
@@ -180,7 +201,7 @@ const SearchBar = () => {
                   <button
                     key={index}
                     onClick={() => handleResultClick(result.url)}
-                    className="w-full text-left px-6 py-5 hover:bg-accent/50 active:bg-accent transition-all duration-200 border-b last:border-b-0 group"
+                    className="w-full text-left px-6 py-5 hover:bg-accent/30 active:bg-accent/50 transition-all duration-200 border-b last:border-b-0 group"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">
@@ -191,7 +212,12 @@ const SearchBar = () => {
                           {result.content}
                         </div>
                       </div>
-                      <div className="text-[11px] font-medium text-muted-foreground/70 bg-muted/50 px-3 py-1.5 rounded-full uppercase tracking-wider flex-shrink-0">
+                      <div className="text-[11px] font-medium text-muted-foreground/70 px-3 py-1.5 rounded-full uppercase tracking-wider flex-shrink-0"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.05)',
+                          backdropFilter: 'blur(8px)',
+                        }}
+                      >
                         {result.type}
                       </div>
                     </div>
@@ -210,7 +236,11 @@ const SearchBar = () => {
             )}
 
             {/* Footer hint */}
-            <div className="px-6 py-3 text-xs text-muted-foreground/60 border-t bg-muted/10 flex items-center justify-between">
+            <div className="px-6 py-3 text-xs text-muted-foreground/60 border-t flex items-center justify-between"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02))',
+              }}
+            >
               <span className="font-medium">Press ESC to close</span>
               <span className="hidden sm:inline">Use ↑↓ to navigate results</span>
             </div>

@@ -99,27 +99,25 @@ class ElasticCursorController {
       const originalTransform = element.style.transform;
       
       const onPointerEnter = (ev: PointerEvent) => {
-        // Prevent rapid switching between elements
         if (this.isTransitioning) return;
-        
+
+        const rect = element.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
         this.active = true;
         this.target = element;
         this.isTransitioning = true;
         element.classList.add('is-bubbled');
-        
-        // Get element bounds
-        const rect = element.getBoundingClientRect();
+
         this.targetRect = {
           x: rect.left + rect.width / 2,
           y: rect.top + rect.height / 2,
           width: rect.width,
           height: rect.height
         };
-        
-        // Transition to fill state
+
         this.updateFillState();
-        
-        // Clear transition lock after animation
+
         setTimeout(() => {
           this.isTransitioning = false;
         }, 150);
@@ -278,18 +276,39 @@ export const ElasticCursor = () => {
     const controller = new ElasticCursorController(bubbleRef.current);
     controllerRef.current = controller;
 
-    // Initial bind
     controller.bindEvents();
 
-    // Rebind on DOM changes to catch dynamically added elements
+    let rebindTimer: number | null = null;
     const observer = new MutationObserver(() => {
-      controller.cleanup();
-      controller.bindEvents();
+      if (rebindTimer) {
+        clearTimeout(rebindTimer);
+      }
+
+      rebindTimer = window.setTimeout(() => {
+        controller.active = false;
+        controller.target = null;
+        controller.targetRect = null;
+        controller.isTransitioning = false;
+
+        gsap.to(controller.node, {
+          scaleX: 1,
+          scaleY: 1,
+          borderRadius: '50%',
+          duration: 0.2,
+          ease: 'power2.out',
+          overwrite: true
+        });
+
+        controller.cleanup();
+        controller.bindEvents();
+      }, 100);
     });
 
     observer.observe(document.body, {
       childList: true,
-      subtree: true
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'style']
     });
 
     const onMouseMove = (e: MouseEvent) => {
@@ -297,6 +316,18 @@ export const ElasticCursor = () => {
     };
 
     window.addEventListener('mousemove', onMouseMove);
+
+    const onMouseDown = () => {
+      if (controller.active && controller.target) {
+        return;
+      }
+      controller.active = false;
+      controller.target = null;
+      controller.targetRect = null;
+      controller.isTransitioning = false;
+    };
+
+    window.addEventListener('mousedown', onMouseDown);
 
     const animate = () => {
       controller.update();
@@ -307,9 +338,13 @@ export const ElasticCursor = () => {
     return () => {
       observer.disconnect();
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mousedown', onMouseDown);
       controller.cleanup();
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
+      }
+      if (rebindTimer) {
+        clearTimeout(rebindTimer);
       }
     };
   }, []);
