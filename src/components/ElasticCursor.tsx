@@ -53,13 +53,13 @@ class ElasticCursorController {
       prev: vec2(-100, -100),
       now: vec2(-100, -100),
       aim: vec2(-100, -100),
-      ease: 0.25
+      ease: 0.16
     };
     this.size = {
       prev: 1,
       now: 1,
       aim: 1,
-      ease: 0.25
+      ease: 0.16
     };
     this.active = false;
     this.target = null;
@@ -67,13 +67,15 @@ class ElasticCursorController {
   }
 
   bindEvents() {
-    // Only target actual clickable elements - be very selective
+    // Target all interactive elements
     const selectors = [
       'button:not([disabled])',
       'a[href]',
       'input[type="button"]',
       'input[type="submit"]',
-      '[role="button"]:not(.card):not(.liquid-glass-surface)'
+      '[role="button"]',
+      '.nav-link',
+      '[data-interactive]'
     ];
 
     const elements = document.querySelectorAll(selectors.join(', '));
@@ -81,12 +83,15 @@ class ElasticCursorController {
     elements.forEach((el) => {
       const element = el as HTMLElement;
       
-      // Skip if already bound or if it's a parent container
+      // Skip if already bound
       if (element.hasAttribute('data-sticky-bound')) return;
       
       // Skip elements that are too large (likely containers, not buttons)
       const rect = element.getBoundingClientRect();
-      if (rect.width > 300 || rect.height > 100) return;
+      if (rect.width > 400 || rect.height > 150) return;
+      
+      // Skip invisible elements
+      if (rect.width === 0 || rect.height === 0) return;
       
       element.setAttribute('data-sticky-bound', 'true');
       
@@ -94,8 +99,12 @@ class ElasticCursorController {
       const originalTransform = element.style.transform;
       
       const onPointerEnter = (ev: PointerEvent) => {
+        // Prevent rapid switching between elements
+        if (this.isTransitioning) return;
+        
         this.active = true;
         this.target = element;
+        this.isTransitioning = true;
         element.classList.add('is-bubbled');
         
         // Get element bounds
@@ -107,8 +116,13 @@ class ElasticCursorController {
           height: rect.height
         };
         
-        // Immediately transition to fill state
+        // Transition to fill state
         this.updateFillState();
+        
+        // Clear transition lock after animation
+        setTimeout(() => {
+          this.isTransitioning = false;
+        }, 150);
       };
 
       const onPointerLeave = () => {
@@ -184,6 +198,7 @@ class ElasticCursorController {
   }
 
   targetRect: { x: number; y: number; width: number; height: number } | null = null;
+  isTransitioning: boolean = false;
 
   updateFillState() {
     if (this.active && this.target && this.targetRect) {
