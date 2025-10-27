@@ -53,13 +53,13 @@ class ElasticCursorController {
       prev: vec2(-100, -100),
       now: vec2(-100, -100),
       aim: vec2(-100, -100),
-      ease: 0.1
+      ease: 0.25
     };
     this.size = {
       prev: 1,
       now: 1,
       aim: 1,
-      ease: 0.1
+      ease: 0.25
     };
     this.active = false;
     this.target = null;
@@ -98,7 +98,7 @@ class ElasticCursorController {
         this.target = element;
         element.classList.add('is-bubbled');
         
-        // Get element center
+        // Get element bounds
         const rect = element.getBoundingClientRect();
         this.targetRect = {
           x: rect.left + rect.width / 2,
@@ -106,14 +106,27 @@ class ElasticCursorController {
           width: rect.width,
           height: rect.height
         };
+        
+        // Immediately transition to fill state
+        this.updateFillState();
       };
 
       const onPointerLeave = () => {
         this.active = false;
         this.target = null;
+        this.targetRect = null;
         element.classList.remove('is-bubbled');
         
-        // Reset element position with smooth animation
+        // Reset to normal cursor
+        gsap.to(this.node, {
+          scaleX: 1,
+          scaleY: 1,
+          borderRadius: '50%',
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+        
+        // Reset element position
         gsap.to(element, {
           x: 0,
           y: 0,
@@ -135,6 +148,15 @@ class ElasticCursorController {
         if (!this.active || this.target !== element) return;
         
         const rect = element.getBoundingClientRect();
+        
+        // Update target rect for precise positioning
+        this.targetRect = {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+          width: rect.width,
+          height: rect.height
+        };
+        
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         
@@ -142,7 +164,7 @@ class ElasticCursorController {
         const dx = ev.clientX - centerX;
         const dy = ev.clientY - centerY;
         
-        // Subtle magnetic pull (reduced intensity)
+        // Subtle magnetic pull
         moveX(dx * 0.15);
         moveY(dy * 0.15);
       };
@@ -163,66 +185,62 @@ class ElasticCursorController {
 
   targetRect: { x: number; y: number; width: number; height: number } | null = null;
 
+  updateFillState() {
+    if (this.active && this.target && this.targetRect) {
+      const scaleX = this.targetRect.width / 24;
+      const scaleY = this.targetRect.height / 24;
+      const borderRadius = Math.min(this.targetRect.width, this.targetRect.height) * 0.2;
+      
+      gsap.to(this.node, {
+        scaleX: scaleX,
+        scaleY: scaleY,
+        borderRadius: `${borderRadius}px`,
+        rotation: 0,
+        duration: 0.3,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      });
+    }
+  }
+
   moveTo(x: number, y: number) {
     if (this.active && this.target && this.targetRect) {
       // Center cursor on the target element
       this.pos.aim.x = this.targetRect.x;
       this.pos.aim.y = this.targetRect.y;
-      
-      // Scale to exactly fill the target element
-      const scaleX = this.targetRect.width / 24;
-      const scaleY = this.targetRect.height / 24;
-      
-      gsap.to(this.node, {
-        rotate: 0,
-        scaleX: scaleX,
-        scaleY: scaleY,
-        borderRadius: '12px',
-        duration: 0.4,
-        ease: 'power2.out',
-        overwrite: true
-      });
     } else {
       this.pos.aim.x = x;
       this.pos.aim.y = y;
       this.size.aim = 1;
-      
-      gsap.to(this.node, {
-        borderRadius: '50%',
-        duration: 0.3,
-        ease: 'power2.out'
-      });
     }
   }
 
   update() {
-    // Reduce update frequency for better performance
-    if (!this.lastUpdate || Date.now() - this.lastUpdate > 16) {
-      this.pos.now.lerp(this.pos.aim, this.pos.ease);
-      this.size.now = gsap.utils.interpolate(this.size.now, this.size.aim, this.size.ease);
+    this.pos.now.lerp(this.pos.aim, this.pos.ease);
+    this.size.now = gsap.utils.interpolate(this.size.now, this.size.aim, this.size.ease);
 
-      const diff = this.pos.now.clone().sub(this.pos.prev);
-      this.pos.prev.copy(this.pos.now);
-      this.size.prev = this.size.now;
+    const diff = this.pos.now.clone().sub(this.pos.prev);
+    this.pos.prev.copy(this.pos.now);
+    this.size.prev = this.size.now;
 
+    gsap.set(this.node, {
+      x: this.pos.now.x,
+      y: this.pos.now.y,
+      force3D: true
+    });
+
+    // Only apply squash/stretch effect when NOT hovering
+    if (!this.active) {
+      const dist = Math.sqrt(diff.x ** 2 + diff.y ** 2) * 0.04;
+      const ang = Math.atan2(diff.y, diff.x) * (180 / Math.PI);
+      
       gsap.set(this.node, {
-        x: this.pos.now.x,
-        y: this.pos.now.y,
+        rotation: ang,
+        scaleX: this.size.now + Math.min(dist, 0.8),
+        scaleY: this.size.now - Math.min(dist, 0.2),
+        borderRadius: '50%',
         force3D: true
       });
-
-      if (!this.active) {
-        const ang = Math.atan2(diff.y, diff.x) * (180 / Math.PI);
-        const dist = Math.sqrt(diff.x ** 2 + diff.y ** 2) * 0.04;
-        gsap.set(this.node, {
-          rotate: ang,
-          scaleX: this.size.now + Math.min(dist, 1),
-          scaleY: this.size.now - Math.min(dist, 0.3),
-          force3D: true
-        });
-      }
-      
-      this.lastUpdate = Date.now();
     }
   }
 
