@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Search, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -130,6 +131,96 @@ const SearchBar = () => {
     setQuery(e.target.value);
   };
 
+  const searchModal = isOpen ? createPortal(
+    <div 
+      className="fixed inset-0 z-[9999] bg-background/60 backdrop-blur-lg animate-fade-in"
+      onClick={handleClose}
+      style={{ margin: 0, padding: 0 }}
+    >
+      <div className="fixed inset-0 flex items-start justify-center pt-[10vh] px-4">
+        <Card 
+          className="w-full max-w-3xl shadow-2xl border-2 animate-scale-in bg-background/80 backdrop-blur-2xl" 
+          onClick={(e) => e.stopPropagation()}
+          style={{ 
+            background: 'rgba(var(--background) / 0.85)',
+            backdropFilter: 'blur(40px)',
+            WebkitBackdropFilter: 'blur(40px)',
+          }}
+        >
+          <CardContent className="p-0">
+            {/* Search Input Header */}
+            <div className="flex items-center border-b px-6 py-5 bg-muted/20">
+              <Search className="h-6 w-6 text-muted-foreground mr-4 flex-shrink-0" />
+              <Input
+                placeholder="Search workshops, topics, pages..."
+                value={query}
+                onChange={handleInputChange}
+                className="border-0 bg-transparent focus-visible:ring-0 text-lg placeholder:text-muted-foreground/60 h-auto py-0"
+                autoFocus
+              />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleClose}
+                className="ml-3 h-10 w-10 hover:bg-muted/50 rounded-full flex-shrink-0"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+
+            {/* Results Section */}
+            {results.length > 0 && (
+              <div className="max-h-[65vh] overflow-y-auto">
+                {query.length === 0 && (
+                  <div className="px-6 py-3 text-xs font-semibold text-muted-foreground bg-muted/20 border-b uppercase tracking-wider">
+                    Popular Results
+                  </div>
+                )}
+                {results.map((result, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleResultClick(result.url)}
+                    className="w-full text-left px-6 py-5 hover:bg-accent/50 active:bg-accent transition-all duration-200 border-b last:border-b-0 group"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-base group-hover:text-primary transition-colors line-clamp-1 mb-2">
+                          {result.title}
+                        </div>
+                        <div className="text-sm text-muted-foreground line-clamp-2">
+                          {result.content}
+                        </div>
+                      </div>
+                      <div className="text-[11px] font-medium text-muted-foreground/70 bg-muted/50 px-3 py-1.5 rounded-full uppercase tracking-wider flex-shrink-0">
+                        {result.type}
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* No Results */}
+            {query.length >= 1 && results.length === 0 && (
+              <div className="px-6 py-16 text-center">
+                <Search className="h-16 w-16 text-muted-foreground/30 mx-auto mb-4" />
+                <p className="text-muted-foreground font-semibold text-lg mb-2">No results found for "{query}"</p>
+                <p className="text-sm text-muted-foreground/60">Try searching for something else</p>
+              </div>
+            )}
+
+            {/* Footer hint */}
+            <div className="px-6 py-3 text-xs text-muted-foreground/60 border-t bg-muted/10 flex items-center justify-between">
+              <span className="font-medium">Press ESC to close</span>
+              <span className="hidden sm:inline">Use ↑↓ to navigate results</span>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>,
+    document.body
+  ) : null;
+
   return (
     <>
       {/* Search Trigger Button */}
@@ -146,89 +237,7 @@ const SearchBar = () => {
         </kbd>
       </Button>
 
-      {/* Search Modal */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 z-[60] bg-background/80 backdrop-blur-sm animate-fade-in"
-          onClick={handleClose}
-        >
-          <div className="fixed top-[15%] left-1/2 -translate-x-1/2 w-full max-w-2xl px-4">
-            <Card 
-              className="shadow-2xl border-2 animate-scale-in bg-background/95 backdrop-blur-xl" 
-              onClick={(e) => e.stopPropagation()}
-            >
-              <CardContent className="p-0">
-                {/* Search Input Header */}
-                <div className="flex items-center border-b px-4 py-4 bg-muted/30">
-                  <Search className="h-5 w-5 text-muted-foreground mr-3 flex-shrink-0" />
-                  <Input
-                    placeholder="Search workshops, topics, pages..."
-                    value={query}
-                    onChange={handleInputChange}
-                    className="border-0 bg-transparent focus-visible:ring-0 text-base placeholder:text-muted-foreground/60"
-                    autoFocus
-                  />
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={handleClose}
-                    className="ml-2 h-8 w-8 hover:bg-muted/50 rounded-full flex-shrink-0"
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-
-                {/* Results Section */}
-                {results.length > 0 && (
-                  <div className="max-h-[60vh] overflow-y-auto">
-                    {query.length === 0 && (
-                      <div className="px-4 py-2 text-xs font-medium text-muted-foreground bg-muted/20 border-b">
-                        Popular Results
-                      </div>
-                    )}
-                    {results.map((result, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleResultClick(result.url)}
-                        className="w-full text-left px-5 py-4 hover:bg-accent/50 active:bg-accent transition-colors border-b last:border-b-0 group"
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex-1 min-w-0">
-                            <div className="font-medium text-sm group-hover:text-primary transition-colors line-clamp-1">
-                              {result.title}
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1.5 line-clamp-2">
-                              {result.content}
-                            </div>
-                          </div>
-                          <div className="text-[10px] font-medium text-muted-foreground/70 bg-muted/50 px-2 py-1 rounded-full uppercase tracking-wider flex-shrink-0">
-                            {result.type}
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {/* No Results */}
-                {query.length >= 1 && results.length === 0 && (
-                  <div className="px-4 py-12 text-center">
-                    <Search className="h-12 w-12 text-muted-foreground/30 mx-auto mb-3" />
-                    <p className="text-muted-foreground font-medium">No results found for "{query}"</p>
-                    <p className="text-xs text-muted-foreground/60 mt-2">Try searching for something else</p>
-                  </div>
-                )}
-
-                {/* Footer hint */}
-                <div className="px-4 py-2 text-[10px] text-muted-foreground/60 border-t bg-muted/10 flex items-center justify-between">
-                  <span>Press ESC to close</span>
-                  <span className="hidden sm:inline">Use ↑↓ to navigate</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      )}
+      {searchModal}
     </>
   );
 };
