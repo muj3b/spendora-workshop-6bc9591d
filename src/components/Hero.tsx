@@ -149,7 +149,7 @@ const Hero = memo(() => {
               weight={true}
               italic={true}
               textColor="hsl(var(--foreground))"
-              strokeColor="#ff0000"
+              strokeColor="transparent"
               minFontSize={32}
               className="font-black tracking-tight"
             />
