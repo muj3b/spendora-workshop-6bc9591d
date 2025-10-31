@@ -1,4 +1,4 @@
-import { memo, useMemo, useCallback } from 'react';
+import { memo, useMemo, useCallback, useRef } from 'react';
 import { GradientButton } from "@/components/ui/gradient-button";
 import { FeatureCard } from "@/components/ui/feature-card";
 import TextPressure from "@/components/ui/text-pressure";
@@ -7,6 +7,69 @@ import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart, Camera } from "luc
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 import { RobotBackground } from "@/components/RobotBackground";
+
+// Holographic Stat Card Component
+const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBorder }: {
+  number: string;
+  label: string;
+  sublabel: string;
+  gradient: string;
+  hoverBorder: string;
+}) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+
+    card.style.setProperty('--x', `${x}px`);
+    card.style.setProperty('--y', `${y}px`);
+    card.style.setProperty('--bg-x', `${(x / rect.width) * 100}%`);
+    card.style.setProperty('--bg-y', `${(y / rect.height) * 100}%`);
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    const card = cardRef.current;
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    card.style.setProperty('--x', '50%');
+    card.style.setProperty('--y', '50%');
+    card.style.setProperty('--bg-x', '50%');
+    card.style.setProperty('--bg-y', '50%');
+  };
+
+  return (
+    <div className="group cursor-default">
+      <div
+        ref={cardRef}
+        className={`holographic-stat-card liquid-glass-surface rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-${hoverBorder} hover:shadow-glow transition-all duration-300`}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className="holo-glow"></div>
+        <div className="text-center space-y-1 sm:space-y-2 relative z-10">
+          <div className={`text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br ${gradient} bg-clip-text text-transparent`}>
+            {number}
+          </div>
+          <div className="text-xs sm:text-sm font-semibold text-foreground">{label}</div>
+          <div className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">{sublabel}</div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
+HolographicStatCard.displayName = 'HolographicStatCard';
 
 
 const Hero = memo(() => {
@@ -100,57 +163,45 @@ const Hero = memo(() => {
             </p>
             
             {/* Impact Stats - Inline below subtitle */}
-            <div className="mt-8 max-w-4xl mx-auto animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both]">
+            <div className="mt-6 mb-4 max-w-4xl mx-auto animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both]">
               <div className="grid grid-cols-3 gap-3 sm:gap-6">
                 {/* Stat 1 */}
-                <div className="group cursor-default">
-                  <div className="liquid-glass-surface glass-interactive rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-blue-500/30 hover:shadow-glow transition-all duration-300 hover:scale-105">
-                    <div className="text-center space-y-1 sm:space-y-2">
-                      <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                        300+
-                      </div>
-                      <div className="text-xs sm:text-sm font-semibold text-foreground">Students</div>
-                      <div className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">Indian schools</div>
-                    </div>
-                  </div>
-                </div>
+                <HolographicStatCard
+                  number="300+"
+                  label="Students"
+                  sublabel="Indian schools"
+                  gradient="from-blue-500 via-purple-500 to-pink-500"
+                  hoverBorder="blue-500/30"
+                />
 
                 {/* Stat 2 */}
-                <div className="group cursor-default">
-                  <div className="liquid-glass-surface glass-interactive rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-green-500/30 hover:shadow-glow transition-all duration-300 hover:scale-105">
-                    <div className="text-center space-y-1 sm:space-y-2">
-                      <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
-                        3
-                      </div>
-                      <div className="text-xs sm:text-sm font-semibold text-foreground">Libraries</div>
-                      <div className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">Partnerships</div>
-                    </div>
-                  </div>
-                </div>
+                <HolographicStatCard
+                  number="3"
+                  label="Libraries"
+                  sublabel="Partnerships"
+                  gradient="from-green-500 via-emerald-500 to-teal-500"
+                  hoverBorder="green-500/30"
+                />
 
                 {/* Stat 3 */}
-                <div className="group cursor-default">
-                  <div className="liquid-glass-surface glass-interactive rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-orange-500/30 hover:shadow-glow transition-all duration-300 hover:scale-105">
-                    <div className="text-center space-y-1 sm:space-y-2">
-                      <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                        5+
-                      </div>
-                      <div className="text-xs sm:text-sm font-semibold text-foreground">Topics</div>
-                      <div className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">Covered</div>
-                    </div>
-                  </div>
-                </div>
+                <HolographicStatCard
+                  number="5+"
+                  label="Topics"
+                  sublabel="Covered"
+                  gradient="from-orange-500 via-red-500 to-pink-500"
+                  hoverBorder="orange-500/30"
+                />
               </div>
             </div>
           </div>
         </div>
 
         {/* Robot Space - Larger area for robot */}
-        <div className="flex-1 min-h-[400px] relative">
+        <div className="flex-1 min-h-[300px] relative">
           {/* Robot renders here via RobotBackground component */}
           
           {/* Buttons positioned at robot's body/legs level */}
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-4xl px-4">
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl px-4">
             <div className="text-center space-y-6 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.6s_both]">
               {/* Primary signup button */}
               <div className="space-y-4">
@@ -201,7 +252,7 @@ const Hero = memo(() => {
         </div>
 
         {/* Workshop Info Section - Right below robot */}
-        <div className="pb-8 pt-20">
+        <div className="pb-8 pt-8">
           <div className="max-w-4xl mx-auto">
             {/* Dynamic Workshop Info Section */}
             <div className="relative mb-12">

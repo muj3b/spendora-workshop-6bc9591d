@@ -490,6 +490,59 @@
   100% { opacity: 1; }
 }
 
+/* Holographic Card Effect */
+.holographic-stat-card {
+  --x: 50%;
+  --y: 50%;
+  --bg-x: 50%;
+  --bg-y: 50%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.holographic-stat-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--bg-x) var(--bg-y),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 100, 200, 0.2) 20%,
+    rgba(100, 200, 255, 0.2) 40%,
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.holographic-stat-card:hover::before {
+  opacity: 1;
+}
+
+.holographic-stat-card .holo-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle 100px at var(--x) var(--y),
+    rgba(255, 255, 255, 0.4),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.holographic-stat-card:hover .holo-glow {
+  opacity: 1;
+}
+
 /* Spline Scene Loader */
 .loader {
   width: 20px;
