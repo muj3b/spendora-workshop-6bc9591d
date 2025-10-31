@@ -99,6 +99,42 @@ const Hero = memo(() => {
               real-world financial skills to students.
             </p>
           </div>
+
+          {/* Impact Stats Section */}
+          <div className="mt-12 mb-8 animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both]">
+            <div className="max-w-5xl mx-auto">
+              <div className="liquid-glass-surface glass-interactive rounded-3xl p-8 shadow-large bg-background/40 backdrop-blur-xl border border-white/10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {/* Stat 1 */}
+                  <div className="text-center space-y-2 group cursor-default">
+                    <div className="text-5xl font-black bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                      300+
+                    </div>
+                    <div className="text-lg font-semibold text-foreground">Students Educated</div>
+                    <div className="text-sm text-muted-foreground">Across multiple Indian schools</div>
+                  </div>
+
+                  {/* Stat 2 */}
+                  <div className="text-center space-y-2 group cursor-default">
+                    <div className="text-5xl font-black bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                      3
+                    </div>
+                    <div className="text-lg font-semibold text-foreground">Library Partnerships</div>
+                    <div className="text-sm text-muted-foreground">Local community projects</div>
+                  </div>
+
+                  {/* Stat 3 */}
+                  <div className="text-center space-y-2 group cursor-default">
+                    <div className="text-5xl font-black bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                      5+
+                    </div>
+                    <div className="text-lg font-semibold text-foreground">Topics Covered</div>
+                    <div className="text-sm text-muted-foreground">Stock market, crypto, taxes & more</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Robot Space - Larger area for robot */}
