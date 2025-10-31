@@ -93,43 +93,53 @@ const Hero = memo(() => {
           </div>
           
           {/* Subtitle right under the title */}
-          <div className="-mt-4">
+          <div className="-mt-4 mb-8">
             <p className="text-body-large text-muted-foreground max-w-3xl mx-auto animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.4s_both] text-lg md:text-xl">
               A free workshop designed by high school students to teach 
               real-world financial skills to students.
             </p>
-          </div>
-        </div>
-
-        {/* Impact Stats Section - Positioned absolutely to not push content */}
-        <div className="absolute top-8 left-1/2 -translate-x-1/2 w-full max-w-5xl px-4 z-40 animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both] pointer-events-none">
-          <div className="liquid-glass-surface glass-interactive rounded-2xl p-4 sm:p-6 shadow-large bg-background/30 backdrop-blur-xl border border-white/10 pointer-events-auto">
-            <div className="grid grid-cols-3 gap-4 sm:gap-8">
-              {/* Stat 1 */}
-              <div className="text-center space-y-1 group cursor-default">
-                <div className="text-2xl sm:text-4xl md:text-5xl font-black bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
-                  300+
+            
+            {/* Impact Stats - Inline below subtitle */}
+            <div className="mt-8 max-w-4xl mx-auto animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both]">
+              <div className="grid grid-cols-3 gap-3 sm:gap-6">
+                {/* Stat 1 */}
+                <div className="group cursor-default">
+                  <div className="liquid-glass-surface glass-interactive rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-blue-500/30 hover:shadow-glow transition-all duration-300 hover:scale-105">
+                    <div className="text-center space-y-1 sm:space-y-2">
+                      <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                        300+
+                      </div>
+                      <div className="text-xs sm:text-sm font-semibold text-foreground">Students</div>
+                      <div className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">Indian schools</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-xs sm:text-sm md:text-base font-semibold text-foreground">Students Educated</div>
-                <div className="text-xs text-muted-foreground hidden sm:block">Indian schools</div>
-              </div>
 
-              {/* Stat 2 */}
-              <div className="text-center space-y-1 group cursor-default">
-                <div className="text-2xl sm:text-4xl md:text-5xl font-black bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
-                  3
+                {/* Stat 2 */}
+                <div className="group cursor-default">
+                  <div className="liquid-glass-surface glass-interactive rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-green-500/30 hover:shadow-glow transition-all duration-300 hover:scale-105">
+                    <div className="text-center space-y-1 sm:space-y-2">
+                      <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
+                        3
+                      </div>
+                      <div className="text-xs sm:text-sm font-semibold text-foreground">Libraries</div>
+                      <div className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">Partnerships</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-xs sm:text-sm md:text-base font-semibold text-foreground">Library Partners</div>
-                <div className="text-xs text-muted-foreground hidden sm:block">Community projects</div>
-              </div>
 
-              {/* Stat 3 */}
-              <div className="text-center space-y-1 group cursor-default">
-                <div className="text-2xl sm:text-4xl md:text-5xl font-black bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
-                  5+
+                {/* Stat 3 */}
+                <div className="group cursor-default">
+                  <div className="liquid-glass-surface glass-interactive rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-orange-500/30 hover:shadow-glow transition-all duration-300 hover:scale-105">
+                    <div className="text-center space-y-1 sm:space-y-2">
+                      <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
+                        5+
+                      </div>
+                      <div className="text-xs sm:text-sm font-semibold text-foreground">Topics</div>
+                      <div className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">Covered</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-xs sm:text-sm md:text-base font-semibold text-foreground">Topics Covered</div>
-                <div className="text-xs text-muted-foreground hidden sm:block">Stocks, crypto, taxes</div>
               </div>
             </div>
           </div>
