@@ -29,21 +29,18 @@ const HamburgerMenu = () => {
 
   const menuItems = [
     { label: 'Home', action: scrollToTop },
-    { label: 'Features', action: () => scrollToSection('features') },
-    { label: 'About Spendora', action: () => scrollToSection('about-spendora') },
-    { label: 'Workshop Schedule', action: () => scrollToSection('workshop-schedule') },
-    { label: 'Meet The Team', action: () => scrollToSection('meet-the-team') },
+    { label: 'About', action: () => scrollToSection('about-spendora') },
+    { label: 'Schedule', action: () => scrollToSection('workshop-schedule') },
+    { label: 'Team', action: () => scrollToSection('meet-the-team') },
     { type: 'divider' },
     { label: 'Workshop Topics', type: 'header' },
-    { label: 'Stock Markets & Investing', action: () => navigateToPage('/stock-markets') },
-    { label: 'Budgeting & Finance', action: () => navigateToPage('/budgeting') },
+    { label: 'Stock Markets', action: () => navigateToPage('/stock-markets') },
+    { label: 'Budgeting', action: () => navigateToPage('/budgeting') },
     { label: 'Online Business', action: () => navigateToPage('/online-business') },
     { label: 'Crypto & NFTs', action: () => navigateToPage('/crypto-nfts') },
     { type: 'divider' },
-    { label: 'More', type: 'header' },
-    { label: 'Workshop Gallery', action: () => navigateToPage('/gallery') },
-    { label: 'Success Stories', action: () => navigateToPage('/success-stories') },
-    { label: 'Support Our Mission', action: () => navigateToPage('/donate') },
+    { label: 'Gallery', action: () => navigateToPage('/gallery') },
+    { label: 'Donate', action: () => navigateToPage('/donate') },
   ];
 
   return (

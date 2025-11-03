@@ -15,7 +15,6 @@ import StockMarkets from "./pages/StockMarkets";
 import CryptoNFTs from "./pages/CryptoNFTs";
 import OnlineBusiness from "./pages/OnlineBusiness";
 import Success from "./pages/Success";
-import SuccessStories from "./pages/SuccessStories";
 import Donate from "./pages/Donate";
 import Gallery from "./pages/Gallery";
 import Budgeting from "./pages/Budgeting";
@@ -52,7 +51,6 @@ const App = () => (
               <Route path="/crypto-nfts" element={<CryptoNFTs />} />
               <Route path="/online-business" element={<OnlineBusiness />} />
               <Route path="/success" element={<Success />} />
-              <Route path="/success-stories" element={<SuccessStories />} />
               <Route path="/donate" element={<Donate />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/budgeting" element={<Budgeting />} />
