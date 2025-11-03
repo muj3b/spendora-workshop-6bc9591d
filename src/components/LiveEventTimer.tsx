@@ -76,7 +76,7 @@ const LiveEventTimer = ({
         if (now > day2End) {
           setEventStatus({
             type: 'countdown',
-            message: "Day 2 has ended. Day 3 and 4 dates and times coming soon!",
+            message: "Day 3 just ended. Day 4 date and time coming soon!",
           });
           setTimeLeft('');
           return;
@@ -123,7 +123,7 @@ const LiveEventTimer = ({
       if (now > lastEventEnd) {
         setEventStatus({
           type: 'countdown',
-          message: "Day 2 has ended. Day 3 and 4 dates and times coming soon!",
+          message: "Day 3 just ended. Day 4 date and time coming soon!",
         });
         setTimeLeft('');
         return;
