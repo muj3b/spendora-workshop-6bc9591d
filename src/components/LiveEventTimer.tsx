@@ -76,7 +76,7 @@ const LiveEventTimer = ({
         if (now > day2End) {
           setEventStatus({
             type: 'countdown',
-            message: "Day 2 has ended. Day 3 date and time coming soon!",
+            message: "Day 2 has ended. Day 3 and 4 dates and times coming soon!",
           });
           setTimeLeft('');
           return;
@@ -123,7 +123,7 @@ const LiveEventTimer = ({
       if (now > lastEventEnd) {
         setEventStatus({
           type: 'countdown',
-          message: "Day 2 has ended. Day 3 date and time coming soon!",
+          message: "Day 2 has ended. Day 3 and 4 dates and times coming soon!",
         });
         setTimeLeft('');
         return;
@@ -250,19 +250,27 @@ const LiveEventTimer = ({
         </p>
       )}
       
-      {/* Time and date display - Remove time since Day 3 hasn't been scheduled */}
+      {/* Time and date display */}
       <div className="mt-4 space-y-3 max-w-full">
-        {/* Actual dates display - Day 3 without time */}
+        {/* Actual dates display */}
         <div className="text-center space-y-3 max-w-full">
-          <div className="mx-auto max-w-fit bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm border border-green-300/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 shadow-lg shadow-green-400/20 glow">
+          <div className="mx-auto max-w-fit bg-gradient-to-r from-orange-500/20 to-orange-400/20 backdrop-blur-sm border border-orange-300/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 shadow-lg shadow-orange-400/20 glow">
             <p className="text-foreground font-bold text-sm sm:text-lg break-words text-center">
-              <span className="text-green-300">🎯 Day 3:</span> 
+              <span className="text-orange-300">📅 Day 4:</span>
               <span className="block sm:inline animate-pulse"> Date & Time Coming Soon</span>
+            </p>
+          </div>
+          <div className="mx-auto max-w-fit bg-gradient-to-r from-purple-500/20 to-purple-400/20 backdrop-blur-sm border border-purple-300/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 shadow-lg shadow-purple-400/20 glow">
+            <p className="text-foreground font-bold text-sm sm:text-lg break-words text-center">
+              <span className="text-purple-300">🎯 Day 3:</span>
+              <span className="block sm:inline"> Wednesday, July 24th</span>
+              <br className="sm:hidden" />
+              <span className="block sm:inline"> • 3:30 PM - 5:00 PM CDT</span>
             </p>
           </div>
           <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">
             <p className="text-gray-300 font-medium line-through text-xs sm:text-sm break-words text-center">
-              <span className="text-gray-400">✓ Day 2:</span> 
+              <span className="text-gray-400">✓ Day 2:</span>
               <span className="block sm:inline"> Friday, July 18th</span>
               <br className="sm:hidden" />
               <span className="block sm:inline"> • 3:30 PM - 5:00 PM CDT (Completed)</span>
@@ -270,7 +278,7 @@ const LiveEventTimer = ({
           </div>
           <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">
             <p className="text-gray-300 font-medium line-through text-xs sm:text-sm break-words text-center">
-              <span className="text-gray-400">✓ Day 1:</span> 
+              <span className="text-gray-400">✓ Day 1:</span>
               <span className="block sm:inline"> Thursday, July 10th</span>
               <br className="sm:hidden" />
               <span className="block sm:inline"> • 11:00 AM - 12:30 PM CDT (Completed)</span>
