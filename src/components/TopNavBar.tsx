@@ -10,8 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Menu, MoreHorizontal, Moon, Sun, Instagram, X } from "lucide-react";
-import SearchBar from "./SearchBar";
+import { Menu, Moon, Sun, Instagram, X } from "lucide-react";
 
 const TopNavBar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -87,7 +86,6 @@ const TopNavBar = () => {
 
               {/* Actions */}
               <div className="flex items-center gap-2">
-                <SearchBar />
                 <Button
                   variant="liquid"
                   size="icon"
@@ -181,91 +179,29 @@ const TopNavBar = () => {
               </div>
               
               {/* Menu content */}
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {/* Navigation section */}
                 <div>
-                  <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Navigate</h4>
-                  <div className="space-y-2">
+                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Navigate</h4>
+                  <div className="space-y-1">
                     {mainNav.map((item) => (
                       <a
                         key={item.label}
                         href={item.href}
                         onClick={() => setMenuOpen(false)}
-                        className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                        className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
                       >
                         {item.label}
                       </a>
                     ))}
                   </div>
                 </div>
-                
-                {/* Explore section */}
-                <div>
-                  <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Explore</h4>
-                  <div className="space-y-2">
-                    <Link
-                      to="/gallery"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
-                    >
-                      Workshop Gallery
-                    </Link>
-                    <Link
-                      to="/success-stories"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
-                    >
-                      Success Stories
-                    </Link>
-                    <Link
-                      to="/donate"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
-                    >
-                      Support Our Mission
-                    </Link>
-                  </div>
-                </div>
 
-                {/* Workshop Topics section */}
-                <div>
-                  <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Workshop Topics</h4>
-                  <div className="space-y-2">
-                    <Link
-                      to="/stock-markets"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
-                    >
-                      Stock Markets & Investing
-                    </Link>
-                    <Link
-                      to="/budgeting"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
-                    >
-                      Budgeting & Finance
-                    </Link>
-                    <Link
-                      to="/online-business"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
-                    >
-                      Online Business
-                    </Link>
-                    <Link
-                      to="/crypto-nfts"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
-                    >
-                      Crypto & NFTs
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Social section */}
-                <div className="pt-6 border-t border-border">
+                {/* Social section - moved higher */}
+                <div className="pt-2">
                   <Button
                     variant="default"
+                    size="lg"
                     className="w-full justify-start"
                     onClick={() => {
                       window.open('https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', '_blank');
@@ -275,6 +211,62 @@ const TopNavBar = () => {
                     <Instagram className="h-5 w-5 mr-3" />
                     Follow on Instagram
                   </Button>
+                </div>
+
+                {/* Workshop Topics section */}
+                <div>
+                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Workshop Topics</h4>
+                  <div className="space-y-1">
+                    <Link
+                      to="/stock-markets"
+                      onClick={() => setMenuOpen(false)}
+                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                    >
+                      Stock Markets
+                    </Link>
+                    <Link
+                      to="/budgeting"
+                      onClick={() => setMenuOpen(false)}
+                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                    >
+                      Budgeting
+                    </Link>
+                    <Link
+                      to="/online-business"
+                      onClick={() => setMenuOpen(false)}
+                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                    >
+                      Online Business
+                    </Link>
+                    <Link
+                      to="/crypto-nfts"
+                      onClick={() => setMenuOpen(false)}
+                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                    >
+                      Crypto & NFTs
+                    </Link>
+                  </div>
+                </div>
+                
+                {/* More section */}
+                <div>
+                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">More</h4>
+                  <div className="space-y-1">
+                    <Link
+                      to="/gallery"
+                      onClick={() => setMenuOpen(false)}
+                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                    >
+                      Gallery
+                    </Link>
+                    <Link
+                      to="/donate"
+                      onClick={() => setMenuOpen(false)}
+                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                    >
+                      Donate
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
