@@ -27,7 +27,6 @@ const SearchBar = () => {
     { title: 'Online Business', content: 'Entrepreneurship, e-commerce, digital marketing, and business planning', url: '/online-business', type: 'page' },
     { title: 'Crypto & NFTs', content: 'Cryptocurrency basics, blockchain technology, NFT markets, and digital assets', url: '/crypto-nfts', type: 'page' },
     { title: 'Workshop Gallery', content: 'Photos and highlights from past workshops and student events', url: '/gallery', type: 'page' },
-    { title: 'Success Stories', content: 'Student achievements, testimonials, and real transformation stories', url: '/success-stories', type: 'page' },
     { title: 'Donate', content: 'Support our mission and help fund free workshops for students', url: '/donate', type: 'page' },
 
     // Home Page Sections
@@ -73,7 +72,7 @@ const SearchBar = () => {
     searchData.find(item => item.title === 'Online Business')!,
     searchData.find(item => item.title === 'Crypto & NFTs')!,
     searchData.find(item => item.title === 'Workshop Schedule')!,
-    searchData.find(item => item.title === 'Success Stories')!,
+    searchData.find(item => item.title === 'Workshop Gallery')!,
   ];
 
   useEffect(() => {
@@ -144,7 +143,7 @@ const SearchBar = () => {
 
   const searchModal = isOpen ? createPortal(
     <div
-      className="fixed inset-0 z-[9999] animate-fade-in"
+      className="fixed inset-0 z-[10000] animate-fade-in"
       onClick={handleClose}
       style={{
         margin: 0,
@@ -154,7 +153,7 @@ const SearchBar = () => {
         WebkitBackdropFilter: 'blur(12px)',
       }}
     >
-      <div className="fixed inset-0 flex items-start justify-center pt-[10vh] px-4">
+      <div className="fixed inset-0 flex items-center justify-center px-4">
         <Card
           className="w-full max-w-3xl shadow-2xl border animate-scale-in liquid-glass-surface"
           onClick={(e) => e.stopPropagation()}
