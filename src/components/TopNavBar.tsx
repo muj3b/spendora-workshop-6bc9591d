@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Menu, Moon, Sun, Instagram, X } from "lucide-react";
+import SearchBar from "./SearchBar";
 
 const TopNavBar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -86,6 +87,7 @@ const TopNavBar = () => {
 
               {/* Actions */}
               <div className="flex items-center gap-2">
+                <SearchBar />
                 <Button
                   variant="liquid"
                   size="icon"
