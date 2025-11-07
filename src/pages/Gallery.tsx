@@ -46,6 +46,24 @@ const Gallery = () => {
     { src: "https://files.catbox.moe/o5monx.MOV", alt: "Day 2 Workshop Video 2" }
   ];
 
+  const indianSchoolPhotos = [
+    { src: "/lovable-uploads/indian-school-1.jpg", alt: "Teaching 300+ students at Sri Girdhar Techno School" },
+    { src: "/lovable-uploads/indian-school-2.jpg", alt: "Students learning financial concepts" },
+    { src: "/lovable-uploads/indian-school-3.jpg", alt: "Interactive presentation on development stages" },
+    { src: "/lovable-uploads/indian-school-4.jpg", alt: "Engaged students during workshop session" },
+    { src: "/lovable-uploads/indian-school-5.jpg", alt: "Full classroom of attentive students" },
+    { src: "/lovable-uploads/indian-school-6.jpg", alt: "Financial literacy workshop in progress" },
+    { src: "/lovable-uploads/indian-school-7.jpg", alt: "Students participating in financial education" }
+  ];
+
+  const indianSchoolVideos = [
+    { src: "/lovable-uploads/indian-school-video-1.mov", alt: "Indian School Workshop Video 1" },
+    { src: "https://files.catbox.moe/my1k56.MOV", alt: "Indian School Workshop Video 2" },
+    { src: "https://files.catbox.moe/xxvohu.MOV", alt: "Indian School Workshop Video 3" },
+    { src: "https://files.catbox.moe/p5qi4y.MOV", alt: "Indian School Workshop Video 4" },
+    { src: "https://files.catbox.moe/mz2ov5.MOV", alt: "Indian School Workshop Video 5" }
+  ];
+
   const renderMediaGrid = (photos, videos = []) => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
       {photos.map((photo, index) => (
@@ -102,6 +120,22 @@ const Gallery = () => {
               </CollapsibleTrigger>
               <CollapsibleContent className="mt-6">
                 {renderMediaGrid(day2Photos, day2Videos)}
+              </CollapsibleContent>
+            </Collapsible>
+
+            <Collapsible defaultOpen className="border rounded-lg p-6 liquid-glass-surface group cursor-pointer hover:shadow-xl transition-all duration-300 hover:border-primary/50">
+              <CollapsibleTrigger className="flex items-center justify-between w-full text-left">
+                <div className="flex items-center gap-4">
+                  <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-xl font-bold text-xl group-hover:shadow-lg transition-all duration-300">DAY 3</div>
+                  <div className="flex flex-col">
+                    <span className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">300+ Students at Indian School</span>
+                    <span className="text-sm text-muted-foreground">Sri Girdhar Techno School Workshop</span>
+                  </div>
+                </div>
+                <ChevronDown className="h-5 w-5 transition-transform duration-200 group-hover:text-primary" />
+              </CollapsibleTrigger>
+              <CollapsibleContent className="mt-6">
+                {renderMediaGrid(indianSchoolPhotos, indianSchoolVideos)}
               </CollapsibleContent>
             </Collapsible>
           </div>
