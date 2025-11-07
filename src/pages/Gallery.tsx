@@ -2,13 +2,14 @@
 import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
 
 const Gallery = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,6 +23,17 @@ const Gallery = () => {
     if (!link) { link = document.createElement('link'); link.setAttribute('rel','canonical'); document.head.appendChild(link); }
     link.setAttribute('href', window.location.origin + '/gallery');
   }, []);
+
+  useEffect(() => {
+    if (!location.hash) return;
+    const targetId = location.hash.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    }
+  }, [location.hash]);
 
   const day1Photos = [
     { src: "/lovable-uploads/857218ea-0cf3-4f24-8242-23e038e71457.png", alt: "Students learning about investing origins" },
@@ -67,13 +79,13 @@ const Gallery = () => {
   const renderMediaGrid = (photos, videos = []) => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
       {photos.map((photo, index) => (
-        <div key={`photo-${index}`} className="group relative overflow-hidden rounded-2xl liquid-glass-surface shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div key={`photo-${index}`} className="relative overflow-hidden rounded-2xl border border-white/10 bg-background/90 shadow-lg">
           <img src={photo.src} alt={photo.alt} className="w-full h-64 object-cover" loading="lazy" />
           <div className="p-4"><p className="text-sm text-muted-foreground">{photo.alt}</p></div>
         </div>
       ))}
       {videos.map((video, index) => (
-        <div key={`video-${index}`} className="group relative overflow-hidden rounded-2xl liquid-glass-surface shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div key={`video-${index}`} className="relative overflow-hidden rounded-2xl border border-white/10 bg-background/90 shadow-lg">
           <video src={video.src} controls preload="metadata" className="w-full h-64 object-cover" />
           <div className="p-4"><p className="text-sm text-muted-foreground">{video.alt}</p></div>
         </div>
@@ -123,7 +135,7 @@ const Gallery = () => {
               </CollapsibleContent>
             </Collapsible>
 
-            <Collapsible defaultOpen className="border rounded-lg p-6 liquid-glass-surface transition-all duration-300">
+            <Collapsible id="indian-school" defaultOpen className="border rounded-lg p-6 liquid-glass-surface transition-all duration-300">
               <CollapsibleTrigger className="flex items-center justify-between w-full text-left">
                 <div className="flex items-center gap-4">
                   <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-xl font-bold text-xl transition-all duration-300">INDIAN SCHOOL</div>

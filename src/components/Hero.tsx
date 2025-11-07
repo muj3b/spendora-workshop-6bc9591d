@@ -99,7 +99,7 @@ const Hero = memo(() => {
   }, [navigate]);
   
   const handleGallery = useCallback(() => {
-    navigate('/gallery');
+    navigate('/gallery#indian-school');
   }, [navigate]);
   
   const navigateToStockMarkets = useCallback(() => {
@@ -185,13 +185,10 @@ const Hero = memo(() => {
                   type="button"
                   onClick={handleGallery}
                   aria-label="View 300+ Indian school students workshop gallery"
-                  className="group/card relative flex w-full flex-col rounded-[1.5rem] border border-white/15 bg-white/[0.03] p-2 text-left shadow-[0_12px_40px_rgba(15,23,42,0.35)] backdrop-blur-xl transition-transform duration-300 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                  className="group/card relative flex w-full flex-col gap-3 rounded-[1.5rem] border border-white/15 bg-white/[0.03] px-4 py-4 text-left shadow-[0_12px_40px_rgba(15,23,42,0.35)] backdrop-blur-xl transition-transform duration-300 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                 >
                   <span className="sr-only">Open gallery with 300+ students workshop photos</span>
-                  <div className="pointer-events-none absolute left-4 bottom-4 inline-flex items-center rounded-full border border-white/25 bg-blue-500/80 px-3 py-1 text-[11px] font-semibold text-white shadow-sm transition-all duration-300 group-hover/card:bg-blue-400 group-hover/card:border-white/40">
-                    Click to view!
-                  </div>
-                  <div className="relative z-10 w-full rounded-[1.2rem] bg-transparent p-1 sm:p-1.5">
+                  <div className="relative z-10 w-full rounded-[1.2rem] bg-transparent">
                     <HolographicStatCard
                       number="300+"
                       label="Students"
@@ -203,6 +200,9 @@ const Hero = memo(() => {
                       disableTilt
                       className="bg-transparent shadow-none border border-white/10 backdrop-blur-[2px]"
                     />
+                  </div>
+                  <div className="inline-flex w-fit items-center rounded-full border border-white/20 bg-blue-500/75 px-3 py-1 text-[11px] font-semibold text-white shadow-sm transition-colors duration-200 group-hover/card:bg-blue-400 group-hover/card:border-white/40">
+                    Click to view!
                   </div>
                 </button>
 
