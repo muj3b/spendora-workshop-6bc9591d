@@ -10,7 +10,7 @@ import { RobotBackground } from "@/components/RobotBackground";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 // Holographic Stat Card Component
-const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBorder, className, disableGlass = false }: {
+const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBorder, className, disableGlass = false, disableGlow = false }: {
   number: string;
   label: string;
   sublabel: string;
@@ -18,6 +18,7 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
   hoverBorder: string;
   className?: string;
   disableGlass?: boolean;
+  disableGlow?: boolean;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -53,6 +54,7 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
 
   const baseClasses = [
     "holographic-stat-card",
+    disableGlow && "no-holo-glow",
     !disableGlass && "liquid-glass-surface",
     "rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md",
     disableGlass ? "border border-white/10" : "border border-white/5",
@@ -183,12 +185,12 @@ const Hero = memo(() => {
                   type="button"
                   onClick={handleGallery}
                   aria-label="View 300+ Indian school students workshop gallery"
-                  shimmerColor="#93c5fd"
-                  shimmerDuration="4s"
-                  shimmerSize="0.12em"
+                  shimmerColor="rgba(147,197,253,0.9)"
+                  shimmerDuration="5s"
+                  shimmerSize="0.14em"
                   borderRadius="1.5rem"
-                  background="rgba(4,7,17,0.8)"
-                  className="group/card relative flex w-full flex-col items-stretch justify-stretch whitespace-normal rounded-[1.5rem] border border-white/15 px-0 py-0 text-left shadow-none hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                  background="rgba(15,23,42,0.35)"
+                  className="group/card relative flex w-full flex-col items-stretch rounded-[1.5rem] border border-white/20 px-0 py-0 text-left shadow-[0_0_40px_rgba(59,130,246,0.2)] backdrop-blur-2xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                 >
                   <span className="sr-only">Open gallery with 300+ students workshop photos</span>
                   <div className="pointer-events-none absolute top-2 right-2 z-20 rounded-full bg-blue-500/90 px-2 py-1 text-[10px] font-bold text-white opacity-0 transition-opacity duration-300 group-hover/card:opacity-100">
@@ -202,7 +204,8 @@ const Hero = memo(() => {
                       gradient="from-blue-500 via-purple-500 to-pink-500"
                       hoverBorder="blue-500/30"
                       disableGlass
-                      className="bg-background/50 shadow-none !border-white/10"
+                      disableGlow
+                      className="bg-white/5 shadow-none !border-white/15 backdrop-blur-[2px]"
                     />
                   </div>
                 </ShimmerButton>

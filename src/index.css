@@ -502,6 +502,11 @@
   will-change: transform;
 }
 
+.holographic-stat-card.no-holo-glow::before,
+.holographic-stat-card.no-holo-glow .holo-glow {
+  display: none;
+}
+
 /* Spline Scene Loader */
 .loader {
   width: 20px;
