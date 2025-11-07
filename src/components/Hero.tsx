@@ -7,7 +7,6 @@ import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart, Camera } from "luc
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 import { RobotBackground } from "@/components/RobotBackground";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 // Holographic Stat Card Component
 const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBorder, className, disableGlass = false, disableGlow = false }: {
@@ -181,23 +180,17 @@ const Hero = memo(() => {
             <div className="mt-6 mb-4 max-w-4xl mx-auto animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both]">
               <div className="grid grid-cols-3 gap-3 sm:gap-6">
                 {/* Stat 1 - Clickable Indian School with shimmer outline */}
-                <ShimmerButton
+                <button
                   type="button"
                   onClick={handleGallery}
                   aria-label="View 300+ Indian school students workshop gallery"
-                  shimmerColor="rgba(147,197,253,0.9)"
-                  shimmerDuration="5s"
-                  shimmerSize="0.14em"
-                  borderRadius="1.5rem"
-                  background="rgba(15,23,42,0.35)"
-                  withHighlight={false}
-                  className="group/card relative flex w-full flex-col items-stretch rounded-[1.5rem] border border-white/20 px-0 py-0 text-left shadow-[0_0_40px_rgba(59,130,246,0.2)] backdrop-blur-2xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                  className="group/card stat-outline relative flex w-full flex-col items-stretch rounded-[1.5rem] text-left transition-transform duration-300 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                 >
                   <span className="sr-only">Open gallery with 300+ students workshop photos</span>
                   <div className="pointer-events-none absolute top-2 right-2 z-20 rounded-full bg-blue-500/90 px-2 py-1 text-[10px] font-bold text-white opacity-0 transition-opacity duration-300 group-hover/card:opacity-100">
                     Click to view!
                   </div>
-                  <div className="relative z-10 w-full">
+                  <div className="relative z-10 w-full rounded-[1.35rem] bg-white/[0.04] p-1.5 sm:p-2">
                     <HolographicStatCard
                       number="300+"
                       label="Students"
@@ -206,10 +199,10 @@ const Hero = memo(() => {
                       hoverBorder="blue-500/30"
                       disableGlass
                       disableGlow
-                      className="bg-white/5 shadow-none !border-white/15 backdrop-blur-[2px]"
+                      className="bg-transparent shadow-none border border-white/10 backdrop-blur-[2px]"
                     />
                   </div>
-                </ShimmerButton>
+                </button>
 
                 {/* Stat 2 */}
                 <HolographicStatCard
