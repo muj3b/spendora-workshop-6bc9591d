@@ -52,7 +52,7 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
     <div className="group cursor-default">
       <div
         ref={cardRef}
-        className={`holographic-stat-card liquid-glass-surface rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-${hoverBorder} hover:shadow-glow transition-all duration-300`}
+        className={`holographic-stat-card liquid-glass-surface rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-${hoverBorder} transition-all duration-300`}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
@@ -165,14 +165,29 @@ const Hero = memo(() => {
             {/* Impact Stats - Inline below subtitle */}
             <div className="mt-6 mb-4 max-w-4xl mx-auto animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both]">
               <div className="grid grid-cols-3 gap-3 sm:gap-6">
-                {/* Stat 1 */}
-                <HolographicStatCard
-                  number="300+"
-                  label="Students"
-                  sublabel="Indian schools"
-                  gradient="from-blue-500 via-purple-500 to-pink-500"
-                  hoverBorder="blue-500/30"
-                />
+                {/* Stat 1 - Clickable Indian School */}
+                <div 
+                  onClick={() => navigate('/gallery')} 
+                  className="cursor-pointer relative group/card"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate('/gallery')}
+                  aria-label="View 300+ Indian school students workshop gallery"
+                >
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-xl opacity-0 group-hover/card:opacity-75 blur transition duration-300 animate-pulse"></div>
+                  <div className="absolute top-2 right-2 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 z-20">
+                    <div className="bg-blue-500/90 text-white text-[10px] px-2 py-1 rounded-full font-bold animate-bounce">
+                      Click to view!
+                    </div>
+                  </div>
+                  <HolographicStatCard
+                    number="300+"
+                    label="Students"
+                    sublabel="Indian schools"
+                    gradient="from-blue-500 via-purple-500 to-pink-500"
+                    hoverBorder="blue-500/30"
+                  />
+                </div>
 
                 {/* Stat 2 */}
                 <HolographicStatCard
@@ -209,7 +224,7 @@ const Hero = memo(() => {
                   size="xl" 
                   variant="secondary" 
                   pulse={true}
-                  className="w-full sm:w-auto rounded-full text-xl px-12 py-6 hover:scale-110 transition-all duration-300 shadow-glow bg-background/40"
+                  className="w-full sm:w-auto rounded-full text-xl px-12 py-6 hover:scale-110 transition-all duration-300 bg-background/40"
                   onClick={handleSignup}
                   aria-label="Sign up for the free Spendora workshop"
                 >

@@ -303,15 +303,13 @@
   }
 
   .liquid-glass-surface:hover { 
-    box-shadow: var(--shadow-medium), var(--shadow-glow); 
-    transform: translateY(-3px) scale(1.01);
+    box-shadow: var(--shadow-medium); 
     /* Expand the blur to fill the entire element smoothly */
     --hover-size: 2000px;
     --hover-intensity: 0.15;
   }
   
   .liquid-glass-surface:active { 
-    transform: translateY(0) scale(0.99); 
     box-shadow: var(--shadow-soft);
     --hover-size: 300px;
     --hover-intensity: 0.2;
@@ -368,15 +366,13 @@
   }
 
   .liquid-glass-btn:hover {
-    box-shadow: var(--shadow-medium), var(--shadow-glow);
-    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-medium);
     /* Expand to fill the button area smoothly */
     --btn-hover-size: 1500px;
     --btn-hover-intensity: 0.18;
   }
 
   .liquid-glass-btn:active {
-    transform: translateY(0) scale(0.98);
     box-shadow: var(--shadow-soft);
     --btn-hover-size: 150px;
     --btn-hover-intensity: 0.25;
@@ -402,11 +398,11 @@
   }
   
   .glass-interactive:hover { 
-    transform: translateY(-2px) scale(1.01); 
+    /* Removed transform to prevent layout shifts */
   }
   
   .glass-interactive:active { 
-    transform: translateY(0) scale(0.995); 
+    /* Removed transform to prevent layout shifts */
   }
 }
 

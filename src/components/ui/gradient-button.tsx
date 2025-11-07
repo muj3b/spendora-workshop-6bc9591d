@@ -8,10 +8,10 @@ const gradientButtonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-gradient-primary hover:shadow-glow text-white",
-        secondary: "bg-gradient-secondary hover:shadow-green-400/20 text-white",
-        accent: "bg-gradient-accent hover:shadow-purple-400/20 text-white",
-        warm: "bg-gradient-warm hover:shadow-orange-400/20 text-white",
+        primary: "bg-gradient-primary hover:shadow-large text-white",
+        secondary: "bg-gradient-secondary hover:shadow-large text-white",
+        accent: "bg-gradient-accent hover:shadow-large text-white",
+        warm: "bg-gradient-warm hover:shadow-large text-white",
       },
       size: {
         default: "px-6 py-3 text-base",
