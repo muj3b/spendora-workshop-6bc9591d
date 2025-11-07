@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { LucideIcon } from "lucide-react";
 
 const featureCardVariants = cva(
-  "group transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 hover:shadow-large cursor-pointer",
+  "group transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.25)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
   {
     variants: {
       variant: {
@@ -28,7 +28,7 @@ const featureCardVariants = cva(
 );
 
 const iconContainerVariants = cva(
-  "flex items-center justify-center mx-auto mb-4 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-soft",
+  "flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] shadow-soft",
   {
     variants: {
       size: {

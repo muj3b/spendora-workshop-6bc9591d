@@ -185,7 +185,7 @@ const Hero = memo(() => {
                   type="button"
                   onClick={handleGallery}
                   aria-label="View 300+ Indian school students workshop gallery"
-                  className="group/card relative flex w-full flex-col gap-3 rounded-[1.5rem] border border-white/15 bg-white/[0.03] px-4 py-4 text-left shadow-[0_12px_40px_rgba(15,23,42,0.35)] backdrop-blur-xl transition-transform duration-300 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                  className="group/card relative flex w-full flex-col gap-3 rounded-[1.5rem] border border-white/15 bg-white/[0.03] px-4 py-4 text-left shadow-[0_12px_40px_rgba(15,23,42,0.35)] backdrop-blur-xl transition-shadow duration-300 hover:shadow-[0_20px_50px_rgba(15,23,42,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                 >
                   <span className="sr-only">Open gallery with 300+ students workshop photos</span>
                   <div className="relative z-10 w-full rounded-[1.2rem] bg-transparent">
