@@ -52,12 +52,12 @@ const TopNavBar = () => {
   return (
     <>
       <header className="fixed top-0 inset-x-0 z-50">
-        <div className={`transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+        <div className={`transition-all duration-700 ease-smooth ${
           scrolled 
             ? 'mx-4 mt-2' 
             : 'container mx-auto px-4 mt-4'
         }`}>
-          <div className={`liquid-glass-surface transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-medium bg-background/40 backdrop-blur-md ${
+          <div className={`liquid-glass-surface transition-all duration-700 ease-smooth shadow-medium bg-background/40 backdrop-blur-md ${
             scrolled 
               ? 'rounded-full px-4 py-2 w-auto ml-auto mr-0 max-w-fit transform scale-90' 
               : 'rounded-3xl px-6 py-3 transform scale-100'

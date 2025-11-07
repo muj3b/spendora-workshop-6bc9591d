@@ -53,7 +53,7 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
     <div className="group cursor-default">
       <div
         ref={cardRef}
-        className={`holographic-stat-card liquid-glass-surface rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-${hoverBorder} transition-all duration-300`}
+        className={`holographic-stat-card liquid-glass-surface stat-card rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-${hoverBorder} transition-all duration-300`}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
@@ -175,16 +175,16 @@ const Hero = memo(() => {
                   aria-label="View 300+ Indian school students workshop gallery"
                 >
                   <GlowingEffect
-                    spread={40}
+                    spread={360}
                     glow={true}
                     proximity={0}
                     inactiveZone={0.01}
-                    borderWidth={2}
+                    borderWidth={3}
                     blur={0}
                     alwaysOn
                   />
                   <div className="absolute top-2 right-2 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 z-20">
-                    <div className="bg-blue-500/90 text-white text-[10px] px-2 py-1 rounded-full font-bold animate-bounce">
+                    <div className="bg-blue-500/90 text-white text-[10px] px-2 py-1 rounded-full font-bold transition-all duration-300">
                       Click to view!
                     </div>
                   </div>

@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.ease-smooth {
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 
 @layer base {
@@ -302,12 +306,12 @@
     display: none;
   }
 
-  .liquid-glass-surface:hover { 
-    box-shadow: var(--shadow-medium); 
-    /* Expand the blur to fill the entire element smoothly */
-    --hover-size: 2000px;
-    --hover-intensity: 0.15;
-  }
+.liquid-glass-surface:hover { 
+  box-shadow: var(--shadow-medium); 
+  /* Expand the blur to fill the entire element smoothly */
+  --hover-size: 2000px;
+  --hover-intensity: 0.15;
+}
   
   .liquid-glass-surface:active { 
     box-shadow: var(--shadow-soft);
@@ -315,10 +319,18 @@
     --hover-intensity: 0.2;
   }
 
-  .dark .liquid-glass-surface {
-    background: linear-gradient(180deg, hsl(var(--background) / 0.12), hsl(var(--background) / 0.20));
-    border-color: hsl(var(--border) / 0.4);
-  }
+.dark .liquid-glass-surface {
+  background: linear-gradient(180deg, hsl(var(--background) / 0.12), hsl(var(--background) / 0.20));
+  border-color: hsl(var(--border) / 0.4);
+}
+
+.stat-card {
+  overflow: visible;
+}
+
+.stat-card::before {
+  display: none;
+}
 
   /* Liquid Glass Button */
   .liquid-glass-btn {

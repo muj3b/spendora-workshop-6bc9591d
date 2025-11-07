@@ -13,13 +13,13 @@ const PageTransitions = () => {
 
   return (
     <div 
-      className={`fixed inset-0 z-[100] pointer-events-none transition-all duration-600 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+      className={`fixed inset-0 z-[100] pointer-events-none transition-all duration-600 ease-smooth ${
         isTransitioning 
           ? 'bg-gradient-to-br from-primary/20 via-background to-primary/10 backdrop-blur-sm opacity-100' 
           : 'opacity-0'
       }`}
     >
-      <div className={`absolute inset-0 transition-transform duration-600 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+      <div className={`absolute inset-0 transition-transform duration-600 ease-smooth ${
         isTransitioning ? 'scale-110' : 'scale-100'
       }`}>
         <div className="liquid-glass-surface h-full w-full animate-pulse" />
