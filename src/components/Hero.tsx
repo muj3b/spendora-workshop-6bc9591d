@@ -9,7 +9,7 @@ import LiveEventTimer from "@/components/LiveEventTimer";
 import { RobotBackground } from "@/components/RobotBackground";
 
 // Holographic Stat Card Component
-const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBorder, className, disableGlass = false, disableGlow = false }: {
+const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBorder, className, disableGlass = false, disableGlow = false, disableTilt = false }: {
   number: string;
   label: string;
   sublabel: string;
@@ -18,6 +18,7 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
   className?: string;
   disableGlass?: boolean;
   disableGlow?: boolean;
+  disableTilt?: boolean;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -68,8 +69,8 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
       <div
         ref={cardRef}
         className={`${baseClasses} ${className ?? ""}`}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
+        onMouseMove={disableTilt ? undefined : handleMouseMove}
+        onMouseLeave={disableTilt ? undefined : handleMouseLeave}
       >
         <div className="text-center space-y-1 sm:space-y-2 relative z-10">
           <div className={`text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br ${gradient} bg-clip-text text-transparent`}>
@@ -179,18 +180,18 @@ const Hero = memo(() => {
             {/* Impact Stats - Inline below subtitle */}
             <div className="mt-6 mb-4 max-w-4xl mx-auto animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both]">
               <div className="grid grid-cols-3 gap-3 sm:gap-6">
-                {/* Stat 1 - Clickable Indian School with shimmer outline */}
+                {/* Stat 1 - Clickable Indian School with subtle glow */}
                 <button
                   type="button"
                   onClick={handleGallery}
                   aria-label="View 300+ Indian school students workshop gallery"
-                  className="group/card stat-outline relative flex w-full flex-col items-stretch rounded-[1.5rem] text-left transition-transform duration-300 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                  className="group/card relative flex w-full flex-col rounded-[1.5rem] border border-white/15 bg-white/[0.03] p-2 text-left shadow-[0_12px_40px_rgba(15,23,42,0.35)] backdrop-blur-xl transition-transform duration-300 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                 >
                   <span className="sr-only">Open gallery with 300+ students workshop photos</span>
-                  <div className="pointer-events-none absolute top-2 right-2 z-20 rounded-full bg-blue-500/90 px-2 py-1 text-[10px] font-bold text-white opacity-0 transition-opacity duration-300 group-hover/card:opacity-100">
+                  <div className="pointer-events-none absolute left-4 bottom-4 inline-flex items-center rounded-full border border-white/25 bg-blue-500/80 px-3 py-1 text-[11px] font-semibold text-white shadow-sm transition-all duration-300 group-hover/card:bg-blue-400 group-hover/card:border-white/40">
                     Click to view!
                   </div>
-                  <div className="relative z-10 w-full rounded-[1.35rem] bg-white/[0.04] p-1.5 sm:p-2">
+                  <div className="relative z-10 w-full rounded-[1.2rem] bg-transparent p-1 sm:p-1.5">
                     <HolographicStatCard
                       number="300+"
                       label="Students"
@@ -199,6 +200,7 @@ const Hero = memo(() => {
                       hoverBorder="blue-500/30"
                       disableGlass
                       disableGlow
+                      disableTilt
                       className="bg-transparent shadow-none border border-white/10 backdrop-blur-[2px]"
                     />
                   </div>
