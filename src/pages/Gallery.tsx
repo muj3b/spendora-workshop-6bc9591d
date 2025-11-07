@@ -67,13 +67,13 @@ const Gallery = () => {
   const renderMediaGrid = (photos, videos = []) => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
       {photos.map((photo, index) => (
-        <div key={`photo-${index}`} className="group relative overflow-hidden rounded-2xl liquid-glass-surface shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-          <img src={photo.src} alt={photo.alt} className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110" loading="lazy" />
+        <div key={`photo-${index}`} className="group relative overflow-hidden rounded-2xl liquid-glass-surface shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <img src={photo.src} alt={photo.alt} className="w-full h-64 object-cover" loading="lazy" />
           <div className="p-4"><p className="text-sm text-muted-foreground">{photo.alt}</p></div>
         </div>
       ))}
       {videos.map((video, index) => (
-        <div key={`video-${index}`} className="group relative overflow-hidden rounded-2xl liquid-glass-surface shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+        <div key={`video-${index}`} className="group relative overflow-hidden rounded-2xl liquid-glass-surface shadow-lg hover:shadow-xl transition-shadow duration-300">
           <video src={video.src} controls preload="metadata" className="w-full h-64 object-cover" />
           <div className="p-4"><p className="text-sm text-muted-foreground">{video.alt}</p></div>
         </div>

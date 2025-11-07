@@ -498,47 +498,6 @@
   will-change: transform;
 }
 
-.holographic-stat-card::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: radial-gradient(
-    circle at var(--bg-x) var(--bg-y),
-    rgba(255, 255, 255, 0.25),
-    rgba(200, 220, 255, 0.15) 25%,
-    rgba(220, 200, 255, 0.15) 50%,
-    transparent 75%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.holographic-stat-card:hover::before {
-  opacity: 1;
-}
-
-.holographic-stat-card .holo-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    circle 120px at var(--x) var(--y),
-    rgba(255, 255, 255, 0.3),
-    transparent 65%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-}
-
-.holographic-stat-card:hover .holo-glow {
-  opacity: 1;
-}
-
 /* Spline Scene Loader */
 .loader {
   width: 20px;

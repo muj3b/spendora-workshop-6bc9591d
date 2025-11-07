@@ -57,7 +57,6 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="holo-glow"></div>
         <div className="text-center space-y-1 sm:space-y-2 relative z-10">
           <div className={`text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-br ${gradient} bg-clip-text text-transparent`}>
             {number}
@@ -178,11 +177,11 @@ const Hero = memo(() => {
                   <GlowingEffect
                     spread={40}
                     glow={true}
-                    disabled={false}
                     proximity={0}
                     inactiveZone={0.01}
                     borderWidth={2}
                     blur={0}
+                    alwaysOn
                   />
                   <div className="absolute top-2 right-2 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 z-20">
                     <div className="bg-blue-500/90 text-white text-[10px] px-2 py-1 rounded-full font-bold animate-bounce">
