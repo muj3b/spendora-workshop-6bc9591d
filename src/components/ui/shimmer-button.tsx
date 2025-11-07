@@ -11,6 +11,7 @@ export interface ShimmerButtonProps
   background?: string;
   className?: string;
   children?: React.ReactNode;
+  withHighlight?: boolean;
 }
 
 const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
@@ -23,6 +24,7 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
       background = "rgba(0, 0, 0, 1)",
       className,
       children,
+      withHighlight = true,
       ...props
     },
     ref,
@@ -63,22 +65,24 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
         {children}
 
         {/* Highlight */}
-        <div
-          className={cn(
-            "inset-0 absolute size-full -z-10 pointer-events-none",
+        {withHighlight && (
+          <div
+            className={cn(
+              "inset-0 absolute size-full -z-10 pointer-events-none",
 
-            "rounded-2xl px-4 py-1.5 text-sm font-medium shadow-[inset_0_-8px_10px_#ffffff1f]",
+              "rounded-2xl px-4 py-1.5 text-sm font-medium shadow-[inset_0_-8px_10px_#ffffff1f]",
 
-            // transition
-            "transform-gpu transition-all duration-300 ease-in-out",
+              // transition
+              "transform-gpu transition-all duration-300 ease-in-out",
 
-            // on hover
-            "group-hover:shadow-[inset_0_-6px_10px_#ffffff3f]",
+              // on hover
+              "group-hover:shadow-[inset_0_-6px_10px_#ffffff3f]",
 
-            // on click
-            "group-active:shadow-[inset_0_-10px_10px_#ffffff3f]",
-          )}
-        />
+              // on click
+              "group-active:shadow-[inset_0_-10px_10px_#ffffff3f]",
+            )}
+          />
+        )}
 
         {/* backdrop */}
         <div

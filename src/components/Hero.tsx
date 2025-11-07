@@ -190,6 +190,7 @@ const Hero = memo(() => {
                   shimmerSize="0.14em"
                   borderRadius="1.5rem"
                   background="rgba(15,23,42,0.35)"
+                  withHighlight={false}
                   className="group/card relative flex w-full flex-col items-stretch rounded-[1.5rem] border border-white/20 px-0 py-0 text-left shadow-[0_0_40px_rgba(59,130,246,0.2)] backdrop-blur-2xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                 >
                   <span className="sr-only">Open gallery with 300+ students workshop photos</span>
