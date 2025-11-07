@@ -10,33 +10,28 @@
   -webkit-backdrop-filter: saturate(150%) blur(14px);
 }
 
-/* Base transforms and variables */
+/* Base variables only - no transforms */
 .liquid-glass-surface,
 .liquid-glass-btn,
 [data-liquid] {
-  --press: 1;
-  --squish-x: 1;
-  --squish-y: 1;
   --hover-size: 40px;
   --hover-intensity: 0.08;
   --btn-hover-size: 30px;
   --btn-hover-intensity: 0.08;
-  transform: scale(var(--press)) scaleX(var(--squish-x)) scaleY(var(--squish-y));
-  transition: transform 150ms ease, box-shadow 250ms ease, background 250ms ease, filter 250ms ease;
+  transition: box-shadow 250ms ease, background 250ms ease, filter 250ms ease;
 }
 
-/* Hover swell */
+/* Remove all hover/press transform effects to prevent squishing */
 .liquid-glass-surface.is-hovered,
 .liquid-glass-btn.is-hovered,
 [data-liquid].is-hovered {
-  --press: 1.015;
+  /* No transform changes */
 }
 
-/* Press bulge */
 .liquid-glass-surface.is-pressed,
 .liquid-glass-btn.is-pressed,
 [data-liquid].is-pressed {
-  --press: 0.985;
+  /* No transform changes */
 }
 
 /* Remove the old inner glow effect */

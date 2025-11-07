@@ -7,6 +7,7 @@ import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart, Camera } from "luc
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 import { RobotBackground } from "@/components/RobotBackground";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 // Holographic Stat Card Component
 const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBorder }: {
@@ -165,7 +166,7 @@ const Hero = memo(() => {
             {/* Impact Stats - Inline below subtitle */}
             <div className="mt-6 mb-4 max-w-4xl mx-auto animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both]">
               <div className="grid grid-cols-3 gap-3 sm:gap-6">
-                {/* Stat 1 - Clickable Indian School */}
+                {/* Stat 1 - Clickable Indian School with permanent glow */}
                 <div 
                   onClick={() => navigate('/gallery')} 
                   className="cursor-pointer relative group/card"
@@ -174,7 +175,15 @@ const Hero = memo(() => {
                   onKeyDown={(e) => e.key === 'Enter' && navigate('/gallery')}
                   aria-label="View 300+ Indian school students workshop gallery"
                 >
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-xl opacity-0 group-hover/card:opacity-75 blur transition duration-300 animate-pulse"></div>
+                  <GlowingEffect
+                    spread={40}
+                    glow={true}
+                    disabled={false}
+                    proximity={0}
+                    inactiveZone={0.01}
+                    borderWidth={2}
+                    blur={0}
+                  />
                   <div className="absolute top-2 right-2 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 z-20">
                     <div className="bg-blue-500/90 text-white text-[10px] px-2 py-1 rounded-full font-bold animate-bounce">
                       Click to view!
