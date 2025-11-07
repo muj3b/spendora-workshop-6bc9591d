@@ -7,15 +7,17 @@ import { ChartLine, Store, ArrowRight, Coins, Bitcoin, Heart, Camera } from "luc
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 import { RobotBackground } from "@/components/RobotBackground";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 // Holographic Stat Card Component
-const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBorder }: {
+const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBorder, className, disableGlass = false }: {
   number: string;
   label: string;
   sublabel: string;
   gradient: string;
   hoverBorder: string;
+  className?: string;
+  disableGlass?: boolean;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -49,11 +51,22 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
     card.style.setProperty('--bg-y', '50%');
   };
 
+  const baseClasses = [
+    "holographic-stat-card",
+    !disableGlass && "liquid-glass-surface",
+    "rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md",
+    disableGlass ? "border border-white/10" : "border border-white/5",
+    `hover:border-${hoverBorder}`,
+    "transition-all duration-300"
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <div className="group cursor-default">
       <div
         ref={cardRef}
-        className={`holographic-stat-card liquid-glass-surface stat-card rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md border border-white/5 hover:border-${hoverBorder} transition-all duration-300`}
+        className={`${baseClasses} ${className ?? ""}`}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
@@ -165,37 +178,34 @@ const Hero = memo(() => {
             {/* Impact Stats - Inline below subtitle */}
             <div className="mt-6 mb-4 max-w-4xl mx-auto animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both]">
               <div className="grid grid-cols-3 gap-3 sm:gap-6">
-                {/* Stat 1 - Clickable Indian School with permanent glow */}
-                <div 
-                  onClick={() => navigate('/gallery')} 
-                  className="cursor-pointer relative group/card"
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && navigate('/gallery')}
+                {/* Stat 1 - Clickable Indian School with shimmer outline */}
+                <ShimmerButton
+                  type="button"
+                  onClick={handleGallery}
                   aria-label="View 300+ Indian school students workshop gallery"
+                  shimmerColor="#93c5fd"
+                  shimmerDuration="4s"
+                  shimmerSize="0.12em"
+                  borderRadius="1.5rem"
+                  background="rgba(4,7,17,0.8)"
+                  className="group/card relative flex w-full flex-col items-stretch justify-stretch whitespace-normal rounded-[1.5rem] border border-white/15 px-0 py-0 text-left shadow-none hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                 >
-                  <GlowingEffect
-                    spread={360}
-                    glow={true}
-                    proximity={0}
-                    inactiveZone={0.01}
-                    borderWidth={3}
-                    blur={0}
-                    alwaysOn
-                  />
-                  <div className="absolute top-2 right-2 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 z-20">
-                    <div className="bg-blue-500/90 text-white text-[10px] px-2 py-1 rounded-full font-bold transition-all duration-300">
-                      Click to view!
-                    </div>
+                  <span className="sr-only">Open gallery with 300+ students workshop photos</span>
+                  <div className="pointer-events-none absolute top-2 right-2 z-20 rounded-full bg-blue-500/90 px-2 py-1 text-[10px] font-bold text-white opacity-0 transition-opacity duration-300 group-hover/card:opacity-100">
+                    Click to view!
                   </div>
-                  <HolographicStatCard
-                    number="300+"
-                    label="Students"
-                    sublabel="Indian schools"
-                    gradient="from-blue-500 via-purple-500 to-pink-500"
-                    hoverBorder="blue-500/30"
-                  />
-                </div>
+                  <div className="relative z-10 w-full">
+                    <HolographicStatCard
+                      number="300+"
+                      label="Students"
+                      sublabel="Indian schools"
+                      gradient="from-blue-500 via-purple-500 to-pink-500"
+                      hoverBorder="blue-500/30"
+                      disableGlass
+                      className="bg-background/50 shadow-none !border-white/10"
+                    />
+                  </div>
+                </ShimmerButton>
 
                 {/* Stat 2 */}
                 <HolographicStatCard

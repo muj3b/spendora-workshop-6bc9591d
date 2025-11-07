@@ -324,14 +324,6 @@
   border-color: hsl(var(--border) / 0.4);
 }
 
-.stat-card {
-  overflow: visible;
-}
-
-.stat-card::before {
-  display: none;
-}
-
   /* Liquid Glass Button */
   .liquid-glass-btn {
     position: relative;
