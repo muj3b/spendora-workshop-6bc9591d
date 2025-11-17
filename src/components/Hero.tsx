@@ -55,11 +55,11 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
   const baseClasses = [
     "holographic-stat-card",
     disableGlow && "no-holo-glow",
-    !disableGlass && "liquid-glass-surface",
     "rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md",
     disableGlass ? "border border-white/10" : "border border-white/5",
     `hover:border-${hoverBorder}`,
-    "transition-all duration-300"
+    "transition-all duration-300",
+    "backdrop-blur-md"
   ]
     .filter(Boolean)
     .join(" ");
