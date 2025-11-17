@@ -133,10 +133,7 @@
     scroll-behavior: smooth;
   }
 
-  /* Elastic Cursor Styles */
-  * {
-    cursor: none !important;
-  }
+  /* Elastic Cursor Styles - disabled to show default cursor */
 
   .elastic-bubble {
     will-change: transform;
