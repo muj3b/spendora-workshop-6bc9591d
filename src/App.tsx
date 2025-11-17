@@ -25,7 +25,6 @@ import SoundEffects from "./components/SoundEffects";
 import AutoHideNavigation from "./components/AutoHideNavigation";
 import ParallaxScrolling from "./components/ParallaxScrolling";
 import Breadcrumbs from "./components/Breadcrumbs";
-import SmoothScroll from "./components/SmoothScroll";
 
 const queryClient = new QueryClient();
 
@@ -41,11 +40,10 @@ const App = () => (
         <SoundEffects />
         <AutoHideNavigation />
         <ParallaxScrolling />
-        <SmoothScroll />
         <BrowserRouter>
           <PageTransitions />
           <TopNavBar />
-          <div className="relative" data-scroll-container>
+          <div className="relative">
             <Breadcrumbs />
             <Routes>
               <Route path="/" element={<Index />} />
