@@ -140,37 +140,41 @@ const Gallery = () => {
               </CollapsibleContent>
             </Collapsible>
 
-            <Collapsible id="indian-school" defaultOpen className="border rounded-lg p-6 liquid-glass-surface transition-all duration-300">
-              <CollapsibleTrigger className="flex items-center justify-between w-full text-left">
-                <div className="flex items-center gap-4">
-                  <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-xl font-bold text-xl transition-all duration-300">INDIAN SCHOOL</div>
-                  <div className="flex flex-col">
-                    <span className="text-lg font-semibold transition-colors duration-300">300+ Students Workshop</span>
-                    <span className="text-sm text-muted-foreground">Sri Girdhar Techno School Special Session</span>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Collapsible id="indian-school" className="border rounded-lg p-6 liquid-glass-surface transition-all duration-300">
+                <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
+                  <div className="flex flex-col gap-3">
+                    <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-xl font-bold text-xl transition-all duration-300">INDIAN SCHOOL</div>
+                    <div className="flex flex-col">
+                      <span className="text-lg font-semibold transition-colors duration-300">300+ Students Workshop</span>
+                      <span className="text-sm text-muted-foreground">Sri Girdhar Techno School</span>
+                      <span className="text-xs text-primary mt-2 group-hover:underline">Click to view photos & videos →</span>
+                    </div>
                   </div>
-                </div>
-                <ChevronDown className="h-5 w-5 transition-transform duration-200" />
-              </CollapsibleTrigger>
-              <CollapsibleContent className="mt-6">
-                {renderMediaGrid(indianSchoolPhotos, indianSchoolVideos)}
-              </CollapsibleContent>
-            </Collapsible>
+                  <ChevronDown className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-6">
+                  {renderMediaGrid(indianSchoolPhotos, indianSchoolVideos)}
+                </CollapsibleContent>
+              </Collapsible>
 
-            <Collapsible id="ram-krishna-school" defaultOpen className="border rounded-lg p-6 liquid-glass-surface transition-all duration-300">
-              <CollapsibleTrigger className="flex items-center justify-between w-full text-left">
-                <div className="flex items-center gap-4">
-                  <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-bold text-xl transition-all duration-300">RAM KRISHNA SCHOOL</div>
-                  <div className="flex flex-col">
-                    <span className="text-lg font-semibold transition-colors duration-300">Financial Literacy Workshop</span>
-                    <span className="text-sm text-muted-foreground">Ram Krishna Dwarika School Session</span>
+              <Collapsible id="ram-krishna-school" className="border rounded-lg p-6 liquid-glass-surface transition-all duration-300">
+                <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
+                  <div className="flex flex-col gap-3">
+                    <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-bold text-xl transition-all duration-300">RAM KRISHNA SCHOOL</div>
+                    <div className="flex flex-col">
+                      <span className="text-lg font-semibold transition-colors duration-300">Financial Literacy Workshop</span>
+                      <span className="text-sm text-muted-foreground">Ram Krishna Dwarika School</span>
+                      <span className="text-xs text-primary mt-2 group-hover:underline">Click to view photos →</span>
+                    </div>
                   </div>
-                </div>
-                <ChevronDown className="h-5 w-5 transition-transform duration-200" />
-              </CollapsibleTrigger>
-              <CollapsibleContent className="mt-6">
-                {renderMediaGrid(ramKrishnaSchoolPhotos)}
-              </CollapsibleContent>
-            </Collapsible>
+                  <ChevronDown className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-6">
+                  {renderMediaGrid(ramKrishnaSchoolPhotos)}
+                </CollapsibleContent>
+              </Collapsible>
+            </div>
           </div>
 
           {/* Footer Section */}
