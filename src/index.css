@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -230,6 +229,17 @@
   }
 }
 
+/* Disable custom cursor on touch devices for performance */
+@media (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+
+  .elastic-bubble {
+    display: none !important;
+  }
+}
+
 @layer components {
   /* Typography Scale */
   .text-display {
@@ -289,7 +299,7 @@
     isolation: isolate;
   }
 
-  .liquid-glass-surface::before {
+.liquid-glass-surface::before {
     content: "";
     position: absolute;
     inset: -1px;
@@ -302,25 +312,22 @@
     );
     opacity: 1;
     transition: --hover-size 0.6s cubic-bezier(0.22, 1, 0.36, 1), --hover-intensity 0.6s ease;
-    mix-blend-mode: screen;
-  }
+  mix-blend-mode: screen;
+}
 
-  /* Remove the shine effect completely */
-  .liquid-glass-surface::after {
-    display: none;
-  }
+/* Remove the shine effect completely */
+.liquid-glass-surface::after {
+  display: none;
+}
 
 .liquid-glass-surface:hover { 
-  box-shadow: var(--shadow-medium); 
-  /* Expand the blur to fill the entire element smoothly */
-  --hover-size: 2000px;
-  --hover-intensity: 0.15;
+  box-shadow: var(--shadow-medium);
+  --hover-intensity: 0.12;
 }
   
   .liquid-glass-surface:active { 
     box-shadow: var(--shadow-soft);
-    --hover-size: 300px;
-    --hover-intensity: 0.2;
+    --hover-intensity: 0.18;
   }
 
 .dark .liquid-glass-surface {
@@ -375,15 +382,12 @@
 
   .liquid-glass-btn:hover {
     box-shadow: var(--shadow-medium);
-    /* Expand to fill the button area smoothly */
-    --btn-hover-size: 1500px;
-    --btn-hover-intensity: 0.18;
+    --btn-hover-intensity: 0.14;
   }
 
   .liquid-glass-btn:active {
     box-shadow: var(--shadow-soft);
-    --btn-hover-size: 150px;
-    --btn-hover-intensity: 0.25;
+    --btn-hover-intensity: 0.18;
   }
 
   /* Cursor spotlight highlight target */

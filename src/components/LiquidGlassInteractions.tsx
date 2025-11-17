@@ -15,20 +15,20 @@ function withinViewport(el: Element) {
 
 export default function LiquidGlassInteractions() {
   useEffect(() => {
+    const prefersFinePointer = window.matchMedia('(pointer: fine)').matches;
     let rafId: number | null = null;
     let lastY = window.scrollY;
     let lastT = performance.now();
     let scrollCooldown: number | null = null;
 
     const onPointerMove = (e: PointerEvent) => {
+      if (!prefersFinePointer) return;
       if (!(e.target instanceof Element)) return;
       const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
       if (!target) return;
-      const rect = target.getBoundingClientRect();
-      const gx = ((e.clientX - rect.left) / rect.width) * 100;
-      const gy = ((e.clientY - rect.top) / rect.height) * 100;
-      target.style.setProperty("--gx", `${gx}%`);
-      target.style.setProperty("--gy", `${gy}%`);
+      // Keep glow centered for a calmer fill effect
+      target.style.setProperty("--gx", `50%`);
+      target.style.setProperty("--gy", `50%`);
     };
 
     const onPointerEnter = (e: Event) => {
@@ -36,6 +36,8 @@ export default function LiquidGlassInteractions() {
       const target = (e.target as HTMLElement)?.closest(SELECTOR) as HTMLElement | null;
       if (!target) return;
       target.classList.add("is-hovered");
+      target.style.setProperty("--gx", `50%`);
+      target.style.setProperty("--gy", `50%`);
       // Set hover size based on element dimensions
       const rect = target.getBoundingClientRect();
       const maxSize = Math.max(rect.width, rect.height) + 40;

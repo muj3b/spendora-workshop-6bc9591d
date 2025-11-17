@@ -82,7 +82,7 @@ const Gallery = () => {
   ];
 
   const renderMediaGrid = (photos, videos = []) => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
       {photos.map((photo, index) => (
         <div key={`photo-${index}`} className="relative overflow-hidden rounded-2xl border border-white/10 bg-background/90 shadow-lg">
           <img src={photo.src} alt={photo.alt} className="w-full h-64 object-cover" loading="lazy" />
@@ -140,7 +140,7 @@ const Gallery = () => {
               </CollapsibleContent>
             </Collapsible>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               <Collapsible id="indian-school" className="border rounded-lg p-6 liquid-glass-surface transition-all duration-300">
                 <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
                   <div className="flex flex-col gap-3">

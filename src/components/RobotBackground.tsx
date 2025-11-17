@@ -4,13 +4,17 @@ import { SplineScene } from '@/components/ui/spline-scene';
 export const RobotBackground = () => {
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined'
+      ? window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches
+      : false
+  );
   const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
 
   useEffect(() => {
     // Check if device is mobile
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+      setIsMobile(window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches);
     };
     
     checkMobile();
@@ -22,6 +26,7 @@ export const RobotBackground = () => {
     }, 100);
 
     const handleScroll = () => {
+      if (isMobile) return;
       const currentScrollY = window.scrollY;
       setScrollY(currentScrollY);
     };
@@ -40,18 +45,22 @@ export const RobotBackground = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
     if (!isMobile) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
       window.addEventListener('mousemove', handleMouseMove, { passive: true });
     }
-    
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
+      if (!isMobile) {
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('mousemove', handleMouseMove);
+      }
       window.removeEventListener('resize', checkMobile);
       clearTimeout(timer);
     };
   }, [isMobile]);
+
+  if (isMobile) return null;
 
   // Calculate opacity based on scroll and initial animation
   const baseOpacity = hasAnimatedIn ? 1 : 0;
@@ -74,13 +83,11 @@ export const RobotBackground = () => {
       {/* Robot Spline Scene positioned lower with mouse tracking */}
       <div className="absolute top-0 inset-x-0 h-full opacity-80">
         <div 
-          className={`absolute inset-0 transform-gpu origin-center flex items-start justify-center transition-transform duration-200 ease-out ${
-            isMobile ? 'scale-[0.7] -translate-y-8' : 'scale-[1.1] -translate-y-16'
-          }`}
+          className="absolute inset-0 transform-gpu origin-center flex items-start justify-center transition-transform duration-200 ease-out"
           style={{
             transform: `
-              scale(${isMobile ? 0.7 : 1.1}) 
-              translateY(${isMobile ? -32 : -64}px) 
+              scale(1.1) 
+              translateY(-64px) 
               rotateX(${mousePosition.y * 15}deg) 
               rotateY(${mousePosition.x * 12}deg)
             `,
@@ -89,7 +96,7 @@ export const RobotBackground = () => {
         >
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className={`w-full ${isMobile ? 'h-[80vh] max-w-lg' : 'h-[100vh] max-w-6xl'}`}
+            className="w-full h-[100vh] max-w-6xl"
           />
         </div>
       </div>

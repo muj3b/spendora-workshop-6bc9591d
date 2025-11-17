@@ -28,7 +28,7 @@ const featureCardVariants = cva(
 );
 
 const iconContainerVariants = cva(
-  "flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] shadow-soft",
+  "grid place-items-center mx-auto mb-4 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] shadow-soft",
   {
     variants: {
       size: {
@@ -100,7 +100,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, FeatureCardProps>(
       >
         <div className="p-6 text-center">
           <div className={cn(iconContainerVariants({ size: iconSize, gradient: iconGradient }), "rounded-2xl")}>
-            <Icon className="w-8 h-8 text-white transition-transform duration-300 group-hover:rotate-12" />
+            <Icon className="block w-8 h-8 text-white transition-transform duration-300 group-hover:rotate-12" />
           </div>
           <h3 className="text-xl font-bold text-card-foreground mb-3">{title}</h3>
           <p className="text-muted-foreground leading-relaxed mb-4">{description}</p>

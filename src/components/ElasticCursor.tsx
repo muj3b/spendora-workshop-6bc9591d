@@ -46,6 +46,7 @@ class ElasticCursorController {
   active: boolean;
   target: HTMLElement | null;
   cleanups: (() => void)[];
+  private resetDelay: number | null = null;
 
   constructor(el: HTMLElement) {
     this.node = el;
@@ -124,36 +125,25 @@ class ElasticCursorController {
       };
 
       const onPointerLeave = () => {
-        this.active = false;
-        this.target = null;
-        this.targetRect = null;
+        this.resetCursorState();
         element.classList.remove('is-bubbled');
-        
-        // Reset to normal cursor
-        gsap.to(this.node, {
-          scaleX: 1,
-          scaleY: 1,
-          borderRadius: '50%',
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-        
-        // Reset element position
+
+        // Reset element position quickly so it doesn't stay stretched
         gsap.to(element, {
           x: 0,
           y: 0,
-          duration: 0.6,
-          ease: 'elastic.out(1, 0.5)'
+          duration: 0.25,
+          ease: 'power2.out'
         });
       };
 
       const moveX = gsap.quickTo(element, 'x', { 
-        duration: 0.8, 
-        ease: 'power3.out'
+        duration: 0.45, 
+        ease: 'power2.out'
       });
       const moveY = gsap.quickTo(element, 'y', { 
-        duration: 0.8, 
-        ease: 'power3.out'
+        duration: 0.45, 
+        ease: 'power2.out'
       });
 
       const onPointerMove = (ev: PointerEvent) => {
@@ -177,8 +167,8 @@ class ElasticCursorController {
         const dy = ev.clientY - centerY;
         
         // Subtle magnetic pull
-        moveX(dx * 0.15);
-        moveY(dy * 0.15);
+        moveX(dx * 0.08);
+        moveY(dy * 0.08);
       };
 
       element.addEventListener('pointerenter', onPointerEnter, { passive: true });
@@ -209,7 +199,7 @@ class ElasticCursorController {
         scaleY: scaleY,
         borderRadius: `${borderRadius}px`,
         rotation: 0,
-        duration: 0.3,
+        duration: 0.22,
         ease: 'power2.out',
         overwrite: 'auto'
       });
@@ -242,22 +232,41 @@ class ElasticCursorController {
       force3D: true
     });
 
-    // Only apply squash/stretch effect when NOT hovering
+    // Subtle stretch without spinning
     if (!this.active) {
-      const dist = Math.sqrt(diff.x ** 2 + diff.y ** 2) * 0.04;
-      const ang = Math.atan2(diff.y, diff.x) * (180 / Math.PI);
-      
+      const dist = Math.sqrt(diff.x ** 2 + diff.y ** 2) * 0.035;
       gsap.set(this.node, {
-        rotation: ang,
-        scaleX: this.size.now + Math.min(dist, 0.8),
-        scaleY: this.size.now - Math.min(dist, 0.2),
+        rotation: 0,
+        scaleX: this.size.now + Math.min(dist, 0.5),
+        scaleY: this.size.now - Math.min(dist, 0.15),
         borderRadius: '50%',
         force3D: true
       });
     }
   }
 
-  private lastUpdate: number = 0;
+  resetCursorState() {
+    this.active = false;
+    this.target = null;
+    this.targetRect = null;
+    this.isTransitioning = false;
+
+    if (this.resetDelay) {
+      window.clearTimeout(this.resetDelay);
+    }
+
+    this.resetDelay = window.setTimeout(() => {
+      gsap.to(this.node, {
+        scaleX: 1,
+        scaleY: 1,
+        rotation: 0,
+        borderRadius: '50%',
+        duration: 0.18,
+        ease: 'power2.out',
+        overwrite: true
+      });
+    }, 0);
+  }
 
   cleanup() {
     this.cleanups.forEach(fn => fn());
@@ -271,6 +280,9 @@ export const ElasticCursor = () => {
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
+    // Skip custom cursor on touch devices for performance and native feel
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
     if (!bubbleRef.current) return;
 
     const controller = new ElasticCursorController(bubbleRef.current);
@@ -306,9 +318,7 @@ export const ElasticCursor = () => {
 
     observer.observe(document.body, {
       childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['class', 'style']
+      subtree: true
     });
 
     const onMouseMove = (e: MouseEvent) => {
@@ -317,16 +327,7 @@ export const ElasticCursor = () => {
 
     window.addEventListener('mousemove', onMouseMove);
 
-    const onMouseDown = () => {
-      if (controller.active && controller.target) {
-        return;
-      }
-      controller.active = false;
-      controller.target = null;
-      controller.targetRect = null;
-      controller.isTransitioning = false;
-    };
-
+    const onMouseDown = () => controller.resetCursorState();
     window.addEventListener('mousedown', onMouseDown);
 
     const animate = () => {

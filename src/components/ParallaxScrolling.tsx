@@ -4,8 +4,11 @@ const ParallaxScrolling = () => {
   const elementsRef = useRef<HTMLElement[]>([]);
   const rafIdRef = useRef<number>();
   const tickingRef = useRef(false);
+  const finePointerRef = useRef(true);
 
   useEffect(() => {
+    finePointerRef.current = window.matchMedia('(pointer: fine)').matches;
+
     const elements = document.querySelectorAll('[data-parallax]') as NodeListOf<HTMLElement>;
     elementsRef.current = Array.from(elements);
 
@@ -27,6 +30,7 @@ const ParallaxScrolling = () => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (!finePointerRef.current) return;
       if (!tickingRef.current) {
         rafIdRef.current = window.requestAnimationFrame(() => {
           const mouseX = e.clientX / window.innerWidth - 0.5;
