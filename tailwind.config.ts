@@ -229,6 +229,20 @@ export default {
 					'100%': {
 						transform: 'translate(calc(100cqw - 100%), 0)'
 					}
+				},
+				'spin-around-slow': {
+					'0%': {
+						transform: 'translateZ(0) rotate(0)'
+					},
+					'15%, 35%': {
+						transform: 'translateZ(0) rotate(90deg)'
+					},
+					'65%, 85%': {
+						transform: 'translateZ(0) rotate(270deg)'
+					},
+					'100%': {
+						transform: 'translateZ(0) rotate(360deg)'
+					}
 				}
 			},
 			animation: {
@@ -245,7 +259,8 @@ export default {
 				'flash': 'flash 1s ease-in-out infinite alternate',
 				'spotlight': 'spotlight 2s ease-out forwards 3s',
 				'shimmer-slide': 'shimmer-slide var(--speed) ease-in-out infinite alternate',
-				'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear'
+				'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear',
+				'spin-around-slow': 'spin-around-slow calc(var(--speed) * 4) infinite linear'
 			}
 		}
 	},
