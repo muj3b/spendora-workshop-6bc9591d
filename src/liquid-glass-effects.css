@@ -46,8 +46,15 @@
 
 /* Ripple effect using ::after (coexists with sheen) */
 @keyframes glass-ripple {
-  from { transform: translate(-50%, -50%) scale(0.6); opacity: 0.35; }
-  to   { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+  from {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0.35;
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
 }
 
 .liquid-glass-surface.is-rippling::after,
@@ -79,5 +86,5 @@
 }
 
 .dark .liquid-glass-surface {
-  background: linear-gradient(180deg, hsl(var(--background) / 0.22), hsl(var(--background) / 0.32));
+  background: linear-gradient(180deg, hsl(var(--background) / 0.4), hsl(var(--background) / 0.6));
 }

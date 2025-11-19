@@ -18,6 +18,7 @@ import Success from "./pages/Success";
 import Donate from "./pages/Donate";
 import Gallery from "./pages/Gallery";
 import Budgeting from "./pages/Budgeting";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import PageTransitions from "./components/PageTransitions";
 import DynamicBackground from "./components/DynamicBackground";
@@ -54,6 +55,7 @@ const App = () => (
               <Route path="/donate" element={<Donate />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/budgeting" element={<Budgeting />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

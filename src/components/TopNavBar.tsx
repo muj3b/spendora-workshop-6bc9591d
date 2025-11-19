@@ -45,14 +45,16 @@ const TopNavBar = () => {
   }, [menuOpen]);
 
   const linkCls = (href: string) =>
-    `px-4 py-2 rounded-3xl text-sm text-foreground/90 hover:text-foreground hover:bg-foreground/8 transition-all duration-300 liquid-glass-btn ${
-      location.hash && href.endsWith(location.hash) ? "bg-foreground/12 font-medium" : ""
+    `px-4 py-2 rounded-3xl text-sm transition-all duration-300 relative group ${
+      location.hash && href.endsWith(location.hash) 
+        ? "text-foreground font-medium" 
+        : "text-foreground/80 hover:text-foreground"
     }`;
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-50">
-        <div className={`transition-all duration-700 ease-smooth ${
+      <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
+        <div className={`transition-all duration-700 ease-smooth pointer-events-auto ${
           scrolled 
             ? 'mx-4 mt-2' 
             : 'container mx-auto px-4 mt-4'
@@ -81,6 +83,9 @@ const TopNavBar = () => {
                     data-liquid
                   >
                     {item.label}
+                    {location.hash && item.href.endsWith(location.hash) && (
+                      <span className="absolute inset-x-2 -bottom-1 h-0.5 bg-primary rounded-full" />
+                    )}
                   </a>
                 ))}
               </nav>
@@ -111,7 +116,7 @@ const TopNavBar = () => {
                   className="rounded-full"
                   data-liquid
                 >
-                  <Menu className="h-4 w-4" />
+                  {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
                 </Button>
               </div>
             </div>
@@ -147,7 +152,7 @@ const TopNavBar = () => {
                 className="rounded-full h-8 w-8"
                 data-liquid
               >
-                <Menu className="h-3 w-3" />
+                {menuOpen ? <X className="h-3 w-3" /> : <Menu className="h-3 w-3" />}
               </Button>
             </div>
           )}
@@ -160,38 +165,38 @@ const TopNavBar = () => {
         <div className="fixed inset-0 z-[100]">
           {/* Background overlay */}
           <div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
             onClick={() => setMenuOpen(false)}
           />
           
           {/* Menu panel - Full screen positioning */}
-          <div className="absolute top-0 right-0 h-screen w-[400px] sm:w-[500px] md:w-[600px] bg-background border-l border-border shadow-2xl overflow-y-auto transform transition-transform duration-300 ease-out animate-slide-in-right">
-            <div className="p-6 h-full">
+          <div className="absolute top-0 right-0 h-screen w-[300px] sm:w-[400px] bg-background/95 border-l border-border shadow-2xl overflow-y-auto transform transition-transform duration-300 ease-out animate-in slide-in-from-right">
+            <div className="p-6 h-full flex flex-col">
               {/* Header */}
               <div className="flex items-center justify-between mb-8 pt-4">
                 <h3 className="text-xl font-bold text-foreground">Menu</h3>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="icon"
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-full"
+                  className="rounded-full hover:bg-accent"
                 >
                   <X className="h-5 w-5" />
                 </Button>
               </div>
               
               {/* Menu content */}
-              <div className="space-y-6">
+              <div className="space-y-8 flex-1">
                 {/* Navigation section */}
                 <div>
-                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Navigate</h4>
-                  <div className="space-y-1">
+                  <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">Navigate</h4>
+                  <div className="space-y-2">
                     {mainNav.map((item) => (
                       <a
                         key={item.label}
                         href={item.href}
                         onClick={() => setMenuOpen(false)}
-                        className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                        className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
                       >
                         {item.label}
                       </a>
@@ -199,51 +204,35 @@ const TopNavBar = () => {
                   </div>
                 </div>
 
-                {/* Social section - moved higher */}
-                <div className="pt-2">
-                  <Button
-                    variant="default"
-                    size="lg"
-                    className="w-full justify-start"
-                    onClick={() => {
-                      window.open('https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', '_blank');
-                      setMenuOpen(false);
-                    }}
-                  >
-                    <Instagram className="h-5 w-5 mr-3" />
-                    Follow on Instagram
-                  </Button>
-                </div>
-
                 {/* Workshop Topics section */}
                 <div>
-                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Workshop Topics</h4>
-                  <div className="space-y-1">
+                  <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">Workshop Topics</h4>
+                  <div className="space-y-2">
                     <Link
                       to="/stock-markets"
                       onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
                     >
                       Stock Markets
                     </Link>
                     <Link
                       to="/budgeting"
                       onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
                     >
                       Budgeting
                     </Link>
                     <Link
                       to="/online-business"
                       onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
                     >
                       Online Business
                     </Link>
                     <Link
                       to="/crypto-nfts"
                       onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
                     >
                       Crypto & NFTs
                     </Link>
@@ -252,24 +241,40 @@ const TopNavBar = () => {
                 
                 {/* More section */}
                 <div>
-                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">More</h4>
-                  <div className="space-y-1">
+                  <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">More</h4>
+                  <div className="space-y-2">
                     <Link
                       to="/gallery"
                       onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
                     >
                       Gallery
                     </Link>
                     <Link
                       to="/donate"
                       onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-2.5 rounded-lg text-foreground hover:bg-accent transition-colors duration-200"
+                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
                     >
                       Donate
                     </Link>
                   </div>
                 </div>
+              </div>
+
+              {/* Social section - at bottom */}
+              <div className="pt-6 mt-auto border-t border-border">
+                <Button
+                  variant="default"
+                  size="lg"
+                  className="w-full justify-center rounded-xl font-semibold"
+                  onClick={() => {
+                    window.open('https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', '_blank');
+                    setMenuOpen(false);
+                  }}
+                >
+                  <Instagram className="h-5 w-5 mr-2" />
+                  Follow on Instagram
+                </Button>
               </div>
             </div>
           </div>

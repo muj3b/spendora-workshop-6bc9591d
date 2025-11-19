@@ -31,15 +31,16 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
-    const rotateX = (y - centerY) / 10;
-    const rotateY = (centerX - x) / 10;
+
+    // Reduced tilt intensity for smoother feel
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
 
     card.style.setProperty('--x', `${x}px`);
     card.style.setProperty('--y', `${y}px`);
     card.style.setProperty('--bg-x', `${(x / rect.width) * 100}%`);
     card.style.setProperty('--bg-y', `${(y / rect.height) * 100}%`);
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
   };
 
   const handleMouseLeave = () => {
@@ -55,17 +56,17 @@ const HolographicStatCard = memo(({ number, label, sublabel, gradient, hoverBord
   const baseClasses = [
     "holographic-stat-card",
     disableGlow && "no-holo-glow",
-    "rounded-xl p-3 sm:p-5 shadow-medium bg-background/20 backdrop-blur-md",
+    "rounded-xl p-3 sm:p-5 shadow-medium bg-background/10 backdrop-blur-md", // Reduced opacity
     disableGlass ? "border border-white/10" : "border border-white/5",
     `hover:border-${hoverBorder}`,
-    "transition-all duration-300",
+    "transition-all duration-500 ease-out", // Smoother transition
     "backdrop-blur-md"
   ]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <div className="group cursor-default">
+    <div className="group cursor-default perspective-1000">
       <div
         ref={cardRef}
         className={`${baseClasses} ${className ?? ""}`}
@@ -89,23 +90,23 @@ HolographicStatCard.displayName = 'HolographicStatCard';
 
 const Hero = memo(() => {
   const navigate = useNavigate();
-  
+
   const handleSignup = useCallback(() => {
     window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank');
   }, []);
-  
+
   const handleDonate = useCallback(() => {
     navigate('/donate');
   }, [navigate]);
-  
+
   const handleGallery = useCallback(() => {
     navigate('/gallery#indian-school');
   }, [navigate]);
-  
+
   const navigateToStockMarkets = useCallback(() => {
     navigate('/stock-markets');
   }, [navigate]);
-  
+
   const navigateToCryptoNFTs = useCallback(() => {
     navigate('/crypto-nfts');
   }, [navigate]);
@@ -132,10 +133,10 @@ const Hero = memo(() => {
     <main className="relative min-h-screen bg-transparent flex flex-col overflow-hidden transition-colors duration-300 pt-32" role="main" aria-label="Spendora Workshop Hero Section">
       {/* Aurora animated background - Lowest layer */}
       <div className="aurora-bg absolute inset-0 z-0" aria-hidden />
-      
+
       {/* Background decorative elements */}
       {decorativeElements}
-      
+
       {/* Spotlight - Behind robot but above background */}
       <div className="absolute inset-0 z-10">
         <Spotlight
@@ -144,7 +145,7 @@ const Hero = memo(() => {
           springOptions={{ bounce: 0, stiffness: 150, damping: 25 }}
         />
       </div>
-      
+
       {/* Robot Background - Above spotlight */}
       <div className="absolute inset-0 z-20">
         <RobotBackground />
@@ -169,14 +170,14 @@ const Hero = memo(() => {
               className="font-black tracking-tight"
             />
           </div>
-          
+
           {/* Subtitle right under the title */}
           <div className="-mt-4 mb-8">
             <p className="text-body-large text-muted-foreground max-w-3xl mx-auto animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.4s_both] text-lg md:text-xl">
-              A free workshop designed by high school students to teach 
+              A free workshop designed by high school students to teach
               real-world financial skills to students.
             </p>
-            
+
             {/* Impact Stats - Inline below subtitle */}
             <div className="mt-6 mb-4 max-w-4xl mx-auto animate-smooth-fade-in animate-[fade-in_1s_ease-out_0.5s_both]">
               <div className="grid grid-cols-3 gap-3 sm:gap-6">
@@ -231,15 +232,15 @@ const Hero = memo(() => {
         {/* Robot Space - Larger area for robot */}
         <div className="flex-1 min-h-[300px] relative">
           {/* Robot renders here via RobotBackground component */}
-          
+
           {/* Buttons positioned at robot's body/legs level */}
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl px-4">
             <div className="text-center space-y-6 animate-smooth-fade-in transform transition-all duration-1000 animate-[fade-in_1s_ease-out_0.6s_both]">
               {/* Primary signup button */}
               <div className="space-y-4">
-                <GradientButton 
-                  size="xl" 
-                  variant="secondary" 
+                <GradientButton
+                  size="xl"
+                  variant="secondary"
                   pulse={true}
                   className="w-full sm:w-auto rounded-full text-xl px-12 py-6 hover:scale-110 transition-all duration-300 bg-background/40"
                   onClick={handleSignup}
@@ -247,12 +248,12 @@ const Hero = memo(() => {
                 >
                   <span className="font-bold">Reserve Your Spot - It's Free!</span> <span role="img" aria-label="Rocket">🚀</span>
                 </GradientButton>
-                
+
                 {/* Support and Gallery buttons */}
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <GradientButton 
-                    size="lg" 
-                    variant="warm" 
+                  <GradientButton
+                    size="lg"
+                    variant="warm"
                     className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300 bg-background/40"
                     onClick={handleDonate}
                     aria-label="Support Spendora with a donation"
@@ -261,10 +262,10 @@ const Hero = memo(() => {
                     <Heart className="w-5 h-5 mr-2" />
                     <span className="font-semibold">Support Our Mission</span>
                   </GradientButton>
-                  
-                  <GradientButton 
-                    size="lg" 
-                    variant="accent" 
+
+                  <GradientButton
+                    size="lg"
+                    variant="accent"
                     className="rounded-full text-lg px-8 py-4 hover:scale-105 transition-all duration-300 bg-background/40"
                     onClick={handleGallery}
                     aria-label="View workshop gallery"
@@ -274,9 +275,9 @@ const Hero = memo(() => {
                     <span className="font-semibold">Workshop Gallery</span>
                   </GradientButton>
                 </div>
-                
+
                 <p className="text-muted-foreground mt-3 text-lg">
-                  Limited spots available - Don't miss out! 
+                  Limited spots available - Don't miss out!
                 </p>
               </div>
             </div>
@@ -296,8 +297,8 @@ const Hero = memo(() => {
                     {/* Background pattern */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent_70%)]"></div>
                     <div className="relative z-10">
-                      <LiveEventTimer 
-                        isActive={true} 
+                      <LiveEventTimer
+                        isActive={true}
                         eventStartDateTime="2025-07-10T11:00:00"
                         eventDurationHours={1.5}
                         totalEventDays={2}
@@ -321,7 +322,7 @@ const Hero = memo(() => {
                           <p className="text-muted-foreground text-sm">Workshop Location</p>
                         </div>
                       </div>
-                      <a 
+                      <a
                         href="https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc"
                         target="_blank"
                         rel="noopener noreferrer"
