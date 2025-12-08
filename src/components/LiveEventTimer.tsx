@@ -76,7 +76,7 @@ const LiveEventTimer = ({
         if (now > day2End) {
           setEventStatus({
             type: 'countdown',
-            message: "Day 3 just ended. Day 4 date and time coming soon!",
+            message: "Session 3 just ended. Session 4 date and time coming soon!",
           });
           setTimeLeft('');
           return;
@@ -123,7 +123,7 @@ const LiveEventTimer = ({
       if (now > lastEventEnd) {
         setEventStatus({
           type: 'countdown',
-          message: "Day 3 just ended. Day 4 date and time coming soon!",
+          message: "Session 3 just ended. Session 4 date and time coming soon!",
         });
         setTimeLeft('');
         return;
@@ -256,13 +256,13 @@ const LiveEventTimer = ({
         <div className="text-center space-y-3 max-w-full">
           <div className="mx-auto max-w-fit bg-gradient-to-r from-orange-500/20 to-orange-400/20 backdrop-blur-sm border border-orange-300/30 rounded-lg px-3 sm:px-6 py-2 sm:py-3 shadow-lg shadow-orange-400/20 glow">
             <p className="text-foreground font-bold text-sm sm:text-lg break-words text-center">
-              <span className="text-orange-300">📅 Day 4:</span>
+              <span className="text-orange-300">📅 Session 4:</span>
               <span className="block sm:inline animate-pulse"> Date & Time Coming Soon</span>
             </p>
           </div>
           <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">
             <p className="text-gray-300 font-medium line-through text-xs sm:text-sm break-words text-center">
-              <span className="text-gray-400">✓ Day 3:</span>
+              <span className="text-gray-400">✓ Session 3:</span>
               <span className="block sm:inline"> Wednesday, July 24th</span>
               <br className="sm:hidden" />
               <span className="block sm:inline"> • 3:30 PM - 5:00 PM CDT (Completed)</span>
@@ -270,7 +270,7 @@ const LiveEventTimer = ({
           </div>
           <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">
             <p className="text-gray-300 font-medium line-through text-xs sm:text-sm break-words text-center">
-              <span className="text-gray-400">✓ Day 2:</span>
+              <span className="text-gray-400">✓ Session 2:</span>
               <span className="block sm:inline"> Friday, July 18th</span>
               <br className="sm:hidden" />
               <span className="block sm:inline"> • 3:30 PM - 5:00 PM CDT (Completed)</span>
@@ -278,7 +278,7 @@ const LiveEventTimer = ({
           </div>
           <div className="mx-auto max-w-fit bg-black/20 backdrop-blur-sm border border-gray-500/30 rounded-lg px-3 sm:px-4 py-2 opacity-60">
             <p className="text-gray-300 font-medium line-through text-xs sm:text-sm break-words text-center">
-              <span className="text-gray-400">✓ Day 1:</span>
+              <span className="text-gray-400">✓ Session 1:</span>
               <span className="block sm:inline"> Thursday, July 10th</span>
               <br className="sm:hidden" />
               <span className="block sm:inline"> • 11:00 AM - 12:30 PM CDT (Completed)</span>

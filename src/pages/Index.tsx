@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import PageTransition from "@/components/PageTransition";
 
 const AboutSpendora = lazy(() => import("@/components/AboutSpendora"));
-const WorkshopSchedule = lazy(() => import("@/components/WorkshopSchedule"));
 const MeetTheTeam = lazy(() => import("@/components/MeetTheTeam"));
 const Footer = lazy(() => import("@/components/Footer"));
 const Index = () => {
@@ -36,9 +35,6 @@ const Index = () => {
         <Suspense fallback={<div className="h-screen" />}>
           <div id="about-spendora">
             <AboutSpendora />
-          </div>
-          <div id="workshop-schedule">
-            <WorkshopSchedule />
           </div>
           <div id="meet-the-team">
             <MeetTheTeam />
