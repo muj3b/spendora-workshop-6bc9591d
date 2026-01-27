@@ -210,8 +210,8 @@ const Hero = memo(() => {
                 {/* Stat 2 */}
                 <HolographicStatCard
                   number="3"
-                  label="Libraries"
-                  sublabel="Partnerships"
+                  label="Events"
+                  sublabel="Hosted"
                   gradient="from-green-500 via-emerald-500 to-teal-500"
                   hoverBorder="green-500/30"
                 />
