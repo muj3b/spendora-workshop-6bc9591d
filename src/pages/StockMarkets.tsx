@@ -1,15 +1,10 @@
 import { useEffect } from "react";
 import { ArrowLeft, TrendingUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
 const StockMarkets = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    document.title = 'Stock Markets & Investing | Spendora';
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); document.title = 'Stock Markets & Investing | Spendora'; }, []);
 
   const paragraphs = [
     "To begin we need to talk about what a stock is. A stock is a small part of a company that you own. Whenever you buy a stock that means you now own a share of that specific company. For example when you buy a share of apple you now own a small part of apple.",
@@ -25,37 +20,15 @@ const StockMarkets = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300 py-12 px-4 sm:px-6">
-      <div className="container mx-auto max-w-4xl">
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate('/')}
-          className="mb-8 flex items-center gap-2"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Home</span>
-        </Button>
-
-        <div className="space-y-4 mb-10 text-left">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs font-semibold">
-            <TrendingUp className="w-3.5 h-3.5" />
-            <span>Market Fundamentals</span>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
-            Stock Markets & <span className="gradient-text-primary">Investing</span>
-          </h1>
+    <div className="relative z-10 min-h-screen pt-28 pb-16 px-4 sm:px-6">
+      <div className="max-w-3xl mx-auto">
+        <button onClick={() => navigate('/')} className="mb-8 flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors"><ArrowLeft className="w-4 h-4" /> Back to Home</button>
+        <div className="mb-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 dark:bg-white/5 border border-blue-200 dark:border-white/10 text-blue-700 dark:text-blue-400 text-xs font-bold mb-4"><TrendingUp className="w-3.5 h-3.5" /> Market Fundamentals</div>
+          <h1 className="text-4xl sm:text-5xl font-black font-manrope tracking-tight text-slate-900 dark:text-white">Stock Markets & <span className="text-emerald-700 dark:text-[#52b788]">Investing</span></h1>
         </div>
-
-        {/* Hero Image Asset */}
-        <div className="rounded-3xl overflow-hidden mb-10 border border-border/80 image-outline shadow-md">
-          <img src="/images/stocks.jpg" alt="Stock market analysis screen" className="w-full h-[280px] sm:h-[360px] object-cover" />
-        </div>
-
-        <div className="p-8 rounded-3xl border border-border/60 bg-card/60 backdrop-blur-md shadow-xs space-y-6 text-muted-foreground leading-relaxed text-sm sm:text-base text-left">
-          {paragraphs.map((p, idx) => (
-            <p key={idx}>{p}</p>
-          ))}
+        <div className="p-8 border border-slate-200 dark:border-white/10 bg-white dark:bg-black rounded-2xl shadow-xl space-y-6 text-slate-700 dark:text-zinc-300 leading-relaxed text-sm sm:text-base font-medium">
+          {paragraphs.map((p, i) => (<p key={i}>{p}</p>))}
         </div>
       </div>
     </div>
