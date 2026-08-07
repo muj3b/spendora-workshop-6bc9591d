@@ -102,7 +102,7 @@ const Gallery = () => {
             </CollapsibleTrigger>
             <CollapsibleContent>{renderGrid(indianSchoolPhotos, indianSchoolVideos)}</CollapsibleContent>
           </Collapsible>
-          <Collapsible id="ram-krishna-school" className="border border-slate-200 dark:border-white/10 rounded-2xl p-6 bg-white dark:bg-black shadow-md">
+          <Collapsible defaultOpen id="ram-krishna-school" className="border border-slate-200 dark:border-white/10 rounded-2xl p-6 bg-white dark:bg-black shadow-md">
             <CollapsibleTrigger className="flex items-center justify-between w-full text-left group cursor-pointer select-none">
               <div className="flex items-center gap-4"><div className="bg-slate-200 dark:bg-white/10 text-slate-800 dark:text-white px-4 py-2 rounded-xl font-extrabold text-sm font-manrope">RAM KRISHNA</div><div><h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope">Ram Krishna Dwarika School</h3><p className="text-xs font-medium text-slate-500 dark:text-zinc-400">Financial Literacy Workshop</p></div></div>
               <ChevronDown className="h-5 w-5 text-slate-500 dark:text-zinc-400 group-data-[state=open]:rotate-180 transition-transform" />
