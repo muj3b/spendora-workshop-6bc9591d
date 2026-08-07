@@ -5,37 +5,40 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="py-16 bg-transparent">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center p-8 md:p-12 rounded-3xl border border-border bg-card/60 backdrop-blur-md shadow-xl space-y-8">
-          <div className="space-y-3">
-            <h3 className="text-3xl font-bold text-foreground">
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+        <div className="text-center p-8 md:p-12 rounded-3xl border border-border/60 bg-card/60 backdrop-blur-md shadow-xs space-y-8">
+          <div className="space-y-3 max-w-xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
               Ready to Start Your Financial Journey?
             </h3>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-              Join the next cohort of students in Spendora's summer workshop
+            <p className="text-sm sm:text-base text-muted-foreground">
+              Join the next cohort of students in Spendora's financial literacy workshop
             </p>
           </div>
           
           <Button 
             size="lg"
-            className="text-lg font-bold px-10 py-6 rounded-full shadow-lg hover:scale-105 transition-all bg-primary text-primary-foreground"
+            className="text-base font-bold px-8 py-6 rounded-full shadow-md bg-primary text-primary-foreground"
             onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
           >
             Sign Up for Free Workshop 🚀
           </Button>
 
-          <div className="border-t border-border pt-8">
+          <div className="border-t border-border/40 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-              <div className="text-center md:text-left">
-                <h4 className="text-2xl font-bold gradient-text-primary">
-                  Spendora
-                </h4>
-                <p className="text-muted-foreground text-sm">
-                  Student-led financial literacy workshop
-                </p>
+              <div className="flex items-center gap-3 text-left">
+                <img src="/logo-icon.png" alt="Spendora Logo" className="h-10 w-auto object-contain" />
+                <div>
+                  <h4 className="text-xl font-black text-foreground tracking-tight">
+                    Spendora
+                  </h4>
+                  <p className="text-xs text-muted-foreground">
+                    Student-led financial literacy workshop
+                  </p>
+                </div>
               </div>
               
-              <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
+              <div className="flex flex-wrap items-center justify-center gap-5 text-sm font-semibold">
                 <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
                   Home
                 </Link>

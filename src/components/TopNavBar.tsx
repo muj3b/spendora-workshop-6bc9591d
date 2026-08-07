@@ -1,14 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Menu, Moon, Sun, Instagram, X } from "lucide-react";
 import SearchBar from "./SearchBar";
@@ -32,7 +24,6 @@ const TopNavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden';
@@ -45,47 +36,44 @@ const TopNavBar = () => {
   }, [menuOpen]);
 
   const linkCls = (href: string) =>
-    `px-4 py-2 rounded-3xl text-sm transition-all duration-300 relative group ${
+    `px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 relative ${
       location.hash && href.endsWith(location.hash) 
-        ? "text-foreground font-medium" 
-        : "text-foreground/80 hover:text-foreground"
+        ? "text-foreground font-bold" 
+        : "text-muted-foreground hover:text-foreground"
     }`;
 
   return (
     <>
       <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
-        <div className={`transition-all duration-700 ease-smooth pointer-events-auto ${
+        <div className={`transition-all duration-300 pointer-events-auto ${
           scrolled 
-            ? 'mx-4 mt-2' 
+            ? 'mx-4 mt-3' 
             : 'container mx-auto px-4 mt-4'
         }`}>
-          <div className={`liquid-glass-surface transition-all duration-700 ease-smooth shadow-medium bg-background/40 backdrop-blur-md ${
+          <div className={`transition-all duration-300 border border-border/60 bg-card/80 backdrop-blur-md shadow-sm ${
             scrolled 
-              ? 'rounded-full px-4 py-2 w-auto ml-auto mr-0 max-w-fit transform scale-90' 
-              : 'rounded-3xl px-6 py-3 transform scale-100'
+              ? 'rounded-full px-4 py-2 w-auto ml-auto mr-0 max-w-fit' 
+              : 'rounded-full px-6 py-3'
           }`}>
           
           {/* Expanded state - when at top */}
           {!scrolled && (
-            <div className="flex items-center justify-between w-full transition-opacity duration-500 ease-out">
-              {/* Brand */}
-              <Button asChild variant="liquid" size="sm" className="rounded-full px-4" data-liquid>
-                <Link to="/">Spendora</Link>
-              </Button>
+            <div className="flex items-center justify-between w-full">
+              {/* Brand Logo */}
+              <Link to="/" className="flex items-center gap-2.5 group">
+                <img src="/logo-icon.png" alt="Spendora Logo" className="h-8 w-auto object-contain group-hover:scale-105 transition-transform" />
+                <span className="text-xl font-black tracking-tight text-foreground">Spendora</span>
+              </Link>
 
               {/* Main nav */}
-              <nav className="hidden md:flex items-center gap-2" aria-label="Primary">
+              <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
                 {mainNav.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
                     className={linkCls(item.href)}
-                    data-liquid
                   >
                     {item.label}
-                    {location.hash && item.href.endsWith(location.hash) && (
-                      <span className="absolute inset-x-2 -bottom-1 h-0.5 bg-primary rounded-full" />
-                    )}
                   </a>
                 ))}
               </nav>
@@ -94,12 +82,11 @@ const TopNavBar = () => {
               <div className="flex items-center gap-2">
                 <SearchBar />
                 <Button
-                  variant="liquid"
+                  variant="ghost"
                   size="icon"
                   onClick={toggleTheme}
                   aria-label="Toggle theme"
-                  className="rounded-full"
-                  data-liquid
+                  className="rounded-full h-9 w-9"
                 >
                   {theme === "light" ? (
                     <Moon className="h-4 w-4" />
@@ -109,12 +96,11 @@ const TopNavBar = () => {
                 </Button>
                 
                 <Button
-                  variant="liquid"
+                  variant="ghost"
                   size="icon"
                   onClick={() => setMenuOpen(!menuOpen)}
                   aria-label="Menu"
-                  className="rounded-full"
-                  data-liquid
+                  className="rounded-full h-9 w-9"
                 >
                   {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
                 </Button>
@@ -124,35 +110,33 @@ const TopNavBar = () => {
 
           {/* Collapsed state - when scrolled */}
           {scrolled && (
-            <div className="flex items-center gap-3 transition-opacity duration-500 ease-out">
-              <Button asChild variant="liquid" size="sm" className="rounded-full px-3 text-xs" data-liquid>
-                <Link to="/">S</Link>
-              </Button>
+            <div className="flex items-center gap-2.5">
+              <Link to="/" className="flex items-center gap-2">
+                <img src="/logo-icon.png" alt="Spendora Logo" className="h-7 w-auto object-contain" />
+              </Link>
               
               <Button
-                variant="liquid"
+                variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
                 className="rounded-full h-8 w-8"
-                data-liquid
               >
                 {theme === "light" ? (
-                  <Moon className="h-3 w-3" />
+                  <Moon className="h-3.5 w-3.5" />
                 ) : (
-                  <Sun className="h-3 w-3" />
+                  <Sun className="h-3.5 w-3.5" />
                 )}
               </Button>
               
               <Button
-                variant="liquid"
+                variant="ghost"
                 size="icon"
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label="Menu"
                 className="rounded-full h-8 w-8"
-                data-liquid
               >
-                {menuOpen ? <X className="h-3 w-3" /> : <Menu className="h-3 w-3" />}
+                {menuOpen ? <X className="h-3.5 w-3.5" /> : <Menu className="h-3.5 w-3.5" />}
               </Button>
             </div>
           )}
@@ -160,119 +144,80 @@ const TopNavBar = () => {
       </div>
       </header>
 
-      {/* Menu rendered outside header to break free from constraints */}
+      {/* Menu Drawer */}
       {menuOpen && (
         <div className="fixed inset-0 z-[100]">
-          {/* Background overlay */}
           <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
             onClick={() => setMenuOpen(false)}
           />
           
-          {/* Menu panel - Full screen positioning */}
-          <div className="absolute top-0 right-0 h-screen w-[300px] sm:w-[400px] bg-background/95 border-l border-border shadow-2xl overflow-y-auto transform transition-transform duration-300 ease-out animate-in slide-in-from-right">
-            <div className="p-6 h-full flex flex-col">
-              {/* Header */}
-              <div className="flex items-center justify-between mb-8 pt-4">
-                <h3 className="text-xl font-bold text-foreground">Menu</h3>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-full hover:bg-accent"
-                >
-                  <X className="h-5 w-5" />
-                </Button>
-              </div>
-              
-              {/* Menu content */}
-              <div className="space-y-8 flex-1">
-                {/* Navigation section */}
-                <div>
-                  <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">Navigate</h4>
-                  <div className="space-y-2">
-                    {mainNav.map((item) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setMenuOpen(false)}
-                        className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-                      >
-                        {item.label}
-                      </a>
-                    ))}
+          <div className="absolute top-0 right-0 h-screen w-[300px] sm:w-[380px] bg-background border-l border-border shadow-2xl overflow-y-auto transform transition-transform duration-200 ease-out animate-in slide-in-from-right">
+            <div className="p-6 h-full flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-8 pb-4 border-b border-border/40">
+                  <div className="flex items-center gap-2">
+                    <img src="/logo-icon.png" alt="Spendora Logo" className="h-7 w-auto" />
+                    <span className="font-extrabold text-lg text-foreground">Spendora</span>
                   </div>
-                </div>
-
-                {/* Workshop Topics section */}
-                <div>
-                  <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">Workshop Topics</h4>
-                  <div className="space-y-2">
-                    <Link
-                      to="/stock-markets"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-                    >
-                      Stock Markets
-                    </Link>
-                    <Link
-                      to="/budgeting"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-                    >
-                      Budgeting
-                    </Link>
-                    <Link
-                      to="/online-business"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-                    >
-                      Online Business
-                    </Link>
-                    <Link
-                      to="/crypto-nfts"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-                    >
-                      Crypto & NFTs
-                    </Link>
-                  </div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-full"
+                  >
+                    <X className="h-5 w-5" />
+                  </Button>
                 </div>
                 
-                {/* More section */}
-                <div>
-                  <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">More</h4>
-                  <div className="space-y-2">
-                    <Link
-                      to="/gallery"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-                    >
-                      Gallery
-                    </Link>
-                    <Link
-                      to="/donate"
-                      onClick={() => setMenuOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-                    >
-                      Donate
-                    </Link>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Navigate</h4>
+                    <div className="space-y-1">
+                      {mainNav.map((item) => (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          onClick={() => setMenuOpen(false)}
+                          className="block px-3 py-2 rounded-xl text-base font-semibold text-foreground hover:bg-muted transition-colors"
+                        >
+                          {item.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Topics</h4>
+                    <div className="space-y-1">
+                      <Link to="/stock-markets" onClick={() => setMenuOpen(false)} className="block px-3 py-2 rounded-xl text-base font-semibold text-foreground hover:bg-muted transition-colors">Stock Markets</Link>
+                      <Link to="/budgeting" onClick={() => setMenuOpen(false)} className="block px-3 py-2 rounded-xl text-base font-semibold text-foreground hover:bg-muted transition-colors">Budgeting</Link>
+                      <Link to="/online-business" onClick={() => setMenuOpen(false)} className="block px-3 py-2 rounded-xl text-base font-semibold text-foreground hover:bg-muted transition-colors">Online Business</Link>
+                      <Link to="/crypto-nfts" onClick={() => setMenuOpen(false)} className="block px-3 py-2 rounded-xl text-base font-semibold text-foreground hover:bg-muted transition-colors">Crypto & NFTs</Link>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Explore</h4>
+                    <div className="space-y-1">
+                      <Link to="/gallery" onClick={() => setMenuOpen(false)} className="block px-3 py-2 rounded-xl text-base font-semibold text-foreground hover:bg-muted transition-colors">Gallery</Link>
+                      <Link to="/donate" onClick={() => setMenuOpen(false)} className="block px-3 py-2 rounded-xl text-base font-semibold text-foreground hover:bg-muted transition-colors">Donate</Link>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Social section - at bottom */}
-              <div className="pt-6 mt-auto border-t border-border">
+              <div className="pt-6 border-t border-border/40">
                 <Button
                   variant="default"
                   size="lg"
-                  className="w-full justify-center rounded-xl font-semibold"
+                  className="w-full justify-center rounded-xl font-bold gap-2"
                   onClick={() => {
                     window.open('https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', '_blank');
                     setMenuOpen(false);
                   }}
                 >
-                  <Instagram className="h-5 w-5 mr-2" />
+                  <Instagram className="h-4 w-4" />
                   Follow on Instagram
                 </Button>
               </div>
