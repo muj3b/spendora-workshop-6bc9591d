@@ -78,21 +78,25 @@ const Gallery = () => {
   ];
 
   const renderMediaGrid = (photos: {src: string; alt: string}[], videos: {src: string; alt: string}[] = []) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto pt-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto pt-6">
       {photos.map((photo, index) => (
-        <div key={`photo-${index}`} className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-md transition-all hover:shadow-xl">
-          <img src={photo.src} alt={photo.alt} className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
-          <div className="p-3 bg-card/90 backdrop-blur-sm border-t border-border/40 flex items-center gap-2 text-xs font-medium text-muted-foreground">
-            <ImageIcon className="w-3.5 h-3.5 text-primary" />
+        <div key={`photo-${index}`} className="group relative overflow-hidden rounded-3xl border border-border/60 bg-card shadow-sm hover:shadow-md transition-all">
+          <div className="relative overflow-hidden aspect-[4/3]">
+            <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 image-outline" loading="lazy" />
+          </div>
+          <div className="p-3.5 bg-card/90 backdrop-blur-sm border-t border-border/40 flex items-center gap-2 text-xs font-medium text-muted-foreground">
+            <ImageIcon className="w-3.5 h-3.5 text-primary shrink-0" />
             <span className="truncate">{photo.alt}</span>
           </div>
         </div>
       ))}
       {videos.map((video, index) => (
-        <div key={`video-${index}`} className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-md">
-          <video src={video.src} controls preload="metadata" className="w-full h-60 object-cover bg-black" />
-          <div className="p-3 bg-card/90 backdrop-blur-sm border-t border-border/40 flex items-center gap-2 text-xs font-medium text-muted-foreground">
-            <Video className="w-3.5 h-3.5 text-red-500" />
+        <div key={`video-${index}`} className="relative overflow-hidden rounded-3xl border border-border/60 bg-card shadow-sm">
+          <div className="relative aspect-[4/3] bg-black">
+            <video src={video.src} controls preload="metadata" className="w-full h-full object-cover" />
+          </div>
+          <div className="p-3.5 bg-card/90 backdrop-blur-sm border-t border-border/40 flex items-center gap-2 text-xs font-medium text-muted-foreground">
+            <Video className="w-3.5 h-3.5 text-red-500 shrink-0" />
             <span className="truncate">{video.alt}</span>
           </div>
         </div>
@@ -106,7 +110,7 @@ const Gallery = () => {
         <Button 
           variant="ghost" 
           onClick={() => navigate('/')} 
-          className="mb-8 flex items-center gap-2 hover:bg-accent"
+          className="mb-8 flex items-center gap-2"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Home
         </Button>
@@ -115,19 +119,19 @@ const Gallery = () => {
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight">
             Workshop <span className="gradient-text-primary">Gallery</span>
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
             Photos and video highlights from our student financial literacy workshops
           </p>
         </div>
 
         <div className="space-y-6">
           {/* Day 1 */}
-          <Collapsible defaultOpen className="border border-border rounded-3xl p-6 bg-card/60 backdrop-blur-md shadow-lg">
-            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
+          <Collapsible defaultOpen className="border border-border/60 rounded-3xl p-6 bg-card/60 backdrop-blur-md shadow-sm">
+            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group cursor-pointer select-none">
               <div className="flex items-center gap-4">
-                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2.5 rounded-2xl font-bold text-lg">DAY 1</div>
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-2xl font-bold text-sm sm:text-base shadow-xs">DAY 1</div>
                 <div>
-                  <h3 className="text-xl font-bold text-foreground">Introduction to Investing</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground">Introduction to Investing</h3>
                   <p className="text-xs text-muted-foreground">Photos from Day 1 session</p>
                 </div>
               </div>
@@ -139,12 +143,12 @@ const Gallery = () => {
           </Collapsible>
 
           {/* Day 2 */}
-          <Collapsible defaultOpen className="border border-border rounded-3xl p-6 bg-card/60 backdrop-blur-md shadow-lg">
-            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
+          <Collapsible defaultOpen className="border border-border/60 rounded-3xl p-6 bg-card/60 backdrop-blur-md shadow-sm">
+            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group cursor-pointer select-none">
               <div className="flex items-center gap-4">
-                <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-5 py-2.5 rounded-2xl font-bold text-lg">DAY 2</div>
+                <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-4 py-2 rounded-2xl font-bold text-sm sm:text-base shadow-xs">DAY 2</div>
                 <div>
-                  <h3 className="text-xl font-bold text-foreground">Saving vs Investing</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground">Saving vs Investing</h3>
                   <p className="text-xs text-muted-foreground">Photos and videos from Day 2 session</p>
                 </div>
               </div>
@@ -156,12 +160,12 @@ const Gallery = () => {
           </Collapsible>
 
           {/* Indian School (300+ Students) */}
-          <Collapsible defaultOpen id="indian-school" className="border border-amber-500/30 rounded-3xl p-6 bg-amber-500/5 backdrop-blur-md shadow-lg">
-            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
+          <Collapsible defaultOpen id="indian-school" className="border border-amber-500/30 rounded-3xl p-6 bg-amber-500/5 backdrop-blur-md shadow-sm">
+            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group cursor-pointer select-none">
               <div className="flex items-center gap-4">
-                <div className="bg-gradient-to-r from-orange-600 to-amber-600 text-white px-5 py-2.5 rounded-2xl font-bold text-lg">INDIAN SCHOOL</div>
+                <div className="bg-gradient-to-r from-orange-600 to-amber-600 text-white px-4 py-2 rounded-2xl font-bold text-sm sm:text-base shadow-xs">INDIAN SCHOOL</div>
                 <div>
-                  <h3 className="text-xl font-bold text-foreground">300+ Students Workshop</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground">300+ Students Workshop</h3>
                   <p className="text-xs text-muted-foreground font-medium">Sri Girdhar Techno School — Photos & Videos</p>
                 </div>
               </div>
@@ -173,12 +177,12 @@ const Gallery = () => {
           </Collapsible>
 
           {/* Ram Krishna School */}
-          <Collapsible id="ram-krishna-school" className="border border-border rounded-3xl p-6 bg-card/60 backdrop-blur-md shadow-lg">
-            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
+          <Collapsible id="ram-krishna-school" className="border border-border/60 rounded-3xl p-6 bg-card/60 backdrop-blur-md shadow-sm">
+            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group cursor-pointer select-none">
               <div className="flex items-center gap-4">
-                <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-5 py-2.5 rounded-2xl font-bold text-lg">RAM KRISHNA SCHOOL</div>
+                <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-2xl font-bold text-sm sm:text-base shadow-xs">RAM KRISHNA SCHOOL</div>
                 <div>
-                  <h3 className="text-xl font-bold text-foreground">Financial Literacy Workshop</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground">Financial Literacy Workshop</h3>
                   <p className="text-xs text-muted-foreground">Ram Krishna Dwarika School</p>
                 </div>
               </div>
@@ -191,7 +195,7 @@ const Gallery = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16 p-8 rounded-3xl border border-border bg-card/60 backdrop-blur-md space-y-4">
+        <div className="text-center mt-16 p-8 rounded-3xl border border-border/60 bg-card/60 backdrop-blur-md space-y-4 shadow-sm">
           <h3 className="text-2xl font-bold text-foreground">
             Join Us for Our Next Workshop!
           </h3>
@@ -201,7 +205,7 @@ const Gallery = () => {
           </p>
           <Button
             size="lg"
-            className="rounded-full px-8 py-6 text-lg font-bold shadow-lg hover:scale-105 transition-all bg-primary text-primary-foreground"
+            className="rounded-full px-8 py-6 text-base sm:text-lg font-bold shadow-md bg-primary text-primary-foreground"
             onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
           >
             Reserve Your Spot - It's Free! 🚀
