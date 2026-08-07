@@ -97,8 +97,16 @@
 }
 
 @keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  0% { 
+    opacity: 0; 
+    transform: translateY(24px) scale(0.98); 
+    filter: blur(4px);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+    filter: blur(0);
+  }
 }
 
 @property --gradient-angle {
@@ -113,7 +121,7 @@
 }
 
 .animate-fade-up {
-  animation: fade-in-up 0.8s ease-out forwards;
+  animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .font-manrope { font-family: 'Manrope', sans-serif; }

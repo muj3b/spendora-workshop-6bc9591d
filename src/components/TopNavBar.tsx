@@ -33,7 +33,7 @@ const TopNavBar = () => {
       <header className={`fixed top-0 left-0 w-full z-50 px-4 transition-all duration-500 ease-in-out ${scrolled ? 'pt-3' : 'pt-4 md:pt-6'}`}>
         <nav className={`mx-auto flex items-center justify-between backdrop-blur-xl rounded-full transition-all duration-500 ease-in-out ${
           scrolled 
-            ? 'max-w-2xl sm:max-w-3xl px-5 py-2 bg-white/95 dark:bg-black/90 border border-slate-300 dark:border-white/20 shadow-2xl' 
+            ? 'max-w-4xl px-5 py-2 bg-white/95 dark:bg-black/90 border border-slate-300 dark:border-white/20 shadow-2xl' 
             : 'max-w-5xl px-6 py-3.5 bg-white/80 dark:bg-black/70 border border-slate-200/80 dark:border-white/10 shadow-lg'
         }`}>
           <Link to="/" className="flex items-center gap-2.5 group shrink-0">
@@ -41,23 +41,29 @@ const TopNavBar = () => {
             <span className="text-base sm:text-lg font-extrabold font-manrope tracking-tight text-slate-900 dark:text-white">Spendora</span>
           </Link>
 
-          {/* Full Nav Links — Hide on scroll for clean compact bar */}
-          <div className={`hidden md:flex items-center gap-7 transition-all duration-300 ${scrolled ? 'opacity-0 pointer-events-none hidden' : 'opacity-100'}`}>
+          {/* Compact Nav Links — Stays visible when scrolled with smooth size & spacing transition */}
+          <div className={`hidden md:flex items-center transition-all duration-500 ease-in-out ${scrolled ? 'gap-4 lg:gap-6' : 'gap-7'}`}>
             {mainNav.map((item) => (
               item.href.startsWith('/') && !item.href.includes('#') ? (
-                <Link key={item.label} to={item.href} className="text-sm font-semibold text-slate-600 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-white transition-colors">{item.label}</Link>
+                <Link key={item.label} to={item.href} className={`font-semibold text-slate-600 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-white transition-all duration-300 ${scrolled ? 'text-xs' : 'text-sm'}`}>{item.label}</Link>
               ) : (
-                <a key={item.label} href={item.href} className="text-sm font-semibold text-slate-600 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-white transition-colors">{item.label}</a>
+                <a key={item.label} href={item.href} className={`font-semibold text-slate-600 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-white transition-all duration-300 ${scrolled ? 'text-xs' : 'text-sm'}`}>{item.label}</a>
               )
             ))}
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Search — Hide on scroll to prevent crowding */}
-            {!scrolled && <SearchBar />}
+            {/* SearchBar Wrapper — Smooth Fade & Scale Out on Scroll */}
+            <div className={`transition-all duration-500 ease-in-out overflow-hidden flex items-center ${
+              scrolled ? 'max-w-0 opacity-0 pointer-events-none scale-90 -mr-2' : 'max-w-[200px] opacity-100 scale-100'
+            }`}>
+              <SearchBar />
+            </div>
             
-            {/* Theme Toggle Button — Hide on scroll to keep bar minimal */}
-            {!scrolled && (
+            {/* Theme Toggle Button Wrapper — Smooth Fade & Scale Out on Scroll */}
+            <div className={`transition-all duration-500 ease-in-out overflow-hidden flex items-center ${
+              scrolled ? 'max-w-0 opacity-0 pointer-events-none scale-90 -mr-2' : 'max-w-[40px] opacity-100 scale-100'
+            }`}>
               <button 
                 onClick={toggleTheme} 
                 aria-label="Toggle dark mode"
@@ -65,12 +71,12 @@ const TopNavBar = () => {
               >
                 {theme === 'dark' ? <Sun className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4 text-slate-700" />}
               </button>
-            )}
+            </div>
 
             {/* Always visible Sign Up button */}
             <button
               onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
-              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-emerald-800 dark:bg-white/10 hover:bg-emerald-900 dark:hover:bg-white/20 px-4 py-1.5 transition-all active:scale-95 shadow-md"
+              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-emerald-800 dark:bg-white/10 hover:bg-emerald-900 dark:hover:bg-white/20 px-4 py-1.5 transition-all active:scale-95 shadow-md shrink-0"
             >
               <span className="relative z-10 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white">
                 Sign Up <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
@@ -81,7 +87,7 @@ const TopNavBar = () => {
             <button 
               onClick={() => setMenuOpen(!menuOpen)} 
               aria-label="Open menu"
-              className="p-1.5 text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+              className="p-1.5 text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white transition-colors shrink-0"
             >
               {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>

@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { ArrowRight, Heart, Camera, MapPin, TrendingUp, Wallet, Store, Coins, BookOpen, Navigation, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Heart, Camera, MapPin, TrendingUp, Wallet, Store, Coins, Navigation, Sparkles, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 
@@ -64,8 +64,8 @@ const Hero = memo(() => {
               </span>
             </button>
             
-            <button onClick={() => { document.getElementById('workshop-schedule')?.scrollIntoView({ behavior: 'smooth' }); }} className="group px-6 py-4 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-800 dark:text-zinc-200 font-bold hover:text-emerald-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-800 transition-all flex items-center gap-2 shadow-md">
-              <BookOpen className="w-5 h-5 text-emerald-600 dark:text-[#52b788]" /> View Workshop
+            <button onClick={() => navigate('/gallery')} className="group px-6 py-4 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-800 dark:text-zinc-200 font-bold hover:text-emerald-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-800 transition-all flex items-center gap-2 shadow-md">
+              <Camera className="w-5 h-5 text-emerald-600 dark:text-[#52b788]" /> Workshop Gallery
             </button>
 
             <button onClick={() => navigate('/donate')} className="group px-6 py-4 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-800 dark:text-zinc-200 font-bold hover:text-emerald-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-800 transition-all flex items-center gap-2 shadow-md">
@@ -198,18 +198,6 @@ const Hero = memo(() => {
               );
             })}
           </div>
-        </div>
-      </div>
-
-      {/* Gallery link */}
-      <div className="relative z-10 pb-16 px-6">
-        <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-4">
-          <button 
-            onClick={() => navigate('/gallery')} 
-            className="px-8 py-4 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-800 dark:text-zinc-200 font-bold hover:text-emerald-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-800 transition-all flex items-center gap-2.5 text-sm shadow-md"
-          >
-            <Camera className="w-4 h-4 text-emerald-600 dark:text-[#52b788]" /> Workshop Photo & Video Gallery
-          </button>
         </div>
       </div>
     </section>
