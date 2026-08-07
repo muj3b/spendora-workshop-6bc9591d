@@ -35,7 +35,7 @@ const Gallery = () => {
     { src: "https://files.catbox.moe/o5monx.MOV", alt: "Day 2 Video 2" },
   ];
   const indianSchoolPhotos = [
-    { src: "/lovable-uploads/indian-school-1.jpg", alt: "Teaching 300+ students at Sri Girdhar Techno School (Rural School)" },
+    { src: "/lovable-uploads/indian-school-1.jpg", alt: "Teaching students at Sri Girdhar Techno School" },
     { src: "/lovable-uploads/indian-school-2.jpg", alt: "Students learning financial concepts in a rural classroom" },
     { src: "/lovable-uploads/indian-school-3.jpg", alt: "Interactive presentation at rural Indian school" },
     { src: "/lovable-uploads/indian-school-4.jpg", alt: "Engaged students at rural school" },
@@ -97,7 +97,7 @@ const Gallery = () => {
           </Collapsible>
           <Collapsible defaultOpen id="indian-school" className="border border-emerald-300 dark:border-[#40916c]/30 rounded-2xl p-6 bg-emerald-50/40 dark:bg-zinc-900/50 shadow-md">
             <CollapsibleTrigger className="flex items-center justify-between w-full text-left group cursor-pointer select-none">
-              <div className="flex items-center gap-4"><div className="bg-emerald-700 dark:bg-[#2d6a4f] text-white px-4 py-2 rounded-xl font-extrabold text-sm font-manrope">300+ STUDENTS</div><div><h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope">Rural Indian School Workshop</h3><p className="text-xs font-medium text-slate-500 dark:text-zinc-400">Sri Girdhar Techno School (Rural School)</p></div></div>
+              <div className="flex items-center gap-4"><div className="bg-emerald-700 dark:bg-[#2d6a4f] text-white px-4 py-2 rounded-xl font-extrabold text-sm font-manrope">SRI GIRDHAR</div><div><h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope">Sri Girdhar Techno School</h3><p className="text-xs font-medium text-slate-500 dark:text-zinc-400">Rural Financial Literacy Workshop</p></div></div>
               <ChevronDown className="h-5 w-5 text-slate-500 dark:text-zinc-400 group-data-[state=open]:rotate-180 transition-transform" />
             </CollapsibleTrigger>
             <CollapsibleContent>{renderGrid(indianSchoolPhotos, indianSchoolVideos)}</CollapsibleContent>
