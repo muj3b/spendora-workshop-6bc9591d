@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { ArrowLeft, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import WordByWordText from "@/components/WordByWordText";
 
 const StockMarkets = () => {
   const navigate = useNavigate();
@@ -27,8 +28,8 @@ const StockMarkets = () => {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 dark:bg-white/5 border border-blue-200 dark:border-white/10 text-blue-700 dark:text-blue-400 text-xs font-bold mb-4"><TrendingUp className="w-3.5 h-3.5" /> Market Fundamentals</div>
           <h1 className="text-4xl sm:text-5xl font-black font-manrope tracking-tight text-slate-900 dark:text-white">Stock Markets & <span className="text-emerald-700 dark:text-[#52b788]">Investing</span></h1>
         </div>
-        <div className="p-8 border border-slate-200 dark:border-white/10 bg-white dark:bg-black rounded-2xl shadow-xl space-y-6 text-slate-700 dark:text-zinc-300 leading-relaxed text-sm sm:text-base font-medium">
-          {paragraphs.map((p, i) => (<p key={i}>{p}</p>))}
+        <div className="p-8 border border-slate-200 dark:border-white/10 bg-white dark:bg-black rounded-2xl shadow-xl text-slate-700 dark:text-zinc-300 leading-relaxed text-sm sm:text-base font-medium">
+          <WordByWordText paragraphs={paragraphs} delay={100} wordDelay={150} />
         </div>
       </div>
     </div>
