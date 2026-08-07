@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -30,17 +30,29 @@ const StockMarkets = () => {
         <Button 
           variant="ghost" 
           onClick={() => navigate('/')}
-          className="mb-8 flex items-center gap-2 hover:bg-accent"
+          className="mb-8 flex items-center gap-2"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Home</span>
         </Button>
 
-        <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 gradient-text-primary">
-          Stock Markets & Investing
-        </h1>
+        <div className="space-y-4 mb-10 text-left">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs font-semibold">
+            <TrendingUp className="w-3.5 h-3.5" />
+            <span>Market Fundamentals</span>
+          </div>
 
-        <div className="p-8 rounded-3xl border border-border bg-card/60 backdrop-blur-md shadow-xl space-y-6 text-muted-foreground leading-relaxed text-base sm:text-lg">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+            Stock Markets & <span className="gradient-text-primary">Investing</span>
+          </h1>
+        </div>
+
+        {/* Hero Image Asset */}
+        <div className="rounded-3xl overflow-hidden mb-10 border border-border/80 image-outline shadow-md">
+          <img src="/images/stocks.jpg" alt="Stock market analysis screen" className="w-full h-[280px] sm:h-[360px] object-cover" />
+        </div>
+
+        <div className="p-8 rounded-3xl border border-border/60 bg-card/60 backdrop-blur-md shadow-xs space-y-6 text-muted-foreground leading-relaxed text-sm sm:text-base text-left">
           {paragraphs.map((p, idx) => (
             <p key={idx}>{p}</p>
           ))}

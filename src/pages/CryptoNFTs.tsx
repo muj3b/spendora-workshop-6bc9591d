@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Coins } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -11,65 +11,46 @@ const CryptoNFTs = () => {
     document.title = 'Crypto & NFTs | Spendora';
   }, []);
 
-  const cryptoParagraphs = [
-    "There always seems to be another coin out there. From figures like KSI to Logan Paul it really does look like anyone can just make a crypto these days, and somehow people still buy them and get surprised when they lose their entire investment. As a general rule of thumb, if everyone in the world is calling it a meme coin then you can't be too surprised that it isn't a great asset.",
-    "But the thing is, crypto wasn't always like this and it really still isn't (assuming you know what you're doing). In the wake of the 2008 recession, leaders and innovators from the tech and finance field were looking for ways to detach from the modern financial system. \"Why should a single authority be granted the right to control the entire global economy?\" \"Why should poor decisions by these big players be able to ruin hundreds of millions of lives?\" \"Why can't people have any control over the system?\" Cryptocurrencies were meant to be the solution to this problem. The word crypto (κρυπτός) is a Greek root for hidden. Think of cryptids, creatures like bigfoot that only really exist in myth but aren't observable to the layman i.e. hidden.",
-    "The first major crypto was developed by a person under the alias of Satoshi Nakamoto. To this day their true identity remains unknown. On October 31st of 2008 they published the Bitcoin whitepaper. In crypto terms, a whitepaper is essentially the blueprint of a crypto. It lays out its fundamental principles, technical architecture, and the problem it's trying to solve. The whitepaper was titled \"Bitcoin: A Peer-to-Peer Electronic Cash System.\" It introduced a decentralized system that allowed people to transfer assets directly without relying on banks, governments, or any central authority.",
-    "The real game changer, however, was blockchain. Blockchain is a public, distributed ledger that records every transaction through encryption. Once a transaction is recorded on the blockchain, it's there forever. No way to manipulate it or cheat it. Its encryption also marked it as a reliable method for private transactions. There isn't necessarily a way to track crypto payments. This has unfortunately made crypto popular amongst extremist and criminal groups but in some cases private payment can still be beneficial.",
-    "The blockchain model solved the double-spending problem. In digital transactions, theoretically, you can copy data and at that point what stops someone from copying a digital dollar and spending it twice? Traditional systems rely on centralized oversight (ie banks) to prevent this. Bitcoin instead uses consensus mechanisms where the entire network is made to agree whether a transaction is valid or not. If enough nodes say it's valid it'll go through. That lets way less fraud slip through the cracks.",
-    "Bitcoin, however, took time to get the reach it has today. In its early years Bitcoin was super obscure and traded on small internet forums for a few dollars. Cents even. I'm sure many of you have seen the meme of the guy telling people to spend $1 to buy bitcoin in 2009. It truly was a different time. Another famous bitcoin moment was its first transaction. A man paid 10,000 Bitcoin for two pizzas ($40 worth of pizza). Today, he could probably buy the entire domino's franchise with that. Over time, more cryptos started to pop up. Ethereum came along and introduced smart contracts which are automated, programmable agreements that run on the blockchain. This greatly expanded the cryptosphere, from decentralized finance (DeFi) to NFTs and DAOs (essentially decentralized investment venture capital firms). The crypto space has since grown into a secondary financial marketplace. However, with all these uses some still view crypto as just being a more unstable version of a stock which leaves a lot to be desired.",
-    "In present day crypto is gaining more credibility with many banks, companies, and even El Salvador accepting it as legal tender. At the same time, however, meme coins, celebrity scams, and rug pulls dominate the headlines. It's super easy to look at crypto and just see that layer, and it's even easier to end up being one of those people being scammed in this market but with the deep dive we at spendora will go into, we hope you learn to see crypto as more than a meme."
-  ];
-
-  const nftParagraphs = [
-    "You've probably seen those expensive digital art pieces that sell for thousands of dollars and wondered \"Why would anyone pay real money for a JPEG?\" Well, NFTs are way more than just digital pictures—they're like digital certificates of ownership that prove you own something unique on the blockchain.",
-    "Think of NFTs like trading cards, but digital. Just like how a rare Pokemon card has value because it's authentic and limited, NFTs use blockchain technology to prove that your digital item is the \"real deal\" and not just a copy. When you buy an NFT, you're not just buying the image—you're buying proof that you own the original version.",
-    "NFTs exploded in popularity when digital artists started selling their work for crazy amounts. Some collections like Bored Ape Yacht Club or CryptoPunks became status symbols, kind of like owning expensive sneakers or designer clothes, but in the digital world. People would use them as profile pictures to show off their digital wealth.",
-    "But NFTs aren't just about art. They can represent ownership of anything digital: music, videos, game items, virtual real estate, or even access passes to exclusive events. Some creators use NFTs to sell concert tickets, grant access to private Discord servers, or give holders special privileges.",
-    "The NFT market is extremely volatile and risky. Prices can crash overnight, and many projects end up being worthless. However, understanding NFTs helps you grasp how digital ownership might work in the future, especially as we move toward more virtual and online experiences.",
-    "At Spendora, we'll break down how NFTs actually work, what gives them value, and how to spot potential scams in this space. You'll learn to think critically about digital assets and understand this technology without getting caught up in the hype."
+  const paragraphs = [
+    "Cryptocurrency and Web3 technologies represent a fundamental shift in how digital ownership and financial transactions work across the internet.",
+    "At the core of cryptocurrency is Blockchain technology—a decentralized, immutable ledger that records transactions across a network of computers. Unlike traditional money, cryptocurrencies like Bitcoin and Ethereum operate without a central bank or government controlling them.",
+    "NFTs (Non-Fungible Tokens) are unique digital tokens stored on a blockchain that prove ownership of a specific item, such as digital art, collectibles, domain names, or in-game assets.",
+    "While digital assets offer exciting technological innovations and high potential returns, they are also highly volatile and carry significant risk. Understanding security, cold wallets, smart contracts, and risk management is crucial before investing.",
+    "Learning the mechanics of blockchain technology helps you understand where digital finance and web technology are heading in the future."
   ];
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300 py-12 px-4 sm:px-6">
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-4xl">
         <Button 
           variant="ghost" 
-          onClick={() => navigate('/')}
-          className="mb-8 flex items-center gap-2 hover:bg-accent"
+          onClick={() => navigate('/')} 
+          className="mb-8 flex items-center gap-2"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Home</span>
         </Button>
 
-        <h1 className="text-4xl sm:text-5xl font-extrabold mb-10 text-center gradient-text-primary">
-          Crypto & NFTs
-        </h1>
-
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-          {/* Crypto Panel */}
-          <div className="p-8 rounded-3xl border border-border bg-card/60 backdrop-blur-md shadow-xl space-y-6">
-            <h2 className="text-2xl font-bold text-foreground border-b border-border pb-3">
-              What is Crypto?
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
-              {cryptoParagraphs.map((p, idx) => (
-                <p key={idx}>{p}</p>
-              ))}
-            </div>
+        <div className="space-y-4 mb-10 text-left">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-semibold">
+            <Coins className="w-3.5 h-3.5" />
+            <span>Digital Assets</span>
           </div>
 
-          {/* NFT Panel */}
-          <div className="p-8 rounded-3xl border border-border bg-card/60 backdrop-blur-md shadow-xl space-y-6">
-            <h2 className="text-2xl font-bold text-foreground border-b border-border pb-3">
-              NFTs (Non-Fungible Tokens)
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
-              {nftParagraphs.map((p, idx) => (
-                <p key={idx}>{p}</p>
-              ))}
-            </div>
-          </div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+            Crypto & <span className="gradient-text-primary">NFTs</span>
+          </h1>
+        </div>
+
+        {/* Hero Image Asset */}
+        <div className="rounded-3xl overflow-hidden mb-10 border border-border/80 image-outline shadow-md">
+          <img src="/images/crypto.jpg" alt="Crypto and blockchain digital asset artwork" className="w-full h-[280px] sm:h-[360px] object-cover" />
+        </div>
+
+        <div className="p-8 rounded-3xl border border-border/60 bg-card/60 backdrop-blur-md shadow-xs space-y-6 text-muted-foreground leading-relaxed text-sm sm:text-base text-left">
+          {paragraphs.map((p, idx) => (
+            <p key={idx}>{p}</p>
+          ))}
         </div>
       </div>
     </div>
