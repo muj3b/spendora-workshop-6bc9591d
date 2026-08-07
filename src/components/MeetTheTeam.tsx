@@ -14,7 +14,7 @@ const MeetTheTeam = () => {
     {
       name: "Mujeeb Chaudhry",
       expertise: "E-commerce & Investment Strategy",
-      bio: "Mujeeb competed in the Wharton Investment Competition and BPA. He specializes in reselling, dropshipping, complex online shops, crypto projects, and has built multiple profitable apps. He also created this website.",
+      bio: "Mujeeb competed in the Wharton Investment Competition and BPA. He specializes in reselling, dropshipping, complex online shops, crypto projects, and has built multiple profitable apps. He also created this website. Together with Neil, he's made thousands through strategic investments and e-commerce ventures.",
       icon: ShoppingBag,
       linkedin: "https://www.linkedin.com/in/muj3b/",
     },
