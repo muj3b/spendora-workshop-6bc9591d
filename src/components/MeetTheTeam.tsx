@@ -1,28 +1,7 @@
-import { useEffect, useRef, useState, memo } from "react";
+import { memo } from "react";
 import { Card } from "@/components/ui/card";
 
 const MeetTheTeam = () => {
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            setHasAnimated(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasAnimated]);
   const team = [
     {
       name: "Mujeeb Chaudhry",
@@ -34,7 +13,7 @@ const MeetTheTeam = () => {
       name: "Harshad Amalan",
       expertise: "Reselling & Product Trends", 
       bio: "Harshad is a successful reseller who's placed at the state level in BPA competitions. He teaches how to spot product trends and flip items for profit.",
-      gradient: "from-green-500 to-emerald-500"
+      gradient: "from-emerald-500 to-teal-500"
     },
     {
       name: "Neil Kaila", 
@@ -51,41 +30,34 @@ const MeetTheTeam = () => {
   ];
 
   return (
-    <section 
-      ref={sectionRef}
-      className="py-20 bg-background transition-colors duration-300"
-    >
+    <section className="py-20 bg-background transition-colors duration-300">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className={`text-4xl md:text-5xl font-bold text-foreground mb-6 transition-all duration-1000 ${
-            hasAnimated 
-              ? 'opacity-100 scale-100 drop-shadow-[0_0_30px_rgba(147,51,234,0.5)]' 
-              : 'opacity-0 scale-95'
-          }`}>
-            Meet the <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Founders</span>
+        <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground">
+            Meet the <span className="gradient-text-primary">Founders</span>
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Student entrepreneurs who've competed nationally and generated thousands in revenue—now teaching you their proven strategies
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {team.map((member, index) => (
-            <Card key={index} className="liquid-glass-surface p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-dynamic-island-pop" style={{ animationDelay: `${index * 0.1}s` }}>
+            <Card key={index} className="p-8 border border-border bg-card/60 backdrop-blur-md shadow-lg rounded-3xl hover:border-primary/40 transition-all">
               <div className="text-center mb-6">
-                <div className={`w-20 h-20 rounded-full bg-gradient-to-r ${member.gradient} mx-auto mb-4 flex items-center justify-center`}>
-                  <span className="text-white text-2xl font-bold leading-none tracking-tight">
+                <div className={`w-20 h-20 rounded-full bg-gradient-to-r ${member.gradient} mx-auto mb-4 flex items-center justify-center shadow-md`}>
+                  <span className="text-white text-3xl font-black">
                     {member.name.charAt(0)}
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">
+                <h3 className="text-2xl font-bold text-foreground mb-1">
                   {member.name}
                 </h3>
                 <p className={`text-sm font-semibold bg-gradient-to-r ${member.gradient} bg-clip-text text-transparent`}>
                   {member.expertise}
                 </p>
               </div>
-              <p className="text-muted-foreground leading-relaxed text-center">
+              <p className="text-muted-foreground leading-relaxed text-center text-sm sm:text-base">
                 {member.bio}
               </p>
             </Card>
@@ -93,11 +65,11 @@ const MeetTheTeam = () => {
         </div>
 
         <div className="text-center mt-16">
-          <div className="liquid-glass-surface rounded-2xl p-8 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
+          <div className="p-8 rounded-3xl border border-border bg-card/60 backdrop-blur-md max-w-3xl mx-auto space-y-4 shadow-xl">
+            <h3 className="text-2xl font-bold text-foreground">
               Real Results, Real Education
             </h3>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base text-muted-foreground leading-relaxed">
               Our founders have competed in prestigious competitions like Wharton Investment and BPA, 
               built profitable ventures, and generated real revenue. Now they're sharing their proven strategies 
               to help you build genuine financial literacy and entrepreneurial skills.

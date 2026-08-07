@@ -1,0 +1,112 @@
+{
+  "about_spendora": {
+    "title": "About Spendora",
+    "lead": "A student-led financial literacy workshop by East Ridge High School students, designed to make financial literacy fun, accessible, and practical for the next generation.",
+    "features": [
+      {
+        "title": "Real-World Skills",
+        "description": "Learn budgeting, online payments, taxes, and smart spending habits that you'll actually use."
+      },
+      {
+        "title": "Modern Business",
+        "description": "Explore online businesses, TikTok Shop, reselling, and digital entrepreneurship opportunities."
+      },
+      {
+        "title": "Investment Basics",
+        "description": "Understand stocks, markets, and how to make your money work for you from an early age."
+      }
+    ],
+    "free_section": {
+      "title": "Completely Free to Attend",
+      "description": "All supplies included, hosted in partnership with local libraries and camps. Plus, you'll build a resume and gain practical experience with money management.",
+      "items": [
+        "All Materials",
+        "Expert Instruction",
+        "Hands-on Practice",
+        "Final Competition"
+      ]
+    }
+  },
+  "meet_the_team": {
+    "title": "Meet the Founders",
+    "subtitle": "Student entrepreneurs who've competed nationally and generated thousands in revenue—now teaching you their proven strategies",
+    "members": [
+      {
+        "name": "Mujeeb Chaudhry",
+        "expertise": "E-commerce & Investment Strategy",
+        "bio": "Mujeeb competed in the Wharton Investment Competition and BPA. He specializes in reselling, dropshipping, complex online shops, crypto projects, and has built multiple profitable apps. He also created this website. Together with Neil, he's made thousands through strategic investments and e-commerce ventures, teaching students advanced business strategies."
+      },
+      {
+        "name": "Harshad Amalan",
+        "expertise": "Reselling & Product Trends",
+        "bio": "Harshad is a successful reseller who's placed at the state level in BPA competitions. He teaches how to spot product trends and flip items for profit."
+      },
+      {
+        "name": "Neil Kaila",
+        "expertise": "Stock Analysis & Investing",
+        "bio": "Neil is a student investor who competed in the Wharton Investment Competition and made thousands of dollars through his investments. He's passionate about teaching students how to research, analyze, and confidently invest in stocks."
+      },
+      {
+        "name": "Yashas Singh",
+        "expertise": "Economics & Digital Assets",
+        "bio": "Yashas taught AP Econ to his peers and made over $1,000 trading NFTs. He focuses on helping students understand crypto digital assets, and economic decision-making."
+      }
+    ],
+    "footer": {
+      "title": "Real Results, Real Education",
+      "description": "Our founders have competed in prestigious competitions like Wharton Investment and BPA, built profitable ventures, and generated real revenue. Now they're sharing their proven strategies to help you build genuine financial literacy and entrepreneurial skills."
+    }
+  },
+  "schedule": [
+    {
+      "day": "Day 1",
+      "title": "Intro to Markets & Payment Setup",
+      "description": "Interactive presentation on market basics, icebreakers, and hands-on workshop to set up online payment methods and bank accounts",
+      "activities": [
+        "Market fundamentals icebreaker",
+        "Payment method setup workshop",
+        "Personal finance basics"
+      ]
+    },
+    {
+      "day": "Day 2",
+      "title": "Stocks & Investment",
+      "description": "Understand what stocks are, practice predicting trends, and learn investment research through interactive games",
+      "activities": [
+        "Stock trend prediction game",
+        "Investment strategy workshop",
+        "Research fundamentals"
+      ]
+    },
+    {
+      "day": "Day 3",
+      "title": "Online Business & Marketing",
+      "description": "Learn online advertising, business setup strategies, and brainstorm your own business ideas in breakout sessions",
+      "activities": [
+        "Successful business strategy videos",
+        "Dropshipping & TikTok Shop basics",
+        "Business idea brainstorming"
+      ]
+    },
+    {
+      "day": "Day 4",
+      "title": "How Money Works & Crypto",
+      "description": "Interactive demonstrations on taxes, saving vs investing strategies, crypto basics, and hustling opportunities",
+      "activities": [
+        "Tax basics demonstration",
+        "Spend vs. Invest case studies",
+        "Crypto fundamentals & side hustles"
+      ]
+    },
+    {
+      "day": "Day 5",
+      "title": "Final Competition & Celebration",
+      "description": "Apply everything you've learned in fun competitions, presentations, and celebrate with prizes and refreshments!",
+      "activities": [
+        "Blooket fishing game competition",
+        "Student presentations",
+        "Prize ceremony & celebration"
+      ]
+    }
+  ]
+}

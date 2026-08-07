@@ -1,0 +1,115 @@
+{
+  "hero": {
+    "title": "Level up your money skills",
+    "subtitle": "A free workshop designed by high school students to teach real-world financial skills to students.",
+    "stats": [
+      {
+        "number": "300+",
+        "label": "Students",
+        "sublabel": "Indian schools",
+        "link": "/gallery#indian-school"
+      },
+      {
+        "number": "3",
+        "label": "Events",
+        "sublabel": "Hosted"
+      },
+      {
+        "number": "5+",
+        "label": "Topics",
+        "sublabel": "Covered"
+      }
+    ],
+    "ctas": {
+      "reserve_spot": {
+        "text": "Reserve Your Spot - It's Free! 🚀",
+        "url": "https://forms.gle/JWCVyGcfN5UKiwqHA",
+        "subtext": "Limited spots available - Don't miss out!"
+      },
+      "support_mission": {
+        "text": "Support Our Mission",
+        "link": "/donate"
+      },
+      "workshop_gallery": {
+        "text": "Workshop Gallery",
+        "link": "/gallery"
+      }
+    }
+  },
+  "workshop_info": {
+    "location": {
+      "name": "R.H. Stafford Library",
+      "subtext": "Workshop Location",
+      "maps_url": "https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc"
+    },
+    "whats_included": [
+      "Completely Free",
+      "All Supplies Included",
+      "Snacks Provided"
+    ],
+    "event_timer": {
+      "eventStartDateTime": "2025-07-10T11:00:00",
+      "eventDurationHours": 1.5,
+      "totalEventDays": 2
+    }
+  },
+  "topics_heading": {
+    "title": "Explore Our Workshop Topics",
+    "subtitle": "Click on any card to learn more about each topic",
+    "topics": [
+      {
+        "title": "Stock Markets & Investing",
+        "description": "Learn investing fundamentals and market analysis",
+        "route": "/stock-markets"
+      },
+      {
+        "title": "Budgeting",
+        "description": "Master personal finance and money management",
+        "route": "/budgeting"
+      },
+      {
+        "title": "Online Business",
+        "description": "Explore e-commerce and entrepreneurship",
+        "route": "/online-business"
+      },
+      {
+        "title": "Crypto + NFTs",
+        "description": "Understand digital assets and blockchain",
+        "route": "/crypto-nfts"
+      }
+    ]
+  },
+  "donate_page": {
+    "stripe_url": "https://buy.stripe.com/cNicN5gG3f8ocU4cjN0Ba00",
+    "title": "Support Spendora",
+    "subtitle": "Help us continue providing free financial literacy workshops to students. Your donation makes a real difference in young people's financial education.",
+    "other_ways": [
+      "Share our workshop with friends and family",
+      "Follow us on social media",
+      "Volunteer at our workshops",
+      "Provide feedback to help us improve"
+    ],
+    "impact_items": [
+      {
+        "title": "Learning Materials & Supplies",
+        "desc": "Workbooks, calculators, and hands-on materials for every student"
+      },
+      {
+        "title": "Venue & Facility Costs",
+        "desc": "Library partnerships and equipment rental to keep workshops accessible"
+      },
+      {
+        "title": "Curriculum Development",
+        "desc": "Creating engaging, age-appropriate financial education content"
+      },
+      {
+        "title": "Program Expansion",
+        "desc": "Reaching more schools and communities with financial literacy"
+      }
+    ],
+    "testimonial": {
+      "quote": "Thanks to Spendora, I learned how to budget my allowance and even started investing! Now I'm helping my friends understand money too.",
+      "author": "— Workshop Participant, Age 14"
+    }
+  }
+}

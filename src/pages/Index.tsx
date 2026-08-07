@@ -1,14 +1,14 @@
 import { useEffect, lazy, Suspense } from "react";
 import Hero from "@/components/Hero";
-import PageTransition from "@/components/PageTransition";
 
 const AboutSpendora = lazy(() => import("@/components/AboutSpendora"));
 const MeetTheTeam = lazy(() => import("@/components/MeetTheTeam"));
+const WorkshopSchedule = lazy(() => import("@/components/WorkshopSchedule"));
 const Footer = lazy(() => import("@/components/Footer"));
+
 const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    // SEO: title, description, canonical
     document.title = "Spendora Financial Literacy Workshop";
     const desc = "Free student-led financial literacy workshop: budgeting, stocks, crypto, online business. Join Spendora.";
     let meta = document.querySelector('meta[name="description"]');
@@ -29,20 +29,21 @@ const Index = () => {
   }, []);
 
   return (
-    <PageTransition transitionType="welcome">
-      <div className="min-h-screen liquid-page">
-        <Hero />
-        <Suspense fallback={<div className="h-screen" />}>
-          <div id="about-spendora">
-            <AboutSpendora />
-          </div>
-          <div id="meet-the-team">
-            <MeetTheTeam />
-          </div>
-          <Footer />
-        </Suspense>
-      </div>
-    </PageTransition>
+    <div className="min-h-screen bg-background transition-colors duration-300">
+      <Hero />
+      <Suspense fallback={<div className="h-48" />}>
+        <div id="about-spendora">
+          <AboutSpendora />
+        </div>
+        <div id="workshop-schedule">
+          <WorkshopSchedule />
+        </div>
+        <div id="meet-the-team">
+          <MeetTheTeam />
+        </div>
+        <Footer />
+      </Suspense>
+    </div>
   );
 };
 

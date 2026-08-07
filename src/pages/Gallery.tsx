@@ -1,11 +1,8 @@
-
 import { useEffect } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronDown, Video, Image as ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocation, useNavigate } from "react-router-dom";
-import PageTransition from "@/components/PageTransition";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown } from "lucide-react";
 
 const Gallery = () => {
   const navigate = useNavigate();
@@ -13,9 +10,8 @@ const Gallery = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // SEO
     document.title = 'Workshop Gallery | Spendora';
-    const desc = 'Photos and videos from Spendora financial literacy workshops: Day 1 and Day 2 highlights.';
+    const desc = 'Photos and videos from Spendora financial literacy workshops: Day 1, Day 2, Indian School, and Ram Krishna School highlights.';
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name','description'); document.head.appendChild(meta); }
     meta.setAttribute('content', desc);
@@ -81,122 +77,138 @@ const Gallery = () => {
     { src: "/lovable-uploads/ram-krishna-school-2.jpg", alt: "Students learning financial concepts at Ram Krishna Dwarika School" }
   ];
 
-  const renderMediaGrid = (photos, videos = []) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
+  const renderMediaGrid = (photos: {src: string; alt: string}[], videos: {src: string; alt: string}[] = []) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto pt-4">
       {photos.map((photo, index) => (
-        <div key={`photo-${index}`} className="relative overflow-hidden rounded-2xl border border-white/10 bg-background/90 shadow-lg">
-          <img src={photo.src} alt={photo.alt} className="w-full h-64 object-cover" loading="lazy" />
-          <div className="p-4"><p className="text-sm text-muted-foreground">{photo.alt}</p></div>
+        <div key={`photo-${index}`} className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-md transition-all hover:shadow-xl">
+          <img src={photo.src} alt={photo.alt} className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+          <div className="p-3 bg-card/90 backdrop-blur-sm border-t border-border/40 flex items-center gap-2 text-xs font-medium text-muted-foreground">
+            <ImageIcon className="w-3.5 h-3.5 text-primary" />
+            <span className="truncate">{photo.alt}</span>
+          </div>
         </div>
       ))}
       {videos.map((video, index) => (
-        <div key={`video-${index}`} className="relative overflow-hidden rounded-2xl border border-white/10 bg-background/90 shadow-lg">
-          <video src={video.src} controls preload="metadata" className="w-full h-64 object-cover" />
-          <div className="p-4"><p className="text-sm text-muted-foreground">{video.alt}</p></div>
+        <div key={`video-${index}`} className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-md">
+          <video src={video.src} controls preload="metadata" className="w-full h-60 object-cover bg-black" />
+          <div className="p-3 bg-card/90 backdrop-blur-sm border-t border-border/40 flex items-center gap-2 text-xs font-medium text-muted-foreground">
+            <Video className="w-3.5 h-3.5 text-red-500" />
+            <span className="truncate">{video.alt}</span>
+          </div>
         </div>
       ))}
     </div>
   );
 
   return (
-    <PageTransition>
-      <div className="min-h-screen liquid-page transition-colors duration-300">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-4 mb-8">
-            <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="flex items-center gap-2 hover:bg-primary/10">
-              <ArrowLeft className="w-4 h-4" />Back to Home
-            </Button>
-          </div>
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300 py-12 px-4 sm:px-6">
+      <div className="container mx-auto max-w-6xl">
+        <Button 
+          variant="ghost" 
+          onClick={() => navigate('/')} 
+          className="mb-8 flex items-center gap-2 hover:bg-accent"
+        >
+          <ArrowLeft className="w-4 h-4" /> Back to Home
+        </Button>
 
-          <div className="text-center mb-12">
-            <h1 className="text-display mb-4 gradient-text-primary">Workshop Gallery</h1>
-            <p className="text-body-large text-muted-foreground max-w-3xl mx-auto">Highlights from our financial literacy workshops</p>
-          </div>
+        <div className="text-center mb-12 space-y-3">
+          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight">
+            Workshop <span className="gradient-text-primary">Gallery</span>
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Photos and video highlights from our student financial literacy workshops
+          </p>
+        </div>
 
-          <div className="max-w-6xl mx-auto space-y-8">
-            <Collapsible defaultOpen className="border rounded-lg p-6 liquid-glass-surface">
-              <CollapsibleTrigger className="flex items-center justify-between w-full text-left">
-                <div className="flex items-center gap-4">
-                  <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-bold text-xl">DAY 1</div>
-                  <span className="text-lg font-semibold">Introduction to Investing</span>
+        <div className="space-y-6">
+          {/* Day 1 */}
+          <Collapsible defaultOpen className="border border-border rounded-3xl p-6 bg-card/60 backdrop-blur-md shadow-lg">
+            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
+              <div className="flex items-center gap-4">
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2.5 rounded-2xl font-bold text-lg">DAY 1</div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">Introduction to Investing</h3>
+                  <p className="text-xs text-muted-foreground">Photos from Day 1 session</p>
                 </div>
-                <ChevronDown className="h-5 w-5 transition-transform duration-200" />
-              </CollapsibleTrigger>
-              <CollapsibleContent className="mt-6">
-                {renderMediaGrid(day1Photos)}
-              </CollapsibleContent>
-            </Collapsible>
+              </div>
+              <ChevronDown className="h-5 w-5 text-muted-foreground group-data-[state=open]:rotate-180 transition-transform duration-200" />
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              {renderMediaGrid(day1Photos)}
+            </CollapsibleContent>
+          </Collapsible>
 
-            <Collapsible defaultOpen className="border rounded-lg p-6 liquid-glass-surface">
-              <CollapsibleTrigger className="flex items-center justify-between w-full text-left">
-                <div className="flex items-center gap-4">
-                  <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-xl font-bold text-xl">DAY 2</div>
-                  <span className="text-lg font-semibold">Saving vs Investing</span>
+          {/* Day 2 */}
+          <Collapsible defaultOpen className="border border-border rounded-3xl p-6 bg-card/60 backdrop-blur-md shadow-lg">
+            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
+              <div className="flex items-center gap-4">
+                <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-5 py-2.5 rounded-2xl font-bold text-lg">DAY 2</div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">Saving vs Investing</h3>
+                  <p className="text-xs text-muted-foreground">Photos and videos from Day 2 session</p>
                 </div>
-                <ChevronDown className="h-5 w-5 transition-transform duration-200" />
-              </CollapsibleTrigger>
-              <CollapsibleContent className="mt-6">
-                {renderMediaGrid(day2Photos, day2Videos)}
-              </CollapsibleContent>
-            </Collapsible>
+              </div>
+              <ChevronDown className="h-5 w-5 text-muted-foreground group-data-[state=open]:rotate-180 transition-transform duration-200" />
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              {renderMediaGrid(day2Photos, day2Videos)}
+            </CollapsibleContent>
+          </Collapsible>
 
-            <div className="grid grid-cols-1 gap-6">
-              <Collapsible id="indian-school" className="border rounded-lg p-6 liquid-glass-surface transition-all duration-300">
-                <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
-                  <div className="flex flex-col gap-3">
-                    <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-xl font-bold text-xl transition-all duration-300">INDIAN SCHOOL</div>
-                    <div className="flex flex-col">
-                      <span className="text-lg font-semibold transition-colors duration-300">300+ Students Workshop</span>
-                      <span className="text-sm text-muted-foreground">Sri Girdhar Techno School</span>
-                      <span className="text-xs text-primary mt-2 group-hover:underline">Click to view photos & videos →</span>
-                    </div>
-                  </div>
-                  <ChevronDown className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-                </CollapsibleTrigger>
-                <CollapsibleContent className="mt-6">
-                  {renderMediaGrid(indianSchoolPhotos, indianSchoolVideos)}
-                </CollapsibleContent>
-              </Collapsible>
+          {/* Indian School (300+ Students) */}
+          <Collapsible defaultOpen id="indian-school" className="border border-amber-500/30 rounded-3xl p-6 bg-amber-500/5 backdrop-blur-md shadow-lg">
+            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
+              <div className="flex items-center gap-4">
+                <div className="bg-gradient-to-r from-orange-600 to-amber-600 text-white px-5 py-2.5 rounded-2xl font-bold text-lg">INDIAN SCHOOL</div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">300+ Students Workshop</h3>
+                  <p className="text-xs text-muted-foreground font-medium">Sri Girdhar Techno School — Photos & Videos</p>
+                </div>
+              </div>
+              <ChevronDown className="h-5 w-5 text-muted-foreground group-data-[state=open]:rotate-180 transition-transform duration-200" />
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              {renderMediaGrid(indianSchoolPhotos, indianSchoolVideos)}
+            </CollapsibleContent>
+          </Collapsible>
 
-              <Collapsible id="ram-krishna-school" className="border rounded-lg p-6 liquid-glass-surface transition-all duration-300">
-                <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
-                  <div className="flex flex-col gap-3">
-                    <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-bold text-xl transition-all duration-300">RAM KRISHNA SCHOOL</div>
-                    <div className="flex flex-col">
-                      <span className="text-lg font-semibold transition-colors duration-300">Financial Literacy Workshop</span>
-                      <span className="text-sm text-muted-foreground">Ram Krishna Dwarika School</span>
-                      <span className="text-xs text-primary mt-2 group-hover:underline">Click to view photos →</span>
-                    </div>
-                  </div>
-                  <ChevronDown className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-                </CollapsibleTrigger>
-                <CollapsibleContent className="mt-6">
-                  {renderMediaGrid(ramKrishnaSchoolPhotos)}
-                </CollapsibleContent>
-              </Collapsible>
-            </div>
-          </div>
+          {/* Ram Krishna School */}
+          <Collapsible id="ram-krishna-school" className="border border-border rounded-3xl p-6 bg-card/60 backdrop-blur-md shadow-lg">
+            <CollapsibleTrigger className="flex items-center justify-between w-full text-left group">
+              <div className="flex items-center gap-4">
+                <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-5 py-2.5 rounded-2xl font-bold text-lg">RAM KRISHNA SCHOOL</div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">Financial Literacy Workshop</h3>
+                  <p className="text-xs text-muted-foreground">Ram Krishna Dwarika School</p>
+                </div>
+              </div>
+              <ChevronDown className="h-5 w-5 text-muted-foreground group-data-[state=open]:rotate-180 transition-transform duration-200" />
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              {renderMediaGrid(ramKrishnaSchoolPhotos)}
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
 
-          {/* Footer Section */}
-          <div className="text-center mt-16 py-8 border-t border-border">
-            <h3 className="text-2xl font-bold mb-4 text-foreground">
-              Join Us for Our Next Workshop!
-            </h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Be part of our growing community of students learning essential financial skills. 
-              Sign up now to secure your spot for our upcoming sessions.
-            </p>
-            <Button
-              size="lg"
-              className="px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
-            >
-              Reserve Your Spot - It's Free! 🚀
-            </Button>
-          </div>
+        {/* Bottom CTA */}
+        <div className="text-center mt-16 p-8 rounded-3xl border border-border bg-card/60 backdrop-blur-md space-y-4">
+          <h3 className="text-2xl font-bold text-foreground">
+            Join Us for Our Next Workshop!
+          </h3>
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm sm:text-base">
+            Be part of our growing community of students learning essential financial skills. 
+            Sign up now to secure your spot for our upcoming sessions.
+          </p>
+          <Button
+            size="lg"
+            className="rounded-full px-8 py-6 text-lg font-bold shadow-lg hover:scale-105 transition-all bg-primary text-primary-foreground"
+            onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
+          >
+            Reserve Your Spot - It's Free! 🚀
+          </Button>
         </div>
       </div>
-    </PageTransition>
+    </div>
   );
 };
 
