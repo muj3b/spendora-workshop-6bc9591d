@@ -14,15 +14,15 @@ const MeetTheTeam = () => {
     {
       name: "Mujeeb Chaudhry",
       expertise: "E-commerce & Investment Strategy",
-      bio: "Mujeeb competed in the Wharton Investment Competition and BPA. He specializes in reselling, dropshipping, complex online shops, crypto projects, and has built multiple profitable apps. He also created this website. Together with Neil, he's made thousands through strategic investments and e-commerce ventures.",
+      bio: "Mujeeb competed in the Wharton Investment Competition and BPA. He specializes in reselling, dropshipping, complex online shops, crypto projects, and has built multiple profitable apps. He also created this website.",
       icon: ShoppingBag,
       linkedin: "https://www.linkedin.com/in/muj3b/",
     },
     {
       name: "Harshad Amalan",
-      expertise: "Reselling & Product Trends",
-      bio: "Harshad is a successful reseller who's placed at the state level in BPA competitions. He teaches how to spot product trends and flip items for profit.",
-      icon: Award,
+      expertise: "Stock Market & Trend Spotting",
+      bio: "Harshad is a student investor with an interest in how the stock market differentiates. He keeps a close watch on the NYSE and has a knack for spotting trends before they take off. He's competed in the Wharton Investment Competition on two occasions, and he's driven by a passion for helping students build the skills to research and invest with confidence because they aren’t taught that in schools. He also helped create this website with Mujeeb.",
+      icon: TrendingUp,
       linkedin: "https://www.linkedin.com/in/harshad-amalan/?skipRedirect=true",
     },
     {
