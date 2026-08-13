@@ -7,6 +7,7 @@ const WorkshopSchedule = () => {
     { day: "Day 3", title: "Online Business & Marketing", description: "Learn online advertising, business setup strategies, and brainstorm your own business ideas in breakout sessions", activities: ["Successful business strategy videos", "Dropshipping & TikTok Shop basics", "Business idea brainstorming"] },
     { day: "Day 4", title: "How Money Works & Crypto", description: "Interactive demonstrations on taxes, saving vs investing strategies, crypto basics, and hustling opportunities", activities: ["Tax basics demonstration", "Spend vs. Invest case studies", "Crypto fundamentals & side hustles"] },
     { day: "Day 5", title: "Final Competition & Celebration", description: "Apply everything you've learned in fun competitions, presentations, and celebrate with prizes and refreshments!", activities: ["Blooket fishing game competition", "Student presentations", "Prize ceremony & celebration"] },
+    { day: "Day 6", title: "Pushing Boundaries with Money", description: "Yesterday we celebrated — today we level up. Explore advanced wealth-building strategies, passive income streams, and the mindset shifts that separate savers from real wealth builders", activities: ["Passive income & wealth-building strategies", "Real-world money moves panel", "Goal-setting & next steps workshop"] },
   ];
 
   return (
@@ -14,7 +15,7 @@ const WorkshopSchedule = () => {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 id="workshop-schedule" className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight font-manrope mb-4">
-            5-Day Workshop <span className="text-emerald-700 dark:text-[#52b788]">Schedule</span>
+            6-Day Workshop <span className="text-emerald-700 dark:text-[#52b788]">Schedule</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 mb-6 font-medium">Each day builds on the last, creating a comprehensive foundation in financial literacy</p>
           <div className="inline-flex items-center gap-2 px-5 py-2.5 border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 rounded-full text-xs sm:text-sm font-semibold text-slate-700 dark:text-zinc-300 shadow-sm">
