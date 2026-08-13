@@ -7,7 +7,7 @@ const WorkshopSchedule = () => {
     { day: "Day 3", title: "Online Business & Marketing", description: "Learn online advertising, business setup strategies, and brainstorm your own business ideas in breakout sessions", activities: ["Successful business strategy videos", "Dropshipping & TikTok Shop basics", "Business idea brainstorming"] },
     { day: "Day 4", title: "How Money Works & Crypto", description: "Interactive demonstrations on taxes, saving vs investing strategies, crypto basics, and hustling opportunities", activities: ["Tax basics demonstration", "Spend vs. Invest case studies", "Crypto fundamentals & side hustles"] },
     { day: "Day 5", title: "Final Competition & Celebration", description: "Apply everything you've learned in fun competitions, presentations, and celebrate with prizes and refreshments!", activities: ["Blooket fishing game competition", "Student presentations", "Prize ceremony & celebration"] },
-    { day: "Day 6", title: "Pushing Boundaries with Money", description: "Yesterday we celebrated, today we level up. Explore advanced wealth-building strategies, passive income streams, and the mindset shifts that separate savers from real wealth builders", activities: ["Passive income & wealth-building strategies", "Real-world money moves panel", "Goal-setting & next steps workshop"], golden: true },
+    { day: "Day 6", title: "Mystery Day", description: "We're keeping this one under wraps for now. All we can say is it's going to be packed with information and we're pushing boundaries. You don't want to miss this one.", activities: ["Something big is coming", "Stay tuned for the reveal", "Trust us on this one"], golden: true },
   ];
 
   return (
