@@ -76,13 +76,18 @@ const Hero = memo(() => {
 
         {/* Stats Strip */}
         <div className="w-full mt-20 border-y border-slate-200 dark:border-white/5 bg-white/60 dark:bg-white/[0.02] backdrop-blur-md py-8">
-          <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             <button onClick={() => navigate('/gallery#indian-school')} className="group cursor-pointer">
               <div className="text-4xl md:text-5xl font-black text-emerald-700 dark:text-[#52b788] font-manrope tabular-nums">300+</div>
-              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Students Reached</div>
-              <div className="text-xs text-slate-500 dark:text-zinc-500">Rural Indian schools</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Students Locally</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Local schools & events</div>
               <div className="text-xs font-bold text-emerald-600 dark:text-[#52b788] mt-1.5 group-hover:underline">View gallery →</div>
             </button>
+            <div>
+              <div className="text-4xl md:text-5xl font-black text-emerald-700 dark:text-[#52b788] font-manrope tabular-nums">2,000+</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Students Internationally</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Rural Indian schools</div>
+            </div>
             <div>
               <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">3</div>
               <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Events</div>
