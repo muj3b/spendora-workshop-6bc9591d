@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { ArrowRight, Heart, Camera, MapPin, TrendingUp, Wallet, Store, Coins, Navigation, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Heart, Camera, MapPin, TrendingUp, Wallet, Store, Coins, Navigation, Sparkles, CheckCircle2, Headphones } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 
@@ -41,10 +41,9 @@ const Hero = memo(() => {
           </div>
 
           {/* Podcast Announcement */}
-          <div className="flex items-center justify-center gap-3 py-2.5 px-5 rounded-full border border-amber-300/60 dark:border-amber-500/20 bg-amber-50/80 dark:bg-amber-500/[0.06] backdrop-blur-sm text-sm mb-8 animate-fade-up">
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-500 dark:text-amber-400">New</span>
-            <span className="w-px h-3.5 bg-amber-300/60 dark:bg-amber-500/20" />
-            <span className="font-semibold text-slate-700 dark:text-zinc-300">The Spendora Podcast by Neil Kaila is coming to the site soon.</span>
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-md mb-8 animate-fade-up shadow-sm">
+            <Headphones className="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
+            <span className="text-xs font-bold text-slate-700 dark:text-zinc-300 tracking-wide font-manrope">Spendora Podcast by Neil Kaila coming soon</span>
           </div>
 
           {/* Main Headline */}
