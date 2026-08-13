@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { ArrowRight, Heart, Camera, MapPin, TrendingUp, Wallet, Store, Coins, Navigation, Sparkles, CheckCircle2, Mic } from "lucide-react";
+import { ArrowRight, Heart, Camera, MapPin, TrendingUp, Wallet, Store, Coins, Navigation, Sparkles, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 
@@ -102,23 +102,13 @@ const Hero = memo(() => {
         </div>
       </div>
 
-      {/* Podcast Coming Soon Banner */}
-      <div className="relative z-10 py-6 px-6">
+      {/* Podcast Announcement */}
+      <div className="relative z-10 px-6 pt-8">
         <div className="max-w-5xl mx-auto">
-          <div className="relative overflow-hidden border border-purple-200 dark:border-purple-500/20 bg-gradient-to-r from-purple-50 via-white to-purple-50 dark:from-purple-950/30 dark:via-black dark:to-purple-950/30 rounded-2xl p-5 sm:p-6 shadow-lg">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-400/10 dark:bg-purple-500/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-            <div className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
-              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/40 border border-purple-200 dark:border-purple-700/40 shrink-0">
-                <Mic className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-              </div>
-              <div className="flex-1 text-center sm:text-left">
-                <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white font-manrope">Spendora Podcast by Neil Kaila</h3>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 font-extrabold uppercase tracking-wider border border-purple-200 dark:border-purple-700/40">Coming Soon</span>
-                </div>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 font-medium">Real conversations about money, investing, and building wealth as a student — launching soon on the Spendora website.</p>
-              </div>
-            </div>
+          <div className="flex items-center justify-center gap-3 py-3 px-5 rounded-full border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-white/[0.03] backdrop-blur-sm text-sm">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-zinc-500">New</span>
+            <span className="w-px h-3.5 bg-slate-200 dark:bg-zinc-700" />
+            <span className="font-semibold text-slate-700 dark:text-zinc-300">The Spendora Podcast by Neil Kaila is coming to the site soon.</span>
           </div>
         </div>
       </div>
