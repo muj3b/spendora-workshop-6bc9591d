@@ -31,7 +31,7 @@ const Hero = memo(() => {
       {/* Hero Header */}
       <div className="relative z-10 min-h-[85vh] flex flex-col items-center justify-center pt-32 pb-16 px-6">
         <div className="text-center max-w-5xl mx-auto">
-          <div className="flex flex-col items-center gap-3 mb-8">
+          <div className="flex flex-col items-center gap-3.5 mb-8">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/80 dark:bg-white/5 border border-emerald-200 dark:border-white/10 backdrop-blur-md animate-fade-up shadow-sm">
               <span className="relative flex h-2 w-2">
@@ -41,10 +41,12 @@ const Hero = memo(() => {
               <span className="text-xs font-bold text-emerald-900 dark:text-emerald-100/90 tracking-wide font-manrope">Student-Led Financial Literacy</span>
             </div>
 
-            {/* Audiobook Announcement */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-md animate-fade-up shadow-sm">
-              <Headphones className="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
-              <span className="shimmer-text text-xs font-bold text-slate-700 dark:text-zinc-300 tracking-wide font-manrope">Spendora Audiobook by Neil Kaila coming soon</span>
+            {/* Audiobook Announcement - Bigger & Clean */}
+            <div className="inline-flex items-center gap-3 px-5 sm:px-6 py-2.5 rounded-full bg-white/90 dark:bg-white/[0.05] border border-slate-200 dark:border-white/10 backdrop-blur-md animate-fade-up shadow-md">
+              <Headphones className="w-4 h-4 text-emerald-700 dark:text-[#52b788] shrink-0" />
+              <span className="text-sm sm:text-base font-bold text-slate-800 dark:text-zinc-200 tracking-wide font-manrope">
+                Spendora Audiobook by Neil Kaila coming soon
+              </span>
             </div>
           </div>
 
