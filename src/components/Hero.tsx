@@ -40,6 +40,13 @@ const Hero = memo(() => {
             <span className="text-xs font-bold text-emerald-900 dark:text-emerald-100/90 tracking-wide font-manrope">Student-Led Financial Literacy</span>
           </div>
 
+          {/* Podcast Announcement */}
+          <div className="flex items-center justify-center gap-3 py-2.5 px-5 rounded-full border border-amber-300/60 dark:border-amber-500/20 bg-amber-50/80 dark:bg-amber-500/[0.06] backdrop-blur-sm text-sm mb-8 animate-fade-up">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-500 dark:text-amber-400">New</span>
+            <span className="w-px h-3.5 bg-amber-300/60 dark:bg-amber-500/20" />
+            <span className="font-semibold text-slate-700 dark:text-zinc-300">The Spendora Podcast by Neil Kaila is coming to the site soon.</span>
+          </div>
+
           {/* Main Headline */}
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight font-manrope leading-[1.08] mb-8 animate-fade-up text-slate-900 dark:text-white">
             <span>Level up your </span>
@@ -102,16 +109,6 @@ const Hero = memo(() => {
         </div>
       </div>
 
-      {/* Podcast Announcement */}
-      <div className="relative z-10 px-6 pt-8">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center justify-center gap-3 py-3 px-5 rounded-full border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-white/[0.03] backdrop-blur-sm text-sm">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-zinc-500">New</span>
-            <span className="w-px h-3.5 bg-slate-200 dark:bg-zinc-700" />
-            <span className="font-semibold text-slate-700 dark:text-zinc-300">The Spendora Podcast by Neil Kaila is coming to the site soon.</span>
-          </div>
-        </div>
-      </div>
 
       {/* Timer & Location Section (Balanced Cards) */}
       <div className="relative z-10 py-16 px-6">
