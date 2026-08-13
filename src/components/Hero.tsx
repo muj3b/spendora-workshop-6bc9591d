@@ -44,7 +44,7 @@ const Hero = memo(() => {
             {/* Audiobook Announcement */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-md animate-fade-up shadow-sm">
               <Headphones className="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
-              <span className="text-xs font-bold text-slate-700 dark:text-zinc-300 tracking-wide font-manrope">Spendora Audiobook by Neil Kaila <span className="shimmer-text">coming soon</span></span>
+              <span className="shimmer-text text-xs font-bold text-slate-700 dark:text-zinc-300 tracking-wide font-manrope">Spendora Audiobook by Neil Kaila coming soon</span>
             </div>
           </div>
 
