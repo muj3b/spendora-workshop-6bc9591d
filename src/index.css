@@ -93,38 +93,39 @@
     -webkit-text-fill-color: transparent;
     background: linear-gradient(
       110deg,
-      #64748b 0%,
-      #64748b 45%,
-      #0f172a 49%,
-      #0f172a 51%,
-      #64748b 55%,
-      #64748b 100%
+      #334155 0%,
+      #334155 44%,
+      #047857 48%,
+      #10b981 50%,
+      #047857 52%,
+      #334155 56%,
+      #334155 100%
     );
-    background-size: 250% 100%;
+    background-size: 300% 100%;
     -webkit-background-clip: text;
     background-clip: text;
-    animation: shimmer-beam 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: shimmer-beam 7s ease-in-out infinite;
   }
 
   :is(.dark) .shimmer-text {
     background: linear-gradient(
       110deg,
-      #71717a 0%,
-      #71717a 45%,
-      #ffffff 49%,
-      #ffffff 51%,
-      #71717a 55%,
-      #71717a 100%
+      #d4d4d8 0%,
+      #d4d4d8 44%,
+      #ffffff 48%,
+      #ffffff 52%,
+      #d4d4d8 56%,
+      #d4d4d8 100%
     );
-    background-size: 250% 100%;
+    background-size: 300% 100%;
     -webkit-background-clip: text;
     background-clip: text;
   }
 
   @keyframes shimmer-beam {
-    0% { background-position: 140% 0; }
-    40% { background-position: -140% 0; }
-    41%, 100% { background-position: -140% 0; }
+    0% { background-position: 150% 0; }
+    50% { background-position: -150% 0; }
+    51%, 100% { background-position: -150% 0; }
   }
 }
 
