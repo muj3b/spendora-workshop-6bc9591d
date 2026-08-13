@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { ArrowRight, Heart, Camera, MapPin, TrendingUp, Wallet, Store, Coins, Navigation, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Heart, Camera, MapPin, TrendingUp, Wallet, Store, Coins, Navigation, Sparkles, CheckCircle2, Mic } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
 
@@ -97,6 +97,27 @@ const Hero = memo(() => {
               <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">5+</div>
               <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Topics</div>
               <div className="text-xs text-slate-500 dark:text-zinc-500">Covered</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Podcast Coming Soon Banner */}
+      <div className="relative z-10 py-6 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative overflow-hidden border border-purple-200 dark:border-purple-500/20 bg-gradient-to-r from-purple-50 via-white to-purple-50 dark:from-purple-950/30 dark:via-black dark:to-purple-950/30 rounded-2xl p-5 sm:p-6 shadow-lg">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-400/10 dark:bg-purple-500/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+            <div className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
+              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/40 border border-purple-200 dark:border-purple-700/40 shrink-0">
+                <Mic className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white font-manrope">Spendora Podcast by Neil Kaila</h3>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 font-extrabold uppercase tracking-wider border border-purple-200 dark:border-purple-700/40">Coming Soon</span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 font-medium">Real conversations about money, investing, and building wealth as a student — launching soon on the Spendora website.</p>
+              </div>
             </div>
           </div>
         </div>
