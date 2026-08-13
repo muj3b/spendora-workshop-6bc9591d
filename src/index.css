@@ -88,6 +88,28 @@
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: rgba(100,100,100,0.2); border-radius: 9999px; }
   ::-webkit-scrollbar-thumb:hover { background: rgba(100,100,100,0.4); }
+
+  .shimmer-text {
+    background: linear-gradient(
+      90deg,
+      currentColor 0%,
+      currentColor 40%,
+      rgba(255,255,255,0.9) 50%,
+      currentColor 60%,
+      currentColor 100%
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 100% center; }
+    30% { background-position: -100% center; }
+    31%, 99% { background-position: -100% center; }
+  }
 }
 
 /* Star field animations */

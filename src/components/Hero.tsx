@@ -31,19 +31,21 @@ const Hero = memo(() => {
       {/* Hero Header */}
       <div className="relative z-10 min-h-[85vh] flex flex-col items-center justify-center pt-32 pb-16 px-6">
         <div className="text-center max-w-5xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/80 dark:bg-white/5 border border-emerald-200 dark:border-white/10 backdrop-blur-md mb-8 animate-fade-up shadow-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 dark:bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-[#40916c]" />
-            </span>
-            <span className="text-xs font-bold text-emerald-900 dark:text-emerald-100/90 tracking-wide font-manrope">Student-Led Financial Literacy</span>
-          </div>
+          <div className="flex flex-col items-center gap-3 mb-8">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/80 dark:bg-white/5 border border-emerald-200 dark:border-white/10 backdrop-blur-md animate-fade-up shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 dark:bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-[#40916c]" />
+              </span>
+              <span className="text-xs font-bold text-emerald-900 dark:text-emerald-100/90 tracking-wide font-manrope">Student-Led Financial Literacy</span>
+            </div>
 
-          {/* Podcast Announcement */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-md mb-8 animate-fade-up shadow-sm">
-            <Headphones className="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
-            <span className="text-xs font-bold text-slate-700 dark:text-zinc-300 tracking-wide font-manrope">Spendora Audiobook by Neil Kaila coming soon</span>
+            {/* Audiobook Announcement */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-md animate-fade-up shadow-sm">
+              <Headphones className="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
+              <span className="text-xs font-bold text-slate-700 dark:text-zinc-300 tracking-wide font-manrope">Spendora Audiobook by Neil Kaila <span className="shimmer-text">coming soon</span></span>
+            </div>
           </div>
 
           {/* Main Headline */}
