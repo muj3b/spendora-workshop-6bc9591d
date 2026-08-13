@@ -90,15 +90,15 @@
   ::-webkit-scrollbar-thumb:hover { background: rgba(100,100,100,0.4); }
 
   .shimmer-text {
-    color: transparent;
+    -webkit-text-fill-color: transparent;
     background: linear-gradient(
       90deg,
-      #475569 0%,
-      #475569 25%,
-      #ffffff 45%,
-      #ffffff 55%,
-      #475569 75%,
-      #475569 100%
+      #334155 0%,
+      #334155 30%,
+      #94a3b8 48%,
+      #94a3b8 52%,
+      #334155 70%,
+      #334155 100%
     );
     background-size: 300% 100%;
     -webkit-background-clip: text;
@@ -110,16 +110,15 @@
     background: linear-gradient(
       90deg,
       #d4d4d8 0%,
-      #d4d4d8 25%,
-      #ffffff 45%,
-      #ffffff 55%,
-      #d4d4d8 75%,
+      #d4d4d8 30%,
+      #ffffff 48%,
+      #ffffff 52%,
+      #d4d4d8 70%,
       #d4d4d8 100%
     );
     background-size: 300% 100%;
     -webkit-background-clip: text;
     background-clip: text;
-    animation: shimmer 8s ease-in-out infinite;
   }
 
   @keyframes shimmer {
