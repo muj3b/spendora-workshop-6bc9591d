@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Award, TrendingUp, ShoppingBag, Linkedin, ExternalLink } from "lucide-react";
+import { TrendingUp, ShoppingBag, Linkedin, ExternalLink } from "lucide-react";
 
 interface TeamMember {
   name: string;
@@ -36,7 +36,7 @@ const MeetTheTeam = () => {
 
   return (
     <section className="relative z-10 py-24 px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight font-manrope mb-4">
             Meet the <span className="text-emerald-700 dark:text-[#52b788]">Founders</span>
@@ -50,7 +50,7 @@ const MeetTheTeam = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {team.map((m, i) => {
             const Icon = m.icon;
             const hasLinkedin = Boolean(m.linkedin);
@@ -63,48 +63,45 @@ const MeetTheTeam = () => {
                     window.open(m.linkedin, "_blank", "noopener,noreferrer");
                   }
                 }}
-                className={`group relative overflow-hidden p-8 border border-slate-200 dark:border-white/10 bg-white dark:bg-black transition-all rounded-2xl shadow-md flex flex-col justify-between ${
+                className={`group relative h-full p-6 sm:p-7 border border-slate-200 dark:border-white/10 bg-white dark:bg-black transition-all rounded-2xl shadow-md flex flex-col ${
                   hasLinkedin
                     ? "cursor-pointer hover:border-[#0A66C2]/60 dark:hover:border-[#0A66C2]/80 hover:shadow-xl hover:shadow-[#0A66C2]/5"
                     : "hover:border-emerald-500/40 dark:hover:border-white/20 hover:shadow-xl"
                 }`}
               >
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between gap-4 mb-5">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-emerald-700 dark:bg-[#2d6a4f] text-white flex items-center justify-center font-black text-xl font-manrope shadow-md shrink-0">
-                        {m.name.charAt(0)}
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white font-manrope flex items-center gap-2">
-                          {m.name}
-                        </h3>
-                        <p className="text-xs font-bold text-emerald-700 dark:text-[#52b788] flex items-center gap-1.5 mt-0.5">
-                          <Icon className="w-3.5 h-3.5" /> {m.expertise}
-                        </p>
-                      </div>
-                    </div>
-
-                    {hasLinkedin && (
-                      <a
-                        href={m.linkedin!}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        aria-label={`${m.name}'s LinkedIn Profile`}
-                        className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-[#0A66C2] dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 hover:bg-[#0A66C2] hover:text-white dark:hover:bg-[#0A66C2] dark:hover:text-white transition-all shadow-xs group/link"
-                      >
-                        <Linkedin className="w-3.5 h-3.5 fill-current" />
-                        <span>LinkedIn</span>
-                        <ExternalLink className="w-3 h-3 opacity-60 group-hover/link:opacity-100 transition-opacity" />
-                      </a>
-                    )}
+                <div className="flex items-start gap-3.5">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-700 dark:bg-[#2d6a4f] text-white flex items-center justify-center font-black text-xl font-manrope shadow-md shrink-0">
+                    {m.name.charAt(0)}
                   </div>
-
-                  <p className="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-medium">
-                    {m.bio}
-                  </p>
+                  <div className="min-w-0 pt-0.5">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope leading-tight">
+                      {m.name}
+                    </h3>
+                    <p className="text-xs font-bold text-emerald-700 dark:text-[#52b788] mt-1.5 leading-snug flex items-start gap-1.5">
+                      <Icon className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+                      <span>{m.expertise}</span>
+                    </p>
+                  </div>
                 </div>
+
+                {hasLinkedin && (
+                  <a
+                    href={m.linkedin!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label={`${m.name}'s LinkedIn Profile`}
+                    className="mt-4 self-start inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-[#0A66C2] dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 hover:bg-[#0A66C2] hover:text-white dark:hover:bg-[#0A66C2] dark:hover:text-white transition-all"
+                  >
+                    <Linkedin className="w-3.5 h-3.5 fill-current" />
+                    <span>LinkedIn</span>
+                    <ExternalLink className="w-3 h-3 opacity-60" />
+                  </a>
+                )}
+
+                <p className="mt-5 text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-medium">
+                  {m.bio}
+                </p>
               </div>
             );
           })}
