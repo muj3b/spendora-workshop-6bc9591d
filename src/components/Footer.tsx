@@ -10,7 +10,7 @@ const Footer = () => {
             <img src="/logo-icon.png" alt="Spendora" className="h-8 w-auto" />
             <span className="text-2xl font-extrabold font-manrope tracking-tight text-slate-900 dark:text-white">Spendora</span>
           </div>
-          <p className="text-slate-600 dark:text-zinc-400 max-w-xs leading-relaxed text-sm font-medium">Student-led financial literacy workshop designed to make financial education fun, accessible, and practical for the next generation.</p>
+          <p className="text-slate-600 dark:text-zinc-400 max-w-xs leading-relaxed text-sm font-medium">A free workshop by East Ridge High School students. We teach money skills to other students.</p>
         </div>
         <div>
           <h4 className="text-[10px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-widest mb-6">Quick Links</h4>
@@ -35,8 +35,8 @@ const Footer = () => {
 
       {/* CTA before footer text */}
       <div className="max-w-3xl mx-auto text-center mb-16 px-6">
-        <h2 className="text-4xl md:text-5xl font-black font-manrope mb-4 tracking-tight text-slate-900 dark:text-white">Ready to <span className="text-emerald-700 dark:text-[#52b788]">Start?</span></h2>
-        <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 mb-8 font-medium">Reserve your free spot and start your financial literacy journey today.</p>
+        <h2 className="text-4xl md:text-5xl font-black font-manrope mb-4 tracking-tight text-slate-900 dark:text-white">Want to <span className="text-emerald-700 dark:text-[#52b788]">come?</span></h2>
+        <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 mb-8 font-medium">It's free. Sign up and we'll send you the details.</p>
         <button onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')} className="shiny-cta group shadow-xl hover:scale-105 transition-all">
           <span className="relative z-10 flex items-center gap-2 text-white font-bold text-base">Sign Up Free <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" /></span>
         </button>

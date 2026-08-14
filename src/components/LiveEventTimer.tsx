@@ -43,24 +43,24 @@ const LiveEventTimer = ({
         const day2End = new Date(day2Start); day2End.setHours(day2Start.getHours() + 1.5);
         eventDays[1] = { start: day2Start, end: day2End, day: 2 };
         if (now > day2End) { setEventStatus({ type: 'countdown', message: "Session 3 just ended. Session 4 date and time coming soon!" }); setTimeLeft(''); return; }
-        if (now >= day2Start && now <= day2End) { setEventStatus({ type: 'happening-now', message: 'Day 2 is happening now!', currentDay: 2 }); setTimeLeft(''); return; }
+        if (now >= day2Start && now <= day2End) { setEventStatus({ type: 'happening-now', message: 'Session 2 is happening now!', currentDay: 2 }); setTimeLeft(''); return; }
         if (now < day2Start) {
           const timeDiff = day2Start.getTime() - now.getTime();
           const days = Math.floor(timeDiff / (1000*60*60*24)), hours = Math.floor((timeDiff % (1000*60*60*24)) / (1000*60*60)), minutes = Math.floor((timeDiff % (1000*60*60)) / (1000*60)), seconds = Math.floor((timeDiff % (1000*60)) / 1000);
           let ts = ''; if (days > 0) ts += `${days}d `; if (hours > 0) ts += `${hours}h `; if (minutes > 0) ts += `${minutes}m `; ts += `${seconds}s`;
-          setEventStatus({ type: 'countdown', message: `${ts} until Day 2 begins!`, isFlashing: timeDiff < 86400000 }); setTimeLeft(ts); return;
+          setEventStatus({ type: 'countdown', message: `${ts} until Session 2 begins!`, isFlashing: timeDiff < 86400000 }); setTimeLeft(ts); return;
         }
       }
       const lastEnd = eventDays[eventDays.length - 1].end;
       if (now > lastEnd) { setEventStatus({ type: 'countdown', message: "Session 3 just ended. Session 4 date and time coming soon!" }); setTimeLeft(''); return; }
       const curr = eventDays.find(d => now >= d.start && now <= d.end);
-      if (curr) { setEventStatus({ type: 'happening-now', message: `Session is currently happening - Day ${curr.day}`, currentDay: curr.day }); setTimeLeft(''); return; }
+      if (curr) { setEventStatus({ type: 'happening-now', message: `Session ${curr.day} is happening right now`, currentDay: curr.day }); setTimeLeft(''); return; }
       const next = eventDays.find(d => now < d.start);
       if (next) {
         const timeDiff = next.start.getTime() - now.getTime();
         const days = Math.floor(timeDiff / (1000*60*60*24)), hours = Math.floor((timeDiff % (1000*60*60*24)) / (1000*60*60)), minutes = Math.floor((timeDiff % (1000*60*60)) / (1000*60)), seconds = Math.floor((timeDiff % (1000*60)) / 1000);
         let ts = ''; if (days > 0) ts += `${days}d `; if (hours > 0) ts += `${hours}h `; if (minutes > 0) ts += `${minutes}m `; ts += `${seconds}s`;
-        setEventStatus({ type: 'countdown', message: `${ts} until ${next.day === 1 ? 'the workshop' : `Day ${next.day}`} begins!`, isFlashing: timeDiff < 86400000 }); setTimeLeft(ts);
+        setEventStatus({ type: 'countdown', message: `${ts} until ${next.day === 1 ? 'the workshop' : `Session ${next.day}`} begins!`, isFlashing: timeDiff < 86400000 }); setTimeLeft(ts);
       }
     };
     updateTimer();
@@ -73,9 +73,9 @@ const LiveEventTimer = ({
   }
 
   const pastSessions = [
-    { label: "Session 1", date: "July 10, 2025", time: "11:00 AM – 12:30 PM", location: "R.H. Stafford Library" },
-    { label: "Session 2", date: "July 18, 2025", time: "3:30 PM – 5:00 PM", location: "R.H. Stafford Library" },
-    { label: "Session 3", date: "July 24, 2025", time: "3:30 PM – 5:00 PM", location: "R.H. Stafford Library" },
+    { label: "Session 1", date: "July 10, 2025", time: "11:00 AM to 12:30 PM", location: "R.H. Stafford Library" },
+    { label: "Session 2", date: "July 18, 2025", time: "3:30 PM to 5:00 PM", location: "R.H. Stafford Library" },
+    { label: "Session 3", date: "July 24, 2025", time: "3:30 PM to 5:00 PM", location: "R.H. Stafford Library" },
   ];
 
   return (
@@ -89,7 +89,7 @@ const LiveEventTimer = ({
           <h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope">Session 4</h3>
           <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-emerald-700 dark:bg-[#40916c] text-white rounded-full">Upcoming</span>
         </div>
-        <p className="text-xs font-medium text-slate-600 dark:text-zinc-400 ml-8">Date & Time Coming Soon — Stay tuned!</p>
+        <p className="text-xs font-medium text-slate-600 dark:text-zinc-400 ml-8">Date and time coming soon. Stay tuned.</p>
       </div>
 
       {/* Past Sessions */}

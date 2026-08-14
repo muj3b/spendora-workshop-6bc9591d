@@ -8,8 +8,8 @@ const Donate = () => {
   };
 
   useEffect(() => {
-    document.title = 'Support Our Mission | Spendora';
-    const desc = 'Donate to support free student-led financial literacy workshops by Spendora.';
+    document.title = 'Donate | Spendora';
+    const desc = 'Donate to Spendora. Workshops stay free for students.';
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name', 'description'); document.head.appendChild(meta); }
     meta.setAttribute('content', desc);
@@ -30,8 +30,7 @@ const Donate = () => {
             Support <span className="text-emerald-700 dark:text-[#52b788]">Spendora</span>
           </h1>
           <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto font-medium">
-            Help us continue providing free financial literacy workshops to students. 
-            Your donation makes a real difference in young people's financial education.
+            Workshops are free. Donations help us keep them that way.
           </p>
         </div>
 
@@ -39,16 +38,14 @@ const Donate = () => {
           {/* Left Side */}
           <div className="space-y-6">
             <div className="border border-slate-200 dark:border-white/10 bg-white dark:bg-black rounded-2xl p-8 shadow-lg">
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-manrope mb-2">Choose Your Amount</h2>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-manrope mb-2">Pick an amount</h2>
               <p className="text-sm text-slate-600 dark:text-zinc-400 mb-8 font-medium">
-                Every donation helps us reach more students with essential financial education.
-                You can choose any amount that works for you.
+                Whatever you can spare. There's no minimum.
               </p>
               <div className="p-6 rounded-xl bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 mb-8">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Make a Difference Today</h3>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Where it goes</h3>
                 <p className="text-sm text-slate-600 dark:text-zinc-400 font-medium leading-relaxed">
-                  Your support helps keep our workshops completely free for all students.
-                  Every contribution makes a real difference in a student's financial future.
+                  Supplies, the library space, snacks. The things that let us keep showing up without charging anyone.
                 </p>
               </div>
               <div className="text-center">
@@ -59,17 +56,17 @@ const Donate = () => {
                     <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                   </span>
                 </button>
-                <p className="text-xs text-slate-500 dark:text-zinc-500 mt-4 font-medium">Secure payment processing powered by Stripe</p>
+                <p className="text-xs text-slate-500 dark:text-zinc-500 mt-4 font-medium">Paid through Stripe</p>
               </div>
             </div>
 
             <div className="border border-slate-200 dark:border-white/10 bg-white dark:bg-black rounded-2xl p-8 shadow-lg">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope mb-4">Other Ways to Support Us</h3>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope mb-4">Can't donate? That's fine</h3>
               <div className="space-y-3.5 text-sm text-slate-600 dark:text-zinc-400 font-medium">
-                <div className="flex items-center gap-3"><span className="w-2 h-2 bg-emerald-600 dark:bg-[#52b788] rounded-full shrink-0" /><span>Share our workshop with friends and family</span></div>
-                <div className="flex items-center gap-3"><span className="w-2 h-2 bg-emerald-600 dark:bg-[#52b788] rounded-full shrink-0" /><span>Follow us on social media</span></div>
-                <div className="flex items-center gap-3"><span className="w-2 h-2 bg-emerald-600 dark:bg-[#52b788] rounded-full shrink-0" /><span>Volunteer at our workshops</span></div>
-                <div className="flex items-center gap-3"><span className="w-2 h-2 bg-emerald-600 dark:bg-[#52b788] rounded-full shrink-0" /><span>Provide feedback to help us improve</span></div>
+                <div className="flex items-center gap-3"><span className="w-2 h-2 bg-emerald-600 dark:bg-[#52b788] rounded-full shrink-0" /><span>Tell a friend about the workshop</span></div>
+                <div className="flex items-center gap-3"><span className="w-2 h-2 bg-emerald-600 dark:bg-[#52b788] rounded-full shrink-0" /><span>Follow us on Instagram</span></div>
+                <div className="flex items-center gap-3"><span className="w-2 h-2 bg-emerald-600 dark:bg-[#52b788] rounded-full shrink-0" /><span>Come help out at a session</span></div>
+                <div className="flex items-center gap-3"><span className="w-2 h-2 bg-emerald-600 dark:bg-[#52b788] rounded-full shrink-0" /><span>Tell us what we should do better</span></div>
               </div>
             </div>
           </div>
@@ -77,34 +74,32 @@ const Donate = () => {
           {/* Right Side */}
           <div className="space-y-6">
             <div className="border border-slate-200 dark:border-white/10 bg-white dark:bg-black rounded-2xl p-8 shadow-lg">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white font-manrope mb-1">Your Impact in Action</h3>
-              <p className="text-xs text-slate-500 dark:text-zinc-400 mb-6 font-medium">See exactly how your donation helps students succeed</p>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white font-manrope mb-1">What the money is for</h3>
+              <p className="text-xs text-slate-500 dark:text-zinc-400 mb-6 font-medium">Pretty straightforward</p>
               <div className="space-y-3.5">
                 <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800">
                   <div className="w-9 h-9 bg-emerald-700 dark:bg-[#2d6a4f] rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">$</div>
-                  <div><h4 className="font-bold text-sm text-slate-900 dark:text-white">Learning Materials & Supplies</h4><p className="text-xs text-slate-500 dark:text-zinc-400 font-medium mt-0.5">Workbooks, calculators, and hands-on materials for every student</p></div>
+                  <div><h4 className="font-bold text-sm text-slate-900 dark:text-white">Supplies</h4><p className="text-xs text-slate-500 dark:text-zinc-400 font-medium mt-0.5">Workbooks, calculators, and whatever else we hand out</p></div>
                 </div>
                 <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800">
-                  <div className="w-9 h-9 bg-emerald-700 dark:bg-[#2d6a4f] rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">🏢</div>
-                  <div><h4 className="font-bold text-sm text-slate-900 dark:text-white">Venue & Facility Costs</h4><p className="text-xs text-slate-500 dark:text-zinc-400 font-medium mt-0.5">Library partnerships and equipment rental to keep workshops accessible</p></div>
+                  <div className="w-9 h-9 bg-emerald-700 dark:bg-[#2d6a4f] rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">📍</div>
+                  <div><h4 className="font-bold text-sm text-slate-900 dark:text-white">The space</h4><p className="text-xs text-slate-500 dark:text-zinc-400 font-medium mt-0.5">Library rooms and equipment so we can actually host</p></div>
                 </div>
                 <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800">
-                  <div className="w-9 h-9 bg-emerald-700 dark:bg-[#2d6a4f] rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">📚</div>
-                  <div><h4 className="font-bold text-sm text-slate-900 dark:text-white">Curriculum Development</h4><p className="text-xs text-slate-500 dark:text-zinc-400 font-medium mt-0.5">Creating engaging, age-appropriate financial education content</p></div>
+                  <div className="w-9 h-9 bg-emerald-700 dark:bg-[#2d6a4f] rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">📝</div>
+                  <div><h4 className="font-bold text-sm text-slate-900 dark:text-white">The lessons</h4><p className="text-xs text-slate-500 dark:text-zinc-400 font-medium mt-0.5">Writing and updating what we teach</p></div>
                 </div>
                 <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800">
-                  <div className="w-9 h-9 bg-emerald-700 dark:bg-[#2d6a4f] rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">🎯</div>
-                  <div><h4 className="font-bold text-sm text-slate-900 dark:text-white">Program Expansion</h4><p className="text-xs text-slate-500 dark:text-zinc-400 font-medium mt-0.5">Reaching more schools and communities with financial literacy</p></div>
+                  <div className="w-9 h-9 bg-emerald-700 dark:bg-[#2d6a4f] rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">➕</div>
+                  <div><h4 className="font-bold text-sm text-slate-900 dark:text-white">More sessions</h4><p className="text-xs text-slate-500 dark:text-zinc-400 font-medium mt-0.5">Getting to more schools if we can</p></div>
                 </div>
               </div>
             </div>
 
             <div className="border border-slate-200 dark:border-white/10 bg-white dark:bg-black rounded-2xl p-8 shadow-lg">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope mb-3">Student-Led, Community-Supported</h3>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope mb-3">We're students. That's the point.</h3>
               <p className="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-medium">
-                Spendora is created and run entirely by passionate high school students who believe 
-                every young person deserves financial literacy skills. Your support ensures we can 
-                continue offering these life-changing workshops completely free.
+                Spendora is run by high schoolers. If we charge for this, a lot of people just wouldn't come. Donations are how we keep the door open.
               </p>
             </div>
           </div>

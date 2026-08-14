@@ -46,7 +46,7 @@ const AudiobookChapter = ({ chapter, isActivePlayer, onPlay }: Props) => {
         setSegments(await res.json());
       }
     } catch {
-      // transcript unavailable — player still works
+      // transcript unavailable; player still works
     } finally {
       setLoadingTranscript(false);
     }
@@ -199,7 +199,7 @@ const AudiobookChapter = ({ chapter, isActivePlayer, onPlay }: Props) => {
         <div className="border-t border-slate-200 dark:border-white/10 bg-slate-50/60 dark:bg-zinc-950/60">
           <div className="flex items-center justify-between px-6 sm:px-7 pt-4">
             <p className="text-[10px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-widest">
-              Live transcript — follows the audio
+              Live transcript. Follows the audio.
             </p>
             <button
               onClick={() => setAutoScroll((v) => !v)}

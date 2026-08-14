@@ -11,10 +11,10 @@ const Hero = memo(() => {
   }, []);
 
   const topics = [
-    { title: "Stock Markets", desc: "Learn investing fundamentals, market analysis & trading basics", icon: TrendingUp, path: "/stock-markets", color: "text-blue-500 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-950/40 border-blue-200 dark:border-blue-800/40" },
-    { title: "Budgeting", desc: "Master personal finance, 50/30/20 rule & expense tracking", icon: Wallet, path: "/budgeting", color: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800/40" },
-    { title: "Online Business", desc: "Explore e-commerce, dropshipping, TikTok shop & marketing", icon: Store, path: "/online-business", color: "text-purple-600 dark:text-purple-400", bg: "bg-purple-50 dark:bg-purple-950/40 border-purple-200 dark:border-purple-800/40" },
-    { title: "Crypto + NFTs", desc: "Understand digital assets, blockchain technology & Web3", icon: Coins, path: "/crypto-nfts", color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-50 dark:bg-amber-950/40 border-amber-200 dark:border-amber-800/40" },
+    { title: "Stock Markets", desc: "What a stock is, how prices move, and how people actually trade.", icon: TrendingUp, path: "/stock-markets", color: "text-blue-500 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-950/40 border-blue-200 dark:border-blue-800/40" },
+    { title: "Budgeting", desc: "The 50/30/20 rule, tracking what you spend, and not going broke.", icon: Wallet, path: "/budgeting", color: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800/40" },
+    { title: "Online Business", desc: "Dropshipping, TikTok Shop, and selling stuff without a storefront.", icon: Store, path: "/online-business", color: "text-purple-600 dark:text-purple-400", bg: "bg-purple-50 dark:bg-purple-950/40 border-purple-200 dark:border-purple-800/40" },
+    { title: "Crypto + NFTs", desc: "What crypto and NFTs actually are, minus the hype.", icon: Coins, path: "/crypto-nfts", color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-50 dark:bg-amber-950/40 border-amber-200 dark:border-amber-800/40" },
   ];
 
   return (
@@ -56,7 +56,7 @@ const Hero = memo(() => {
 
           {/* Subtext */}
           <p className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            A free workshop designed by high school students to teach real-world financial skills to students.
+            A free workshop run by high school students. We teach the money stuff schools skip.
           </p>
 
           {/* Action CTAs */}
@@ -72,27 +72,32 @@ const Hero = memo(() => {
             </button>
 
             <button onClick={() => navigate('/donate')} className="group px-6 py-4 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-800 dark:text-zinc-200 font-bold hover:text-emerald-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-800 transition-all flex items-center gap-2 shadow-md">
-              <Heart className="w-5 h-5 text-rose-500 fill-rose-500/20" /> Support Our Mission
+              <Heart className="w-5 h-5 text-rose-500 fill-rose-500/20" /> Donate
             </button>
           </div>
         </div>
 
         {/* Stats Strip */}
         <div className="w-full mt-20 border-y border-slate-200 dark:border-white/5 bg-white/60 dark:bg-white/[0.02] backdrop-blur-md py-8">
-          <div className="max-w-4xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             <button onClick={() => navigate('/gallery#indian-school')} className="group cursor-pointer">
               <div className="text-4xl md:text-5xl font-black text-emerald-700 dark:text-[#52b788] font-manrope tabular-nums">300+</div>
-              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Reached Total</div>
-              <div className="text-xs text-slate-500 dark:text-zinc-500">Students & counting</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Internationally</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Students we've reached</div>
               <div className="text-xs font-bold text-emerald-600 dark:text-[#52b788] mt-1.5 group-hover:underline">View gallery →</div>
             </button>
             <div>
-              <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">3</div>
-              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Events</div>
-              <div className="text-xs text-slate-500 dark:text-zinc-500">Hosted</div>
+              <div className="text-4xl md:text-5xl font-black text-emerald-700 dark:text-[#52b788] font-manrope tabular-nums">2</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Years</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Teaching financial literacy</div>
             </div>
             <div>
-              <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">5+</div>
+              <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">3</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Events</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Hosted so far</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">15+</div>
               <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Topics</div>
               <div className="text-xs text-slate-500 dark:text-zinc-500">Covered</div>
             </div>
@@ -118,7 +123,7 @@ const Hero = memo(() => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white font-manrope">R.H. Stafford Library</h3>
-                  <p className="text-xs font-semibold text-emerald-700 dark:text-[#52b788]">Official Workshop Venue</p>
+                  <p className="text-xs font-semibold text-emerald-700 dark:text-[#52b788]">Where we meet</p>
                 </div>
               </div>
 
@@ -129,7 +134,7 @@ const Hero = memo(() => {
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-zinc-900/80 border border-slate-200/80 dark:border-zinc-800 space-y-1">
-                  <p className="font-semibold text-slate-900 dark:text-zinc-200">Amenities Included</p>
+                  <p className="font-semibold text-slate-900 dark:text-zinc-200">What's included</p>
                   <div className="grid grid-cols-2 gap-2 pt-1 text-[11px]">
                     <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Free Admission</span>
                     <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> All Supplies</span>
@@ -162,13 +167,13 @@ const Hero = memo(() => {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-white/5 text-emerald-800 dark:text-[#52b788] text-xs font-bold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5" /> Curriculum
+              <Sparkles className="w-3.5 h-3.5" /> What we cover
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight font-manrope mb-3">
-              Explore Workshop <span className="text-emerald-700 dark:text-[#52b788]">Topics</span>
+              What we <span className="text-emerald-700 dark:text-[#52b788]">cover</span>
             </h2>
             <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-xl mx-auto font-medium">
-              Click any topic card below to read our detailed personalized guide for each module.
+              Pick a topic and we'll walk you through it.
             </p>
           </div>
 
@@ -192,7 +197,7 @@ const Hero = memo(() => {
                   {/* Always-Visible Click Text for Mobile & Desktop */}
                   <div className="relative z-10 pt-4 border-t border-slate-100 dark:border-white/5 flex items-center justify-between">
                     <span className="text-xs font-bold text-emerald-700 dark:text-[#52b788] group-hover:underline">
-                      Click here: Learn topic
+                      Read the guide
                     </span>
                     <ArrowRight className="w-4 h-4 text-emerald-700 dark:text-[#52b788] group-hover:translate-x-1 transition-transform" />
                   </div>

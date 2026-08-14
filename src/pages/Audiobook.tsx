@@ -10,7 +10,7 @@ const Audiobook = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "The Spendora Audiobook | Spendora";
-    const desc = "Listen to the free Spendora financial literacy audiobook narrated by Neil Kaila, with real-time synced transcripts and a final knowledge test.";
+    const desc = "Listen to Spendora's free financial literacy audiobook, narrated by Neil Kaila. Each chapter has a live transcript, and there's a test at the end.";
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
       meta = document.createElement("meta");
@@ -43,8 +43,7 @@ const Audiobook = () => {
             The Spendora <span className="text-emerald-700 dark:text-[#52b788]">Audiobook</span>
           </h1>
           <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto font-medium leading-relaxed">
-            Eight chapters covering everything from your first paycheck to building wealth.
-            Every chapter includes a live transcript that follows the audio word for word — perfect for reading along, even on mute.
+            Eight chapters, from your first paycheck to building wealth. Each one has a transcript that follows the audio, so you can still read along if the volume is off.
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-2.5 text-xs font-bold">
@@ -52,10 +51,10 @@ const Audiobook = () => {
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> 8 Chapters
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 shadow-sm">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Real-Time Transcripts
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Live transcripts
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 shadow-sm">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Free Final Test
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Test at the end
             </span>
           </div>
         </div>
@@ -77,10 +76,9 @@ const Audiobook = () => {
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/10 border border-white/20 text-emerald-300 mb-5">
             <ClipboardCheck className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl md:text-3xl font-black text-white font-manrope mb-3">Finished Listening? Take the Test</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-white font-manrope mb-3">Done listening? Take the test</h2>
           <p className="text-sm sm:text-base text-emerald-100/90 max-w-xl mx-auto mb-8 font-medium">
-            Put everything you learned to the test with the official Spendora audiobook quiz.
-            Complete all 8 chapters first for the best score.
+            A short quiz on what you just heard. Best to finish all eight chapters first.
           </p>
           <button onClick={() => window.open(AUDIOBOOK_TEST_URL, "_blank")} className="shiny-cta group shadow-xl hover:scale-105 transition-all">
             <span className="relative z-10 flex items-center gap-2 text-white font-bold text-base">

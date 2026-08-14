@@ -66,10 +66,10 @@ const Success = () => {
           <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
             <div className="flex items-center space-x-2 mb-2">
               <Heart className="h-5 w-5 text-red-500" />
-              <h3 className="font-semibold text-blue-900 dark:text-blue-100">Your Impact</h3>
+              <h3 className="font-semibold text-blue-900 dark:text-blue-100">Thank you</h3>
             </div>
             <p className="text-sm text-blue-800 dark:text-blue-200">
-              Your donation directly supports free workshops, educational materials, and helps us reach more students with essential financial literacy skills.
+              That money goes to supplies, the library space, and keeping workshops free.
             </p>
           </div>
           

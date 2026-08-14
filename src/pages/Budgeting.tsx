@@ -8,7 +8,7 @@ const Budgeting = () => {
   useEffect(() => { window.scrollTo(0, 0); document.title = 'Budgeting & Money Skills | Spendora'; }, []);
 
   const paragraphs = [
-    "Budgeting is real easy, let us break it down for you. Once you learn how to budget, you realize it's not just about tracking your money. It's about making it work for you.",
+    "Budgeting is pretty simple once someone explains it. You're not just watching where money goes. You're deciding where it goes first.",
     "Start with a goal. Choose something specific, like a phone, a new pair of sneakers, or a car. Whatever it is, set a price and break it down. For example, if something costs $500 and you save $25 a week, you'll have it in five months. That's what a budget helps you do: turn \"someday\" into a plan.",
     "If you don't have a bank account yet, consider setting one up. Most teen accounts require a parent's assistance, but it's worth it. Keeping all your money in cash or on a random gift card makes it easier to spend without thinking. A bank account organizes your money and helps you understand what you have.",
     "Now, let's discuss what wrecks budgets: random spending. It's surprising how fast $10 here and $6 there adds up to \"Where did all my money go?\" One helpful tip? If you see something you want but didn't plan for, wait 24 hours. If you still want it the next day, great, find a way to include it in your budget. But usually, you'll forget about it, and your money stays safe.",
@@ -16,8 +16,8 @@ const Budgeting = () => {
     "Budgeting doesn't mean cutting out fun. It means planning for fun on purpose. If you know you're going to get Starbucks twice a week or buy something from a drop, budget for it. This way, you're not \"breaking the rules\" you're just being honest with yourself.",
     "Don't overlook giving, either. Even a few dollars toward something you care about, like a fundraiser or someone in need, can feel more rewarding than another impulse buy. Giving doesn't mean you \"lose\" money; it shows you're actually in control of it.",
     "Lastly, keep checking in on your budget. It doesn't have to be perfect. It just needs to make sense for you. Use your Notes app, Google Sheets, or a budgeting app whatever works best. The main thing is knowing what's coming in, what's going out, and what you're aiming for.",
-    "Budgeting is essentially instructing your money on what to do before it disappears. Once you get used to it, it stops feeling like a chore and starts feeling empowering.",
-    "At Spendora, we'll walk you through creating your first real budget, choosing the right apps and tools, and developing habits that actually stick. You'll leave knowing exactly how to manage your money, save for your goals, and still have fun—without the stress of wondering where your money went."
+    "A budget is just telling your money what to do before it disappears. After a while it stops feeling like homework.",
+    "At Spendora we'll help you make a real budget, pick an app if you want one, and figure out habits that stick. You'll still have money for fun. You just won't wonder where it went."
   ];
 
   return (

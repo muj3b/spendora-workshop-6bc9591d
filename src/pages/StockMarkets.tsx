@@ -9,7 +9,7 @@ const StockMarkets = () => {
 
   const paragraphs = [
     "To begin we need to talk about what a stock is. A stock is a small part of a company that you own. Whenever you buy a stock that means you now own a share of that specific company. For example when you buy a share of apple you now own a small part of apple.",
-    "Now you might be wondering how you buy and sell these stocks to make money. Well, look no further, it's as easy as getting an app like robinhood which you use to buy stocks. You ideally buy low and try to sell high to make a profit. Prices go up and down every second and this is known as the stock market.",
+    "Now you might be wondering how you buy and sell these stocks to make money. You download an app like Robinhood and buy shares. You try to buy low and sell high. Prices move every second. That's the stock market.",
     "For example if you bought 20 shares of apple at $250 a share(so 5000) and the stock jumped to $270(now investment is worth $5400) you would have made $400.",
     "Companies sell stocks because they want to raise money which is called capital because this capital allows them to grow as a company, build products, or even hire people. In return the investors(you) make money if the company does well.",
     "If a company makes more money and is doing well that can make the stock price go up and help you make profit. However on the other hand if it loses money or has problems inside the company or with a product the price might go down. Some main causes of prices changes are the news, economy, launch of new products, and trends.",

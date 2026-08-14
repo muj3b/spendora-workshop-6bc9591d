@@ -25,14 +25,14 @@ const Gallery = () => {
     { src: "/lovable-uploads/eabd20b0-ff60-4809-b6ca-6ef2878b3576.png", alt: "Learning about compound interest" },
   ];
   const day2Photos = [
-    { src: "/lovable-uploads/1ee41063-a95d-4cb9-bcfd-ed9961525b86.png", alt: "Day 2 - Saving vs Investing" },
-    { src: "/lovable-uploads/7695d299-bbc3-48ce-a41e-954300708ffa.png", alt: "Day 2 - Students engaged" },
-    { src: "/lovable-uploads/4089050e-e0a8-4630-9c75-511673fd035d.png", alt: "Day 2 - Interactive session" },
-    { src: "/lovable-uploads/0665f9c3-339d-4e49-bfc4-d6d00b95d8e6.png", alt: "Day 2 - Group discussion" },
+    { src: "/lovable-uploads/1ee41063-a95d-4cb9-bcfd-ed9961525b86.png", alt: "Session 2 - Saving vs Investing" },
+    { src: "/lovable-uploads/7695d299-bbc3-48ce-a41e-954300708ffa.png", alt: "Session 2 - Students engaged" },
+    { src: "/lovable-uploads/4089050e-e0a8-4630-9c75-511673fd035d.png", alt: "Session 2 - Interactive session" },
+    { src: "/lovable-uploads/0665f9c3-339d-4e49-bfc4-d6d00b95d8e6.png", alt: "Session 2 - Group discussion" },
   ];
   const day2Videos = [
-    { src: "https://files.catbox.moe/b7vufo.MOV", alt: "Day 2 Video 1" },
-    { src: "https://files.catbox.moe/o5monx.MOV", alt: "Day 2 Video 2" },
+    { src: "https://files.catbox.moe/b7vufo.MOV", alt: "Session 2 Video 1" },
+    { src: "https://files.catbox.moe/o5monx.MOV", alt: "Session 2 Video 2" },
   ];
   const indianSchoolPhotos = [
     { src: "/lovable-uploads/indian-school-1.jpg", alt: "Teaching students at Sri Girdhar Techno School" },
@@ -83,14 +83,14 @@ const Gallery = () => {
         <div className="space-y-6">
           <Collapsible defaultOpen className="border border-slate-200 dark:border-white/10 rounded-2xl p-6 bg-white dark:bg-black shadow-md">
             <CollapsibleTrigger className="flex items-center justify-between w-full text-left group cursor-pointer select-none">
-              <div className="flex items-center gap-4"><div className="bg-emerald-700 dark:bg-[#2d6a4f] text-white px-4 py-2 rounded-xl font-extrabold text-sm font-manrope">DAY 1</div><div><h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope">Introduction to Investing</h3><p className="text-xs font-medium text-slate-500 dark:text-zinc-400">Photos from Day 1</p></div></div>
+              <div className="flex items-center gap-4"><div className="bg-emerald-700 dark:bg-[#2d6a4f] text-white px-4 py-2 rounded-xl font-extrabold text-sm font-manrope">SESSION 1</div><div><h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope">Introduction to Investing</h3><p className="text-xs font-medium text-slate-500 dark:text-zinc-400">Photos from Session 1</p></div></div>
               <ChevronDown className="h-5 w-5 text-slate-500 dark:text-zinc-400 group-data-[state=open]:rotate-180 transition-transform" />
             </CollapsibleTrigger>
             <CollapsibleContent>{renderGrid(day1Photos)}</CollapsibleContent>
           </Collapsible>
           <Collapsible defaultOpen className="border border-slate-200 dark:border-white/10 rounded-2xl p-6 bg-white dark:bg-black shadow-md">
             <CollapsibleTrigger className="flex items-center justify-between w-full text-left group cursor-pointer select-none">
-              <div className="flex items-center gap-4"><div className="bg-emerald-700 dark:bg-[#2d6a4f] text-white px-4 py-2 rounded-xl font-extrabold text-sm font-manrope">DAY 2</div><div><h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope">Saving vs Investing</h3><p className="text-xs font-medium text-slate-500 dark:text-zinc-400">Photos & videos from Day 2</p></div></div>
+              <div className="flex items-center gap-4"><div className="bg-emerald-700 dark:bg-[#2d6a4f] text-white px-4 py-2 rounded-xl font-extrabold text-sm font-manrope">SESSION 2</div><div><h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope">Saving vs Investing</h3><p className="text-xs font-medium text-slate-500 dark:text-zinc-400">Photos and videos from Session 2</p></div></div>
               <ChevronDown className="h-5 w-5 text-slate-500 dark:text-zinc-400 group-data-[state=open]:rotate-180 transition-transform" />
             </CollapsibleTrigger>
             <CollapsibleContent>{renderGrid(day2Photos, day2Videos)}</CollapsibleContent>

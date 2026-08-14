@@ -13,15 +13,14 @@ const AudiobookPromo = () => {
           <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
             <div className="flex-1">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-white/5 text-emerald-800 dark:text-[#52b788] text-xs font-bold uppercase tracking-wider mb-4">
-                <Headphones className="w-3.5 h-3.5" /> New — Audiobook
+                <Headphones className="w-3.5 h-3.5" /> New audiobook
               </div>
               <h2 id="audiobook-promo" className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight font-manrope mb-4">
-                Listen &amp; <span className="text-emerald-700 dark:text-[#52b788]">Learn</span>
+                Neil made an <span className="text-emerald-700 dark:text-[#52b788]">audiobook</span>
               </h2>
               <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 font-medium leading-relaxed mb-6 max-w-xl">
-                The Spendora Audiobook, narrated by Neil Kaila. Eight chapters on earning, budgeting,
-                banking, credit, and investing — each with a live transcript that follows the audio
-                word for word, so you can read along even on mute.
+                Neil Kaila recorded eight chapters on paychecks, budgeting, banking, credit, and investing.
+                Hit play and the transcript follows along, so you can read it even if the volume is off.
               </p>
 
               <div className="flex flex-wrap gap-2.5 mb-8 text-xs font-bold">
@@ -41,7 +40,7 @@ const AudiobookPromo = () => {
                 className="shiny-cta group shadow-xl hover:scale-105 transition-all"
               >
                 <span className="relative z-10 flex items-center gap-2 text-white font-bold text-base">
-                  Start Listening <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  Hit play <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </span>
               </button>
             </div>

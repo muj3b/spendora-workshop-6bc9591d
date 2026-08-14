@@ -42,11 +42,11 @@ const MeetTheTeam = () => {
             Meet the <span className="text-emerald-700 dark:text-[#52b788]">Founders</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto font-medium">
-            Student entrepreneurs who've competed nationally and generated thousands in revenue
+            They've competed nationally and actually made money doing this. Now they teach it.
           </p>
           <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200/80 dark:border-blue-800/50 text-blue-700 dark:text-blue-400 text-xs font-semibold shadow-xs">
             <Linkedin className="w-3.5 h-3.5 text-[#0A66C2]" />
-            <span>Click any founder's profile to connect on LinkedIn</span>
+            <span>Tap a founder to open their LinkedIn</span>
           </div>
         </div>
 

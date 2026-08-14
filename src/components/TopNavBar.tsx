@@ -42,7 +42,7 @@ const TopNavBar = () => {
             <span className="text-base sm:text-lg font-extrabold font-manrope tracking-tight text-slate-900 dark:text-white">Spendora</span>
           </Link>
 
-          {/* Compact Nav Links — Stays visible when scrolled with smooth size & spacing transition */}
+          {/* Compact Nav Links. Stays visible when scrolled. */}
           <div className={`hidden md:flex items-center transition-all duration-500 ease-in-out ${scrolled ? 'gap-4 lg:gap-6' : 'gap-7'}`}>
             {mainNav.map((item) => (
               item.href.startsWith('/') && !item.href.includes('#') ? (
@@ -54,14 +54,14 @@ const TopNavBar = () => {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* SearchBar Wrapper — Smooth Fade & Scale Out on Scroll */}
+            {/* SearchBar. Fades out on scroll. */}
             <div className={`transition-all duration-500 ease-in-out overflow-hidden flex items-center ${
               scrolled ? 'max-w-0 opacity-0 pointer-events-none scale-90 -mr-2' : 'max-w-[200px] opacity-100 scale-100'
             }`}>
               <SearchBar />
             </div>
             
-            {/* Theme Toggle Button Wrapper — Smooth Fade & Scale Out on Scroll */}
+            {/* Theme toggle. Fades out on scroll. */}
             <div className={`transition-all duration-500 ease-in-out overflow-hidden flex items-center ${
               scrolled ? 'max-w-0 opacity-0 pointer-events-none scale-90 -mr-2' : 'max-w-[40px] opacity-100 scale-100'
             }`}>

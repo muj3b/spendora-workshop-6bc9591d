@@ -18,12 +18,12 @@ const CryptoNFTs = () => {
   ];
 
   const nftParagraphs = [
-    "You've probably seen those expensive digital art pieces that sell for thousands of dollars and wondered \"Why would anyone pay real money for a JPEG?\" Well, NFTs are way more than just digital pictures—they're like digital certificates of ownership that prove you own something unique on the blockchain.",
-    "Think of NFTs like trading cards, but digital. Just like how a rare Pokemon card has value because it's authentic and limited, NFTs use blockchain technology to prove that your digital item is the \"real deal\" and not just a copy. When you buy an NFT, you're not just buying the image—you're buying proof that you own the original version.",
+    "You've probably seen those expensive digital art pieces that sell for thousands of dollars and wondered \"Why would anyone pay real money for a JPEG?\" Well, NFTs are way more than just digital pictures. They're like digital certificates of ownership that prove you own something unique on the blockchain.",
+    "Think of NFTs like trading cards, but digital. Just like how a rare Pokemon card has value because it's authentic and limited, NFTs use blockchain technology to prove that your digital item is the \"real deal\" and not just a copy. When you buy an NFT, you're not just buying the image. You're buying proof that you own the original version.",
     "NFTs exploded in popularity when digital artists started selling their work for crazy amounts. Some collections like Bored Ape Yacht Club or CryptoPunks became status symbols, kind of like owning expensive sneakers or designer clothes, but in the digital world. People would use them as profile pictures to show off their digital wealth.",
     "But NFTs aren't just about art. They can represent ownership of anything digital: music, videos, game items, virtual real estate, or even access passes to exclusive events. Some creators use NFTs to sell concert tickets, grant access to private Discord servers, or give holders special privileges.",
-    "The NFT market is extremely volatile and risky. Prices can crash overnight, and many projects end up being worthless. However, understanding NFTs helps you grasp how digital ownership might work in the future, especially as we move toward more virtual and online experiences.",
-    "At Spendora, we'll break down how NFTs actually work, what gives them value, and how to spot potential scams in this space. You'll learn to think critically about digital assets and understand this technology without getting caught up in the hype."
+    "The NFT market is messy. Prices can crash overnight and a lot of projects go to zero. Still worth knowing how digital ownership works, because more of that is coming whether the ape pictures last or not.",
+    "At Spendora we go through how NFTs actually work, what makes one worth anything, and how to spot a scam. You don't have to buy any of this. You just shouldn't get played by it."
   ];
 
   return (
