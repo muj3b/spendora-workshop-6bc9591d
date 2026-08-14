@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Headphones, ClipboardCheck, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Headphones, ClipboardCheck, CheckCircle2, Award } from "lucide-react";
 import AudiobookChapter from "@/components/AudiobookChapter";
 import { audiobookChapters, AUDIOBOOK_TEST_URL } from "@/data/audiobooks";
 
@@ -10,7 +10,7 @@ const Audiobook = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "The Spendora Audiobook | Spendora";
-    const desc = "Listen to Spendora's free financial literacy audiobook, narrated by Neil Kaila. Each chapter has a live transcript, and there's a test at the end.";
+    const desc = "Listen to Spendora's free financial literacy audiobook by Neil Kaila. Live transcripts, a test at the end, and a certificate if you pass.";
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
       meta = document.createElement("meta");
@@ -43,7 +43,7 @@ const Audiobook = () => {
             The Spendora <span className="text-emerald-700 dark:text-[#52b788]">Audiobook</span>
           </h1>
           <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto font-medium leading-relaxed">
-            Eight chapters, from your first paycheck to building wealth. Each one has a transcript that follows the audio, so you can still read along if the volume is off.
+            Eight chapters, from your first paycheck to building wealth. Each one has a transcript that follows the audio. Finish the test at the end and you can earn a certificate.
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-2.5 text-xs font-bold">
@@ -54,7 +54,7 @@ const Audiobook = () => {
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Live transcripts
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 shadow-sm">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Test at the end
+              <Award className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Certificate
             </span>
           </div>
         </div>
@@ -78,7 +78,7 @@ const Audiobook = () => {
           </div>
           <h2 className="text-2xl md:text-3xl font-black text-white font-manrope mb-3">Done listening? Take the test</h2>
           <p className="text-sm sm:text-base text-emerald-100/90 max-w-xl mx-auto mb-8 font-medium">
-            A short quiz on what you just heard. Best to finish all eight chapters first.
+            A short quiz on what you just heard. Pass it and you get a certificate you can put on a resume or LinkedIn.
           </p>
           <button onClick={() => window.open(AUDIOBOOK_TEST_URL, "_blank")} className="shiny-cta group shadow-xl hover:scale-105 transition-all">
             <span className="relative z-10 flex items-center gap-2 text-white font-bold text-base">

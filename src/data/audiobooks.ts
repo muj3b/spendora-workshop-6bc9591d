@@ -84,7 +84,7 @@ export const audiobookChapters: AudiobookChapter[] = [
     id: "conclusion",
     label: "Outro",
     title: "Conclusion",
-    description: "A short recap of what you heard, plus what to do next (the test is at the bottom of this page).",
+    description: "A short recap of what you heard, then the test. Pass it and you get a certificate.",
     audio: "/audiobooks/07-conclusion.mp3",
     transcript: "/audiobooks/07-conclusion.json",
   },

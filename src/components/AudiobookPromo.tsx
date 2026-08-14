@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Headphones, ArrowRight, Captions, ClipboardCheck, ListMusic } from "lucide-react";
+import { Headphones, ArrowRight, Captions, Award, ListMusic } from "lucide-react";
 
 const AudiobookPromo = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const AudiobookPromo = () => {
               </h2>
               <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 font-medium leading-relaxed mb-6 max-w-xl">
                 Eight chapters on paychecks, budgeting, banking, credit, and investing.
-                Hit play and the transcript follows along, so you can read it even if the volume is off.
+                Hit play and the transcript follows along. When you're done, take the test and you can earn a certificate.
               </p>
 
               <div className="flex flex-wrap gap-2.5 mb-8 text-xs font-bold">
@@ -31,7 +31,7 @@ const AudiobookPromo = () => {
                   <Captions className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Live Transcripts
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300">
-                  <ClipboardCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Final Test
+                  <Award className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Certificate
                 </span>
               </div>
 
