@@ -2,6 +2,7 @@ import { memo, useCallback } from 'react';
 import { ArrowRight, Heart, Camera, MapPin, TrendingUp, Wallet, Store, Coins, Navigation, Sparkles, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LiveEventTimer from "@/components/LiveEventTimer";
+import AudiobookPromo from "@/components/AudiobookPromo";
 
 const Hero = memo(() => {
   const navigate = useNavigate();
@@ -161,6 +162,8 @@ const Hero = memo(() => {
           </div>
         </div>
       </div>
+
+      <AudiobookPromo />
 
       {/* Workshop Topics Bento Grid */}
       <div className="relative z-10 py-20 px-6">
