@@ -17,6 +17,7 @@ const Footer = () => {
           <ul className="space-y-3.5 text-slate-600 dark:text-zinc-400 text-sm font-medium">
             <li><Link to="/" className="hover:text-emerald-700 dark:hover:text-white transition-colors">Home</Link></li>
             <li><Link to="/gallery" className="hover:text-emerald-700 dark:hover:text-white transition-colors">Gallery</Link></li>
+            <li><Link to="/audiobook" className="hover:text-emerald-700 dark:hover:text-white transition-colors">Audiobook</Link></li>
             <li><Link to="/donate" className="hover:text-emerald-700 dark:hover:text-white transition-colors">Donate</Link></li>
             <li><a href="https://forms.gle/JWCVyGcfN5UKiwqHA" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-700 dark:hover:text-white transition-colors">Registration</a></li>
           </ul>

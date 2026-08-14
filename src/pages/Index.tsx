@@ -2,6 +2,7 @@ import { useEffect, lazy, Suspense } from "react";
 import Hero from "@/components/Hero";
 
 const AboutSpendora = lazy(() => import("@/components/AboutSpendora"));
+const AudiobookPromo = lazy(() => import("@/components/AudiobookPromo"));
 const MeetTheTeam = lazy(() => import("@/components/MeetTheTeam"));
 const WorkshopSchedule = lazy(() => import("@/components/WorkshopSchedule"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -35,6 +36,7 @@ const Index = () => {
         <div id="about-spendora">
           <AboutSpendora />
         </div>
+        <AudiobookPromo />
         <div id="workshop-schedule">
           <WorkshopSchedule />
         </div>

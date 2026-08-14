@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Award, TrendingUp, ShoppingBag, Landmark, Linkedin, ExternalLink } from "lucide-react";
+import { Award, TrendingUp, ShoppingBag, Linkedin, ExternalLink } from "lucide-react";
 
 interface TeamMember {
   name: string;
@@ -32,13 +32,6 @@ const MeetTheTeam = () => {
       icon: TrendingUp,
       linkedin: "https://www.linkedin.com/in/neil-k-33b468371/?skipRedirect=true",
     },
-    {
-      name: "Yashas Singh",
-      expertise: "Economics & Digital Assets",
-      bio: "Yashas taught AP Econ to his peers and made over $1,000 trading NFTs. He focuses on helping students understand crypto digital assets, and economic decision-making.",
-      icon: Landmark,
-      linkedin: null,
-    },
   ];
 
   return (
@@ -57,7 +50,7 @@ const MeetTheTeam = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {team.map((m, i) => {
             const Icon = m.icon;
             const hasLinkedin = Boolean(m.linkedin);

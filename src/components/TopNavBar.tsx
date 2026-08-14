@@ -13,6 +13,7 @@ const TopNavBar = () => {
     { label: "Workshop", href: "/#workshop-schedule" },
     { label: "About", href: "/#about-spendora" },
     { label: "Gallery", href: "/gallery" },
+    { label: "Audiobook", href: "/audiobook" },
     { label: "Donate", href: "/donate" },
   ];
 

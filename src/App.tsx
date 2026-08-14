@@ -14,6 +14,7 @@ import Success from "./pages/Success";
 import Donate from "./pages/Donate";
 import Gallery from "./pages/Gallery";
 import Budgeting from "./pages/Budgeting";
+import Audiobook from "./pages/Audiobook";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
               <Route path="/donate" element={<Donate />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/budgeting" element={<Budgeting />} />
+              <Route path="/audiobook" element={<Audiobook />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
