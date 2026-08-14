@@ -10,7 +10,7 @@ const Audiobook = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "The Spendora Audiobook | Spendora";
-    const desc = "Listen to Spendora's free financial literacy audiobook by Neil Kaila. Live transcripts, a test at the end, and a certificate if you pass.";
+    const desc = "Listen to Spendora's free financial literacy audiobook by Neil Kaila. Live transcripts, then take the Spendora SAT for a certificate.";
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
       meta = document.createElement("meta");
@@ -43,7 +43,7 @@ const Audiobook = () => {
             The Spendora <span className="text-emerald-700 dark:text-[#52b788]">Audiobook</span>
           </h1>
           <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto font-medium leading-relaxed">
-            Eight chapters, from your first paycheck to building wealth. Each one has a transcript that follows the audio. Finish the test at the end and you can earn a certificate.
+            Eight chapters, from your first paycheck to building wealth. Each one has a transcript that follows the audio. Finish the Spendora SAT at the end and you can earn a certificate.
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-2.5 text-xs font-bold">
@@ -54,7 +54,7 @@ const Audiobook = () => {
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Live transcripts
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 shadow-sm">
-              <Award className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Certificate
+              <Award className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" /> Spendora SAT
             </span>
           </div>
         </div>
@@ -76,13 +76,13 @@ const Audiobook = () => {
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/10 border border-white/20 text-emerald-300 mb-5">
             <ClipboardCheck className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl md:text-3xl font-black text-white font-manrope mb-3">Done listening? Take the test</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-white font-manrope mb-3">Done listening? Take the Spendora SAT</h2>
           <p className="text-sm sm:text-base text-emerald-100/90 max-w-xl mx-auto mb-8 font-medium">
-            A short quiz on what you just heard. Pass it and you get a certificate you can put on a resume or LinkedIn.
+            20 questions on what you just heard. Get at least 80% and you get the Spendora Money Ready Badge for a resume or LinkedIn. You can retake it.
           </p>
           <button onClick={() => window.open(AUDIOBOOK_TEST_URL, "_blank")} className="shiny-cta group shadow-xl hover:scale-105 transition-all">
             <span className="relative z-10 flex items-center gap-2 text-white font-bold text-base">
-              Take the Test <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              Take the Spendora SAT <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </span>
           </button>
         </div>
