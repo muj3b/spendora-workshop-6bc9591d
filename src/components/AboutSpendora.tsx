@@ -15,7 +15,7 @@ const AboutSpendora = () => {
             About <span className="text-emerald-700 dark:text-[#52b788]">Spendora</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto font-medium">
-            We're East Ridge High School students who've been teaching financial literacy for two years. No lectures. Just the money stuff we wish someone had shown us earlier.
+            We're East Ridge High School students who've been teaching financial literacy for three years. No lectures. Just the money stuff we wish someone had shown us earlier.
           </p>
         </div>
 

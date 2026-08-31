@@ -10,7 +10,7 @@ const Audiobook = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "The Spendora Audiobook | Spendora";
-    const desc = "Listen to Spendora's free financial literacy audiobook by Neil Kaila. Live transcripts, then take the Spendora SAT for a certificate.";
+    const desc = "Listen to Spendora's free financial literacy audiobook. Live transcripts, then take the Spendora SAT for a certificate.";
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
       meta = document.createElement("meta");
@@ -37,7 +37,7 @@ const Audiobook = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/80 dark:bg-white/5 border border-emerald-200 dark:border-white/10 text-emerald-800 dark:text-[#52b788] text-xs font-bold mb-5 shadow-sm">
-            <Headphones className="w-3.5 h-3.5" /> Narrated by Neil Kaila
+            <Headphones className="w-3.5 h-3.5" /> Free Audiobook
           </div>
           <h1 className="text-4xl sm:text-6xl font-black font-manrope tracking-tight text-slate-900 dark:text-white mb-4">
             The Spendora <span className="text-emerald-700 dark:text-[#52b788]">Audiobook</span>

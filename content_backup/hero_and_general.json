@@ -4,18 +4,23 @@
     "subtitle": "A free workshop designed by high school students to teach real-world financial skills to students.",
     "stats": [
       {
-        "number": "300+",
-        "label": "Students",
-        "sublabel": "Rural Indian schools",
+        "number": "2,000+",
+        "label": "Reached in India",
+        "sublabel": "Rural school workshops",
         "link": "/gallery#indian-school"
       },
       {
-        "number": "3",
-        "label": "Events",
-        "sublabel": "Hosted"
+        "number": "300+",
+        "label": "Students Locally",
+        "sublabel": "Workshops & events"
       },
       {
-        "number": "5+",
+        "number": "3",
+        "label": "Years",
+        "sublabel": "Teaching financial literacy"
+      },
+      {
+        "number": "15+",
         "label": "Topics",
         "sublabel": "Covered"
       }

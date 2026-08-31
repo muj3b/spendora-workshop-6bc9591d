@@ -13,7 +13,7 @@ const AudiobookPromo = () => {
           <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
             <div className="flex-1">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-white/5 text-emerald-800 dark:text-[#52b788] text-xs font-bold uppercase tracking-wider mb-4">
-                <Headphones className="w-3.5 h-3.5" /> Made by Neil Kaila
+                <Headphones className="w-3.5 h-3.5" /> Free Audiobook
               </div>
               <h2 id="audiobook-promo" className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight font-manrope mb-4">
                 The Spendora <span className="text-emerald-700 dark:text-[#52b788]">Audiobook</span>

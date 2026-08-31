@@ -28,7 +28,7 @@ export const audiobookChapters: AudiobookChapter[] = [
     id: "introduction",
     label: "Intro",
     title: "Introduction",
-    description: "A quick hello from Neil, what this audiobook covers, and how to get through it.",
+    description: "A quick intro, what this audiobook covers, and how to get through it.",
     audio: "/audiobooks/00-introduction.mp3",
     transcript: "/audiobooks/00-introduction.json",
   },
