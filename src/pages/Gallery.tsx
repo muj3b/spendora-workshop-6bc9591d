@@ -1,11 +1,17 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { 
   ArrowLeft, 
   Play, 
+  Camera, 
+  MapPin, 
+  Globe, 
+  Building2, 
   X, 
   ChevronLeft, 
   ChevronRight, 
-  Maximize2
+  Maximize2,
+  Sparkles,
+  ArrowRight
 } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -433,11 +439,13 @@ const localSession2Media: MediaItem[] = [
   },
 ];
 
-type TabType = "all" | "india" | "local";
+type LocationTab = "all" | "india" | "local";
+type FormatFilter = "all" | "video" | "image";
 
 export const Gallery = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<TabType>("all");
+  const [locationTab, setLocationTab] = useState<LocationTab>("all");
+  const [formatFilter, setFormatFilter] = useState<FormatFilter>("all");
 
   const [lightboxState, setLightboxState] = useState<{
     items: MediaItem[];
@@ -509,72 +517,110 @@ export const Gallery = () => {
     });
   };
 
-  // Clean, visual image & video grid
-  const renderMediaGrid = (items: MediaItem[]) => (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
-      {items.map((item, idx) => (
-        <div
-          key={item.id}
-          onClick={() => openLightbox(items, idx)}
-          className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 dark:border-white/10 hover:border-emerald-500/50 dark:hover:border-emerald-400/40"
-        >
-          {item.type === "image" ? (
-            <img
-              src={item.src}
-              alt={item.alt}
-              loading="lazy"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          ) : (
-            <div className="relative w-full h-full bg-black">
-              <video
-                src={item.src}
-                preload="metadata"
-                className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity"
-              />
-              
-              {/* Floating Video Tag */}
-              <div className="absolute top-2.5 left-2.5 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span>Video</span>
-              </div>
+  // Filter helper
+  const filterMedia = (items: MediaItem[]) => {
+    if (formatFilter === "all") return items;
+    return items.filter((item) => item.type === formatFilter);
+  };
 
-              {/* Play Button */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-emerald-600/90 text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-500 transition-all shadow-xl">
-                  <Play className="w-4 h-4 sm:w-5 sm:h-5 ml-0.5 fill-white" />
+  const filteredDoon = useMemo(() => filterMedia(doonSchoolMedia), [formatFilter]);
+  const filteredSriGirdhar = useMemo(() => filterMedia(sriGirdharMedia), [formatFilter]);
+  const filteredRamKrishna = useMemo(() => filterMedia(ramKrishnaMedia), [formatFilter]);
+  const filteredLocal1 = useMemo(() => filterMedia(localSession1Media), [formatFilter]);
+  const filteredLocal2 = useMemo(() => filterMedia(localSession2Media), [formatFilter]);
+
+  const totalLocalCount = localSession1Media.length + localSession2Media.length;
+  const totalIndiaCount =
+    doonSchoolMedia.length + sriGirdharMedia.length + ramKrishnaMedia.length;
+  const totalItemsCount = totalLocalCount + totalIndiaCount;
+
+  const allMediaFlat = useMemo(() => [
+    ...doonSchoolMedia,
+    ...sriGirdharMedia,
+    ...ramKrishnaMedia,
+    ...localSession1Media,
+    ...localSession2Media
+  ], []);
+
+  const totalVideos = useMemo(() => allMediaFlat.filter(m => m.type === "video").length, [allMediaFlat]);
+  const totalImages = useMemo(() => allMediaFlat.filter(m => m.type === "image").length, [allMediaFlat]);
+
+  // Clean, visual image & video grid
+  const renderMediaGrid = (items: MediaItem[]) => {
+    if (items.length === 0) {
+      return (
+        <div className="p-8 rounded-2xl border border-dashed border-slate-200 dark:border-white/10 text-center text-xs font-semibold text-slate-500 dark:text-zinc-500">
+          No {formatFilter === "video" ? "videos" : "photos"} matching this filter.
+        </div>
+      );
+    }
+
+    return (
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
+        {items.map((item, idx) => (
+          <div
+            key={item.id}
+            onClick={() => openLightbox(items, idx)}
+            className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 dark:border-white/10 hover:border-emerald-500/50 dark:hover:border-emerald-400/40"
+          >
+            {item.type === "image" ? (
+              <img
+                src={item.src}
+                alt={item.alt}
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            ) : (
+              <div className="relative w-full h-full bg-black">
+                <video
+                  src={item.src}
+                  preload="metadata"
+                  className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity"
+                />
+                
+                {/* Floating Video Tag */}
+                <div className="absolute top-2.5 left-2.5 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span>Video</span>
+                </div>
+
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-emerald-600/90 text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-500 transition-all shadow-xl">
+                    <Play className="w-4 h-4 sm:w-5 sm:h-5 ml-0.5 fill-white" />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Hover Expand Icon for Images */}
-          {item.type === "image" && (
-            <div className="absolute top-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-              <div className="p-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white border border-white/15">
-                <Maximize2 className="w-3.5 h-3.5" />
+            {/* Hover Expand Icon for Images */}
+            {item.type === "image" && (
+              <div className="absolute top-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                <div className="p-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white border border-white/15">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Bottom Scrim & Title */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-3 sm:p-4 text-white pointer-events-none">
-            <span className="text-xs sm:text-sm font-bold font-manrope line-clamp-1">
-              {item.title}
-            </span>
-            <span className="text-[10px] sm:text-xs text-white/80 mt-0.5">
-              {item.type === "video" ? "Click to play recording" : "Click to view fullscreen"}
-            </span>
+            {/* Bottom Scrim & Title */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-3 sm:p-4 text-white pointer-events-none">
+              <span className="text-xs sm:text-sm font-bold font-manrope line-clamp-1">
+                {item.title}
+              </span>
+              <span className="text-[10px] sm:text-xs text-white/80 mt-0.5">
+                {item.type === "video" ? "Click to play recording" : "Click to view fullscreen"}
+              </span>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-  );
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="relative min-h-screen pt-32 pb-24 px-4 sm:px-6">
       
-      {/* Background Atmosphere */}
+      {/* Spendora Celestial Background Atmosphere */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-[#f5eee8] via-[#fdfbfa] to-background dark:from-[#071a12] dark:to-black" />
         <div className="absolute top-0 left-0 w-[1px] h-[1px] bg-transparent stars-1 animate-[animStar_50s_linear_infinite]" />
@@ -593,101 +639,213 @@ export const Gallery = () => {
           <ArrowLeft className="w-4 h-4" /> Back to Home
         </button>
 
-        {/* Clean Header */}
+        {/* Hero Header with Spendora Signature Underline */}
         <div className="mb-8">
-          <h1 className="text-3xl sm:text-5xl font-black font-manrope tracking-tight text-slate-900 dark:text-white mb-2">
-            Workshop Gallery
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/80 dark:bg-white/5 border border-emerald-200 dark:border-white/10 backdrop-blur-md shadow-xs mb-4">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-[#40916c]" />
+            </span>
+            <span className="text-xs font-bold text-emerald-900 dark:text-emerald-100 font-manrope">
+              Student Workshop Highlights
+            </span>
+          </div>
+
+          <h1 className="text-4xl sm:text-6xl font-black font-manrope tracking-tight text-slate-900 dark:text-white mb-4">
+            Workshop{" "}
+            <span className="text-emerald-700 dark:text-[#52b788] inline-block relative">
+              Gallery
+              <svg className="absolute w-full h-3 -bottom-2 left-0 text-emerald-500/40 dark:text-[#40916c] opacity-60" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
+              </svg>
+            </span>
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-zinc-400 max-w-xl font-medium">
-            Photos and video highlights from our student workshops in Minnesota and India.
+
+          <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-2xl font-medium leading-relaxed">
+            Real classroom moments, interactive activities, and student session recordings from Minnesota public libraries and partner schools in India.
           </p>
         </div>
 
-        {/* Clean Region Filter Tabs */}
-        <div className="flex items-center gap-2 mb-12 pb-4 border-b border-slate-200/80 dark:border-white/10">
-          <button
-            onClick={() => setActiveTab("all")}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              activeTab === "all"
-                ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
-                : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
-            }`}
-          >
-            All Workshops
-          </button>
+        {/* Themed Impact Strip */}
+        <div className="w-full mb-10 border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-xl rounded-2xl p-5 sm:p-6 shadow-md">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            <div>
+              <div className="text-3xl sm:text-4xl font-black text-emerald-700 dark:text-[#52b788] font-manrope">
+                2,300+
+              </div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white mt-1">Students Reached</div>
+              <div className="text-[11px] text-slate-500 dark:text-zinc-400">Total in-person and partner workshop participants</div>
+            </div>
+            <div>
+              <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-manrope">
+                3 Years
+              </div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white mt-1">Teaching Financial Literacy</div>
+              <div className="text-[11px] text-slate-500 dark:text-zinc-400">Student-led education and practical sessions</div>
+            </div>
+            <div>
+              <div className="text-3xl sm:text-4xl font-black text-emerald-700 dark:text-[#52b788] font-manrope">
+                100% Free
+              </div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white mt-1">Open to All Students</div>
+              <div className="text-[11px] text-slate-500 dark:text-zinc-400">All materials, workbooks, and snacks provided</div>
+            </div>
+          </div>
+        </div>
 
-          <button
-            onClick={() => setActiveTab("india")}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              activeTab === "india"
-                ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
-                : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
-            }`}
-          >
-            India
-          </button>
+        {/* Dual-Axis Filter Controls: Region Tabs + Format Toggle */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-12 pb-5 border-b border-slate-200 dark:border-white/10">
+          
+          {/* Location Tabs */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+            <button
+              onClick={() => setLocationTab("all")}
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                locationTab === "all"
+                  ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
+                  : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
+              }`}
+            >
+              <span>All Locations</span>
+              <span className="text-[10px] opacity-70">({totalItemsCount})</span>
+            </button>
 
-          <button
-            onClick={() => setActiveTab("local")}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              activeTab === "local"
-                ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
-                : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
-            }`}
-          >
-            Minnesota Local
-          </button>
+            <button
+              onClick={() => setLocationTab("india")}
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                locationTab === "india"
+                  ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
+                  : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
+              }`}
+            >
+              <span>India Outreach</span>
+              <span className="text-[10px] opacity-70">({totalIndiaCount})</span>
+            </button>
+
+            <button
+              onClick={() => setLocationTab("local")}
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                locationTab === "local"
+                  ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
+                  : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
+              }`}
+            >
+              <span>Minnesota Local</span>
+              <span className="text-[10px] opacity-70">({totalLocalCount})</span>
+            </button>
+          </div>
+
+          {/* Media Format Toggle (All / Videos / Photos) */}
+          <div className="flex items-center gap-1.5 bg-slate-100/90 dark:bg-zinc-900/90 p-1 rounded-full border border-slate-200/80 dark:border-white/10 self-start md:self-auto">
+            <button
+              onClick={() => setFormatFilter("all")}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                formatFilter === "all"
+                  ? "bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-xs"
+                  : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
+              }`}
+            >
+              All Media
+            </button>
+
+            <button
+              onClick={() => setFormatFilter("video")}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+                formatFilter === "video"
+                  ? "bg-white dark:bg-zinc-800 text-emerald-700 dark:text-[#52b788] shadow-xs"
+                  : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
+              }`}
+            >
+              <Play className="w-3 h-3 fill-current" /> Videos ({totalVideos})
+            </button>
+
+            <button
+              onClick={() => setFormatFilter("image")}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+                formatFilter === "image"
+                  ? "bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-xs"
+                  : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
+              }`}
+            >
+              <Camera className="w-3 h-3" /> Photos ({totalImages})
+            </button>
+          </div>
+
         </div>
 
         {/* ======================================================== */}
         {/* INDIA OUTREACH & SCHOOLS */}
         {/* ======================================================== */}
-        {(activeTab === "all" || activeTab === "india") && (
-          <section id="india" className="space-y-12 mb-16 scroll-mt-28">
+        {(locationTab === "all" || locationTab === "india") && (
+          <section id="india" className="space-y-14 mb-20 scroll-mt-28">
             
             {/* School 1: Doon Public School */}
             <div id="doon-school" className="scroll-mt-28">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-4 pb-2 border-b border-slate-200/60 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-5 pb-3 border-b border-slate-200/80 dark:border-white/10">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold font-manrope text-slate-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-wider">
+                      <MapPin className="w-3 h-3" /> Sector 21, Panchkula, Haryana, India
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-manrope text-slate-900 dark:text-white">
                     Doon Public School
                   </h2>
                   <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                    Sector 21, Panchkula, Haryana, India • Senior Secondary Seminar
+                    Senior secondary seminar for Classes XI and XII in collaboration with Spendora.
                   </p>
                 </div>
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300">
+                  {filteredDoon.length} item{filteredDoon.length === 1 ? "" : "s"}
+                </span>
               </div>
-              {renderMediaGrid(doonSchoolMedia)}
+              {renderMediaGrid(filteredDoon)}
             </div>
 
             {/* School 2: Sri Girdhar Techno School */}
-            <div id="indian-school" className="scroll-mt-28 pt-6 border-t border-slate-200/60 dark:border-white/5">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-4 pb-2 border-b border-slate-200/60 dark:border-white/10">
+            <div id="indian-school" className="scroll-mt-28 pt-8 border-t border-slate-200/60 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-5 pb-3 border-b border-slate-200/80 dark:border-white/10">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold font-manrope text-slate-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-wider">
+                      <Globe className="w-3 h-3" /> Rural Outreach Partner • India
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-manrope text-slate-900 dark:text-white">
                     Sri Girdhar Techno School
                   </h2>
                   <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                    Rural Outreach Partner • India
+                    Classroom workshop series, practical worksheets, and student certificate awards.
                   </p>
                 </div>
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300">
+                  {filteredSriGirdhar.length} item{filteredSriGirdhar.length === 1 ? "" : "s"}
+                </span>
               </div>
-              {renderMediaGrid(sriGirdharMedia)}
+              {renderMediaGrid(filteredSriGirdhar)}
             </div>
 
             {/* School 3: Ram Krishna Dwarika School */}
-            <div id="ram-krishna-school" className="scroll-mt-28 pt-6 border-t border-slate-200/60 dark:border-white/5">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-4 pb-2 border-b border-slate-200/60 dark:border-white/10">
+            <div id="ram-krishna-school" className="scroll-mt-28 pt-8 border-t border-slate-200/60 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-5 pb-3 border-b border-slate-200/80 dark:border-white/10">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold font-manrope text-slate-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-wider">
+                      <MapPin className="w-3 h-3" /> Patna, Bihar, India
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-manrope text-slate-900 dark:text-white">
                     Ram Krishna Dwarika School
                   </h2>
                   <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                    Patna, Bihar, India • High School Workshops
+                    High school workshop on budgeting essentials and smart saving habits.
                   </p>
                 </div>
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300">
+                  {filteredRamKrishna.length} item{filteredRamKrishna.length === 1 ? "" : "s"}
+                </span>
               </div>
-              {renderMediaGrid(ramKrishnaMedia)}
+              {renderMediaGrid(filteredRamKrishna)}
             </div>
 
           </section>
@@ -696,44 +854,82 @@ export const Gallery = () => {
         {/* ======================================================== */}
         {/* LOCAL WORKSHOPS (MINNESOTA) */}
         {/* ======================================================== */}
-        {(activeTab === "all" || activeTab === "local") && (
-          <section id="local" className="space-y-12 mb-16 scroll-mt-28 pt-6 border-t border-slate-200/60 dark:border-white/5">
+        {(locationTab === "all" || locationTab === "local") && (
+          <section id="local" className="space-y-14 mb-20 scroll-mt-28 pt-8 border-t border-slate-200/80 dark:border-white/10">
             
             {/* Session 1 */}
             <div id="session-1" className="scroll-mt-28">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-4 pb-2 border-b border-slate-200/60 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-5 pb-3 border-b border-slate-200/80 dark:border-white/10">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold font-manrope text-slate-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-wider">
+                      <Building2 className="w-3 h-3" /> R.H. Stafford Library • Woodbury, MN
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-manrope text-slate-900 dark:text-white">
                     Session 1: Intro to Investing
                   </h2>
                   <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                    R.H. Stafford Library • Woodbury, MN
+                    Stock market history, index funds, trading simulations, and opening custodial accounts.
                   </p>
                 </div>
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300">
+                  {filteredLocal1.length} item{filteredLocal1.length === 1 ? "" : "s"}
+                </span>
               </div>
-              {renderMediaGrid(localSession1Media)}
+              {renderMediaGrid(filteredLocal1)}
             </div>
 
             {/* Session 2 */}
-            <div id="session-2" className="scroll-mt-28 pt-6 border-t border-slate-200/60 dark:border-white/5">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-4 pb-2 border-b border-slate-200/60 dark:border-white/10">
+            <div id="session-2" className="scroll-mt-28 pt-8 border-t border-slate-200/60 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-5 pb-3 border-b border-slate-200/80 dark:border-white/10">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold font-manrope text-slate-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-wider">
+                      <Building2 className="w-3 h-3" /> R.H. Stafford Library • Woodbury, MN
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-manrope text-slate-900 dark:text-white">
                     Session 2: Saving vs. Investing
                   </h2>
                   <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                    R.H. Stafford Library • Woodbury, MN
+                    Hands-on budgeting scenarios, Roth IRAs, high-yield savings, and digital business discussion.
                   </p>
                 </div>
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300">
+                  {filteredLocal2.length} item{filteredLocal2.length === 1 ? "" : "s"}
+                </span>
               </div>
-              {renderMediaGrid(localSession2Media)}
+              {renderMediaGrid(filteredLocal2)}
             </div>
 
           </section>
         )}
 
+        {/* Workshop Registration Banner */}
+        <div className="my-16 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-emerald-800 to-emerald-900 dark:from-[#2d6a4f] dark:to-[#1b4332] text-white text-center shadow-2xl relative overflow-hidden">
+          <div className="relative z-10 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-emerald-200 text-xs font-bold uppercase tracking-wider mb-4">
+              <Sparkles className="w-3.5 h-3.5" /> Next Free Workshop
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black font-manrope mb-3 tracking-tight">
+              Want to join our next live session?
+            </h2>
+            <p className="text-sm sm:text-base text-emerald-100/90 font-medium mb-8 leading-relaxed">
+              All materials, snacks, and workbooks are 100% free. Reserve your spot at the R.H. Stafford Library in Woodbury.
+            </p>
+            <button
+              onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
+              className="shiny-cta group shadow-xl hover:scale-105 transition-all inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold text-base cursor-pointer"
+            >
+              <span>Reserve Your Free Spot</span>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
+        </div>
+
         {/* Quiet Footer Links */}
-        <div className="mt-16 pt-8 border-t border-slate-200/80 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-500 dark:text-zinc-400">
+        <div className="pt-8 border-t border-slate-200/80 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-500 dark:text-zinc-400">
           <span>Looking to bring Spendora to your school or library?</span>
           <div className="flex items-center gap-4">
             <Link to="/#partners" className="hover:text-emerald-700 dark:hover:text-white underline">
