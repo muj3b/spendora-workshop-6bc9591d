@@ -1,9 +1,8 @@
 import { useEffect, lazy, Suspense } from "react";
 import Hero from "@/components/Hero";
 
-const CompoundInterestCalculator = lazy(() => import("@/components/CompoundInterestCalculator"));
+const StartingEarlyTeaser = lazy(() => import("@/components/StartingEarlyTeaser"));
 const AboutSpendora = lazy(() => import("@/components/AboutSpendora"));
-const GlobalFootprintSection = lazy(() => import("@/components/GlobalFootprintSection"));
 const PressSection = lazy(() => import("@/components/PressSection"));
 const PartnersSection = lazy(() => import("@/components/PartnersSection"));
 const WorkshopSchedule = lazy(() => import("@/components/WorkshopSchedule"));
@@ -48,13 +47,10 @@ const Index = () => {
       <Hero />
       <Suspense fallback={<div className="h-48" />}>
         <div id="calculator">
-          <CompoundInterestCalculator />
+          <StartingEarlyTeaser />
         </div>
         <div id="about-spendora">
           <AboutSpendora />
-        </div>
-        <div id="global-reach">
-          <GlobalFootprintSection />
         </div>
         <div id="press">
           <PressSection />

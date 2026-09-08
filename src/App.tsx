@@ -15,6 +15,7 @@ import Donate from "./pages/Donate";
 import Gallery from "./pages/Gallery";
 import Budgeting from "./pages/Budgeting";
 import Audiobook from "./pages/Audiobook";
+import StartingEarly from "./pages/StartingEarly";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,8 @@ const App = () => (
           <main className="min-h-screen bg-background text-foreground transition-colors duration-300">
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/starting-early" element={<StartingEarly />} />
+              <Route path="/wealth-simulator" element={<StartingEarly />} />
               <Route path="/stock-markets" element={<StockMarkets />} />
               <Route path="/crypto-nfts" element={<CryptoNFTs />} />
               <Route path="/online-business" element={<OnlineBusiness />} />

@@ -20,7 +20,7 @@ const TopNavBar = () => {
   const drawerNav = [
     { label: "Workshop", href: "/#workshop-schedule" },
     { label: "About", href: "/#about-spendora" },
-    { label: "Wealth Simulator", href: "/#calculator" },
+    { label: "Wealth Check", href: "/starting-early" },
     { label: "Gallery", href: "/gallery" },
     { label: "Audio Course", href: "/audiobook" },
     { label: "FAQ", href: "/#faq" },
