@@ -434,10 +434,12 @@ const localSession2Media: MediaItem[] = [
 ];
 
 type TabType = "all" | "india" | "local";
+type MediaFilter = "all" | "photos" | "videos";
 
 export const Gallery = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<TabType>("all");
+  const [mediaFilter, setMediaFilter] = useState<MediaFilter>("all");
 
   const [lightboxState, setLightboxState] = useState<{
     items: MediaItem[];
@@ -510,12 +512,27 @@ export const Gallery = () => {
   };
 
   // Clean, visual image & video grid with auto poster frame
-  const renderMediaGrid = (items: MediaItem[]) => (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
-      {items.map((item, idx) => (
+  const renderMediaGrid = (items: MediaItem[]) => {
+    const filtered = mediaFilter === "all"
+      ? items
+      : mediaFilter === "photos"
+        ? items.filter((i) => i.type === "image")
+        : items.filter((i) => i.type === "video");
+
+    if (filtered.length === 0) {
+      return (
+        <p className="text-sm text-slate-400 dark:text-zinc-500 italic py-6">
+          No {mediaFilter === "photos" ? "photos" : "videos"} in this section.
+        </p>
+      );
+    }
+
+    return (
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
+        {filtered.map((item, idx) => (
         <div
           key={item.id}
-          onClick={() => openLightbox(items, idx)}
+          onClick={() => openLightbox(filtered, idx)}
           className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 dark:border-white/10 hover:border-emerald-500/50 dark:hover:border-emerald-400/40"
         >
           {item.type === "image" ? (
@@ -570,9 +587,9 @@ export const Gallery = () => {
           </div>
         </div>
       ))}
-    </div>
-  );
-
+      </div>
+    );
+  };
   return (
     <div className="relative min-h-screen pt-32 pb-24 px-4 sm:px-6">
       
@@ -611,40 +628,60 @@ export const Gallery = () => {
           </p>
         </div>
 
-        {/* Clean Filter Tabs */}
-        <div className="flex items-center gap-2 mb-12 pb-4 border-b border-slate-200/80 dark:border-white/10">
-          <button
-            onClick={() => setActiveTab("all")}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              activeTab === "all"
-                ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
-                : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
-            }`}
-          >
-            All Workshops
-          </button>
+        {/* Filter Tabs */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-12 pb-4 border-b border-slate-200/80 dark:border-white/10">
+          {/* Location Tabs */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setActiveTab("all")}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                activeTab === "all"
+                  ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
+                  : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
+              }`}
+            >
+              All Workshops
+            </button>
 
-          <button
-            onClick={() => setActiveTab("india")}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              activeTab === "india"
-                ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
-                : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
-            }`}
-          >
-            India
-          </button>
+            <button
+              onClick={() => setActiveTab("india")}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                activeTab === "india"
+                  ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
+                  : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
+              }`}
+            >
+              India
+            </button>
 
-          <button
-            onClick={() => setActiveTab("local")}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              activeTab === "local"
-                ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
-                : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
-            }`}
-          >
-            Minnesota Local
-          </button>
+            <button
+              onClick={() => setActiveTab("local")}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                activeTab === "local"
+                  ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
+                  : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
+              }`}
+            >
+              Minnesota Local
+            </button>
+          </div>
+
+          {/* Media Type Filter */}
+          <div className="flex items-center gap-1.5">
+            {(["all", "photos", "videos"] as MediaFilter[]).map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setMediaFilter(filter)}
+                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                  mediaFilter === filter
+                    ? "bg-slate-800 text-white dark:bg-zinc-200 dark:text-slate-900 shadow-sm"
+                    : "text-slate-500 dark:text-zinc-400 hover:text-slate-800 dark:hover:text-white"
+                }`}
+              >
+                {filter === "all" ? "All" : filter === "photos" ? "Photos" : "Videos"}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* ======================================================== */}
