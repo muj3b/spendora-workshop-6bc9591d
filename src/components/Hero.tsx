@@ -33,68 +33,83 @@ const Hero = memo(() => {
       <div className="relative z-10 min-h-[85vh] flex flex-col items-center justify-center pt-32 pb-16 px-6">
         <div className="text-center max-w-5xl mx-auto">
           <div className="flex flex-col items-center gap-3 mb-6">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/80 dark:bg-white/5 border border-emerald-200 dark:border-white/10 backdrop-blur-md animate-fade-up shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 dark:bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-[#40916c]" />
+              </span>
+              <span className="text-xs font-bold text-emerald-900 dark:text-emerald-100/90 tracking-wide font-manrope">Student-Led Financial Literacy</span>
+            </div>
+
+            {/* Press Badge */}
             <a
               href="#press"
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100/80 dark:bg-zinc-800/80 text-slate-700 dark:text-zinc-300 hover:text-emerald-700 dark:hover:text-white transition-colors text-xs font-semibold group"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200/80 dark:border-blue-800/60 text-blue-700 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-all text-xs font-semibold shadow-xs group"
             >
-              <span className="font-bold uppercase tracking-wider text-[10px] px-2 py-0.5 rounded-full bg-emerald-700 dark:bg-[#2d6a4f] text-white">Press</span>
-              <span>Featured in Woodbury News Net</span>
-              <ArrowRight className="w-3 h-3 shrink-0 group-hover:translate-x-0.5 transition-transform opacity-70" />
+              <span className="font-extrabold uppercase tracking-wider text-[10px] px-2 py-0.5 rounded-full bg-blue-600 text-white">In the News</span>
+              <span className="truncate max-w-[260px] sm:max-w-none">Featured in Woodbury News Net: Three ERHS Students Create Financial Literacy Initiative</span>
+              <ArrowRight className="w-3 h-3 shrink-0 group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight font-manrope leading-[1.05] mb-6 text-slate-900 dark:text-white">
-            Level up your money skills.
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight font-manrope leading-[1.08] mb-8 animate-fade-up text-slate-900 dark:text-white">
+            <span>Level up your </span>
+            <span className="text-emerald-700 dark:text-[#52b788] inline-block relative">
+              money skills
+              <svg className="absolute w-full h-3 -bottom-2 left-0 text-emerald-500/40 dark:text-[#40916c] opacity-60" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
+              </svg>
+            </span>
           </h1>
 
           {/* Subtext */}
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            A free, student-led initiative teaching real-world investing, budgeting, and compound growth. What schools skip, we deliver.
+          <p className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+            A free workshop run by high school students. We teach the money stuff schools skip.
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={handleSignup}
-              className="px-8 py-4 rounded-full bg-emerald-700 hover:bg-emerald-800 dark:bg-[#2d6a4f] dark:hover:bg-[#1b4332] text-white font-bold text-base shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2 cursor-pointer"
-            >
-              <span>Reserve Free Spot</span>
-              <ArrowRight className="w-4 h-4" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up">
+            <button onClick={handleSignup} className="shiny-cta group shadow-xl hover:scale-105 transition-all">
+              <span className="relative z-10 flex items-center gap-2 text-white font-bold text-base">
+                Reserve Your Spot - It's Free! <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </span>
             </button>
             
-            <button
-              onClick={() => navigate('/gallery')}
-              className="px-7 py-4 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-800 dark:text-zinc-200 font-bold hover:text-emerald-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-800 transition-all flex items-center gap-2 cursor-pointer"
-            >
-              <Camera className="w-4 h-4 text-emerald-600 dark:text-[#52b788]" />
-              <span>Workshop Gallery</span>
+            <button onClick={() => navigate('/gallery')} className="group px-6 py-4 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-800 dark:text-zinc-200 font-bold hover:text-emerald-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-800 transition-all flex items-center gap-2 shadow-md">
+              <Camera className="w-5 h-5 text-emerald-600 dark:text-[#52b788]" /> Workshop Gallery
+            </button>
+
+            <button onClick={() => navigate('/donate')} className="group px-6 py-4 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-800 dark:text-zinc-200 font-bold hover:text-emerald-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-800 transition-all flex items-center gap-2 shadow-md">
+              <Heart className="w-5 h-5 text-rose-500 fill-rose-500/20" /> Donate
             </button>
           </div>
         </div>
 
-        {/* Stats Proof Strip */}
-        <div className="w-full mt-16 border-y border-slate-200/80 dark:border-white/10 bg-slate-50/50 dark:bg-zinc-950/30 py-8">
+        {/* Stats Strip */}
+        <div className="w-full mt-20 border-y border-slate-200 dark:border-white/5 bg-white/60 dark:bg-white/[0.02] backdrop-blur-md py-8">
           <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
-            <button onClick={() => navigate('/gallery#india')} className="group text-center cursor-pointer">
-              <div className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white font-manrope tabular-nums">2,000+</div>
-              <div className="text-xs font-bold text-slate-700 dark:text-zinc-300 mt-1">Reached Internationally</div>
-              <div className="text-[11px] text-slate-500 dark:text-zinc-500 mt-0.5">Partner school workshops</div>
+            <button onClick={() => navigate('/gallery#india')} className="group cursor-pointer">
+              <div className="text-4xl md:text-5xl font-black text-emerald-700 dark:text-[#52b788] font-manrope tabular-nums">2,000+</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Reached Internationally</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Partner school workshops</div>
+              <div className="text-xs font-bold text-emerald-600 dark:text-[#52b788] mt-1.5 group-hover:underline">View gallery →</div>
             </button>
             <div>
-              <div className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white font-manrope tabular-nums">300+</div>
-              <div className="text-xs font-bold text-slate-700 dark:text-zinc-300 mt-1">Students Locally</div>
-              <div className="text-[11px] text-slate-500 dark:text-zinc-500 mt-0.5">Minnesota community sessions</div>
+              <div className="text-4xl md:text-5xl font-black text-emerald-700 dark:text-[#52b788] font-manrope tabular-nums">300+</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Students Locally</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Minnesota workshops & events</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white font-manrope tabular-nums">3</div>
-              <div className="text-xs font-bold text-slate-700 dark:text-zinc-300 mt-1">Years Teaching</div>
-              <div className="text-[11px] text-slate-500 dark:text-zinc-500 mt-0.5">Student-led financial education</div>
+              <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">3</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Years</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Teaching financial literacy</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white font-manrope tabular-nums">8</div>
-              <div className="text-xs font-bold text-slate-700 dark:text-zinc-300 mt-1">Audio Modules</div>
-              <div className="text-[11px] text-slate-500 dark:text-zinc-500 mt-0.5">Free audio course + SAT test</div>
+              <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">8</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Course Modules</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Free audio course + quiz</div>
             </div>
           </div>
         </div>

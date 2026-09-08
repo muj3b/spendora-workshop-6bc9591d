@@ -71,19 +71,25 @@ const Footer = () => {
 
       {/* Registration CTA */}
       <div className="max-w-3xl mx-auto text-center mb-16 px-6">
-        <h2 className="text-3xl sm:text-4xl font-extrabold font-manrope mb-3 tracking-tight text-slate-900 dark:text-white">
-          Join our next workshop
+        <h2 className="text-4xl md:text-5xl font-black font-manrope mb-4 tracking-tight text-slate-900 dark:text-white">
+          Want to <span className="text-emerald-700 dark:text-[#52b788]">come?</span>
         </h2>
-        <p className="text-base text-slate-600 dark:text-zinc-400 mb-8 font-medium">
-          Free admission for all high school and middle school students.
+        <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 mb-8 font-medium">
+          It's free. Sign up and we'll send you the details.
         </p>
         <button
           onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
-          className="px-8 py-4 rounded-full bg-emerald-700 hover:bg-emerald-800 dark:bg-[#2d6a4f] dark:hover:bg-[#1b4332] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 cursor-pointer"
+          className="shiny-cta group shadow-xl hover:scale-105 transition-all"
         >
-          <span>Sign Up on Google Forms</span>
-          <ArrowRight className="w-4 h-4" />
+          <span className="relative z-10 flex items-center gap-2 text-white font-bold text-base">
+            Sign Up Free <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+          </span>
         </button>
+      </div>
+
+      {/* Watermark */}
+      <div className="flex justify-center items-center py-6 opacity-20 pointer-events-none select-none">
+        <h1 className="text-[15vw] leading-none font-black font-manrope tracking-tighter text-stroke">SPENDORA</h1>
       </div>
 
       {/* Copyright row */}

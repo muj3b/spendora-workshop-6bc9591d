@@ -1,30 +1,34 @@
 import { memo } from "react";
-import { Linkedin, ArrowUpRight } from "lucide-react";
+import { TrendingUp, Globe, LineChart, Linkedin, ExternalLink } from "lucide-react";
 
 interface TeamMember {
   name: string;
-  role: string;
+  expertise: string;
   bio: string;
-  linkedin: string | null;
+  icon: any;
+  linkedin?: string;
 }
 
 const team: TeamMember[] = [
   {
     name: "Mujeeb Chaudhry",
-    role: "E-commerce & Investment Strategy",
+    expertise: "E-Commerce & Digital Ventures",
     bio: "Mujeeb is an active crypto trader and stock investor with notable experience scaling B2B, B2C, and SaaS ventures, affiliate marketing with TikTok, and YouTube automation. He's also a competitor in the Wharton Investment Competition. He coded this very website with the help of his peer Harshad, and specializes in app development, most notably owning and fully developing Vidi. In addition, he noticed that financial literacy is low and wanted to spread his knowledge on cryptic trends and brackets.",
+    icon: Globe,
     linkedin: "https://www.linkedin.com/in/muj3b/",
   },
   {
     name: "Harshad Amalan",
-    role: "Stock Market & Trend Spotting",
+    expertise: "Stock Market & Trend Spotting",
     bio: "Harshad is a student investor with an interest in how the stock market differentiates. He keeps a close watch on the NYSE and has a knack for spotting trends before they take off. He's competed in the Wharton Investment Competition on two occasions, and he's driven by a passion for helping students build the skills to research and invest with confidence because they aren’t taught that in schools. He also helped create this website with Mujeeb.",
+    icon: TrendingUp,
     linkedin: "https://www.linkedin.com/in/harshad-amalan/?skipRedirect=true",
   },
   {
     name: "Neil Kaila",
-    role: "Stock Analysis & Portfolio Strategy",
+    expertise: "Stock Analysis & Portfolio Strategy",
     bio: "Neil is a student investor with experience in stock analysis and portfolio strategy. He has competed in the Wharton Global High School Investment Competition on three occasions. Through Business Professionals of America, he won at the state level in Small Business Management and earned a regional placement in Personal Financial Management. He is passionate about helping students develop the skills to research, analyze, and invest with confidence.",
+    icon: LineChart,
     linkedin: "https://www.linkedin.com/in/neil-k-33b468371/?skipRedirect=true",
   },
 ];
@@ -33,65 +37,74 @@ const MeetTheTeam = () => {
   return (
     <section className="relative z-10 py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-14">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight font-manrope mb-3">
-            The Founders
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight font-manrope mb-4">
+            Meet the <span className="text-emerald-700 dark:text-[#52b788]">Founders</span>
           </h2>
-          <p className="text-base text-slate-600 dark:text-zinc-400 font-medium max-w-2xl">
-            East Ridge High School students who competed nationally, managed real portfolios, and founded Spendora to teach practical financial literacy to their peers.
+          <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto font-medium">
+            They've competed nationally and actually made money doing this. Now they teach it.
           </p>
+          <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200/80 dark:border-blue-800/50 text-blue-700 dark:text-blue-400 text-xs font-semibold shadow-xs">
+            <Linkedin className="w-3.5 h-3.5 text-[#0A66C2]" />
+            <span>Tap a founder to open their LinkedIn</span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {team.map((m, i) => (
-            <div
-              key={i}
-              className="border border-slate-200 dark:border-white/10 bg-white dark:bg-zinc-950 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-xs"
-            >
-              <div>
-                <div className="flex items-start justify-between gap-2 mb-3">
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white font-manrope">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          {team.map((m, i) => {
+            const Icon = m.icon;
+            const hasLinkedin = Boolean(m.linkedin);
+
+            return (
+              <div
+                key={i}
+                onClick={() => {
+                  if (m.linkedin) {
+                    window.open(m.linkedin, "_blank", "noopener,noreferrer");
+                  }
+                }}
+                className={`group relative h-full p-6 sm:p-7 border border-slate-200 dark:border-white/10 bg-white dark:bg-black transition-all rounded-2xl shadow-md flex flex-col ${
+                  hasLinkedin
+                    ? "cursor-pointer hover:border-[#0A66C2]/60 dark:hover:border-[#0A66C2]/80 hover:shadow-xl hover:shadow-[#0A66C2]/5"
+                    : "hover:border-emerald-500/40 dark:hover:border-white/20 hover:shadow-xl"
+                }`}
+              >
+                <div className="flex items-start gap-3.5">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-700 dark:bg-[#2d6a4f] text-white flex items-center justify-center font-black text-xl font-manrope shadow-md shrink-0">
+                    {m.name.charAt(0)}
+                  </div>
+                  <div className="min-w-0 pt-0.5">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white font-manrope leading-tight">
                       {m.name}
                     </h3>
-                    <p className="text-xs font-semibold text-emerald-800 dark:text-emerald-400 mt-0.5">
-                      {m.role}
+                    <p className="text-xs font-bold text-emerald-700 dark:text-[#52b788] mt-1.5 leading-snug flex items-start gap-1.5">
+                      <Icon className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+                      <span>{m.expertise}</span>
                     </p>
                   </div>
-                  {m.linkedin && (
-                    <a
-                      href={m.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-lg bg-slate-100 dark:bg-zinc-900 hover:bg-[#0A66C2] hover:text-white text-slate-600 dark:text-zinc-400 transition-colors"
-                      title={`${m.name}'s LinkedIn`}
-                      aria-label={`${m.name}'s LinkedIn Profile`}
-                    >
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                  )}
                 </div>
 
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-medium mt-4">
+                {hasLinkedin && (
+                  <a
+                    href={m.linkedin!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label={`${m.name}'s LinkedIn Profile`}
+                    className="mt-4 self-start inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-[#0A66C2] dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 hover:bg-[#0A66C2] hover:text-white dark:hover:bg-[#0A66C2] dark:hover:text-white transition-all"
+                  >
+                    <Linkedin className="w-3.5 h-3.5 fill-current" />
+                    <span>LinkedIn</span>
+                    <ExternalLink className="w-3 h-3 opacity-60" />
+                  </a>
+                )}
+
+                <p className="mt-5 text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-medium">
                   {m.bio}
                 </p>
               </div>
-
-              {m.linkedin && (
-                <div className="pt-4 mt-6 border-t border-slate-100 dark:border-white/5">
-                  <a
-                    href={m.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors"
-                  >
-                    <span>View LinkedIn profile</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
