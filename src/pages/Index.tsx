@@ -1,11 +1,14 @@
 import { useEffect, lazy, Suspense } from "react";
 import Hero from "@/components/Hero";
 
+const CompoundInterestCalculator = lazy(() => import("@/components/CompoundInterestCalculator"));
 const AboutSpendora = lazy(() => import("@/components/AboutSpendora"));
+const GlobalFootprintSection = lazy(() => import("@/components/GlobalFootprintSection"));
 const PressSection = lazy(() => import("@/components/PressSection"));
 const PartnersSection = lazy(() => import("@/components/PartnersSection"));
-const MeetTheTeam = lazy(() => import("@/components/MeetTheTeam"));
 const WorkshopSchedule = lazy(() => import("@/components/WorkshopSchedule"));
+const FAQSection = lazy(() => import("@/components/FAQSection"));
+const MeetTheTeam = lazy(() => import("@/components/MeetTheTeam"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
@@ -44,8 +47,14 @@ const Index = () => {
     <div className="min-h-screen bg-background transition-colors duration-300">
       <Hero />
       <Suspense fallback={<div className="h-48" />}>
+        <div id="calculator">
+          <CompoundInterestCalculator />
+        </div>
         <div id="about-spendora">
           <AboutSpendora />
+        </div>
+        <div id="global-reach">
+          <GlobalFootprintSection />
         </div>
         <div id="press">
           <PressSection />
@@ -55,6 +64,9 @@ const Index = () => {
         </div>
         <div id="workshop-schedule">
           <WorkshopSchedule />
+        </div>
+        <div id="faq">
+          <FAQSection />
         </div>
         <div id="meet-the-team">
           <MeetTheTeam />

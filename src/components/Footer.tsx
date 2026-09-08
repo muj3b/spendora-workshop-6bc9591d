@@ -21,6 +21,8 @@ const Footer = () => {
             <li><Link to="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">Home</Link></li>
             <li><Link to="/gallery" className="hover:text-slate-900 dark:hover:text-white transition-colors">Workshop Gallery</Link></li>
             <li><Link to="/audiobook" className="hover:text-slate-900 dark:hover:text-white transition-colors">Audio Course</Link></li>
+            <li><a href="/#calculator" className="hover:text-slate-900 dark:hover:text-white transition-colors">Wealth Simulator</a></li>
+            <li><a href="/#faq" className="hover:text-slate-900 dark:hover:text-white transition-colors">FAQ</a></li>
             <li><a href="/#partners" className="hover:text-slate-900 dark:hover:text-white transition-colors">Partners</a></li>
             <li><a href="/#press" className="hover:text-slate-900 dark:hover:text-white transition-colors">Press Coverage</a></li>
             <li><Link to="/donate" className="hover:text-slate-900 dark:hover:text-white transition-colors">Donate</Link></li>

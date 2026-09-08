@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { ArrowLeft, Wallet } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import WordByWordText from "@/components/WordByWordText";
+import BudgetCalculator from "@/components/BudgetCalculator";
 
 const Budgeting = () => {
   const navigate = useNavigate();
@@ -28,6 +29,10 @@ const Budgeting = () => {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 dark:bg-white/5 border border-emerald-200 dark:border-white/10 text-emerald-700 dark:text-emerald-400 text-xs font-bold mb-4"><Wallet className="w-3.5 h-3.5" /> Personal Finance</div>
           <h1 className="text-4xl sm:text-5xl font-black font-manrope tracking-tight text-slate-900 dark:text-white">Personal Finance & <span className="text-emerald-700 dark:text-[#52b788]">Budgeting</span></h1>
         </div>
+
+        {/* Interactive Calculator */}
+        <BudgetCalculator />
+
         <div className="p-8 border border-slate-200 dark:border-white/10 bg-white dark:bg-black rounded-2xl shadow-xl text-slate-700 dark:text-zinc-300 leading-relaxed text-sm sm:text-base font-medium">
           <WordByWordText paragraphs={paragraphs} delay={100} wordDelay={150} />
         </div>

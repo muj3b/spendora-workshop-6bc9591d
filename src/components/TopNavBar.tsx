@@ -12,8 +12,10 @@ const TopNavBar = () => {
   const mainNav = [
     { label: "Workshop", href: "/#workshop-schedule" },
     { label: "About", href: "/#about-spendora" },
+    { label: "Simulator", href: "/#calculator" },
     { label: "Gallery", href: "/gallery" },
     { label: "Audio Course", href: "/audiobook" },
+    { label: "FAQ", href: "/#faq" },
     { label: "Partners", href: "/#partners" },
     { label: "Press", href: "/#press" },
     { label: "Donate", href: "/donate" },
