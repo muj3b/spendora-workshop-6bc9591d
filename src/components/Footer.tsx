@@ -19,12 +19,14 @@ const Footer = () => {
           <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-5">Navigation</h4>
           <ul className="space-y-3 text-slate-600 dark:text-zinc-400 text-sm font-medium">
             <li><Link to="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">Home</Link></li>
+            <li><a href="/#meet-the-team" className="hover:text-slate-900 dark:hover:text-white transition-colors">Meet the Founders</a></li>
+            <li><a href="/#press" className="hover:text-slate-900 dark:hover:text-white transition-colors">In the News</a></li>
+            <li><a href="/#partners" className="hover:text-slate-900 dark:hover:text-white transition-colors">Partners</a></li>
+            <li><a href="/#workshop-schedule" className="hover:text-slate-900 dark:hover:text-white transition-colors">Workshop Schedule</a></li>
+            <li><a href="/#faq" className="hover:text-slate-900 dark:hover:text-white transition-colors">FAQ</a></li>
+            <li><Link to="/starting-early" className="hover:text-slate-900 dark:hover:text-white transition-colors">Starting Early Check</Link></li>
             <li><Link to="/gallery" className="hover:text-slate-900 dark:hover:text-white transition-colors">Workshop Gallery</Link></li>
             <li><Link to="/audiobook" className="hover:text-slate-900 dark:hover:text-white transition-colors">Audio Course</Link></li>
-            <li><Link to="/starting-early" className="hover:text-slate-900 dark:hover:text-white transition-colors">Starting Early Check</Link></li>
-            <li><a href="/#faq" className="hover:text-slate-900 dark:hover:text-white transition-colors">FAQ</a></li>
-            <li><a href="/#partners" className="hover:text-slate-900 dark:hover:text-white transition-colors">Partners</a></li>
-            <li><a href="/#press" className="hover:text-slate-900 dark:hover:text-white transition-colors">Press Coverage</a></li>
             <li><Link to="/donate" className="hover:text-slate-900 dark:hover:text-white transition-colors">Donate</Link></li>
           </ul>
         </div>

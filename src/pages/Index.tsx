@@ -1,13 +1,12 @@
 import { useEffect, lazy, Suspense } from "react";
 import Hero from "@/components/Hero";
 
-const StartingEarlyTeaser = lazy(() => import("@/components/StartingEarlyTeaser"));
-const AboutSpendora = lazy(() => import("@/components/AboutSpendora"));
+const MeetTheTeam = lazy(() => import("@/components/MeetTheTeam"));
 const PressSection = lazy(() => import("@/components/PressSection"));
 const PartnersSection = lazy(() => import("@/components/PartnersSection"));
 const WorkshopSchedule = lazy(() => import("@/components/WorkshopSchedule"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
-const MeetTheTeam = lazy(() => import("@/components/MeetTheTeam"));
+const StartingEarlyTeaser = lazy(() => import("@/components/StartingEarlyTeaser"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
@@ -46,27 +45,40 @@ const Index = () => {
     <div className="min-h-screen bg-background transition-colors duration-300">
       <Hero />
       <Suspense fallback={<div className="h-48" />}>
-        <div id="calculator">
-          <StartingEarlyTeaser />
+        {/* 1. Meet the founders */}
+        <div id="meet-the-team" className="scroll-mt-28">
+          <div id="about-spendora">
+            <MeetTheTeam />
+          </div>
         </div>
-        <div id="about-spendora">
-          <AboutSpendora />
-        </div>
-        <div id="press">
+
+        {/* 2. Spendora in the news */}
+        <div id="press" className="scroll-mt-28">
           <PressSection />
         </div>
-        <div id="partners">
+
+        {/* 3. Partners and collaborations */}
+        <div id="partners" className="scroll-mt-28">
           <PartnersSection />
         </div>
-        <div id="workshop-schedule">
+
+        {/* 4. The workshop schedule */}
+        <div id="workshop-schedule" className="scroll-mt-28">
           <WorkshopSchedule />
         </div>
-        <div id="faq">
+
+        {/* 5. The frequently asked questions */}
+        <div id="faq" className="scroll-mt-28">
           <FAQSection />
         </div>
-        <div id="meet-the-team">
-          <MeetTheTeam />
+
+        {/* 6. The power of starting early */}
+        <div id="calculator" className="scroll-mt-28">
+          <div id="starting-early">
+            <StartingEarlyTeaser />
+          </div>
         </div>
+
         <Footer />
       </Suspense>
     </div>
