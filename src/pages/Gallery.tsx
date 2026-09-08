@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import {
   ArrowLeft,
-  Video,
-  ArrowRight,
   Maximize2,
   X,
   ChevronLeft,
@@ -18,12 +16,10 @@ interface MediaItem {
   src: string;
   alt: string;
   title: string;
-  caption?: string;
+  caption: string;
   section: "local" | "india";
   schoolOrSession: string;
-  location: string;
   date?: string;
-  badge?: string;
 }
 
 // Media Data
@@ -33,37 +29,32 @@ const doonSchoolMedia: MediaItem[] = [
     type: "image",
     src: "/lovable-uploads/doon-school-1.jpg",
     alt: "Doon Public School Financial Literacy Programme Slide",
-    title: "Spendora Collaboration Slide",
-    caption: "Official presentation screen: 'Financial Literacy Programme: Empowering Young Minds with Essential Money Skills — In Collaboration with Spendora for Classes XI & XII'.",
+    title: "Presentation Slide",
+    caption: "Projector screen announcing the financial literacy programme for Classes XI and XII, in collaboration with Spendora.",
     section: "india",
     schoolOrSession: "Doon Public School",
-    location: "Sector 21, Panchkula, Haryana, India",
     date: "Sept 8, 2026",
-    badge: "Presentation",
   },
   {
     id: "doon-v1",
     type: "video",
     src: "https://files.catbox.moe/v6lsc0.mp4",
     alt: "Doon Public School Workshop Video Highlights",
-    title: "Auditorium Workshop Highlights",
-    caption: "Live video recording of senior secondary students gathered in the school auditorium during Spendora's interactive financial literacy seminar.",
+    title: "Live Video Highlights",
+    caption: "Live video recording of senior secondary students gathered in the auditorium during the seminar.",
     section: "india",
     schoolOrSession: "Doon Public School",
-    location: "Sector 21, Panchkula, Haryana, India",
     date: "Sept 8, 2026",
-    badge: "Live Video",
   },
   {
     id: "doon-2",
     type: "image",
     src: "/lovable-uploads/doon-school-2.jpg",
     alt: "Full Auditorium Session at Doon Public School",
-    title: "Senior Secondary Auditorium Session",
-    caption: "Over 250+ students in Classes XI & XII attending the interactive financial literacy seminar in Panchkula.",
+    title: "Auditorium Overview",
+    caption: "Over 250 students in Classes XI and XII attending the financial literacy session in Panchkula.",
     section: "india",
     schoolOrSession: "Doon Public School",
-    location: "Sector 21, Panchkula, Haryana, India",
     date: "Sept 8, 2026",
   },
   {
@@ -71,11 +62,10 @@ const doonSchoolMedia: MediaItem[] = [
     type: "image",
     src: "/lovable-uploads/doon-school-3.jpg",
     alt: "Student Q&A with Microphone",
-    title: "Student Q&A & Discussion",
-    caption: "Class XI student asking an insightful question with a microphone during the interactive risk management segment.",
+    title: "Student Q&A Session",
+    caption: "A Class XI student asking a question with a microphone during the risk management segment.",
     section: "india",
     schoolOrSession: "Doon Public School",
-    location: "Sector 21, Panchkula, Haryana, India",
     date: "Sept 8, 2026",
   },
   {
@@ -83,11 +73,10 @@ const doonSchoolMedia: MediaItem[] = [
     type: "image",
     src: "/lovable-uploads/doon-school-4.jpg",
     alt: "Students reviewing Risk Tolerance chart",
-    title: "Risk Tolerance & Return Curves",
-    caption: "High school students reviewing the live risk-return curve and investment horizons on the main auditorium display.",
+    title: "Risk Tolerance Discussion",
+    caption: "Students analyzing the risk vs return curve shown on the auditorium screen.",
     section: "india",
     schoolOrSession: "Doon Public School",
-    location: "Sector 21, Panchkula, Haryana, India",
     date: "Sept 8, 2026",
   },
   {
@@ -95,11 +84,10 @@ const doonSchoolMedia: MediaItem[] = [
     type: "image",
     src: "/lovable-uploads/doon-school-5.jpg",
     alt: "Auditorium Audience Engaged",
-    title: "Engaged High School Audience",
-    caption: "Students actively taking notes and following modern investment and budgeting concepts.",
+    title: "Audience Perspective",
+    caption: "Students taking notes and following along with compound growth concepts.",
     section: "india",
     schoolOrSession: "Doon Public School",
-    location: "Sector 21, Panchkula, Haryana, India",
     date: "Sept 8, 2026",
   },
   {
@@ -107,11 +95,10 @@ const doonSchoolMedia: MediaItem[] = [
     type: "image",
     src: "/lovable-uploads/doon-school-6.jpg",
     alt: "Classes XI and XII at Doon Public School",
-    title: "Classes XI & XII Workshop",
-    caption: "Wide perspective of senior secondary students participating in practical personal finance lessons.",
+    title: "Hall Attendance",
+    caption: "Senior secondary students actively participating in practical finance discussions.",
     section: "india",
     schoolOrSession: "Doon Public School",
-    location: "Sector 21, Panchkula, Haryana, India",
     date: "Sept 8, 2026",
   },
   {
@@ -119,11 +106,10 @@ const doonSchoolMedia: MediaItem[] = [
     type: "image",
     src: "/lovable-uploads/doon-school-7.jpg",
     alt: "Presentation delivery to senior students",
-    title: "Financial Programme Delivery",
-    caption: "Delivering foundational concepts of compound growth, smart saving, and long-term asset allocation.",
+    title: "Curriculum Delivery",
+    caption: "Walking students through smart saving habits, compounding, and opening beginner investment accounts.",
     section: "india",
     schoolOrSession: "Doon Public School",
-    location: "Sector 21, Panchkula, Haryana, India",
     date: "Sept 8, 2026",
   },
 ];
@@ -135,10 +121,9 @@ const sriGirdharMedia: MediaItem[] = [
     src: "/lovable-uploads/indian-school-1.jpg",
     alt: "Teaching students at Sri Girdhar Techno School",
     title: "Foundational Money Basics",
-    caption: "Introducing basic currency, budgeting, and savings concepts to eager rural school students.",
+    caption: "Introducing basic currency, budgeting, and savings concepts to rural school students.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-2",
@@ -146,10 +131,9 @@ const sriGirdharMedia: MediaItem[] = [
     src: "/lovable-uploads/indian-school-2.jpg",
     alt: "Students learning financial concepts in a rural classroom",
     title: "Interactive Classroom Session",
-    caption: "Explaining how saving early generates compound growth and financial resilience.",
+    caption: "Explaining how early saving builds long term financial security.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-3",
@@ -157,10 +141,9 @@ const sriGirdharMedia: MediaItem[] = [
     src: "/lovable-uploads/indian-school-3.jpg",
     alt: "Interactive presentation at rural Indian school",
     title: "Hands-on Discussion",
-    caption: "Students actively responding to personal money management prompts.",
+    caption: "Students responding to questions about family budgeting and expenses.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-4",
@@ -168,10 +151,9 @@ const sriGirdharMedia: MediaItem[] = [
     src: "/lovable-uploads/indian-school-4.jpg",
     alt: "Engaged students at rural school",
     title: "Active Learning",
-    caption: "Young learners participating in Spendora's step-by-step financial curriculum.",
+    caption: "Young learners participating in step by step personal finance exercises.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-5",
@@ -179,10 +161,9 @@ const sriGirdharMedia: MediaItem[] = [
     src: "/lovable-uploads/indian-school-5.jpg",
     alt: "Full rural classroom",
     title: "Full Classroom Attendance",
-    caption: "Crowded classroom of students focused on learning practical money skills.",
+    caption: "A crowded classroom of students eager to understand basic personal finance.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-6",
@@ -190,10 +171,9 @@ const sriGirdharMedia: MediaItem[] = [
     src: "/lovable-uploads/indian-school-6.jpg",
     alt: "Financial literacy in progress at rural school",
     title: "Curriculum in Action",
-    caption: "Breaking down financial habits into accessible, memorable everyday rules.",
+    caption: "Breaking down financial habits into simple, practical everyday rules.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-7",
@@ -201,65 +181,59 @@ const sriGirdharMedia: MediaItem[] = [
     src: "/lovable-uploads/indian-school-7.jpg",
     alt: "Students participating in rural workshop",
     title: "Student Participation",
-    caption: "Students sharing their savings goals and aspirations with the class.",
+    caption: "Students sharing their personal savings goals with the class.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-v1",
     type: "video",
     src: "/lovable-uploads/indian-school-video-1.mov",
     alt: "Rural School Workshop Video 1",
-    title: "Classroom Interaction Highlight 1",
-    caption: "Video recording of students participating in financial exercises and questions.",
+    title: "Classroom Highlight 1",
+    caption: "Video recording of students participating in money games and questions.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-v2",
     type: "video",
     src: "https://files.catbox.moe/my1k56.MOV",
     alt: "Rural School Workshop Video 2",
-    title: "Classroom Interaction Highlight 2",
-    caption: "Students answering questions about money basics and family budgeting.",
+    title: "Classroom Highlight 2",
+    caption: "Students answering questions about money basics and household budgeting.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-v3",
     type: "video",
     src: "https://files.catbox.moe/xxvohu.MOV",
     alt: "Rural School Workshop Video 3",
-    title: "Classroom Interaction Highlight 3",
-    caption: "Demonstrating how saving small amounts regularly creates financial security.",
+    title: "Classroom Highlight 3",
+    caption: "Demonstrating how setting aside small amounts regularly adds up over time.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-v4",
     type: "video",
     src: "https://files.catbox.moe/p5qi4y.MOV",
     alt: "Rural School Workshop Video 4",
-    title: "Classroom Interaction Highlight 4",
-    caption: "Interactive question-and-answer session with rural students.",
+    title: "Classroom Highlight 4",
+    caption: "Interactive question and answer session with rural students.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
   {
     id: "sg-v5",
     type: "video",
     src: "https://files.catbox.moe/mz2ov5.MOV",
     alt: "Rural School Workshop Video 5",
-    title: "Classroom Interaction Highlight 5",
-    caption: "Session wrap-up and student reactions at Sri Girdhar Techno School.",
+    title: "Classroom Highlight 5",
+    caption: "Wrap up and student reactions at the close of the workshop.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
-    location: "Rural India",
   },
 ];
 
@@ -269,22 +243,20 @@ const ramKrishnaMedia: MediaItem[] = [
     type: "image",
     src: "/lovable-uploads/ram-krishna-school-1.jpg",
     alt: "Teaching at Ram Krishna Dwarika School",
-    title: "Classroom Financial Seminar",
-    caption: "Delivering Spendora's personal finance and budgeting curriculum to high school students in Patna.",
+    title: "Classroom Seminar",
+    caption: "Teaching budgeting and savings fundamentals to high school students in Patna.",
     section: "india",
     schoolOrSession: "Ram Krishna Dwarika School",
-    location: "Patna, Bihar, India",
   },
   {
     id: "rk-2",
     type: "image",
     src: "/lovable-uploads/ram-krishna-school-2.jpg",
     alt: "Students learning at Ram Krishna School",
-    title: "Interactive Classroom Group",
-    caption: "Students actively following the presentation on saving vs. investing fundamentals.",
+    title: "Interactive Discussion",
+    caption: "Students working through examples on saving money versus investing early.",
     section: "india",
     schoolOrSession: "Ram Krishna Dwarika School",
-    location: "Patna, Bihar, India",
   },
 ];
 
@@ -295,87 +267,79 @@ const localSession1Media: MediaItem[] = [
     src: "/lovable-uploads/857218ea-0cf3-4f24-8242-23e038e71457.png",
     alt: "Students learning about investing origins",
     title: "Origins of Stock Markets",
-    caption: "Explaining historical origins of stock trading, shares, and how public capital markets function.",
+    caption: "Explaining the history of public exchanges, shares, and how companies raise capital.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc1-2",
     type: "image",
     src: "/lovable-uploads/672fa77a-f981-49c2-b3ad-9ad462f1fb41.png",
     alt: "Presenter explaining financial charts",
-    title: "Reading Market Charts & Trends",
-    caption: "Live walkthrough of index funds, market cycles, and historical average returns.",
+    title: "Reading Stock Charts",
+    caption: "Walking through index funds, historical returns, and long term market cycles.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc1-3",
     type: "image",
     src: "/lovable-uploads/43ffa40d-8361-401a-a4ef-2251c466a8f4.png",
     alt: "Interactive discussion about investments",
-    title: "Student Investment Discussion",
-    caption: "Collaborative discussion on stocks, mutual funds, and risk management strategies.",
+    title: "Student Group Discussion",
+    caption: "Students discussing index funds, diversification, and investment horizons.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc1-4",
     type: "image",
     src: "/lovable-uploads/94b78fc9-f062-40b5-8e2e-977da26afeda.png",
     alt: "Setting up investment accounts",
-    title: "Setting Up Custodial Accounts",
-    caption: "Step-by-step guidance on how teens and parents open beginner investment accounts.",
+    title: "Setting Up Accounts",
+    caption: "Practical walkthrough on how high school students and parents open custodial accounts.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc1-5",
     type: "image",
     src: "/lovable-uploads/a9c673d3-410d-4593-a415-f9eaa6efbe74.png",
     alt: "Learning key economic terms",
-    title: "Core Economic & Wealth Terms",
-    caption: "Unpacking inflation, dividend yields, expense ratios, and asset allocation.",
+    title: "Key Financial Terms",
+    caption: "Explaining inflation, dividend yields, expense ratios, and asset allocation.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc1-6",
     type: "image",
     src: "/lovable-uploads/682cf84a-b680-4189-93ca-96be9f9ece99.png",
     alt: "Spendora's mission presentation",
-    title: "Spendora Mission & Vision",
-    caption: "Presenting Spendora's mission to bridge the financial knowledge gap for high schoolers.",
+    title: "Spendora Mission Overview",
+    caption: "Sharing the founding story and why student to student teaching works best.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc1-7",
     type: "image",
     src: "/lovable-uploads/9937f5f7-ec84-4a99-8719-715f1a743b92.png",
     alt: "Workshop conclusion",
-    title: "Session Wrap-Up & Worksheets",
-    caption: "Students completing workshop summary sheets and practical investment exercises.",
+    title: "Worksheet Exercise",
+    caption: "Students completing hands-on worksheets at the conclusion of Session 1.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc1-8",
     type: "image",
     src: "/lovable-uploads/eabd20b0-ff60-4809-b6ca-6ef2878b3576.png",
     alt: "Learning about compound interest",
-    title: "Power of Compound Interest",
-    caption: "Visualizing the long-term difference between saving cash vs investing early in compound assets.",
+    title: "Compound Growth Math",
+    caption: "Visualizing the math behind compound interest when starting in your teens.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
 ];
 
@@ -385,11 +349,10 @@ const localSession2Media: MediaItem[] = [
     type: "image",
     src: "/lovable-uploads/1ee41063-a95d-4cb9-bcfd-ed9961525b86.png",
     alt: "Session 2 - Saving vs Investing",
-    title: "Saving vs. Investing Framework",
-    caption: "Analyzing liquidity, emergency reserves, high-yield savings accounts, and investment horizons.",
+    title: "Saving vs Investing Framework",
+    caption: "Comparing liquidity, emergency cash reserves, and long term investments.",
     section: "local",
     schoolOrSession: "Session 2: Saving vs Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc2-2",
@@ -397,32 +360,29 @@ const localSession2Media: MediaItem[] = [
     src: "/lovable-uploads/7695d299-bbc3-48ce-a41e-954300708ffa.png",
     alt: "Session 2 - Students engaged",
     title: "Budgeting Case Studies",
-    caption: "Students working through real-world scenarios on budgeting teen income and savings goals.",
+    caption: "Evaluating realistic monthly budgeting scenarios for part-time student income.",
     section: "local",
     schoolOrSession: "Session 2: Saving vs Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc2-3",
     type: "image",
     src: "/lovable-uploads/4089050e-e0a8-4630-9c75-511673fd035d.png",
     alt: "Session 2 - Interactive session",
-    title: "Hands-on Financial Exercises",
-    caption: "Group interactive session comparing 50/30/20 budgeting rule with smart investing habits.",
+    title: "Hands-on Calculations",
+    caption: "Applying the 50/30/20 budgeting rule to student earnings and goals.",
     section: "local",
     schoolOrSession: "Session 2: Saving vs Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc2-4",
     type: "image",
     src: "/lovable-uploads/0665f9c3-339d-4e49-bfc4-d6d00b95d8e6.png",
     alt: "Session 2 - Group discussion",
-    title: "Strategy & Roth IRA Planning",
-    caption: "Exploring tax-advantaged accounts like Roth IRAs and simple index portfolio allocations.",
+    title: "Roth IRA Planning",
+    caption: "Discussing tax-advantaged accounts like Roth IRAs and index portfolios.",
     section: "local",
     schoolOrSession: "Session 2: Saving vs Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc2-v1",
@@ -430,21 +390,19 @@ const localSession2Media: MediaItem[] = [
     src: "https://files.catbox.moe/b7vufo.MOV",
     alt: "Session 2 Video 1",
     title: "Risk Analysis Lecture",
-    caption: "Live video highlight explaining risk vs. reward trade-offs and market volatility.",
+    caption: "Live video highlight explaining risk versus reward trade-offs to attendees.",
     section: "local",
     schoolOrSession: "Session 2: Saving vs Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
   {
     id: "loc2-v2",
     type: "video",
     src: "https://files.catbox.moe/o5monx.MOV",
     alt: "Session 2 Video 2",
-    title: "Interactive Student Q&A",
-    caption: "Live video answering student questions regarding index funds and high-yield savings.",
+    title: "Student Q&A Session",
+    caption: "Live video answering questions on index funds and high-yield savings accounts.",
     section: "local",
     schoolOrSession: "Session 2: Saving vs Investing",
-    location: "R.H. Stafford Library, Woodbury, MN",
   },
 ];
 
@@ -465,6 +423,7 @@ const Gallery = () => {
     document.title = "Workshop Gallery | Spendora";
   }, []);
 
+  // Handle URL hash navigation without breaking scroll position
   useEffect(() => {
     if (!location.hash) return;
     const hash = location.hash.replace("#", "");
@@ -546,11 +505,23 @@ const Gallery = () => {
     });
   };
 
+  // Safe jump navigation: ensures proper tab is active, then scrolls smoothly
+  const jumpToSection = (sectionId: string, tab: TabType) => {
+    setActiveTab(tab);
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 50);
+  };
+
   const totalLocalCount = localSession1Media.length + localSession2Media.length;
   const totalIndiaCount =
     doonSchoolMedia.length + sriGirdharMedia.length + ramKrishnaMedia.length;
   const totalItemsCount = totalLocalCount + totalIndiaCount;
 
+  // Clean, efficient card render: focuses on what the item shows without repeating the city/address
   const renderMediaGrid = (items: MediaItem[]) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {items.map((item, idx) => (
@@ -567,9 +538,9 @@ const Gallery = () => {
                 src={item.src}
                 alt={item.alt}
                 loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300 ease-out"
+                className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300 ease-out"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-200 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200 flex items-center justify-center">
                 <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-2 rounded-full bg-black/75 text-white backdrop-blur-sm">
                   <Maximize2 className="w-4 h-4" />
                 </span>
@@ -599,27 +570,21 @@ const Gallery = () => {
               <h4 className="text-sm font-bold text-slate-900 dark:text-white font-manrope line-clamp-1 mb-1">
                 {item.title}
               </h4>
-              {item.caption && (
-                <p className="text-xs text-slate-600 dark:text-zinc-400 font-medium line-clamp-2 leading-relaxed mb-3">
-                  {item.caption}
-                </p>
-              )}
+              <p className="text-xs text-slate-600 dark:text-zinc-400 font-medium line-clamp-2 leading-relaxed mb-3">
+                {item.caption}
+              </p>
             </div>
 
             <div className="pt-2 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-[11px] font-semibold text-slate-500 dark:text-zinc-500">
-              <span className="truncate max-w-[200px]">{item.location}</span>
-              {item.type === "image" ? (
-                <button
-                  onClick={() => openLightbox(items, idx)}
-                  className="text-emerald-700 dark:text-emerald-400 hover:underline inline-flex items-center gap-1 shrink-0 cursor-pointer"
-                >
-                  <span>Expand</span>
-                </button>
-              ) : (
-                <span className="text-emerald-700 dark:text-emerald-400 inline-flex items-center gap-1 shrink-0 font-bold">
-                  <Play className="w-2.5 h-2.5 fill-current" /> Video
-                </span>
-              )}
+              <span className="text-slate-400 dark:text-zinc-500">
+                {item.type === "image" ? "Photo" : "Video Recording"}
+              </span>
+              <button
+                onClick={() => openLightbox(items, idx)}
+                className="text-emerald-700 dark:text-emerald-400 hover:underline inline-flex items-center gap-1 shrink-0 cursor-pointer"
+              >
+                <span>{item.type === "image" ? "Expand" : "Play Fullscreen"}</span>
+              </button>
             </div>
           </div>
         </div>
@@ -630,7 +595,7 @@ const Gallery = () => {
   return (
     <div className="relative z-10 min-h-screen pt-28 pb-20 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Navigation & Header */}
+        {/* Top Link */}
         <button
           onClick={() => navigate("/")}
           className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
@@ -638,74 +603,78 @@ const Gallery = () => {
           <ArrowLeft className="w-4 h-4" /> Back to Home
         </button>
 
-        <div className="mb-12">
+        <div className="mb-10">
           <h1 className="text-4xl sm:text-5xl font-extrabold font-manrope tracking-tight text-slate-900 dark:text-white mb-3">
             Workshop Gallery
           </h1>
           <p className="text-base text-slate-600 dark:text-zinc-400 max-w-2xl font-medium">
-            Documenting student financial literacy workshops across Minnesota and partner classrooms in India.
+            Photos and video highlights from our student workshops in Minnesota and partner schools in India.
           </p>
         </div>
 
-        {/* Region Segmented Switcher */}
-        <div className="flex flex-wrap items-center gap-2 mb-12 pb-4 border-b border-slate-200/80 dark:border-white/10">
-          <button
-            onClick={() => setActiveTab("all")}
-            className={`px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer flex items-center gap-2 ${
-              activeTab === "all"
-                ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900"
-                : "bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-800"
-            }`}
-          >
-            <span>All Workshops</span>
-            <span className="text-[10px] tabular-nums opacity-70">({totalItemsCount})</span>
-          </button>
+        {/* Region Filter Tabs (Pure In-Place Filter without Erratic Jumps) */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-12 pb-4 border-b border-slate-200/80 dark:border-white/10">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setActiveTab("all")}
+              className={`px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer flex items-center gap-2 ${
+                activeTab === "all"
+                  ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900"
+                  : "bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-800"
+              }`}
+            >
+              <span>All Workshops</span>
+              <span className="text-[10px] tabular-nums opacity-70">({totalItemsCount})</span>
+            </button>
 
-          <button
-            onClick={() => {
-              setActiveTab("local");
-              const el = document.getElementById("local");
-              if (el) el.scrollIntoView({ behavior: "smooth" });
-            }}
-            className={`px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer flex items-center gap-2 ${
-              activeTab === "local"
-                ? "bg-emerald-800 text-white dark:bg-emerald-700"
-                : "bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-800"
-            }`}
-          >
-            <span>Minnesota (Local)</span>
-            <span className="text-[10px] tabular-nums opacity-70">({totalLocalCount})</span>
-          </button>
+            <button
+              onClick={() => setActiveTab("local")}
+              className={`px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer flex items-center gap-2 ${
+                activeTab === "local"
+                  ? "bg-emerald-800 text-white dark:bg-emerald-700"
+                  : "bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-800"
+              }`}
+            >
+              <span>Minnesota (Local)</span>
+              <span className="text-[10px] tabular-nums opacity-70">({totalLocalCount})</span>
+            </button>
 
-          <button
-            onClick={() => {
-              setActiveTab("india");
-              const el = document.getElementById("india");
-              if (el) el.scrollIntoView({ behavior: "smooth" });
-            }}
-            className={`px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer flex items-center gap-2 ${
-              activeTab === "india"
-                ? "bg-emerald-800 text-white dark:bg-emerald-700"
-                : "bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-800"
-            }`}
-          >
-            <span>India (International)</span>
-            <span className="text-[10px] tabular-nums opacity-70">({totalIndiaCount})</span>
-          </button>
+            <button
+              onClick={() => setActiveTab("india")}
+              className={`px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer flex items-center gap-2 ${
+                activeTab === "india"
+                  ? "bg-emerald-800 text-white dark:bg-emerald-700"
+                  : "bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-800"
+              }`}
+            >
+              <span>India (International)</span>
+              <span className="text-[10px] tabular-nums opacity-70">({totalIndiaCount})</span>
+            </button>
+          </div>
 
-          <div className="ml-auto text-xs text-slate-500 dark:text-zinc-400 font-medium hidden md:flex items-center gap-2">
-            <span>Jump to:</span>
-            <a href="#doon-school" className="hover:text-emerald-700 dark:hover:text-emerald-400 underline">
+          {/* Quick jump anchors that smoothly scroll to target */}
+          <div className="text-xs text-slate-500 dark:text-zinc-400 font-medium flex items-center gap-3">
+            <span className="opacity-70">Jump to:</span>
+            <button
+              onClick={() => jumpToSection("doon-school", "india")}
+              className="hover:text-emerald-700 dark:hover:text-emerald-400 underline cursor-pointer"
+            >
               Doon Public School
-            </a>
+            </button>
             <span>•</span>
-            <a href="#session-1" className="hover:text-emerald-700 dark:hover:text-emerald-400 underline">
+            <button
+              onClick={() => jumpToSection("session-1", "local")}
+              className="hover:text-emerald-700 dark:hover:text-emerald-400 underline cursor-pointer"
+            >
               Session 1
-            </a>
+            </button>
             <span>•</span>
-            <a href="#session-2" className="hover:text-emerald-700 dark:hover:text-emerald-400 underline">
+            <button
+              onClick={() => jumpToSection("session-2", "local")}
+              className="hover:text-emerald-700 dark:hover:text-emerald-400 underline cursor-pointer"
+            >
               Session 2
-            </a>
+            </button>
           </div>
         </div>
 
@@ -744,7 +713,7 @@ const Gallery = () => {
                     Sector - 21, Panchkula, Haryana, India • Classes XI & XII (250+ Students)
                   </div>
                   <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 font-medium mt-3 max-w-3xl leading-relaxed">
-                    Financial Literacy Programme: Empowering Young Minds with Essential Money Skills — In Collaboration with Spendora. Presentation covering risk-return curves, compounding math, and custodial accounts delivered to senior secondary students in the school auditorium.
+                    Financial Literacy Programme: Empowering Young Minds with Essential Money Skills, presented with Spendora. Presentation covering risk-return curves, compounding math, and custodial accounts delivered to senior secondary students in the school auditorium.
                   </p>
                 </div>
 
@@ -990,10 +959,11 @@ const Gallery = () => {
                   {lightboxState.items[lightboxState.currentIndex].caption}
                 </p>
               )}
-              <div className="text-[11px] text-zinc-400 font-medium mt-1.5">
-                {lightboxState.items[lightboxState.currentIndex].location}
-                {lightboxState.items[lightboxState.currentIndex].date && ` • ${lightboxState.items[lightboxState.currentIndex].date}`}
-              </div>
+              {lightboxState.items[lightboxState.currentIndex].date && (
+                <div className="text-[11px] text-zinc-400 font-medium mt-1.5">
+                  {lightboxState.items[lightboxState.currentIndex].schoolOrSession} • {lightboxState.items[lightboxState.currentIndex].date}
+                </div>
+              )}
             </div>
           </div>
         </div>

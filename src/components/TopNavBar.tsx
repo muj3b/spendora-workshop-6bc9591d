@@ -154,9 +154,24 @@ const TopNavBar = () => {
                 </div>
               </div>
               <div className="pt-6 border-t border-slate-200 dark:border-white/10">
-                <button onClick={() => { window.open('https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', '_blank'); setMenuOpen(false); }} className="w-full py-3 px-4 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-800 dark:text-white border border-slate-200 dark:border-white/10 rounded-lg text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
-                  <Instagram className="h-4 w-4" /> Follow on Instagram
-                </button>
+                <a
+                  href="https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full p-3.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold text-sm transition-all active:scale-[0.98] flex items-center justify-between shadow-md group cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-pink-500/20 dark:bg-pink-500/15 text-pink-500 dark:text-pink-600">
+                      <Instagram className="h-5 w-5" />
+                    </div>
+                    <div className="text-left">
+                      <div className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-bold">Official Instagram</div>
+                      <div className="font-extrabold text-sm">@spendora.erhs</div>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform opacity-70" />
+                </a>
               </div>
             </div>
           </div>
