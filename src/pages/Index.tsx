@@ -2,13 +2,25 @@ import { useEffect, lazy, Suspense } from "react";
 import Hero from "@/components/Hero";
 
 const AboutSpendora = lazy(() => import("@/components/AboutSpendora"));
+const PressSection = lazy(() => import("@/components/PressSection"));
+const PartnersSection = lazy(() => import("@/components/PartnersSection"));
 const MeetTheTeam = lazy(() => import("@/components/MeetTheTeam"));
 const WorkshopSchedule = lazy(() => import("@/components/WorkshopSchedule"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (window.location.hash) {
+      const el = document.getElementById(window.location.hash.replace('#', ''));
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+
     document.title = "Spendora Financial Literacy Workshop";
     const desc = "Free student-led financial literacy workshop: budgeting, stocks, crypto, online business. Join Spendora.";
     let meta = document.querySelector('meta[name="description"]');
@@ -34,6 +46,12 @@ const Index = () => {
       <Suspense fallback={<div className="h-48" />}>
         <div id="about-spendora">
           <AboutSpendora />
+        </div>
+        <div id="press">
+          <PressSection />
+        </div>
+        <div id="partners">
+          <PartnersSection />
         </div>
         <div id="workshop-schedule">
           <WorkshopSchedule />

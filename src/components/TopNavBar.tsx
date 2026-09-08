@@ -13,7 +13,9 @@ const TopNavBar = () => {
     { label: "Workshop", href: "/#workshop-schedule" },
     { label: "About", href: "/#about-spendora" },
     { label: "Gallery", href: "/gallery" },
-    { label: "Audiobook", href: "/audiobook" },
+    { label: "Audio Course", href: "/audiobook" },
+    { label: "Partners", href: "/#partners" },
+    { label: "Press", href: "/#press" },
     { label: "Donate", href: "/donate" },
   ];
 
@@ -34,8 +36,8 @@ const TopNavBar = () => {
       <header className={`fixed top-0 left-0 w-full z-50 px-4 transition-all duration-500 ease-in-out ${scrolled ? 'pt-3' : 'pt-4 md:pt-6'}`}>
         <nav className={`mx-auto flex items-center justify-between backdrop-blur-xl rounded-full transition-all duration-500 ease-in-out ${
           scrolled 
-            ? 'max-w-4xl px-5 py-2 bg-white/95 dark:bg-black/90 border border-slate-300 dark:border-white/20 shadow-2xl' 
-            : 'max-w-5xl px-6 py-3.5 bg-white/80 dark:bg-black/70 border border-slate-200/80 dark:border-white/10 shadow-lg'
+            ? 'max-w-5xl px-5 py-2 bg-white/95 dark:bg-black/90 border border-slate-300 dark:border-white/20 shadow-2xl' 
+            : 'max-w-6xl px-6 py-3.5 bg-white/80 dark:bg-black/70 border border-slate-200/80 dark:border-white/10 shadow-lg'
         }`}>
           <Link to="/" className="flex items-center gap-2.5 group shrink-0">
             <img src="/logo-icon.png" alt="Spendora" className={`w-auto group-hover:scale-105 transition-all duration-300 ${scrolled ? 'h-7' : 'h-8'}`} />
@@ -43,12 +45,12 @@ const TopNavBar = () => {
           </Link>
 
           {/* Compact Nav Links. Stays visible when scrolled. */}
-          <div className={`hidden md:flex items-center transition-all duration-500 ease-in-out ${scrolled ? 'gap-4 lg:gap-6' : 'gap-7'}`}>
+          <div className={`hidden md:flex items-center transition-all duration-500 ease-in-out ${scrolled ? 'gap-3 lg:gap-5' : 'gap-4 lg:gap-6'}`}>
             {mainNav.map((item) => (
               item.href.startsWith('/') && !item.href.includes('#') ? (
-                <Link key={item.label} to={item.href} className={`font-semibold text-slate-600 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-white transition-all duration-300 ${scrolled ? 'text-xs' : 'text-sm'}`}>{item.label}</Link>
+                <Link key={item.label} to={item.href} className={`font-semibold text-slate-600 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-white transition-all duration-300 ${scrolled ? 'text-xs' : 'text-xs lg:text-sm'}`}>{item.label}</Link>
               ) : (
-                <a key={item.label} href={item.href} className={`font-semibold text-slate-600 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-white transition-all duration-300 ${scrolled ? 'text-xs' : 'text-sm'}`}>{item.label}</a>
+                <a key={item.label} href={item.href} className={`font-semibold text-slate-600 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-white transition-all duration-300 ${scrolled ? 'text-xs' : 'text-xs lg:text-sm'}`}>{item.label}</a>
               )
             ))}
           </div>

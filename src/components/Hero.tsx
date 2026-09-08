@@ -32,7 +32,7 @@ const Hero = memo(() => {
       {/* Hero Header */}
       <div className="relative z-10 min-h-[85vh] flex flex-col items-center justify-center pt-32 pb-16 px-6">
         <div className="text-center max-w-5xl mx-auto">
-          <div className="flex flex-col items-center gap-3.5 mb-8">
+          <div className="flex flex-col items-center gap-3 mb-6">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/80 dark:bg-white/5 border border-emerald-200 dark:border-white/10 backdrop-blur-md animate-fade-up shadow-sm">
               <span className="relative flex h-2 w-2">
@@ -42,6 +42,15 @@ const Hero = memo(() => {
               <span className="text-xs font-bold text-emerald-900 dark:text-emerald-100/90 tracking-wide font-manrope">Student-Led Financial Literacy</span>
             </div>
 
+            {/* Press Badge */}
+            <a
+              href="#press"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200/80 dark:border-blue-800/60 text-blue-700 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-all text-xs font-semibold shadow-xs group"
+            >
+              <span className="font-extrabold uppercase tracking-wider text-[10px] px-2 py-0.5 rounded-full bg-blue-600 text-white">In the News</span>
+              <span className="truncate max-w-[260px] sm:max-w-none">Featured in Woodbury News Net: Three ERHS Students Create Financial Literacy Initiative</span>
+              <ArrowRight className="w-3 h-3 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+            </a>
           </div>
 
           {/* Main Headline */}
@@ -83,14 +92,14 @@ const Hero = memo(() => {
           <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             <button onClick={() => navigate('/gallery#indian-school')} className="group cursor-pointer">
               <div className="text-4xl md:text-5xl font-black text-emerald-700 dark:text-[#52b788] font-manrope tabular-nums">2,000+</div>
-              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Reached in India</div>
-              <div className="text-xs text-slate-500 dark:text-zinc-500">Rural school workshops</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Reached Internationally</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Rural India school workshops</div>
               <div className="text-xs font-bold text-emerald-600 dark:text-[#52b788] mt-1.5 group-hover:underline">View gallery →</div>
             </button>
             <div>
               <div className="text-4xl md:text-5xl font-black text-emerald-700 dark:text-[#52b788] font-manrope tabular-nums">300+</div>
               <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Students Locally</div>
-              <div className="text-xs text-slate-500 dark:text-zinc-500">Workshops & events</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Minnesota workshops & events</div>
             </div>
             <div>
               <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">3</div>
@@ -98,9 +107,9 @@ const Hero = memo(() => {
               <div className="text-xs text-slate-500 dark:text-zinc-500">Teaching financial literacy</div>
             </div>
             <div>
-              <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">15+</div>
-              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Topics</div>
-              <div className="text-xs text-slate-500 dark:text-zinc-500">Covered</div>
+              <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white font-manrope tabular-nums">8</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Course Modules</div>
+              <div className="text-xs text-slate-500 dark:text-zinc-500">Free audio course + quiz</div>
             </div>
           </div>
         </div>

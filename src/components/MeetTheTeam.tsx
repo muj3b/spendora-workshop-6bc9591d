@@ -27,8 +27,8 @@ const MeetTheTeam = () => {
     },
     {
       name: "Neil Kaila",
-      expertise: "Stock Analysis & Investing",
-      bio: "Neil is a student investor who competed in the Wharton Investment Competition and made thousands of dollars through his investments. He's passionate about teaching students how to research, analyze, and confidently invest in stocks.",
+      expertise: "Stock Analysis & Portfolio Strategy",
+      bio: "Neil is a student investor with experience in stock analysis and portfolio strategy. He has competed in the Wharton Global High School Investment Competition on three occasions. Through Business Professionals of America, he won at the state level in Small Business Management and earned a regional placement in Personal Financial Management. He is passionate about helping students develop the skills to research, analyze, and invest with confidence.",
       icon: TrendingUp,
       linkedin: "https://www.linkedin.com/in/neil-k-33b468371/?skipRedirect=true",
     },
