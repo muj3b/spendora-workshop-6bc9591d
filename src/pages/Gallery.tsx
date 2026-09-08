@@ -1,14 +1,22 @@
-import { useState, useEffect, useCallback } from "react";
-import {
-  ArrowLeft,
-  Maximize2,
-  X,
-  ChevronLeft,
-  ChevronRight,
-  Play,
-  ExternalLink,
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { 
+  ArrowLeft, 
+  Play, 
+  Camera, 
+  Video, 
+  MapPin, 
+  Calendar, 
+  X, 
+  ChevronLeft, 
+  ChevronRight, 
+  Maximize2, 
+  Sparkles, 
+  Globe, 
+  Building2,
+  ArrowRight,
+  Filter
 } from "lucide-react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 interface MediaItem {
   id: string;
@@ -19,11 +27,22 @@ interface MediaItem {
   caption: string;
   section: "local" | "india";
   schoolOrSession: string;
-  date?: string;
+  date: string;
 }
 
 // Media Data
 const doonSchoolMedia: MediaItem[] = [
+  {
+    id: "doon-v1",
+    type: "video",
+    src: "https://files.catbox.moe/ueqz03.mp4",
+    alt: "Doon Public School Workshop Live Auditorium Session",
+    title: "Auditorium Live Highlights",
+    caption: "Live video recording of senior secondary students gathered in the auditorium during the financial literacy seminar in Panchkula, India.",
+    section: "india",
+    schoolOrSession: "Doon Public School",
+    date: "Sept 8, 2026",
+  },
   {
     id: "doon-1",
     type: "image",
@@ -61,9 +80,9 @@ const doonSchoolMedia: MediaItem[] = [
     id: "doon-4",
     type: "image",
     src: "/lovable-uploads/doon-school-4.jpg",
-    alt: "Students reviewing Risk Tolerance chart",
-    title: "Risk Tolerance Discussion",
-    caption: "Students analyzing the risk vs return curve shown on the auditorium screen.",
+    alt: "Interactive Discussion with Speaker",
+    title: "Interactive Discussion",
+    caption: "A student speaker engaging directly with the front rows on real-world compounding examples.",
     section: "india",
     schoolOrSession: "Doon Public School",
     date: "Sept 8, 2026",
@@ -72,9 +91,9 @@ const doonSchoolMedia: MediaItem[] = [
     id: "doon-5",
     type: "image",
     src: "/lovable-uploads/doon-school-5.jpg",
-    alt: "Auditorium Audience Engaged",
-    title: "Audience Perspective",
-    caption: "Students taking notes and following along with compound growth concepts.",
+    alt: "Auditorium Floor View During Workshop",
+    title: "Attentive Classroom Audience",
+    caption: "Wide shot showing the rows of high school students listening closely to the core investing modules.",
     section: "india",
     schoolOrSession: "Doon Public School",
     date: "Sept 8, 2026",
@@ -84,8 +103,8 @@ const doonSchoolMedia: MediaItem[] = [
     type: "image",
     src: "/lovable-uploads/doon-school-6.jpg",
     alt: "Classes XI and XII at Doon Public School",
-    title: "Hall Attendance",
-    caption: "Senior secondary students actively participating in practical finance discussions.",
+    title: "Auditorium Perspective",
+    caption: "Side balcony perspective of the full auditorium session in Panchkula.",
     section: "india",
     schoolOrSession: "Doon Public School",
     date: "Sept 8, 2026",
@@ -94,9 +113,9 @@ const doonSchoolMedia: MediaItem[] = [
     id: "doon-7",
     type: "image",
     src: "/lovable-uploads/doon-school-7.jpg",
-    alt: "Presentation delivery to senior students",
-    title: "Curriculum Delivery",
-    caption: "Walking students through smart saving habits, compounding, and opening beginner investment accounts.",
+    alt: "Auditorium Stage View",
+    title: "Workshop Stage View",
+    caption: "Overview from the back of the auditorium showing the projector screen and student participation.",
     section: "india",
     schoolOrSession: "Doon Public School",
     date: "Sept 8, 2026",
@@ -105,303 +124,332 @@ const doonSchoolMedia: MediaItem[] = [
 
 const sriGirdharMedia: MediaItem[] = [
   {
-    id: "sg-1",
+    id: "sri-girdhar-1",
     type: "image",
-    src: "/lovable-uploads/indian-school-1.jpg",
-    alt: "Teaching students at Sri Girdhar Techno School",
-    title: "Foundational Money Basics",
-    caption: "Introducing basic currency, budgeting, and savings concepts to rural school students.",
+    src: "/lovable-uploads/sri-girdhar-1.jpg",
+    alt: "Students holding Spendora financial certificates",
+    title: "Certificate Presentation",
+    caption: "Students proudly displaying their completed course certificates after the personal finance workshop.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-2",
+    id: "sri-girdhar-2",
     type: "image",
-    src: "/lovable-uploads/indian-school-2.jpg",
-    alt: "Students learning financial concepts in a rural classroom",
-    title: "Interactive Classroom Session",
-    caption: "Explaining how early saving builds long term financial security.",
+    src: "/lovable-uploads/sri-girdhar-2.jpg",
+    alt: "Classroom teaching session at Sri Girdhar Techno School",
+    title: "Classroom Instruction",
+    caption: "Interactive blackboard lesson breaking down how stocks, companies, and simple budgeting habits work.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-3",
+    id: "sri-girdhar-3",
     type: "image",
-    src: "/lovable-uploads/indian-school-3.jpg",
-    alt: "Interactive presentation at rural Indian school",
-    title: "Hands-on Discussion",
-    caption: "Students responding to questions about family budgeting and expenses.",
+    src: "/lovable-uploads/sri-girdhar-3.jpg",
+    alt: "Student group photo with instructor in classroom",
+    title: "Workshop Group Photo",
+    caption: "Classroom group portrait of students and session instructor following the budgeting segment.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-4",
+    id: "sri-girdhar-4",
     type: "image",
-    src: "/lovable-uploads/indian-school-4.jpg",
-    alt: "Engaged students at rural school",
-    title: "Active Learning",
-    caption: "Young learners participating in step by step personal finance exercises.",
+    src: "/lovable-uploads/sri-girdhar-4.jpg",
+    alt: "Students reviewing course materials at desks",
+    title: "Curriculum Review",
+    caption: "Students working through printed Spendora lesson handouts and practical exercises.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-5",
+    id: "sri-girdhar-5",
     type: "image",
-    src: "/lovable-uploads/indian-school-5.jpg",
-    alt: "Full rural classroom",
-    title: "Full Classroom Attendance",
-    caption: "A crowded classroom of students eager to understand basic personal finance.",
+    src: "/lovable-uploads/sri-girdhar-5.jpg",
+    alt: "Students seated at classroom desks during lecture",
+    title: "Lecture Session",
+    caption: "Students focused during the personal finance and savings concepts discussion.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-6",
+    id: "sri-girdhar-6",
     type: "image",
-    src: "/lovable-uploads/indian-school-6.jpg",
-    alt: "Financial literacy in progress at rural school",
-    title: "Curriculum in Action",
-    caption: "Breaking down financial habits into simple, practical everyday rules.",
+    src: "/lovable-uploads/sri-girdhar-6.jpg",
+    alt: "Instructor explaining financial literacy at whiteboard",
+    title: "Board Breakdown",
+    caption: "Instructor detailing compound interest and monthly savings allocations on the whiteboard.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-7",
+    id: "sri-girdhar-7",
     type: "image",
-    src: "/lovable-uploads/indian-school-7.jpg",
-    alt: "Students participating in rural workshop",
-    title: "Student Participation",
-    caption: "Students sharing their personal savings goals with the class.",
+    src: "/lovable-uploads/sri-girdhar-7.jpg",
+    alt: "Students holding certificates in classroom setting",
+    title: "Course Completion",
+    caption: "Celebrating student accomplishments with certificates recognizing their active participation.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-v1",
+    id: "sri-girdhar-v1",
     type: "video",
-    src: "/lovable-uploads/indian-school-video-1.mov",
-    alt: "Rural School Workshop Video 1",
-    title: "Classroom Highlight 1",
-    caption: "Video recording of students participating in money games and questions.",
+    src: "https://files.catbox.moe/p4b65x.mp4",
+    alt: "Students reviewing certificates on camera",
+    title: "Student Reactions",
+    caption: "Short video clip showing students sharing their excitement after completing the Spendora workshop.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-v2",
+    id: "sri-girdhar-v2",
     type: "video",
-    src: "https://files.catbox.moe/my1k56.MOV",
-    alt: "Rural School Workshop Video 2",
-    title: "Classroom Highlight 2",
-    caption: "Students answering questions about money basics and household budgeting.",
+    src: "https://files.catbox.moe/5v4pve.mp4",
+    alt: "Live classroom financial literacy session clip",
+    title: "Live Classroom Session",
+    caption: "Footage of active teaching in session with students following along on the board.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-v3",
+    id: "sri-girdhar-v3",
     type: "video",
-    src: "https://files.catbox.moe/xxvohu.MOV",
-    alt: "Rural School Workshop Video 3",
-    title: "Classroom Highlight 3",
-    caption: "Demonstrating how setting aside small amounts regularly adds up over time.",
+    src: "https://files.catbox.moe/lcecw2.mp4",
+    alt: "Classroom presentation video clip",
+    title: "Curriculum Walkthrough",
+    caption: "Instructor explaining real-life budgeting examples and answering questions from the room.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-v4",
+    id: "sri-girdhar-v4",
     type: "video",
-    src: "https://files.catbox.moe/p5qi4y.MOV",
-    alt: "Rural School Workshop Video 4",
-    title: "Classroom Highlight 4",
-    caption: "Interactive question and answer session with rural students.",
+    src: "https://files.catbox.moe/j91g88.mp4",
+    alt: "Workshop discussion video clip",
+    title: "Group Activity Clip",
+    caption: "Quick clip of students discussing savings targets in small teams.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
   {
-    id: "sg-v5",
+    id: "sri-girdhar-v5",
     type: "video",
-    src: "https://files.catbox.moe/mz2ov5.MOV",
-    alt: "Rural School Workshop Video 5",
-    title: "Classroom Highlight 5",
-    caption: "Wrap up and student reactions at the close of the workshop.",
+    src: "https://files.catbox.moe/5144b6.mp4",
+    alt: "Post-session student celebration clip",
+    title: "Celebration Clip",
+    caption: "Students celebrating the end of the module with their instructor.",
     section: "india",
     schoolOrSession: "Sri Girdhar Techno School",
+    date: "Oct 2024",
   },
 ];
 
 const ramKrishnaMedia: MediaItem[] = [
   {
-    id: "rk-1",
+    id: "ram-krishna-1",
     type: "image",
-    src: "/lovable-uploads/ram-krishna-school-1.jpg",
-    alt: "Teaching at Ram Krishna Dwarika School",
-    title: "Classroom Seminar",
-    caption: "Teaching budgeting and savings fundamentals to high school students in Patna.",
+    src: "/lovable-uploads/ram-krishna-1.jpg",
+    alt: "Students holding certificates with school leadership",
+    title: "Certificate Award Ceremony",
+    caption: "Students and administration commemorating the successful completion of the financial literacy workshop in Patna, Bihar.",
     section: "india",
     schoolOrSession: "Ram Krishna Dwarika School",
+    date: "Nov 2024",
   },
   {
-    id: "rk-2",
+    id: "ram-krishna-2",
     type: "image",
-    src: "/lovable-uploads/ram-krishna-school-2.jpg",
-    alt: "Students learning at Ram Krishna School",
-    title: "Interactive Discussion",
-    caption: "Students working through examples on saving money versus investing early.",
+    src: "/lovable-uploads/ram-krishna-2.jpg",
+    alt: "Instructor presenting lesson at whiteboard in Patna",
+    title: "Interactive Classroom Seminar",
+    caption: "Hands-on instruction introducing the fundamentals of saving, budgeting, and long-term asset building.",
     section: "india",
     schoolOrSession: "Ram Krishna Dwarika School",
+    date: "Nov 2024",
   },
 ];
 
 const localSession1Media: MediaItem[] = [
   {
-    id: "loc1-1",
+    id: "session-1-1",
     type: "image",
-    src: "/lovable-uploads/857218ea-0cf3-4f24-8242-23e038e71457.png",
-    alt: "Students learning about investing origins",
-    title: "Origins of Stock Markets",
-    caption: "Explaining the history of public exchanges, shares, and how companies raise capital.",
+    src: "/lovable-uploads/session-1-1.jpg",
+    alt: "Founders presenting at R.H. Stafford Library",
+    title: "Session 1 Kickoff",
+    caption: "Mujeeb, Harshad, and Neil welcoming students to the inaugural workshop at the R.H. Stafford Library in Woodbury, MN.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
+    date: "July 2024",
   },
   {
-    id: "loc1-2",
+    id: "session-1-2",
     type: "image",
-    src: "/lovable-uploads/672fa77a-f981-49c2-b3ad-9ad462f1fb41.png",
-    alt: "Presenter explaining financial charts",
-    title: "Reading Stock Charts",
-    caption: "Walking through index funds, historical returns, and long term market cycles.",
+    src: "/lovable-uploads/session-1-2.jpg",
+    alt: "Student team collaborating on trading simulation",
+    title: "Interactive Trading Game",
+    caption: "Students testing their market instincts in real time using paper-trading allocations.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
+    date: "July 2024",
   },
   {
-    id: "loc1-3",
+    id: "session-1-3",
     type: "image",
-    src: "/lovable-uploads/43ffa40d-8361-401a-a4ef-2251c466a8f4.png",
-    alt: "Interactive discussion about investments",
-    title: "Student Group Discussion",
-    caption: "Students discussing index funds, diversification, and investment horizons.",
+    src: "/lovable-uploads/session-1-3.jpg",
+    alt: "Founders guiding students through stock chart analysis",
+    title: "Stock Chart Walkthrough",
+    caption: "Breaking down candlestick charts, market caps, and what moves price action day to day.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
+    date: "July 2024",
   },
   {
-    id: "loc1-4",
+    id: "session-1-4",
     type: "image",
-    src: "/lovable-uploads/94b78fc9-f062-40b5-8e2e-977da26afeda.png",
-    alt: "Setting up investment accounts",
-    title: "Setting Up Accounts",
-    caption: "Practical walkthrough on how high school students and parents open custodial accounts.",
+    src: "/lovable-uploads/session-1-4.jpg",
+    alt: "Hands-on portfolio building session",
+    title: "Portfolio Workshop",
+    caption: "Students choosing diversified index funds and learning the difference between stocks and ETFs.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
+    date: "July 2024",
   },
   {
-    id: "loc1-5",
+    id: "session-1-5",
     type: "image",
-    src: "/lovable-uploads/a9c673d3-410d-4593-a415-f9eaa6efbe74.png",
-    alt: "Learning key economic terms",
-    title: "Key Financial Terms",
-    caption: "Explaining inflation, dividend yields, expense ratios, and asset allocation.",
+    src: "/lovable-uploads/session-1-5.jpg",
+    alt: "Classroom overview during Session 1 lecture",
+    title: "Classroom Discussion",
+    caption: "Full room at R.H. Stafford Library reviewing the power of compound interest and time horizons.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
+    date: "July 2024",
   },
   {
-    id: "loc1-6",
+    id: "session-1-6",
     type: "image",
-    src: "/lovable-uploads/682cf84a-b680-4189-93ca-96be9f9ece99.png",
-    alt: "Spendora's mission presentation",
-    title: "Spendora Mission Overview",
-    caption: "Sharing the founding story and why student to student teaching works best.",
+    src: "/lovable-uploads/session-1-6.jpg",
+    alt: "Small group mentoring with Spendora founders",
+    title: "1-on-1 Mentoring",
+    caption: "Founders answering specific questions about custodial accounts and getting started before 18.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
+    date: "July 2024",
   },
   {
-    id: "loc1-7",
+    id: "session-1-7",
     type: "image",
-    src: "/lovable-uploads/9937f5f7-ec84-4a99-8719-715f1a743b92.png",
-    alt: "Workshop conclusion",
-    title: "Worksheet Exercise",
-    caption: "Students completing hands-on worksheets at the conclusion of Session 1.",
+    src: "/lovable-uploads/session-1-7.jpg",
+    alt: "Student reviewing printed budgeting worksheet",
+    title: "Practical Exercises",
+    caption: "Students filling out their first real monthly cash flow and saving sheets.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
+    date: "July 2024",
   },
   {
-    id: "loc1-8",
+    id: "session-1-8",
     type: "image",
-    src: "/lovable-uploads/eabd20b0-ff60-4809-b6ca-6ef2878b3576.png",
-    alt: "Learning about compound interest",
-    title: "Compound Growth Math",
-    caption: "Visualizing the math behind compound interest when starting in your teens.",
+    src: "/lovable-uploads/session-1-8.jpg",
+    alt: "End-of-session group photo at R.H. Stafford Library",
+    title: "Session 1 Cohort",
+    caption: "The first cohort of Woodbury students completing the Intro to Investing workshop.",
     section: "local",
     schoolOrSession: "Session 1: Intro to Investing",
+    date: "July 2024",
   },
 ];
 
 const localSession2Media: MediaItem[] = [
   {
-    id: "loc2-1",
+    id: "session-2-1",
     type: "image",
-    src: "/lovable-uploads/1ee41063-a95d-4cb9-bcfd-ed9961525b86.png",
-    alt: "Session 2 - Saving vs Investing",
-    title: "Saving vs Investing Framework",
-    caption: "Comparing liquidity, emergency cash reserves, and long term investments.",
+    src: "/lovable-uploads/session-2-1.jpg",
+    alt: "Session 2 presentation on saving vs investing",
+    title: "Saving vs Investing",
+    caption: "Exploring when cash in a high-yield savings account makes sense compared to index funds.",
     section: "local",
-    schoolOrSession: "Session 2: Saving vs Investing",
+    schoolOrSession: "Session 2: Saving vs. Investing",
+    date: "Aug 2024",
   },
   {
-    id: "loc2-2",
+    id: "session-2-2",
     type: "image",
-    src: "/lovable-uploads/7695d299-bbc3-48ce-a41e-954300708ffa.png",
-    alt: "Session 2 - Students engaged",
+    src: "/lovable-uploads/session-2-2.jpg",
+    alt: "Students examining Roth IRA and compound growth models",
+    title: "Roth IRA Deep Dive",
+    caption: "Walking through how tax-free growth in a Roth IRA can compound over 40 years.",
+    section: "local",
+    schoolOrSession: "Session 2: Saving vs. Investing",
+    date: "Aug 2024",
+  },
+  {
+    id: "session-2-3",
+    type: "image",
+    src: "/lovable-uploads/session-2-3.jpg",
+    alt: "Team case study on teenage budgeting challenges",
     title: "Budgeting Case Studies",
-    caption: "Evaluating realistic monthly budgeting scenarios for part-time student income.",
+    caption: "Solving realistic high school money scenarios: car insurance, gas, eating out, and saving.",
     section: "local",
-    schoolOrSession: "Session 2: Saving vs Investing",
+    schoolOrSession: "Session 2: Saving vs. Investing",
+    date: "Aug 2024",
   },
   {
-    id: "loc2-3",
+    id: "session-2-4",
     type: "image",
-    src: "/lovable-uploads/4089050e-e0a8-4630-9c75-511673fd035d.png",
-    alt: "Session 2 - Interactive session",
-    title: "Hands-on Calculations",
-    caption: "Applying the 50/30/20 budgeting rule to student earnings and goals.",
+    src: "/lovable-uploads/session-2-4.jpg",
+    alt: "Interactive Q&A on side hustles and digital ventures",
+    title: "Side Hustles & Ventures",
+    caption: "Discussing digital commerce, freelancing, and turning part-time income into investments.",
     section: "local",
-    schoolOrSession: "Session 2: Saving vs Investing",
+    schoolOrSession: "Session 2: Saving vs. Investing",
+    date: "Aug 2024",
   },
   {
-    id: "loc2-4",
-    type: "image",
-    src: "/lovable-uploads/0665f9c3-339d-4e49-bfc4-d6d00b95d8e6.png",
-    alt: "Session 2 - Group discussion",
-    title: "Roth IRA Planning",
-    caption: "Discussing tax-advantaged accounts like Roth IRAs and index portfolios.",
-    section: "local",
-    schoolOrSession: "Session 2: Saving vs Investing",
-  },
-  {
-    id: "loc2-v1",
+    id: "session-2-v1",
     type: "video",
-    src: "https://files.catbox.moe/b7vufo.MOV",
-    alt: "Session 2 Video 1",
-    title: "Risk Analysis Lecture",
-    caption: "Live video highlight explaining risk versus reward trade-offs to attendees.",
+    src: "https://files.catbox.moe/k3l0w8.mp4",
+    alt: "Session 2 live classroom video snippet",
+    title: "Session 2 Highlights",
+    caption: "Live clip from our second in-person workshop at the R.H. Stafford Library.",
     section: "local",
-    schoolOrSession: "Session 2: Saving vs Investing",
+    schoolOrSession: "Session 2: Saving vs. Investing",
+    date: "Aug 2024",
   },
   {
-    id: "loc2-v2",
+    id: "session-2-v2",
     type: "video",
-    src: "https://files.catbox.moe/o5monx.MOV",
-    alt: "Session 2 Video 2",
-    title: "Student Q&A Session",
-    caption: "Live video answering questions on index funds and high-yield savings accounts.",
+    src: "https://files.catbox.moe/5v4pve.mp4",
+    alt: "Student discussion during Session 2",
+    title: "Classroom Discussion Clip",
+    caption: "Students reviewing their 50/30/20 budget allocations with workshop instructors.",
     section: "local",
-    schoolOrSession: "Session 2: Saving vs Investing",
+    schoolOrSession: "Session 2: Saving vs. Investing",
+    date: "Aug 2024",
   },
 ];
 
-type TabType = "all" | "local" | "india";
+type LocationTab = "all" | "india" | "local";
+type FormatFilter = "all" | "video" | "image";
 
-const Gallery = () => {
+export const Gallery = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const [locationTab, setLocationTab] = useState<LocationTab>("all");
+  const [formatFilter, setFormatFilter] = useState<FormatFilter>("all");
 
-  const [activeTab, setActiveTab] = useState<TabType>("all");
   const [lightboxState, setLightboxState] = useState<{
     items: MediaItem[];
     currentIndex: number;
@@ -411,28 +459,6 @@ const Gallery = () => {
     window.scrollTo(0, 0);
     document.title = "Workshop Gallery | Spendora";
   }, []);
-
-  // Handle URL hash navigation without breaking scroll position
-  useEffect(() => {
-    if (!location.hash) return;
-    const hash = location.hash.replace("#", "");
-
-    if (hash === "local" || hash.startsWith("session-")) {
-      setActiveTab("local");
-    } else if (
-      hash === "india" ||
-      hash === "doon-school" ||
-      hash === "indian-school" ||
-      hash === "ram-krishna-school"
-    ) {
-      setActiveTab("india");
-    }
-
-    setTimeout(() => {
-      const el = document.getElementById(hash);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 150);
-  }, [location.hash]);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -494,71 +520,124 @@ const Gallery = () => {
     });
   };
 
-  // Safe jump navigation: ensures proper tab is active, then scrolls smoothly
-  const jumpToSection = (sectionId: string, tab: TabType) => {
-    setActiveTab(tab);
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 50);
+  // Filter helper
+  const filterMedia = (items: MediaItem[]) => {
+    if (formatFilter === "all") return items;
+    return items.filter((item) => item.type === formatFilter);
   };
+
+  const filteredDoon = useMemo(() => filterMedia(doonSchoolMedia), [formatFilter]);
+  const filteredSriGirdhar = useMemo(() => filterMedia(sriGirdharMedia), [formatFilter]);
+  const filteredRamKrishna = useMemo(() => filterMedia(ramKrishnaMedia), [formatFilter]);
+  const filteredLocal1 = useMemo(() => filterMedia(localSession1Media), [formatFilter]);
+  const filteredLocal2 = useMemo(() => filterMedia(localSession2Media), [formatFilter]);
 
   const totalLocalCount = localSession1Media.length + localSession2Media.length;
   const totalIndiaCount =
     doonSchoolMedia.length + sriGirdharMedia.length + ramKrishnaMedia.length;
   const totalItemsCount = totalLocalCount + totalIndiaCount;
 
-  // Clean image-first grid: pure visuals with subtle title on hover
-  const renderMediaGrid = (items: MediaItem[]) => (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-      {items.map((item, idx) => (
-        <div
-          key={item.id}
-          onClick={() => openLightbox(items, idx)}
-          className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 dark:bg-zinc-900 cursor-pointer shadow-xs hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-slate-200/60 dark:border-white/5"
-        >
-          {item.type === "image" ? (
-            <img
-              src={item.src}
-              alt={item.alt}
-              loading="lazy"
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="relative w-full h-full bg-black">
-              <video
+  const allMediaFlat = useMemo(() => [
+    ...doonSchoolMedia,
+    ...sriGirdharMedia,
+    ...ramKrishnaMedia,
+    ...localSession1Media,
+    ...localSession2Media
+  ], []);
+
+  const totalVideos = useMemo(() => allMediaFlat.filter(m => m.type === "video").length, [allMediaFlat]);
+  const totalImages = useMemo(() => allMediaFlat.filter(m => m.type === "image").length, [allMediaFlat]);
+
+  // Clean, theme-consistent visual grid
+  const renderMediaGrid = (items: MediaItem[]) => {
+    if (items.length === 0) {
+      return (
+        <div className="p-8 rounded-2xl border border-dashed border-slate-200 dark:border-white/10 text-center text-xs font-semibold text-slate-500 dark:text-zinc-500">
+          No {formatFilter === "video" ? "videos" : "photos"} matching this filter.
+        </div>
+      );
+    }
+
+    return (
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
+        {items.map((item, idx) => (
+          <div
+            key={item.id}
+            onClick={() => openLightbox(items, idx)}
+            className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 dark:border-white/10 hover:border-emerald-500/50 dark:hover:border-emerald-400/40"
+          >
+            {item.type === "image" ? (
+              <img
                 src={item.src}
-                preload="metadata"
-                className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity"
+                alt={item.alt}
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-600 transition-all shadow-lg">
-                  <Play className="w-4 h-4 sm:w-5 sm:h-5 ml-0.5 fill-white" />
+            ) : (
+              <div className="relative w-full h-full bg-black">
+                <video
+                  src={item.src}
+                  preload="metadata"
+                  className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity"
+                />
+                
+                {/* Sleek Floating Live Video Chip */}
+                <div className="absolute top-2.5 left-2.5 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  <span>Video</span>
+                </div>
+
+                {/* Central Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-emerald-600/90 text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-500 transition-all shadow-xl">
+                    <Play className="w-4 h-4 sm:w-5 sm:h-5 ml-0.5 fill-white" />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Minimal Hover Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-3 sm:p-4 text-white pointer-events-none">
-            <span className="text-xs sm:text-sm font-bold font-manrope line-clamp-1">
-              {item.title}
-            </span>
-            <span className="text-[10px] sm:text-xs text-white/80">
-              {item.type === "video" ? "Video highlight • Click to play" : "Click to view fullscreen"}
-            </span>
+            {/* Hover Expand Icon for Images */}
+            {item.type === "image" && (
+              <div className="absolute top-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                <div className="p-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white border border-white/15">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
+              </div>
+            )}
+
+            {/* Bottom Scrim & Title */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-3 sm:p-4 text-white pointer-events-none">
+              <span className="text-xs sm:text-sm font-bold font-manrope line-clamp-1">
+                {item.title}
+              </span>
+              <span className="text-[10px] sm:text-xs text-white/80 mt-0.5">
+                {item.type === "video" ? "Click to play recording" : "Click to view fullscreen"}
+              </span>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-  );
+        ))}
+      </div>
+    );
+  };
 
   return (
-    <div className="relative z-10 min-h-screen pt-28 pb-20 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Top Link */}
+    <div className="relative min-h-screen pt-32 pb-24 px-4 sm:px-6">
+      
+      {/* Spendora Celestial Background Atmosphere */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f5eee8] via-[#fdfbfa] to-background dark:from-[#071a12] dark:to-black" />
+        <div className="absolute top-0 left-0 w-[1px] h-[1px] bg-transparent stars-1 animate-[animStar_50s_linear_infinite]" />
+        <div className="absolute top-0 left-0 w-[2px] h-[2px] bg-transparent stars-2 animate-[animStar_80s_linear_infinite]" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-emerald-500/10 dark:bg-emerald-700/5 rounded-full blur-[140px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(circle_at_center,black_40%,transparent_80%)]" />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto">
+        
+        {/* Navigation back */}
         <button
           onClick={() => navigate("/")}
           className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
@@ -566,161 +645,305 @@ const Gallery = () => {
           <ArrowLeft className="w-4 h-4" /> Back to Home
         </button>
 
-        <div className="mb-8">
-          <h1 className="text-3xl sm:text-5xl font-black font-manrope tracking-tight text-slate-900 dark:text-white mb-2">
-            Workshop Gallery
+        {/* Hero Header matching Spendora Style */}
+        <div className="mb-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/80 dark:bg-white/5 border border-emerald-200 dark:border-white/10 backdrop-blur-md shadow-xs mb-4">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-[#40916c]" />
+            </span>
+            <span className="text-xs font-bold text-emerald-900 dark:text-emerald-100 font-manrope uppercase tracking-wider">
+              Live Field Archive
+            </span>
+          </div>
+
+          <h1 className="text-4xl sm:text-6xl font-black font-manrope tracking-tight text-slate-900 dark:text-white mb-4">
+            Workshop{" "}
+            <span className="text-emerald-700 dark:text-[#52b788] inline-block relative">
+              Gallery
+              <svg className="absolute w-full h-3 -bottom-2 left-0 text-emerald-500/40 dark:text-[#40916c] opacity-60" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
+              </svg>
+            </span>
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-zinc-400 max-w-xl font-medium">
-            Photos and video highlights from our student workshops in Minnesota and India.
+
+          <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-2xl font-medium leading-relaxed">
+            Real classroom moments, interactive activities, and student session recordings from Minnesota public libraries and partner schools in India.
           </p>
         </div>
 
-        {/* Clean Filter Tabs */}
-        <div className="flex items-center gap-2 mb-12 pb-4 border-b border-slate-200/80 dark:border-white/10">
-          <button
-            onClick={() => setActiveTab("all")}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
-              activeTab === "all"
-                ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
-                : "bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-800"
-            }`}
-          >
-            <span>All Media</span>
-            <span className="text-[10px] opacity-70">({totalItemsCount})</span>
-          </button>
+        {/* High-Impact Stats Strip for Gallery */}
+        <div className="w-full mb-10 border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-xl rounded-2xl p-4 sm:p-6 shadow-md">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
+            <div>
+              <div className="text-2xl sm:text-3xl font-black text-emerald-700 dark:text-[#52b788] font-manrope">
+                2,300+
+              </div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white mt-0.5">Students Reached</div>
+              <div className="text-[11px] text-slate-500 dark:text-zinc-400">Total participants</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-manrope">
+                2
+              </div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white mt-0.5">Countries</div>
+              <div className="text-[11px] text-slate-500 dark:text-zinc-400">United States & India</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-black text-emerald-700 dark:text-[#52b788] font-manrope">
+                {totalVideos}
+              </div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white mt-0.5">Live Videos</div>
+              <div className="text-[11px] text-slate-500 dark:text-zinc-400">Classroom recordings</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-manrope">
+                {totalImages}
+              </div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white mt-0.5">High-Res Photos</div>
+              <div className="text-[11px] text-slate-500 dark:text-zinc-400">Classrooms & seminars</div>
+            </div>
+          </div>
+        </div>
 
-          <button
-            onClick={() => setActiveTab("india")}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
-              activeTab === "india"
-                ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
-                : "bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-800"
-            }`}
-          >
-            <span>India</span>
-            <span className="text-[10px] opacity-70">({totalIndiaCount})</span>
-          </button>
+        {/* Dual-Axis Filter Controls: Region Tabs + Format Toggle */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-12 pb-5 border-b border-slate-200 dark:border-white/10">
+          
+          {/* Location Tabs */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+            <button
+              onClick={() => setLocationTab("all")}
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                locationTab === "all"
+                  ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
+                  : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
+              }`}
+            >
+              <span>All Locations</span>
+              <span className="text-[10px] opacity-70">({totalItemsCount})</span>
+            </button>
 
-          <button
-            onClick={() => setActiveTab("local")}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
-              activeTab === "local"
-                ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
-                : "bg-slate-100 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-800"
-            }`}
-          >
-            <span>Minnesota</span>
-            <span className="text-[10px] opacity-70">({totalLocalCount})</span>
-          </button>
+            <button
+              onClick={() => setLocationTab("india")}
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                locationTab === "india"
+                  ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
+                  : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
+              }`}
+            >
+              <span>India Outreach</span>
+              <span className="text-[10px] opacity-70">({totalIndiaCount})</span>
+            </button>
+
+            <button
+              onClick={() => setLocationTab("local")}
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                locationTab === "local"
+                  ? "bg-emerald-800 text-white dark:bg-emerald-700 shadow-sm"
+                  : "bg-white/80 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:border-slate-400"
+              }`}
+            >
+              <span>Minnesota Local</span>
+              <span className="text-[10px] opacity-70">({totalLocalCount})</span>
+            </button>
+          </div>
+
+          {/* Media Format Toggle (All / Videos Only / Photos Only) */}
+          <div className="flex items-center gap-1.5 bg-slate-100/90 dark:bg-zinc-900/90 p-1 rounded-full border border-slate-200/80 dark:border-white/10 self-start md:self-auto">
+            <button
+              onClick={() => setFormatFilter("all")}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                formatFilter === "all"
+                  ? "bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-xs"
+                  : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
+              }`}
+            >
+              All Media
+            </button>
+
+            <button
+              onClick={() => setFormatFilter("video")}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+                formatFilter === "video"
+                  ? "bg-white dark:bg-zinc-800 text-emerald-700 dark:text-[#52b788] shadow-xs"
+                  : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
+              }`}
+            >
+              <Play className="w-3 h-3 fill-current" /> Videos ({totalVideos})
+            </button>
+
+            <button
+              onClick={() => setFormatFilter("image")}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+                formatFilter === "image"
+                  ? "bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-xs"
+                  : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
+              }`}
+            >
+              <Camera className="w-3 h-3" /> Photos ({totalImages})
+            </button>
+          </div>
+
         </div>
 
         {/* ======================================================== */}
         {/* INDIA OUTREACH & SCHOOLS */}
         {/* ======================================================== */}
-        {(activeTab === "all" || activeTab === "india") && (
-          <section id="india" className="space-y-12 mb-16 scroll-mt-28">
+        {(locationTab === "all" || locationTab === "india") && (
+          <section id="india" className="space-y-14 mb-20 scroll-mt-28">
+            
             {/* School 1: Doon Public School */}
             <div id="doon-school" className="scroll-mt-28">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-4 pb-2 border-b border-slate-200/60 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-5 pb-3 border-b border-slate-200/80 dark:border-white/10">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold font-manrope text-slate-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-wider">
+                      <MapPin className="w-3 h-3" /> Sector 21, Panchkula, Haryana, India
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-manrope text-slate-900 dark:text-white">
                     Doon Public School
-                  </h3>
+                  </h2>
                   <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                    Sector 21, Panchkula, Haryana, India • Senior Secondary Seminar
+                    Senior secondary seminar for Classes XI and XII in collaboration with Spendora.
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-slate-500 dark:text-zinc-500">
-                  {doonSchoolMedia.length} photos
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300">
+                  {filteredDoon.length} item{filteredDoon.length === 1 ? "" : "s"}
                 </span>
               </div>
-              {renderMediaGrid(doonSchoolMedia)}
+              {renderMediaGrid(filteredDoon)}
             </div>
 
             {/* School 2: Sri Girdhar Techno School */}
-            <div id="indian-school" className="scroll-mt-28 pt-6 border-t border-slate-200/60 dark:border-white/5">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-4 pb-2 border-b border-slate-200/60 dark:border-white/10">
+            <div id="indian-school" className="scroll-mt-28 pt-8 border-t border-slate-200/60 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-5 pb-3 border-b border-slate-200/80 dark:border-white/10">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold font-manrope text-slate-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-wider">
+                      <Globe className="w-3 h-3" /> Rural Outreach Partner • India
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-manrope text-slate-900 dark:text-white">
                     Sri Girdhar Techno School
-                  </h3>
+                  </h2>
                   <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                    Rural Outreach Partner • India
+                    Classroom workshop series, practical worksheets, and student certificate awards.
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-slate-500 dark:text-zinc-500">
-                  {sriGirdharMedia.length} photos & videos
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300">
+                  {filteredSriGirdhar.length} item{filteredSriGirdhar.length === 1 ? "" : "s"}
                 </span>
               </div>
-              {renderMediaGrid(sriGirdharMedia)}
+              {renderMediaGrid(filteredSriGirdhar)}
             </div>
 
             {/* School 3: Ram Krishna Dwarika School */}
-            <div id="ram-krishna-school" className="scroll-mt-28 pt-6 border-t border-slate-200/60 dark:border-white/5">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-4 pb-2 border-b border-slate-200/60 dark:border-white/10">
+            <div id="ram-krishna-school" className="scroll-mt-28 pt-8 border-t border-slate-200/60 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-5 pb-3 border-b border-slate-200/80 dark:border-white/10">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold font-manrope text-slate-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-wider">
+                      <MapPin className="w-3 h-3" /> Patna, Bihar, India
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-manrope text-slate-900 dark:text-white">
                     Ram Krishna Dwarika School
-                  </h3>
+                  </h2>
                   <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                    Patna, Bihar, India • High School Workshops
+                    High school workshop on budgeting essentials and smart saving habits.
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-slate-500 dark:text-zinc-500">
-                  {ramKrishnaMedia.length} photos
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300">
+                  {filteredRamKrishna.length} item{filteredRamKrishna.length === 1 ? "" : "s"}
                 </span>
               </div>
-              {renderMediaGrid(ramKrishnaMedia)}
+              {renderMediaGrid(filteredRamKrishna)}
             </div>
+
           </section>
         )}
 
         {/* ======================================================== */}
         {/* LOCAL WORKSHOPS (MINNESOTA) */}
         {/* ======================================================== */}
-        {(activeTab === "all" || activeTab === "local") && (
-          <section id="local" className="space-y-12 mb-16 scroll-mt-28 pt-6 border-t border-slate-200/60 dark:border-white/5">
+        {(locationTab === "all" || locationTab === "local") && (
+          <section id="local" className="space-y-14 mb-20 scroll-mt-28 pt-8 border-t border-slate-200/80 dark:border-white/10">
+            
             {/* Session 1 */}
             <div id="session-1" className="scroll-mt-28">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-4 pb-2 border-b border-slate-200/60 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-5 pb-3 border-b border-slate-200/80 dark:border-white/10">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold font-manrope text-slate-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-wider">
+                      <Building2 className="w-3 h-3" /> R.H. Stafford Library • Woodbury, MN
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-manrope text-slate-900 dark:text-white">
                     Session 1: Intro to Investing
-                  </h3>
+                  </h2>
                   <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                    R.H. Stafford Library • Woodbury, MN
+                    Stock market history, index funds, trading simulations, and opening custodial accounts.
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-slate-500 dark:text-zinc-500">
-                  {localSession1Media.length} photos
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300">
+                  {filteredLocal1.length} item{filteredLocal1.length === 1 ? "" : "s"}
                 </span>
               </div>
-              {renderMediaGrid(localSession1Media)}
+              {renderMediaGrid(filteredLocal1)}
             </div>
 
             {/* Session 2 */}
-            <div id="session-2" className="scroll-mt-28 pt-6 border-t border-slate-200/60 dark:border-white/5">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-4 pb-2 border-b border-slate-200/60 dark:border-white/10">
+            <div id="session-2" className="scroll-mt-28 pt-8 border-t border-slate-200/60 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-5 pb-3 border-b border-slate-200/80 dark:border-white/10">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold font-manrope text-slate-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 dark:text-[#52b788] uppercase tracking-wider">
+                      <Building2 className="w-3 h-3" /> R.H. Stafford Library • Woodbury, MN
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-manrope text-slate-900 dark:text-white">
                     Session 2: Saving vs. Investing
-                  </h3>
+                  </h2>
                   <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                    R.H. Stafford Library • Woodbury, MN
+                    Hands-on budgeting scenarios, Roth IRAs, high-yield savings, and digital business discussion.
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-slate-500 dark:text-zinc-500">
-                  {localSession2Media.length} photos & videos
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300">
+                  {filteredLocal2.length} item{filteredLocal2.length === 1 ? "" : "s"}
                 </span>
               </div>
-              {renderMediaGrid(localSession2Media)}
+              {renderMediaGrid(filteredLocal2)}
             </div>
+
           </section>
         )}
 
-        {/* Quiet Footer Link */}
-        <div className="mt-16 pt-8 border-t border-slate-200/80 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-500 dark:text-zinc-400">
-          <span>Looking to bring Spendora to your school or library?</span>
+        {/* Workshop Registration Banner (Connects back to theme) */}
+        <div className="my-16 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-emerald-800 to-emerald-900 dark:from-[#2d6a4f] dark:to-[#1b4332] text-white text-center shadow-2xl relative overflow-hidden">
+          <div className="relative z-10 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-emerald-200 text-xs font-bold uppercase tracking-wider mb-4">
+              <Sparkles className="w-3.5 h-3.5" /> Next Free Workshop
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black font-manrope mb-3 tracking-tight">
+              Want to join our next live session?
+            </h2>
+            <p className="text-sm sm:text-base text-emerald-100/90 font-medium mb-8 leading-relaxed">
+              All materials, snacks, and workbooks are 100% free. Reserve your spot at the R.H. Stafford Library in Woodbury.
+            </p>
+            <button
+              onClick={() => window.open('https://forms.gle/JWCVyGcfN5UKiwqHA', '_blank')}
+              className="shiny-cta group shadow-xl hover:scale-105 transition-all inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold text-base cursor-pointer"
+            >
+              <span>Reserve Your Free Spot</span>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
+        </div>
+
+        {/* Quiet Footer Links */}
+        <div className="pt-8 border-t border-slate-200/80 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-500 dark:text-zinc-400">
+          <span>Looking to bring Spendora to your school or community library?</span>
           <div className="flex items-center gap-4">
             <Link to="/#partners" className="hover:text-emerald-700 dark:hover:text-white underline">
               View Partners
@@ -733,6 +956,7 @@ const Gallery = () => {
             </Link>
           </div>
         </div>
+
       </div>
 
       {/* ======================================================== */}
@@ -742,7 +966,7 @@ const Gallery = () => {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/94 backdrop-blur-md p-4 sm:p-6 select-none"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 sm:p-6 select-none"
           onClick={closeLightbox}
         >
           {/* Top Bar */}
@@ -750,101 +974,90 @@ const Gallery = () => {
             className="absolute top-0 left-0 right-0 p-4 sm:p-6 flex items-center justify-between text-white z-10"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-3 text-xs font-semibold">
-              <span className="tabular-nums opacity-75">
-                {String(lightboxState.currentIndex + 1).padStart(2, "0")} /{" "}
-                {String(lightboxState.items.length).padStart(2, "0")}
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15">
+                {lightboxState.currentIndex + 1} / {lightboxState.items.length}
               </span>
-              <span className="opacity-40">•</span>
-              <span className="text-zinc-300">
+              <span className="text-xs font-bold text-emerald-400 hidden sm:inline">
                 {lightboxState.items[lightboxState.currentIndex].schoolOrSession}
               </span>
             </div>
-
-            <div className="flex items-center gap-2">
-              <a
-                href={lightboxState.items[lightboxState.currentIndex].src}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
-                title="Open original media"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-              <button
-                onClick={closeLightbox}
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
-                title="Close (Esc)"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+            
+            <button
+              onClick={closeLightbox}
+              className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+              aria-label="Close fullscreen"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
-          {/* Prev */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              prevLightboxItem();
-            }}
-            aria-label="Previous item"
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white transition-all cursor-pointer"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
+          {/* Previous Button */}
+          {lightboxState.items.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                prevLightboxItem();
+              }}
+              className="absolute left-3 sm:left-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-10 cursor-pointer"
+              aria-label="Previous item"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+          )}
 
-          {/* Next */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              nextLightboxItem();
-            }}
-            aria-label="Next item"
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white transition-all cursor-pointer"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-
-          {/* Main Container */}
+          {/* Media Container */}
           <div
-            className="relative max-w-5xl w-full max-h-[85vh] flex flex-col items-center justify-center"
+            className="relative max-w-4xl max-h-[82vh] flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
             {lightboxState.items[lightboxState.currentIndex].type === "image" ? (
               <img
                 src={lightboxState.items[lightboxState.currentIndex].src}
                 alt={lightboxState.items[lightboxState.currentIndex].alt}
-                className="max-h-[72vh] sm:max-h-[76vh] w-auto max-w-full object-contain rounded-lg shadow-2xl"
+                className="max-h-[68vh] max-w-full object-contain rounded-xl shadow-2xl"
               />
             ) : (
               <video
-                key={lightboxState.items[lightboxState.currentIndex].src}
                 src={lightboxState.items[lightboxState.currentIndex].src}
                 controls
                 autoPlay
-                className="max-h-[72vh] sm:max-h-[76vh] w-auto max-w-full rounded-lg shadow-2xl bg-black"
+                className="max-h-[68vh] max-w-full rounded-xl shadow-2xl bg-black"
               />
             )}
 
-            {/* Bottom Caption */}
-            <div className="w-full max-w-2xl mt-4 text-center px-4">
-              <div className="text-sm font-bold text-white font-manrope">
+            {/* Caption & Metadata card below media */}
+            <div className="w-full mt-4 text-center text-white max-w-2xl px-4">
+              <h3 className="text-base sm:text-lg font-extrabold font-manrope">
                 {lightboxState.items[lightboxState.currentIndex].title}
+              </h3>
+              <p className="text-xs sm:text-sm text-zinc-300 mt-1 leading-relaxed">
+                {lightboxState.items[lightboxState.currentIndex].caption}
+              </p>
+              <div className="flex items-center justify-center gap-3 mt-2 text-[11px] text-zinc-400">
+                <span>{lightboxState.items[lightboxState.currentIndex].schoolOrSession}</span>
+                <span>•</span>
+                <span>{lightboxState.items[lightboxState.currentIndex].date}</span>
               </div>
-              {lightboxState.items[lightboxState.currentIndex].caption && (
-                <p className="text-xs text-zinc-300 font-medium mt-1 leading-relaxed">
-                  {lightboxState.items[lightboxState.currentIndex].caption}
-                </p>
-              )}
-              {lightboxState.items[lightboxState.currentIndex].date && (
-                <div className="text-[11px] text-zinc-400 font-medium mt-1.5">
-                  {lightboxState.items[lightboxState.currentIndex].schoolOrSession} • {lightboxState.items[lightboxState.currentIndex].date}
-                </div>
-              )}
             </div>
           </div>
+
+          {/* Next Button */}
+          {lightboxState.items.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                nextLightboxItem();
+              }}
+              className="absolute right-3 sm:right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-10 cursor-pointer"
+              aria-label="Next item"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          )}
         </div>
       )}
+
     </div>
   );
 };
