@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { 
   ArrowLeft, 
   ArrowRight, 
-  Sparkles, 
   TrendingUp, 
   DollarSign, 
   Clock, 
@@ -27,23 +26,23 @@ export const StartingEarly = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "The Power of Starting Early | Spendora";
+    document.title = "How Compound Interest Works | Spendora";
   }, [step]);
 
   // Options for Question 1: Current Age
   const ageOptions = [
-    { value: 14, label: "14 to 15", desc: "Freshman or Early Teen" },
-    { value: 16, label: "16 to 17", desc: "High School Sophomore / Junior (Most common)" },
-    { value: 18, label: "18 to 19", desc: "High School Senior or College Frosh" },
-    { value: 21, label: "20 to 24", desc: "College Student or Young Adult" },
+    { value: 14, label: "14 to 15", desc: "Early high school" },
+    { value: 16, label: "16 to 17", desc: "High school" },
+    { value: 18, label: "18 to 19", desc: "High school senior or freshman in college" },
+    { value: 21, label: "20 to 24", desc: "College student or young adult" },
   ];
 
   // Options for Question 2: Monthly Stash
   const depositOptions = [
-    { value: 25, label: "$25 / month", desc: "About $6 a week. Skipping 2 boba drinks or snacks." },
-    { value: 50, label: "$50 / month", desc: "Light side-hustle, chores, or small allowance." },
-    { value: 100, label: "$100 / month", desc: "Weekend babysitting, lawn mowing, or part-time job." },
-    { value: 250, label: "$250 / month", desc: "Summer job paycheck or consistent part-time hours." },
+    { value: 25, label: "$25 / month", desc: "About $6 a week. Skipping a couple drinks or snacks." },
+    { value: 50, label: "$50 / month", desc: "Light side gig, allowance, or casual chores." },
+    { value: 100, label: "$100 / month", desc: "Part-time job, babysitting, or lawn mowing." },
+    { value: 250, label: "$250 / month", desc: "Summer job paycheck or regular part-time hours." },
   ];
 
   // Options for Question 3: Investing Style
@@ -85,7 +84,7 @@ export const StartingEarly = () => {
     };
   }, [currentAge, monthlyDeposit, growthRate, targetAge]);
 
-  // Comparison: What if the student waited until age 26?
+  // Comparison: What if the person waited until age 26?
   const comparisonWait26 = useMemo(() => {
     const years = Math.max(1, targetAge - 26);
     const months = years * 12;
@@ -158,30 +157,26 @@ export const StartingEarly = () => {
               onClick={handleReset}
               className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline cursor-pointer"
             >
-              <RotateCcw className="w-3.5 h-3.5" /> Retake Questionnaire
+              <RotateCcw className="w-3.5 h-3.5" /> Retake Questions
             </button>
           )}
         </div>
 
-        {/* Header Badge */}
+        {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 dark:bg-white/5 border border-emerald-200 dark:border-white/10 text-emerald-800 dark:text-[#52b788] text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-[#52b788]" />
-            Quick 60-Second Wealth Check
-          </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-manrope tracking-tight text-slate-900 dark:text-white">
-            The Power of <span className="text-emerald-700 dark:text-[#52b788]">Starting Early</span>
+            How compound interest works when you <span className="text-emerald-700 dark:text-[#52b788]">start young</span>
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-zinc-400 max-w-xl mx-auto mt-2 font-medium">
-            Answer 3 fast questions to see how much wealth you could build by retirement just by starting now.
+          <p className="text-sm sm:text-base text-slate-600 dark:text-zinc-400 max-w-xl mx-auto mt-3 font-medium">
+            Answer 3 quick questions to see how small amounts saved today compound over decades.
           </p>
         </div>
 
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs font-bold text-slate-500 dark:text-zinc-400 mb-2">
-            <span>{step === 4 ? "Your Results Ready" : `Question ${step} of 3`}</span>
-            <span>{step === 1 ? "33%" : step === 2 ? "66%" : step === 3 ? "100%" : "Complete"}</span>
+            <span>{step === 4 ? "Results" : `Question ${step} of 3`}</span>
+            <span>{step === 1 ? "Step 1" : step === 2 ? "Step 2" : step === 3 ? "Step 3" : "Finished"}</span>
           </div>
           <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-zinc-800 overflow-hidden">
             <div
@@ -201,13 +196,13 @@ export const StartingEarly = () => {
             <div className="space-y-6">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                  Step 1
+                  Question 1
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-manrope mt-1">
                   How old are you right now?
                 </h2>
                 <p className="text-sm text-slate-600 dark:text-zinc-400 mt-1">
-                  Your age is your greatest asset. Time turns small deposits into serious wealth.
+                  Time is what turns small amounts into serious wealth over the years.
                 </p>
               </div>
 
@@ -273,7 +268,7 @@ export const StartingEarly = () => {
                   onClick={handleNextStep}
                   className="shiny-cta px-7 py-3 rounded-full text-white font-bold text-sm inline-flex items-center gap-2 hover:scale-105 transition-transform cursor-pointer"
                 >
-                  Continue to Question 2 <ArrowRight className="w-4 h-4" />
+                  Next Question <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -286,13 +281,13 @@ export const StartingEarly = () => {
             <div className="space-y-6">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                  Step 2
+                  Question 2
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-manrope mt-1">
                   How much could you stash away each month?
                 </h2>
                 <p className="text-sm text-slate-600 dark:text-zinc-400 mt-1">
-                  You do not need thousands of dollars. Even $25 or $50 a month starts the compounding engine.
+                  You do not need a lot of money to start. Even small deposits build momentum over time.
                 </p>
               </div>
 
@@ -369,7 +364,7 @@ export const StartingEarly = () => {
                   onClick={handleNextStep}
                   className="shiny-cta px-7 py-3 rounded-full text-white font-bold text-sm inline-flex items-center gap-2 hover:scale-105 transition-transform cursor-pointer"
                 >
-                  Continue to Question 3 <ArrowRight className="w-4 h-4" />
+                  Next Question <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -382,13 +377,13 @@ export const StartingEarly = () => {
             <div className="space-y-6">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                  Step 3
+                  Question 3
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-manrope mt-1">
                   How would you like to invest?
                 </h2>
                 <p className="text-sm text-slate-600 dark:text-zinc-400 mt-1">
-                  We teach students how broad index funds like the S&P 500 work. Pick an annual growth assumption below.
+                  We teach how broad market index funds like the S&P 500 work. Pick an annual growth assumption.
                 </p>
               </div>
 
@@ -424,7 +419,7 @@ export const StartingEarly = () => {
               {/* Target Retirement Age Selector */}
               <div className="pt-3 border-t border-slate-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                 <span className="font-bold text-slate-600 dark:text-zinc-400">
-                  Target age to see your nest egg:
+                  Target age to see your numbers:
                 </span>
                 <div className="flex items-center gap-2">
                   {[55, 60, 65].map((age) => (
@@ -457,7 +452,7 @@ export const StartingEarly = () => {
                   onClick={handleNextStep}
                   className="shiny-cta px-8 py-3.5 rounded-full text-white font-black text-sm sm:text-base inline-flex items-center gap-2 hover:scale-105 transition-transform cursor-pointer shadow-xl"
                 >
-                  See My Projected Wealth <Sparkles className="w-4 h-4" />
+                  See How It Grows <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -478,7 +473,7 @@ export const StartingEarly = () => {
                   {formatCurrency(calculation.futureValue)}
                 </div>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 mt-2 font-medium">
-                  By putting away just <strong className="text-slate-900 dark:text-white">${monthlyDeposit}/month</strong> at an average annual return of <strong className="text-slate-900 dark:text-white">{growthRate}%</strong>.
+                  By putting away <strong className="text-slate-900 dark:text-white">${monthlyDeposit}/month</strong> at an average annual return of <strong className="text-slate-900 dark:text-white">{growthRate}%</strong>.
                 </p>
               </div>
 
@@ -495,7 +490,7 @@ export const StartingEarly = () => {
                     {formatCurrency(calculation.totalContributed)}
                   </div>
                   <div className="text-[11px] text-slate-500 dark:text-zinc-500 mt-1">
-                    Only {contributedPercent}% of your total wealth
+                    Only {contributedPercent}% of your total balance
                   </div>
                 </div>
 
@@ -509,7 +504,7 @@ export const StartingEarly = () => {
                     {formatCurrency(calculation.totalGrowth)}
                   </div>
                   <div className="text-[11px] text-emerald-800 dark:text-emerald-400 mt-1 font-medium">
-                    {growthPercent}% of your wealth was generated automatically by starting early!
+                    {growthPercent}% of your wealth was generated automatically by starting young!
                   </div>
                 </div>
               </div>
@@ -543,14 +538,14 @@ export const StartingEarly = () => {
                 <div className="p-5 rounded-2xl border border-amber-300 dark:border-amber-500/20 bg-amber-50/70 dark:bg-amber-500/10 text-slate-800 dark:text-zinc-200">
                   <div className="flex items-center gap-2 text-xs font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wider mb-2">
                     <Clock className="w-4 h-4" />
-                    The Cost of Waiting Until Age 26
+                    The Cost of Waiting
                   </div>
                   <p className="text-sm font-medium leading-relaxed">
-                    If someone puts off investing until age 26 (just 10 years from high school), they would only have{" "}
+                    If someone waits an extra 10 years to start investing, they would only have{" "}
                     <strong>{formatCurrency(comparisonWait26.futureValue)}</strong> at retirement.
                   </p>
                   <p className="text-sm font-bold text-amber-900 dark:text-amber-300 mt-2">
-                    Starting now gives you an extra {formatCurrency(costOfWaiting)} in compound growth for the exact same monthly effort.
+                    Starting young gives you an extra {formatCurrency(costOfWaiting)} in compound growth for the exact same monthly effort.
                   </p>
                 </div>
               )}
@@ -592,7 +587,7 @@ export const StartingEarly = () => {
 
         {/* Informational reassurance */}
         <div className="mt-8 text-center text-xs text-slate-500 dark:text-zinc-500 space-y-1">
-          <p>This questionnaire is designed for educational demonstration.</p>
+          <p>This calculator is designed for educational demonstration.</p>
           <p>Historical returns are based on average market performance and do not guarantee future results.</p>
         </div>
 

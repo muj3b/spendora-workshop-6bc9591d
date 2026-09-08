@@ -31,7 +31,7 @@ const SearchBar = () => {
       { title: 'Session 2: Saving vs Investing', content: 'Budgeting case studies and Roth IRAs at R.H. Stafford Library', url: '/gallery#session-2', type: 'section' },
       { title: 'Spendora Audiobook & Audio Course', content: '8 modules with live transcripts covering budgeting, banking, and investing', url: '/audiobook', type: 'page' },
       { title: 'Spendora SAT Assessment', content: '20-question review test to claim your verified Money Ready Certificate', url: 'https://docs.google.com/forms/d/e/1FAIpQLSdJvM6bC8ZzR9k1F2l3m4n5o6p7q8r9s0t/viewform', type: 'page' },
-      { title: 'The Power of Starting Early', content: 'Quick 60-second wealth questionnaire showing how much you could build by starting now vs waiting', url: '/starting-early', type: 'page' },
+      { title: 'Starting Young Calculator', content: 'See how compound interest works when you start investing young', url: '/starting-early', type: 'page' },
       { title: 'Frequently Asked Questions', content: 'Everything to know about registration, supplies, middle school eligibility, and certificates', url: '/#faq', type: 'section' },
       { title: 'Woodbury News Net Press Story', content: 'Three East Ridge High School Students Create Financial Literacy Initiative', url: '/#press', type: 'section' },
       { title: 'Spendora Nigeria Partnership', content: 'Confirmed mobile app partnership extending budgeting tools to Nigerian youth', url: '/#partners', type: 'section' },
