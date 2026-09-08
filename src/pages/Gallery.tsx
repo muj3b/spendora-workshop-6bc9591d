@@ -36,17 +36,6 @@ const doonSchoolMedia: MediaItem[] = [
     date: "Sept 8, 2026",
   },
   {
-    id: "doon-v1",
-    type: "video",
-    src: "https://files.catbox.moe/v6lsc0.mp4",
-    alt: "Doon Public School Workshop Video Highlights",
-    title: "Live Video Highlights",
-    caption: "Live video recording of senior secondary students gathered in the auditorium during the seminar.",
-    section: "india",
-    schoolOrSession: "Doon Public School",
-    date: "Sept 8, 2026",
-  },
-  {
     id: "doon-2",
     type: "image",
     src: "/lovable-uploads/doon-school-2.jpg",
@@ -642,7 +631,7 @@ const Gallery = () => {
                   </p>
                 </div>
                 <span className="text-xs font-semibold text-slate-500 dark:text-zinc-500">
-                  {doonSchoolMedia.length} photos & video
+                  {doonSchoolMedia.length} photos
                 </span>
               </div>
               {renderMediaGrid(doonSchoolMedia)}
