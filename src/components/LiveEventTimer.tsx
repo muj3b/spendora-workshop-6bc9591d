@@ -72,6 +72,7 @@ const LiveEventTimer = ({
     return (<div className={cn('text-center', className)}><h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white font-manrope tracking-tight">Dates Coming Soon</h2></div>);
   }
 
+  // Saved in code for future display (date and time numbers hidden from website UI for now)
   const pastSessions = [
     { label: "Session 1", date: "July 10, 2025", time: "11:00 AM to 12:30 PM", location: "R.H. Stafford Library" },
     { label: "Session 2", date: "July 18, 2025", time: "3:30 PM to 5:00 PM", location: "R.H. Stafford Library" },
@@ -104,8 +105,7 @@ const LiveEventTimer = ({
                   <span className="text-sm font-bold text-slate-900 dark:text-zinc-200">{s.label}</span>
                   <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-zinc-400 rounded-full">Completed</span>
                 </div>
-                <div className="text-xs text-slate-500 dark:text-zinc-400 space-y-0.5">
-                  <p>{s.date} · {s.time}</p>
+                <div className="text-xs text-slate-500 dark:text-zinc-400">
                   <p>{s.location}</p>
                 </div>
               </div>
