@@ -165,7 +165,7 @@ const TopNavBar = () => {
               </div>
               <div className="pt-6 border-t border-slate-200 dark:border-white/10">
                 <a
-                  href="https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2"
+                  href="https://www.instagram.com/spendora.live"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMenuOpen(false)}
@@ -177,7 +177,7 @@ const TopNavBar = () => {
                     </div>
                     <div className="text-left">
                       <div className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-bold">Official Instagram</div>
-                      <div className="font-extrabold text-sm">@spendora.erhs</div>
+                      <div className="font-extrabold text-sm">@spendora.live</div>
                     </div>
                   </div>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform opacity-70" />

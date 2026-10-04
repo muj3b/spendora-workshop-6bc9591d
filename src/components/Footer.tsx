@@ -45,7 +45,7 @@ const Footer = () => {
       {/* Prominent Instagram Spotlight */}
       <div className="max-w-5xl mx-auto px-6 mb-16">
         <a
-          href="https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2"
+          href="https://www.instagram.com/spendora.live"
           target="_blank"
           rel="noopener noreferrer"
           className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-zinc-950 hover:border-pink-500/40 dark:hover:border-pink-500/40 transition-all shadow-xs cursor-pointer"
@@ -59,7 +59,7 @@ const Footer = () => {
                 Official Social Media
               </div>
               <div className="text-base font-extrabold text-slate-900 dark:text-white font-manrope">
-                @spendora.erhs on Instagram
+                @spendora.live on Instagram
               </div>
               <p className="text-xs text-slate-600 dark:text-zinc-400 mt-0.5">
                 Workshop highlights, student updates, and financial tips from East Ridge High School.
@@ -101,13 +101,13 @@ const Footer = () => {
         <p>&copy; 2026 Spendora. A student-led project founded at East Ridge High School.</p>
         <div className="flex items-center gap-6 mt-4 md:mt-0">
           <a
-            href="https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2"
+            href="https://www.instagram.com/spendora.live"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-pink-600 dark:hover:text-white flex items-center gap-1.5 font-semibold transition-colors"
           >
             <Instagram className="w-4 h-4 text-pink-500" />
-            <span>@spendora.erhs</span>
+            <span>@spendora.live</span>
           </a>
         </div>
       </div>

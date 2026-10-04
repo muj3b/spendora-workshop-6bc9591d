@@ -36,7 +36,7 @@ const faqs: FAQItem[] = [
   {
     category: "Curriculum",
     question: "How can another school, library, or youth group host Spendora?",
-    answer: "We deliver both auditorium-wide presentations and classroom-scale workshops. In addition to our Minnesota sessions, we have delivered programmes to over 2,000 students across partner schools in India and collaborate with Spendora Nigeria. Message us on Instagram @spendora.erhs or sign up through our contact form.",
+    answer: "We deliver both auditorium-wide presentations and classroom-scale workshops. In addition to our Minnesota sessions, we have delivered programmes to over 2,000 students across partner schools in India and collaborate with Spendora Nigeria. Message us on Instagram @spendora.live or sign up through our contact form.",
   },
   {
     category: "General",
@@ -148,12 +148,12 @@ export const FAQSection = () => {
             </div>
           </div>
           <a
-            href="https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2"
+            href="https://www.instagram.com/spendora.live"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 text-xs font-bold transition-colors shrink-0"
           >
-            <span>Message @spendora.erhs</span>
+            <span>Message @spendora.live</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>

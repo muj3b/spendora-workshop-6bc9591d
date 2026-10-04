@@ -39,7 +39,7 @@ const SearchBar = () => {
       { title: 'About Spendora', content: 'Mission, impact, and goals for financial education in schools', url: '/#about-spendora', type: 'section' },
       { title: 'Workshop Schedule', content: 'Upcoming dates, times, registration, and event calendar', url: '/#workshop-schedule', type: 'section' },
       { title: 'Meet the Founders', content: 'Mujeeb Chaudhry, Harshad Amalan, Neil Kaila - East Ridge High School', url: '/#meet-the-team', type: 'section' },
-      { title: 'Instagram', content: 'Follow us on Instagram @spendora.erhs for updates and tips', url: 'https://www.instagram.com/spendora.erhs?igsh=eTd6NmdjNjVnN3p2', type: 'page' },
+      { title: 'Instagram', content: 'Follow us on Instagram @spendora.live for updates and tips', url: 'https://www.instagram.com/spendora.live', type: 'page' },
       { title: 'Registration Form', content: 'Sign up for the free workshop on Google Forms', url: 'https://forms.gle/JWCVyGcfN5UKiwqHA', type: 'page' },
       { title: 'R.H. Stafford Library', content: 'Workshop meeting location in Woodbury, MN', url: 'https://maps.app.goo.gl/cHgQRRPY8WeQq2BS7?g_st=ipc', type: 'page' },
     ],
