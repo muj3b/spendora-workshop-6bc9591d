@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { ArrowRight, Heart, Camera, MapPin, TrendingUp, Wallet, Store, Coins, Navigation, Sparkles, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import LiveEventTimer from "@/components/LiveEventTimer";
+import FeaturedIn from "@/components/FeaturedIn";
 import AudiobookPromo from "@/components/AudiobookPromo";
 
 const Hero = memo(() => {
@@ -119,9 +119,9 @@ const Hero = memo(() => {
       {/* Timer & Location Section (Balanced Cards) */}
       <div className="relative z-10 py-16 px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-12 gap-6 items-stretch">
-          {/* Live Timer Left */}
+          {/* Featured In Left */}
           <div className="md:col-span-7 p-6 sm:p-8 border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-zinc-900/60 backdrop-blur-lg rounded-2xl shadow-xl flex flex-col justify-between">
-            <LiveEventTimer isActive={true} eventStartDateTime="2025-07-10T11:00:00" eventDurationHours={1.5} totalEventDays={2} />
+            <FeaturedIn />
           </div>
 
           {/* Location Right - Filled & Balanced */}

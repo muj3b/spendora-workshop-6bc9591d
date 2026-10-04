@@ -89,6 +89,73 @@ const PressSection = () => {
             </div>
           </div>
         </div>
+
+        {/* Additional Press Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          {/* SoWashCo Schools Feature */}
+          <div className="p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-black shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
+            <div>
+              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-zinc-400 font-semibold mb-3">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border border-blue-200/80 dark:border-blue-800/60 font-bold">
+                  SoWashCo Schools News
+                </span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3.5 h-3.5" /> Sept 30, 2026
+                </span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white font-manrope leading-snug mb-3">
+                The Spendora Effect
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-medium mb-4">
+                South Washington County Schools highlights East Ridge High School students Harshad Amalan, Mujeeb Chaudhry, and Neil Kaila for turning a financial literacy passion project into an international initiative.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-slate-100 dark:border-white/5 flex items-center justify-between">
+              <span className="text-xs text-slate-500 dark:text-zinc-500 font-medium">District 833 Feature</span>
+              <a
+                href="https://www.sowashco.org/about-us/news/article/~board/news/post/the-spendora-effect"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-xs font-bold text-emerald-700 dark:text-[#52b788] hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition-colors"
+              >
+                <span>Read Story</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* The Spectrum (NDSU) Feature */}
+          <div className="p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-black shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
+            <div>
+              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-zinc-400 font-semibold mb-3">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-[#52b788] border border-emerald-200/80 dark:border-emerald-800/60 font-bold">
+                  The Spectrum (NDSU)
+                </span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3.5 h-3.5" /> Sept 16, 2026
+                </span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white font-manrope leading-snug mb-3">
+                High School Founders Bring Peer-to-Peer Approach to Financial Literacy
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-medium mb-4">
+                NDSU's student newspaper spotlights Spendora's peer-to-peer curriculum, breaking down budgeting, saving, and stock market analysis through practical student-led workshops.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-slate-100 dark:border-white/5 flex items-center justify-between">
+              <span className="text-xs text-slate-500 dark:text-zinc-500 font-medium">University Press</span>
+              <a
+                href="https://ndsuspectrum.com/article/high-school-founders-bring-peer-to-peer-approach-to-financial-literacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-xs font-bold text-emerald-700 dark:text-[#52b788] hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition-colors"
+              >
+                <span>Read Story</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

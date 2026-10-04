@@ -33,7 +33,7 @@ const SearchBar = () => {
       { title: 'Spendora SAT Assessment', content: '20-question review test to claim your verified Money Ready Certificate', url: 'https://docs.google.com/forms/d/e/1FAIpQLSdJvM6bC8ZzR9k1F2l3m4n5o6p7q8r9s0t/viewform', type: 'page' },
       { title: 'Starting Young Calculator', content: 'See how compound interest works when you start investing young', url: '/starting-early', type: 'page' },
       { title: 'Frequently Asked Questions', content: 'Everything to know about registration, supplies, middle school eligibility, and certificates', url: '/#faq', type: 'section' },
-      { title: 'Woodbury News Net Press Story', content: 'Three East Ridge High School Students Create Financial Literacy Initiative', url: '/#press', type: 'section' },
+      { title: 'Press & Media Features', content: 'Coverage across SoWashCo Schools News, NDSU Spectrum, and Woodbury News Net', url: '/#press', type: 'section' },
       { title: 'Spendora Nigeria Partnership', content: 'Confirmed mobile app partnership extending budgeting tools to Nigerian youth', url: '/#partners', type: 'section' },
       { title: 'Donate', content: 'Support our mission and help fund free workshops for students', url: '/donate', type: 'page' },
       { title: 'About Spendora', content: 'Mission, impact, and goals for financial education in schools', url: '/#about-spendora', type: 'section' },

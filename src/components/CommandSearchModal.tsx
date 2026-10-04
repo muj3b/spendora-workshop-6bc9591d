@@ -140,9 +140,9 @@ const searchDatabase: SearchItem[] = [
   },
   {
     id: "quick-press",
-    title: "Woodbury News Net Article",
+    title: "Press & Publications",
     category: "Quick Links",
-    description: "Read the featured article on East Ridge students creating Spendora.",
+    description: "Featured in SoWashCo Schools News, NDSU Spectrum, and Woodbury News Net.",
     url: "/#press",
     icon: Newspaper,
   },
