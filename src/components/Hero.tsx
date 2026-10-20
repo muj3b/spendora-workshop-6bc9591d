@@ -97,7 +97,7 @@ const Hero = memo(() => {
               <div className="text-xs font-bold text-emerald-600 dark:text-[#52b788] mt-1.5 group-hover:underline">View gallery →</div>
             </button>
             <div>
-              <div className="text-4xl md:text-5xl font-black text-emerald-700 dark:text-[#52b788] font-manrope tabular-nums">300+</div>
+              <div className="text-4xl md:text-5xl font-black text-emerald-700 dark:text-[#52b788] font-manrope tabular-nums">400+</div>
               <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">Students Locally</div>
               <div className="text-xs text-slate-500 dark:text-zinc-500">Minnesota workshops & events</div>
             </div>
