@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { AUDIOBOOK_TEST_URL } from "@/data/audiobooks";
 import {
   Search,
   X,
@@ -116,7 +117,7 @@ const searchDatabase: SearchItem[] = [
     title: "Take the Spendora SAT Assessment",
     category: "Audiobook Course",
     description: "20-question review test to earn your verified Money Ready Certificate.",
-    url: "https://docs.google.com/forms/d/e/1FAIpQLSdJvM6bC8ZzR9k1F2l3m4n5o6p7q8r9s0t/viewform",
+    url: AUDIOBOOK_TEST_URL,
     isExternal: true,
     icon: Award,
   },

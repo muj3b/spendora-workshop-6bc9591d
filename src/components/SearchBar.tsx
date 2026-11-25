@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { Search, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { AUDIOBOOK_TEST_URL } from '@/data/audiobooks';
 
 interface SearchResult {
   title: string;
@@ -30,7 +31,7 @@ const SearchBar = () => {
       { title: 'Session 1: Intro to Investing', content: 'Stock market history, index funds, and custodial accounts at R.H. Stafford Library', url: '/gallery#session-1', type: 'section' },
       { title: 'Session 2: Saving vs Investing', content: 'Budgeting case studies and Roth IRAs at R.H. Stafford Library', url: '/gallery#session-2', type: 'section' },
       { title: 'Spendora Audiobook & Audio Course', content: '8 modules with live transcripts covering budgeting, banking, and investing', url: '/audiobook', type: 'page' },
-      { title: 'Spendora SAT Assessment', content: '20-question review test to claim your verified Money Ready Certificate', url: 'https://docs.google.com/forms/d/e/1FAIpQLSdJvM6bC8ZzR9k1F2l3m4n5o6p7q8r9s0t/viewform', type: 'page' },
+      { title: 'Spendora SAT Assessment', content: '20-question review test to claim your verified Money Ready Certificate', url: AUDIOBOOK_TEST_URL, type: 'page' },
       { title: 'Starting Young Calculator', content: 'See how compound interest works when you start investing young', url: '/starting-early', type: 'page' },
       { title: 'Frequently Asked Questions', content: 'Everything to know about registration, supplies, middle school eligibility, and certificates', url: '/#faq', type: 'section' },
       { title: 'Press & Media Features', content: 'Coverage across SoWashCo Schools News, NDSU Spectrum, and Woodbury News Net', url: '/#press', type: 'section' },
